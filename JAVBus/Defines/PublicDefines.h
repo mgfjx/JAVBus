@@ -1,0 +1,25 @@
+//
+//  PublicDefines.h
+//  test
+//
+//  Created by mgfjx on 2018/10/21.
+//  Copyright © 2018 mgfjx. All rights reserved.
+//
+
+#ifndef PublicDefines_h
+#define PublicDefines_h
+
+#ifdef DEBUG
+    #define NSLog(FORMAT, ...) fprintf(stderr, "%s:%d\t%s\n", [[[NSString stringWithUTF8String: __FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat: FORMAT, ## __VA_ARGS__] UTF8String]);
+#else
+    #define NSLog(FORMAT, ...) nil
+#endif
+
+#define MainWidth [UIScreen mainScreen].bounds.size.width
+#define MainHeight [UIScreen mainScreen].bounds.size.height
+
+#define WeakSelf(weakSelf)      __weak __typeof(&*self)    weakSelf  = self;
+#define HTTPMANAGER [HttpManager manager]
+#define HTMLTOJSONMANAGER [HtmlToJsonManager manager]
+
+#endif /* PublicDefines_h */
