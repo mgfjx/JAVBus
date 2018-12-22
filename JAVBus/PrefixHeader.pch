@@ -19,5 +19,6 @@
 #import "UIView+AddFunc.h"
 #import "UIColor+Hex.h"
 #import "HttpManager.h"
+#import "GlobalTool.h"
 
 #endif /* PrefixHeader_pch */

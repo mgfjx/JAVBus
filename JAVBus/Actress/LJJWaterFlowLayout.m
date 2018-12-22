@@ -9,7 +9,6 @@
 #import "LJJWaterFlowLayout.h"
 
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
-#define kColumnCount 3 //列数
 #define kInterItemSpacing 10.0f //item间距
 #define kLineSpacing 10.0f //行间距
 
@@ -19,10 +18,17 @@
 
 @implementation LJJWaterFlowLayout
 
+- (NSUInteger)columnNum {
+    if (_columnNum < 1) {
+        _columnNum = 1;
+    }
+    return _columnNum;
+}
+
 - (CGFloat)itemWidth {
     //代理获取itemSize
     UIEdgeInsets edgeInsets = [self.delegate collectionView:self.collectionView layout:self insetForSectionAtIndex:0];
-    CGFloat itemWidth = (kScreenWidth - (kColumnCount - 1)*kInterItemSpacing-edgeInsets.left-edgeInsets.right) / kColumnCount;
+    CGFloat itemWidth = (kScreenWidth - (self.columnNum - 1)*kInterItemSpacing-edgeInsets.left-edgeInsets.right) / self.columnNum;
     return itemWidth;
 }
 
@@ -36,8 +42,8 @@
     self.minimumLineSpacing = kLineSpacing;
     //初始化存储容器
     _attributes = [NSMutableDictionary dictionary];
-    _cloArray = [NSMutableArray arrayWithCapacity:kColumnCount];
-    for (int i=0; i<kColumnCount; ++i) {
+    _cloArray = [NSMutableArray arrayWithCapacity:self.columnNum];
+    for (int i=0; i<self.columnNum; ++i) {
         [_cloArray addObject:@(0.f)];
     }
     self.delegate = (id<UICollectionViewDelegateFlowLayout>)self.collectionView.delegate;
@@ -63,7 +69,7 @@
     CGSize itemSize = [self.delegate collectionView:self.collectionView layout:self sizeForItemAtIndexPath:indexPath];
 //    NSLog(@"前大小:%@",NSStringFromCGSize(itemSize));
     
-    CGFloat itemWidth = (kScreenWidth - (kColumnCount - 1)*kInterItemSpacing-edgeInsets.left-edgeInsets.right) / kColumnCount;
+    CGFloat itemWidth = (kScreenWidth - (self.columnNum - 1)*kInterItemSpacing-edgeInsets.left-edgeInsets.right) / self.columnNum;
     
     CGFloat itemHeight = itemWidth*itemSize.height/itemSize.width;
     //得到等比例大小

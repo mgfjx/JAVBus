@@ -43,6 +43,7 @@
 		EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC4C521C2AE1D00A6E50E /* ActressModel.m */; };
 		EC9ABE1221CD3E4100C4E90F /* PageCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1021CD3E4100C4E90F /* PageCollectionReusableView.m */; };
 		EC9ABE1321CD3E4100C4E90F /* PageCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9ABE1121CD3E4100C4E90F /* PageCollectionReusableView.xib */; };
+		EC9ABE1621CE935E00C4E90F /* GlobalTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1521CE935E00C4E90F /* GlobalTool.m */; };
 		EC9D72FD21C7F41400C9F830 /* ActressDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D72FB21C7F41400C9F830 /* ActressDetailCell.m */; };
 		EC9D72FE21C7F41400C9F830 /* ActressDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D72FC21C7F41400C9F830 /* ActressDetailCell.xib */; };
 		ECD4FD9B21C5428800645593 /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4FD9921C5428800645593 /* HttpManager.m */; };
@@ -144,6 +145,8 @@
 		EC9ABE0F21CD3E4100C4E90F /* PageCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageCollectionReusableView.h; sourceTree = "<group>"; };
 		EC9ABE1021CD3E4100C4E90F /* PageCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageCollectionReusableView.m; sourceTree = "<group>"; };
 		EC9ABE1121CD3E4100C4E90F /* PageCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageCollectionReusableView.xib; sourceTree = "<group>"; };
+		EC9ABE1421CE935E00C4E90F /* GlobalTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalTool.h; sourceTree = "<group>"; };
+		EC9ABE1521CE935E00C4E90F /* GlobalTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalTool.m; sourceTree = "<group>"; };
 		EC9D72FA21C7F41400C9F830 /* ActressDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressDetailCell.h; sourceTree = "<group>"; };
 		EC9D72FB21C7F41400C9F830 /* ActressDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressDetailCell.m; sourceTree = "<group>"; };
 		EC9D72FC21C7F41400C9F830 /* ActressDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActressDetailCell.xib; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				ECD4FD9921C5428800645593 /* HttpManager.m */,
 				ECD99AD521C6891A0043DB0C /* HtmlToJsonManager.h */,
 				ECD99AD421C6891A0043DB0C /* HtmlToJsonManager.m */,
+				EC9ABE1421CE935E00C4E90F /* GlobalTool.h */,
+				EC9ABE1521CE935E00C4E90F /* GlobalTool.m */,
 			);
 			path = BaseTools;
 			sourceTree = "<group>";
@@ -682,6 +687,7 @@
 				EC0BC4BF21C2653500A6E50E /* RxWebViewNavigationViewController.m in Sources */,
 				EC0BC4AC21C25E3C00A6E50E /* ActressCell.m in Sources */,
 				EC0BC45121C2394B00A6E50E /* main.m in Sources */,
+				EC9ABE1621CE935E00C4E90F /* GlobalTool.m in Sources */,
 				EC0BC44321C2394900A6E50E /* AppDelegate.m in Sources */,
 				EC0BC49F21C25B5000A6E50E /* UIView+AddFunc.m in Sources */,
 				ECD99AED21C7E0880043DB0C /* LJJWaterFlowLayout.m in Sources */,

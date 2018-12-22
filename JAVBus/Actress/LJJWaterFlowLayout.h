@@ -17,6 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSMutableArray *cloArray;//存放每一个列的高度的数组
 
 /**
+ 列数
+ */
+@property (nonatomic, assign) NSUInteger columnNum ;
+
+/**
  宽度
  */
 @property (nonatomic, assign) CGFloat itemWidth ;

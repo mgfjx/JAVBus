@@ -30,11 +30,35 @@
     self.page = 1;
     [self requestData:YES];
     [self createCollectionView];
+    [self createBarButton];
+    [self.collectionView startHeaderRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)createBarButton {
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 40, 40);
+    [button addTarget:self action:@selector(changeSort) forControlEvents:UIControlEventTouchUpInside];
+    [button setImage:[UIImage imageNamed:@"sort"] forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = item;
+    
+}
+
+//改变列数
+- (void)changeSort {
+    NSInteger num = [GlobalTool shareInstance].columnNum;
+    num = num%3 + 1;
+    [GlobalTool shareInstance].columnNum = num;
+    [self.collectionView removeFromSuperview];
+    [self createCollectionView];
 }
 
 - (void)requestData:(BOOL)refresh {
@@ -64,10 +88,7 @@
 - (void)createCollectionView {
     
     LJJWaterFlowLayout *layout = [[LJJWaterFlowLayout alloc] init];
-//    layout.itemSize = CGSizeMake(50, 50);
-//    layout.minimumLineSpacing = 10;
-//    layout.minimumInteritemSpacing = 10;
-//    layout.delegate = self;
+    layout.columnNum = [GlobalTool shareInstance].columnNum;
 //    layout.sectionInset = <#UIEdgeInsets#>;
     
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -92,8 +113,6 @@
     collection.footerRefreshBlock = ^(UIScrollView *rfScrollView) {
         [self requestData:NO];
     };
-    
-    [collection startHeaderRefreshing];
     
 }
 
