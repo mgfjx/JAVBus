@@ -17,6 +17,13 @@
 
  @param page 分页
  */
-- (void)parseActressDataByPage:(NSInteger)page callback:(void (^)(NSArray *array))callback  ;
+- (void)parseActressDataByPage:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
+
+/**
+ 详情页
+ 
+ @param page 分页
+ */
+- (void)parseActressDetailUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
 
 @end

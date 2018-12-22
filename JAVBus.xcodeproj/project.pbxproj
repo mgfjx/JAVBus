@@ -41,8 +41,15 @@
 		EC0BC4C021C2653500A6E50E /* RxWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC4BA21C2653500A6E50E /* RxWebViewController.m */; };
 		EC0BC4C321C2ADE900A6E50E /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC4C221C2ADE900A6E50E /* BaseModel.m */; };
 		EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC4C521C2AE1D00A6E50E /* ActressModel.m */; };
+		EC9ABE1221CD3E4100C4E90F /* PageCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1021CD3E4100C4E90F /* PageCollectionReusableView.m */; };
+		EC9ABE1321CD3E4100C4E90F /* PageCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9ABE1121CD3E4100C4E90F /* PageCollectionReusableView.xib */; };
+		EC9D72FD21C7F41400C9F830 /* ActressDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D72FB21C7F41400C9F830 /* ActressDetailCell.m */; };
+		EC9D72FE21C7F41400C9F830 /* ActressDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D72FC21C7F41400C9F830 /* ActressDetailCell.xib */; };
 		ECD4FD9B21C5428800645593 /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4FD9921C5428800645593 /* HttpManager.m */; };
 		ECD99AD621C6891A0043DB0C /* HtmlToJsonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AD421C6891A0043DB0C /* HtmlToJsonManager.m */; };
+		ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AD821C697540043DB0C /* ActressDetailController.m */; };
+		ECD99AED21C7E0880043DB0C /* LJJWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AEB21C7E0880043DB0C /* LJJWaterFlowLayout.m */; };
+		ECD99AF021C7EDB90043DB0C /* MovieListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AEF21C7EDB90043DB0C /* MovieListModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,10 +141,22 @@
 		EC0BC4C221C2ADE900A6E50E /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		EC0BC4C421C2AE1D00A6E50E /* ActressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressModel.h; sourceTree = "<group>"; };
 		EC0BC4C521C2AE1D00A6E50E /* ActressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressModel.m; sourceTree = "<group>"; };
+		EC9ABE0F21CD3E4100C4E90F /* PageCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageCollectionReusableView.h; sourceTree = "<group>"; };
+		EC9ABE1021CD3E4100C4E90F /* PageCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageCollectionReusableView.m; sourceTree = "<group>"; };
+		EC9ABE1121CD3E4100C4E90F /* PageCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageCollectionReusableView.xib; sourceTree = "<group>"; };
+		EC9D72FA21C7F41400C9F830 /* ActressDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressDetailCell.h; sourceTree = "<group>"; };
+		EC9D72FB21C7F41400C9F830 /* ActressDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressDetailCell.m; sourceTree = "<group>"; };
+		EC9D72FC21C7F41400C9F830 /* ActressDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActressDetailCell.xib; sourceTree = "<group>"; };
 		ECD4FD9921C5428800645593 /* HttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpManager.m; sourceTree = "<group>"; };
 		ECD4FD9A21C5428800645593 /* HttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
 		ECD99AD421C6891A0043DB0C /* HtmlToJsonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlToJsonManager.m; sourceTree = "<group>"; };
 		ECD99AD521C6891A0043DB0C /* HtmlToJsonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HtmlToJsonManager.h; sourceTree = "<group>"; };
+		ECD99AD721C697540043DB0C /* ActressDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressDetailController.h; sourceTree = "<group>"; };
+		ECD99AD821C697540043DB0C /* ActressDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressDetailController.m; sourceTree = "<group>"; };
+		ECD99AEB21C7E0880043DB0C /* LJJWaterFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJJWaterFlowLayout.m; sourceTree = "<group>"; };
+		ECD99AEC21C7E0880043DB0C /* LJJWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJJWaterFlowLayout.h; sourceTree = "<group>"; };
+		ECD99AEE21C7EDB90043DB0C /* MovieListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieListModel.h; sourceTree = "<group>"; };
+		ECD99AEF21C7EDB90043DB0C /* MovieListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieListModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,11 +315,23 @@
 			children = (
 				EC0BC4A621C25DAB00A6E50E /* ActressCodeController.h */,
 				EC0BC4A721C25DAB00A6E50E /* ActressCodeController.m */,
+				ECD99AD721C697540043DB0C /* ActressDetailController.h */,
+				ECD99AD821C697540043DB0C /* ActressDetailController.m */,
+				EC9ABE0F21CD3E4100C4E90F /* PageCollectionReusableView.h */,
+				EC9ABE1021CD3E4100C4E90F /* PageCollectionReusableView.m */,
+				EC9ABE1121CD3E4100C4E90F /* PageCollectionReusableView.xib */,
+				EC9D72FA21C7F41400C9F830 /* ActressDetailCell.h */,
+				EC9D72FB21C7F41400C9F830 /* ActressDetailCell.m */,
+				EC9D72FC21C7F41400C9F830 /* ActressDetailCell.xib */,
+				ECD99AEC21C7E0880043DB0C /* LJJWaterFlowLayout.h */,
+				ECD99AEB21C7E0880043DB0C /* LJJWaterFlowLayout.m */,
 				EC0BC4AA21C25E3C00A6E50E /* ActressCell.h */,
 				EC0BC4A921C25E3C00A6E50E /* ActressCell.m */,
 				EC0BC4AB21C25E3C00A6E50E /* ActressCell.xib */,
 				EC0BC4C421C2AE1D00A6E50E /* ActressModel.h */,
 				EC0BC4C521C2AE1D00A6E50E /* ActressModel.m */,
+				ECD99AEE21C7EDB90043DB0C /* MovieListModel.h */,
+				ECD99AEF21C7EDB90043DB0C /* MovieListModel.m */,
 			);
 			path = Actress;
 			sourceTree = "<group>";
@@ -471,6 +502,8 @@
 				EC0BC4AD21C25E3C00A6E50E /* ActressCell.xib in Resources */,
 				EC0BC44B21C2394B00A6E50E /* Assets.xcassets in Resources */,
 				EC0BC44921C2394900A6E50E /* Main.storyboard in Resources */,
+				EC9ABE1321CD3E4100C4E90F /* PageCollectionReusableView.xib in Resources */,
+				EC9D72FE21C7F41400C9F830 /* ActressDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +684,7 @@
 				EC0BC45121C2394B00A6E50E /* main.m in Sources */,
 				EC0BC44321C2394900A6E50E /* AppDelegate.m in Sources */,
 				EC0BC49F21C25B5000A6E50E /* UIView+AddFunc.m in Sources */,
+				ECD99AED21C7E0880043DB0C /* LJJWaterFlowLayout.m in Sources */,
 				EC0BC49B21C25B5000A6E50E /* NSObject+runtimeCopy.m in Sources */,
 				EC0BC49921C25B5000A6E50E /* UIScrollView+Refresh.m in Sources */,
 				EC0BC4BD21C2653500A6E50E /* NJKWebViewProgress.m in Sources */,
@@ -659,9 +693,13 @@
 				EC0BC49E21C25B5000A6E50E /* SQPrintJsonLog.m in Sources */,
 				EC0BC4BE21C2653500A6E50E /* NJKWebViewProgressView.m in Sources */,
 				EC0BC49D21C25B5000A6E50E /* UIAlertView+ActionBlock.m in Sources */,
+				ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */,
+				EC9ABE1221CD3E4100C4E90F /* PageCollectionReusableView.m in Sources */,
+				ECD99AF021C7EDB90043DB0C /* MovieListModel.m in Sources */,
 				EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */,
 				EC0BC4A021C25B5000A6E50E /* NSString+RegExp.m in Sources */,
 				EC0BC49821C25B5000A6E50E /* UIColor+Hex.m in Sources */,
+				EC9D72FD21C7F41400C9F830 /* ActressDetailCell.m in Sources */,
 				EC0BC49621C25B5000A6E50E /* UIImageView+Scale.m in Sources */,
 				EC0BC49C21C25B5000A6E50E /* NSDate+XExtend.m in Sources */,
 				ECD4FD9B21C5428800645593 /* HttpManager.m in Sources */,

@@ -11,6 +11,7 @@
 #import <TFHpple/TFHpple.h>
 
 #import "ActressModel.h"
+#import "MovieListModel.h"
 
 static HtmlToJsonManager *instance ;
 
@@ -78,7 +79,7 @@ static HtmlToJsonManager *instance ;
             NSString *imgUrl = [imgElement objectForKey:@"src"];
             NSString *name = [imgElement objectForKey:@"title"];
             NSString *link = [href objectForKey:@"href"];
-            NSLog(@"\n %@ \n %@ \n %@", imgUrl, name, link);
+//            NSLog(@"\n %@ \n %@ \n %@", imgUrl, name, link);
             
             ActressModel *model = [ActressModel new];
             model.avatarUrl = imgUrl;
@@ -94,6 +95,40 @@ static HtmlToJsonManager *instance ;
         if (callback) {
             callback(nil);
         }
+    }];
+}
+
+/**
+ 详情页
+
+ @param page 分页
+ */
+- (void)parseActressDetailUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback {
+    if (page > 1) {
+        url = [url stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld", page]];
+    }
+    [self startGetUrl:url success:^(id resultDict) {
+        TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
+        NSArray *items = [doc searchWithXPathQuery:@"//a[@class='movie-box']"];
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (TFHppleElement *elt in items) {
+            NSString *link = [elt objectForKey:@"href"];
+            TFHppleElement *e1 = [elt childrenWithClassName:@"photo-frame"].firstObject;
+            TFHppleElement *e2 = [e1 firstChildWithTagName:@"img"];
+            NSString *img = [e2 objectForKey:@"src"];
+            NSString *title = [e2 objectForKey:@"title"];
+            NSLog(@"\n %@ \n %@ \n%@", img, title, link);
+            
+            MovieListModel *model = [MovieListModel new];
+            model.imgUrl = img;
+            model.title = title;
+            model.link = link;
+            [array addObject:model];
+        }
+        callback([array copy]);
+    } failure:^(NSError *error) {
+        callback(nil);
     }];
 }
 

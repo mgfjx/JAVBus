@@ -11,6 +11,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "HtmlToJsonManager.h"
 #import "PublicDefines.h"
 #import "Singleton.h"
 #import <SDWebImage/UIImageView+WebCache.h>

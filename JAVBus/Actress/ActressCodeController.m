@@ -11,6 +11,7 @@
 #import "ActressCell.h"
 #import "ActressModel.h"
 #import "RxWebViewController.h"
+#import "ActressDetailController.h"
 
 @interface ActressCodeController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -121,7 +122,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ActressModel *model = self.actressArray[indexPath.item];
     
-    RxWebViewController *vc = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:model.link]];
+    ActressDetailController *vc = [[ActressDetailController alloc] init];
+    vc.model = model;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
