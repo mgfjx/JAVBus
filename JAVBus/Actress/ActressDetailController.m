@@ -12,6 +12,8 @@
 #import "ActressDetailCell.h"
 #import "PageCollectionReusableView.h"
 
+#define TitleFont [UIFont systemFontOfSize:14]
+
 @interface ActressDetailController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong) NSArray *dataArray ;
@@ -109,9 +111,16 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ActressDetailCell *cell = (ActressDetailCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ActressDetailCell class]) forIndexPath:indexPath];
+    MovieListModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
     
-    cell.model = self.dataArray[indexPath.item];
+    LJJWaterFlowLayout *layout = (LJJWaterFlowLayout *)collectionView.collectionViewLayout;
+    CGFloat itemWidth = layout.itemWidth;
     
+    NSString *name = model.title;
+    CGFloat height = [name boundingRectWithSize:CGSizeMake(itemWidth - 2*5, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TitleFont} context:nil].size.height;
+    height = ceilf(height);
+    cell.itemHeight = height;
     return cell;
 }
 
@@ -119,10 +128,17 @@
     return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(LJJWaterFlowLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     MovieListModel *model = self.dataArray[indexPath.row];
+    CGFloat itemWidth = collectionViewLayout.itemWidth;
     
-    return CGSizeMake(147, 200 + 200/4 + rand()%50);
+    NSString *name = model.title;
+    CGFloat height = [name boundingRectWithSize:CGSizeMake(itemWidth - 2*5, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TitleFont} context:nil].size.height;
+    
+    height = ceilf(height) + 2*5;
+    CGFloat itemHeight = 200.0/147*itemWidth + height;
+    
+    return CGSizeMake(itemWidth, itemHeight);
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {

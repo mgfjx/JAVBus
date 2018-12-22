@@ -19,6 +19,12 @@
 
 @implementation LJJWaterFlowLayout
 
+- (CGFloat)itemWidth {
+    //代理获取itemSize
+    UIEdgeInsets edgeInsets = [self.delegate collectionView:self.collectionView layout:self insetForSectionAtIndex:0];
+    CGFloat itemWidth = (kScreenWidth - (kColumnCount - 1)*kInterItemSpacing-edgeInsets.left-edgeInsets.right) / kColumnCount;
+    return itemWidth;
+}
 
 /**
  准备布局item前调用，可以在这里面完成必要属性的初始化

@@ -27,7 +27,10 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzF-5w-N6Q">
-                        <rect key="frame" x="5" y="258" width="176" height="59"/>
+                        <rect key="frame" x="5" y="258" width="176" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="Dkd-PD-9rj"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -36,20 +39,20 @@
             </view>
             <constraints>
                 <constraint firstItem="0i5-WB-57q" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="04J-xd-hmf"/>
-                <constraint firstItem="vzF-5w-N6Q" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Rnc-KD-B3A"/>
-                <constraint firstAttribute="bottom" secondItem="vzF-5w-N6Q" secondAttribute="bottom" constant="5" id="d8H-ei-w2L"/>
-                <constraint firstAttribute="trailing" secondItem="vzF-5w-N6Q" secondAttribute="trailing" constant="5" id="gQy-xg-sob"/>
-                <constraint firstItem="vzF-5w-N6Q" firstAttribute="top" secondItem="0i5-WB-57q" secondAttribute="bottom" constant="5" id="mkF-1u-xCb"/>
+                <constraint firstAttribute="trailing" secondItem="vzF-5w-N6Q" secondAttribute="trailing" constant="5" id="7h5-6A-P91"/>
+                <constraint firstItem="vzF-5w-N6Q" firstAttribute="top" secondItem="0i5-WB-57q" secondAttribute="bottom" constant="5" id="ggM-Y4-PE8"/>
+                <constraint firstItem="vzF-5w-N6Q" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="tdd-W0-hap"/>
                 <constraint firstItem="0i5-WB-57q" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wl3-oc-33W"/>
                 <constraint firstAttribute="trailing" secondItem="0i5-WB-57q" secondAttribute="trailing" id="xtX-UD-So9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="186" height="322"/>
             <connections>
+                <outlet property="heightConstraint" destination="Dkd-PD-9rj" id="dQb-8p-kdl"/>
                 <outlet property="imageView" destination="0i5-WB-57q" id="nw5-Pc-t8r"/>
                 <outlet property="titleLabel" destination="vzF-5w-N6Q" id="8bd-RT-68c"/>
             </connections>
-            <point key="canvasLocation" x="-407" y="139"/>
+            <point key="canvasLocation" x="-531" y="137"/>
         </collectionViewCell>
     </objects>
 </document>

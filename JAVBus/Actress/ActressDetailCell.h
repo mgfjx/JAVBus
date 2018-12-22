@@ -12,5 +12,8 @@
 @interface ActressDetailCell : UICollectionViewCell
 
 @property (nonatomic, strong) MovieListModel *model ;
+@property (nonatomic, strong) UIFont *titleFont ;
+
+@property (nonatomic, assign) CGFloat itemHeight ;
 
 @end
