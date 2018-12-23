@@ -17,4 +17,11 @@ SingletonDeclare(Instance)
  */
 @property (nonatomic, assign) NSUInteger columnNum ;
 
+@property (nonatomic, strong) NSString *baseUrl ;
+
+/**
+ 可用ip地址
+ */
+@property (nonatomic, strong) NSArray *ips ;
+
 @end

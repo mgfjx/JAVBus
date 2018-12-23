@@ -17,24 +17,9 @@ static HtmlToJsonManager *instance ;
 
 @interface HtmlToJsonManager ()
 
-@property (nonatomic, strong) NSString *baseUrl ;
-
 @end
 
 @implementation HtmlToJsonManager
-
-@synthesize baseUrl = _baseUrl;
-
-- (NSString *)baseUrl {
-    if (!_baseUrl) {
-        _baseUrl = @"https://www.javbus.pw";
-    }
-    return _baseUrl;
-}
-
-- (void)setBaseUrl:(NSString *)baseUrl {
-    _baseUrl = baseUrl;
-}
 
 + (instancetype)manager {
     static dispatch_once_t onceToken;
@@ -46,9 +31,46 @@ static HtmlToJsonManager *instance ;
 
 - (void)startGetUrl:(NSString *)url success:(SuccessCallback)success failure:(FailCallback)failure {
     if (![url hasPrefix:@"http"]) {
-        url = [NSString stringWithFormat:@"%@%@", self.baseUrl, url];
+        url = [NSString stringWithFormat:@"%@%@", [GlobalTool shareInstance].baseUrl, url];
     }
     [HTTPMANAGER startGetUrl:url param:nil success:success failure:failure];
+}
+
+- (void)testIp:(NSString *)ip callback:(void (^)(NSArray *array))callback {
+    NSString *url = @"/actresses";
+    [self startGetUrl:url success:^(id resultDict) {
+        TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
+        NSArray *images  = [doc searchWithXPathQuery:@"//div[@class='photo-frame']"];
+        NSArray *hrefs  = [doc searchWithXPathQuery:@"//a[@class='avatar-box text-center']"];
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (int i = 0; i < images.count; i++) {
+            
+            TFHppleElement *e1 = images[i];
+            
+            TFHppleElement *imgElement = [e1 firstChildWithTagName:@"img"];
+            
+            TFHppleElement *href = hrefs[i];
+            
+            NSString *imgUrl = [imgElement objectForKey:@"src"];
+            NSString *name = [imgElement objectForKey:@"title"];
+            NSString *link = [href objectForKey:@"href"];
+            
+            ActressModel *model = [ActressModel new];
+            model.avatarUrl = imgUrl;
+            model.name = name;
+            model.link = link;
+            [array addObject:model];
+        }
+        
+        if (callback) {
+            callback([array copy]);
+        }
+    } failure:^(NSError *error) {
+        if (callback) {
+            callback(nil);
+        }
+    }];
 }
 
 /**

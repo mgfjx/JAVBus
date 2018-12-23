@@ -11,6 +11,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "HttpManager.h"
 #import "HtmlToJsonManager.h"
 #import "PublicDefines.h"
 #import "Singleton.h"
@@ -18,7 +19,6 @@
 #import "UIScrollView+Refresh.h"
 #import "UIView+AddFunc.h"
 #import "UIColor+Hex.h"
-#import "HttpManager.h"
 #import "GlobalTool.h"
 
 #endif /* PrefixHeader_pch */

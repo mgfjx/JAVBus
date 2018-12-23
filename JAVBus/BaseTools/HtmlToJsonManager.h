@@ -12,6 +12,8 @@
 
 + (instancetype)manager ;
 
+- (void)testIp:(NSString *)ip callback:(void (^)(NSArray *array))callback ;
+
 /**
  有码女优列表
 

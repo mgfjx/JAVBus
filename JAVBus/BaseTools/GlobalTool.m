@@ -11,6 +11,8 @@
 @implementation GlobalTool
 
 @synthesize columnNum = _columnNum;
+@synthesize baseUrl = _baseUrl;
+@synthesize ips = _ips;
 
 SingletonImplement(Instance)
 
@@ -25,6 +27,38 @@ SingletonImplement(Instance)
         num = 3;
     }
     return num;
+}
+
+- (void)setBaseUrl:(NSString *)baseUrl {
+    _baseUrl = baseUrl;
+    [[NSUserDefaults standardUserDefaults] setObject:baseUrl forKey:@"kBaseUrl"];
+}
+
+- (NSString *)baseUrl {
+    NSString *url = [[NSUserDefaults standardUserDefaults] objectForKey:@"kBaseUrl"];
+    if (!url || url.length == 0) {
+        url = @"https://www.javbus.pw";
+    }
+    return url;
+}
+
+- (void)setIps:(NSArray *)ips {
+    _ips = ips;
+    [[NSUserDefaults standardUserDefaults] setObject:ips forKey:@"kHTTPAdress"];
+}
+
+- (NSArray *)ips {
+    NSArray *ips = [[NSUserDefaults standardUserDefaults] objectForKey:@"kHTTPAdress"];
+    if (!ips || ips.count == 0) {
+        ips = @[
+                @"https://www.javbus.pw",
+                @"https://www.javbus.com",
+                @"https://www.busdmm.cc",
+                @"https://www.dmmbus.co",
+                @"https://www.seedmm.co",
+                ];
+    }
+    return ips;
 }
 
 @end

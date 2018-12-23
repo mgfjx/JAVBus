@@ -73,6 +73,11 @@
     [HTMLTOJSONMANAGER parseActressDetailUrl:self.model.link page:self.page callback:^(NSArray *array) {
         [self.collectionView stopHeaderRefreshing];
         [self.collectionView stopFooterRefreshing];
+        
+        if (array.count == 0) {
+            return ;
+        }
+        
         NSMutableArray *arr ;
         if (refresh) {
             arr = [NSMutableArray array];

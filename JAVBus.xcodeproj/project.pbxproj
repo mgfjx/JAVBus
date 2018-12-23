@@ -44,6 +44,9 @@
 		EC9ABE1221CD3E4100C4E90F /* PageCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1021CD3E4100C4E90F /* PageCollectionReusableView.m */; };
 		EC9ABE1321CD3E4100C4E90F /* PageCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9ABE1121CD3E4100C4E90F /* PageCollectionReusableView.xib */; };
 		EC9ABE1621CE935E00C4E90F /* GlobalTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1521CE935E00C4E90F /* GlobalTool.m */; };
+		EC9ABE1D21CF4E8600C4E90F /* AddressSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1C21CF4E8600C4E90F /* AddressSettingController.m */; };
+		EC9ABE2121CFA5E300C4E90F /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1F21CFA5E300C4E90F /* AddressCell.m */; };
+		EC9ABE2221CFA5E300C4E90F /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9ABE2021CFA5E300C4E90F /* AddressCell.xib */; };
 		EC9D72FD21C7F41400C9F830 /* ActressDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D72FB21C7F41400C9F830 /* ActressDetailCell.m */; };
 		EC9D72FE21C7F41400C9F830 /* ActressDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D72FC21C7F41400C9F830 /* ActressDetailCell.xib */; };
 		ECD4FD9B21C5428800645593 /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4FD9921C5428800645593 /* HttpManager.m */; };
@@ -147,6 +150,11 @@
 		EC9ABE1121CD3E4100C4E90F /* PageCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageCollectionReusableView.xib; sourceTree = "<group>"; };
 		EC9ABE1421CE935E00C4E90F /* GlobalTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalTool.h; sourceTree = "<group>"; };
 		EC9ABE1521CE935E00C4E90F /* GlobalTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalTool.m; sourceTree = "<group>"; };
+		EC9ABE1B21CF4E8600C4E90F /* AddressSettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressSettingController.h; sourceTree = "<group>"; };
+		EC9ABE1C21CF4E8600C4E90F /* AddressSettingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressSettingController.m; sourceTree = "<group>"; };
+		EC9ABE1E21CFA5E300C4E90F /* AddressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
+		EC9ABE1F21CFA5E300C4E90F /* AddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
+		EC9ABE2021CFA5E300C4E90F /* AddressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressCell.xib; sourceTree = "<group>"; };
 		EC9D72FA21C7F41400C9F830 /* ActressDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressDetailCell.h; sourceTree = "<group>"; };
 		EC9D72FB21C7F41400C9F830 /* ActressDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressDetailCell.m; sourceTree = "<group>"; };
 		EC9D72FC21C7F41400C9F830 /* ActressDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActressDetailCell.xib; sourceTree = "<group>"; };
@@ -243,6 +251,7 @@
 				EC0BC47F21C25B5000A6E50E /* Category */,
 				EC0BC4AE21C2651D00A6E50E /* Library */,
 				EC0BC4A221C25D1D00A6E50E /* BaseTools */,
+				EC9ABE1721CF4BE200C4E90F /* Setting */,
 				EC0BC4A121C25CD500A6E50E /* Actress */,
 				EC0BC44121C2394900A6E50E /* AppDelegate.h */,
 				EC0BC44221C2394900A6E50E /* AppDelegate.m */,
@@ -389,6 +398,18 @@
 			path = NJKWebViewProgress;
 			sourceTree = "<group>";
 		};
+		EC9ABE1721CF4BE200C4E90F /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				EC9ABE1B21CF4E8600C4E90F /* AddressSettingController.h */,
+				EC9ABE1C21CF4E8600C4E90F /* AddressSettingController.m */,
+				EC9ABE1E21CFA5E300C4E90F /* AddressCell.h */,
+				EC9ABE1F21CFA5E300C4E90F /* AddressCell.m */,
+				EC9ABE2021CFA5E300C4E90F /* AddressCell.xib */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -505,6 +526,7 @@
 				EC0BC4BB21C2653500A6E50E /* backItemImage_hl@2x.png in Resources */,
 				EC0BC4BC21C2653500A6E50E /* backItemImage@2x.png in Resources */,
 				EC0BC4AD21C25E3C00A6E50E /* ActressCell.xib in Resources */,
+				EC9ABE2221CFA5E300C4E90F /* AddressCell.xib in Resources */,
 				EC0BC44B21C2394B00A6E50E /* Assets.xcassets in Resources */,
 				EC0BC44921C2394900A6E50E /* Main.storyboard in Resources */,
 				EC9ABE1321CD3E4100C4E90F /* PageCollectionReusableView.xib in Resources */,
@@ -683,6 +705,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC9ABE2121CFA5E300C4E90F /* AddressCell.m in Sources */,
 				EC0BC44621C2394900A6E50E /* ViewController.m in Sources */,
 				EC0BC4BF21C2653500A6E50E /* RxWebViewNavigationViewController.m in Sources */,
 				EC0BC4AC21C25E3C00A6E50E /* ActressCell.m in Sources */,
@@ -712,6 +735,7 @@
 				ECD99AD621C6891A0043DB0C /* HtmlToJsonManager.m in Sources */,
 				EC0BC49721C25B5000A6E50E /* NSString+XExtend.m in Sources */,
 				EC0BC4A821C25DAB00A6E50E /* ActressCodeController.m in Sources */,
+				EC9ABE1D21CF4E8600C4E90F /* AddressSettingController.m in Sources */,
 				EC0BC4C321C2ADE900A6E50E /* BaseModel.m in Sources */,
 				EC0BC49A21C25B5000A6E50E /* NSDate+Utilities.m in Sources */,
 			);
