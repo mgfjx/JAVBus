@@ -57,8 +57,9 @@
     NSInteger num = [GlobalTool shareInstance].columnNum;
     num = num%3 + 1;
     [GlobalTool shareInstance].columnNum = num;
-    [self.collectionView removeFromSuperview];
-    [self createCollectionView];
+    LJJWaterFlowLayout *layout = (LJJWaterFlowLayout *)self.collectionView.collectionViewLayout;
+    layout.columnNum = [GlobalTool shareInstance].columnNum;
+    [self.collectionView reloadData];
 }
 
 - (void)requestData:(BOOL)refresh {
