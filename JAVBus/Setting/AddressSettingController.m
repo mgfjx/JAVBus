@@ -44,7 +44,7 @@
 
 - (void)addHTTPIP {
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加IP地址" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加域名地址" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
@@ -68,7 +68,7 @@
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         
-        textField.placeholder = @"请输入IP";
+        textField.placeholder = @"请输入域名";
         // 是否安全输入
         textField.secureTextEntry = NO;
         // 添加一个通知，改变okAction的状态
