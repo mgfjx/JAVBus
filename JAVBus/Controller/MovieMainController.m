@@ -1,36 +1,23 @@
 //
-//  ActressDetailController.m
+//  MovieMainController.m
 //  JAVBus
 //
-//  Created by mgfjx on 2018/12/16.
+//  Created by mgfjx on 2018/12/26.
 //  Copyright © 2018 mgfjx. All rights reserved.
 //
 
-#import "ActressDetailController.h"
+#import "MovieMainController.h"
 
-@interface ActressDetailController ()
-@end
-
-@implementation ActressDetailController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+@implementation MovieMainController
 
 - (void)requestData:(BOOL)refresh {
-    
     if (refresh) {
         self.page = 1;;
     }else{
         self.page ++;
     }
     
-    [HTMLTOJSONMANAGER parseActressDetailUrl:self.model.link page:self.page callback:^(NSArray *array) {
+    [HTMLTOJSONMANAGER parseMainPageDataByPage:self.page callback:^(NSArray *array) {
         [self.collectionView stopHeaderRefreshing];
         [self.collectionView stopFooterRefreshing];
         

@@ -15,6 +15,11 @@
 - (void)testIp:(NSString *)ip callback:(void (^)(NSArray *array))callback ;
 
 /**
+ 获取首页影片
+ */
+- (void)parseMainPageDataByPage:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
+
+/**
  有码女优列表
 
  @param page 分页

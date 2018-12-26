@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "ActressCodeController.h"
 #import "AddressSettingController.h"
+#import "MovieMainController.h"
 
 @interface ViewController ()
 
@@ -41,6 +42,7 @@
 
 - (IBAction)start:(UIButton *)sender {
     ActressCodeController *vc = [ActressCodeController new];
+//    MovieMainController *vc = [MovieMainController new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -74,6 +74,50 @@ static HtmlToJsonManager *instance ;
 }
 
 /**
+ 获取首页影片
+ */
+- (void)parseMainPageDataByPage:(NSInteger)page callback:(void (^)(NSArray *array))callback {
+    NSString *url = @"";
+    if (page > 1) {
+        url = [url stringByAppendingPathComponent:[NSString stringWithFormat:@"/page/%ld", page]];
+    }
+    [self startGetUrl:url success:^(id resultDict) {
+        TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
+        NSArray *items = [doc searchWithXPathQuery:@"//a[@class='movie-box']"];
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (TFHppleElement *elt in items) {
+            NSString *link = [elt objectForKey:@"href"];
+            TFHppleElement *e1 = [elt childrenWithClassName:@"photo-frame"].firstObject;
+            TFHppleElement *e2 = [e1 firstChildWithTagName:@"img"];
+            NSString *img = [e2 objectForKey:@"src"];
+            NSString *title = [e2 objectForKey:@"title"];
+            
+            TFHppleElement *e3 = [elt childrenWithClassName:@"photo-info"].firstObject;
+            TFHppleElement *e4 = [e3 firstChildWithTagName:@"span"];
+            NSArray *arr = [e4 childrenWithTagName:@"date"];
+            TFHppleElement *e5 = arr.firstObject;
+            TFHppleElement *e6 = arr.lastObject;
+            NSString *number = [e5 text];
+            NSString *dateStr = [e6 text];
+            
+            NSLog(@"\n %@ \n %@ \n%@ \n%@ \n%@", img, title, link, number, dateStr);
+            
+            MovieListModel *model = [MovieListModel new];
+            model.imgUrl = img;
+            model.title = title;
+            model.link = link;
+            model.number = number;
+            model.dateString = dateStr;
+            [array addObject:model];
+        }
+        callback([array copy]);
+    } failure:^(NSError *error) {
+        callback(nil);
+    }];
+}
+
+/**
  有码女优列表
  
  @param page 分页

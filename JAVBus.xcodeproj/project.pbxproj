@@ -54,6 +54,8 @@
 		ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AD821C697540043DB0C /* ActressDetailController.m */; };
 		ECD99AED21C7E0880043DB0C /* LJJWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AEB21C7E0880043DB0C /* LJJWaterFlowLayout.m */; };
 		ECD99AF021C7EDB90043DB0C /* MovieListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AEF21C7EDB90043DB0C /* MovieListModel.m */; };
+		ECFD29BF21D37E960085E257 /* MovieListBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD29BE21D37E960085E257 /* MovieListBaseController.m */; };
+		ECFD29C221D37FBC0085E257 /* MovieMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD29C121D37FBC0085E257 /* MovieMainController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +170,10 @@
 		ECD99AEC21C7E0880043DB0C /* LJJWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJJWaterFlowLayout.h; sourceTree = "<group>"; };
 		ECD99AEE21C7EDB90043DB0C /* MovieListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieListModel.h; sourceTree = "<group>"; };
 		ECD99AEF21C7EDB90043DB0C /* MovieListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieListModel.m; sourceTree = "<group>"; };
+		ECFD29BD21D37E960085E257 /* MovieListBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieListBaseController.h; sourceTree = "<group>"; };
+		ECFD29BE21D37E960085E257 /* MovieListBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieListBaseController.m; sourceTree = "<group>"; };
+		ECFD29C021D37FBC0085E257 /* MovieMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieMainController.h; sourceTree = "<group>"; };
+		ECFD29C121D37FBC0085E257 /* MovieMainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieMainController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +258,7 @@
 				EC0BC4AE21C2651D00A6E50E /* Library */,
 				EC0BC4A221C25D1D00A6E50E /* BaseTools */,
 				EC9ABE1721CF4BE200C4E90F /* Setting */,
+				ECFD29BC21D37E750085E257 /* Controller */,
 				EC0BC4A121C25CD500A6E50E /* Actress */,
 				EC0BC44121C2394900A6E50E /* AppDelegate.h */,
 				EC0BC44221C2394900A6E50E /* AppDelegate.m */,
@@ -408,6 +415,17 @@
 				EC9ABE2021CFA5E300C4E90F /* AddressCell.xib */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		ECFD29BC21D37E750085E257 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				ECFD29BD21D37E960085E257 /* MovieListBaseController.h */,
+				ECFD29BE21D37E960085E257 /* MovieListBaseController.m */,
+				ECFD29C021D37FBC0085E257 /* MovieMainController.h */,
+				ECFD29C121D37FBC0085E257 /* MovieMainController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -715,6 +733,7 @@
 				EC0BC49F21C25B5000A6E50E /* UIView+AddFunc.m in Sources */,
 				ECD99AED21C7E0880043DB0C /* LJJWaterFlowLayout.m in Sources */,
 				EC0BC49B21C25B5000A6E50E /* NSObject+runtimeCopy.m in Sources */,
+				ECFD29BF21D37E960085E257 /* MovieListBaseController.m in Sources */,
 				EC0BC49921C25B5000A6E50E /* UIScrollView+Refresh.m in Sources */,
 				EC0BC4BD21C2653500A6E50E /* NJKWebViewProgress.m in Sources */,
 				EC0BC4C021C2653500A6E50E /* RxWebViewController.m in Sources */,
@@ -738,6 +757,7 @@
 				EC9ABE1D21CF4E8600C4E90F /* AddressSettingController.m in Sources */,
 				EC0BC4C321C2ADE900A6E50E /* BaseModel.m in Sources */,
 				EC0BC49A21C25B5000A6E50E /* NSDate+Utilities.m in Sources */,
+				ECFD29C221D37FBC0085E257 /* MovieMainController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

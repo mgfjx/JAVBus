@@ -6,10 +6,10 @@
 //  Copyright © 2018 mgfjx. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "MovieListBaseController.h"
 #import "ActressModel.h"
 
-@interface ActressDetailController : BaseViewController
+@interface ActressDetailController : MovieListBaseController
 
 @property (nonatomic, strong) ActressModel *model ;
 
