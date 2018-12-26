@@ -13,5 +13,7 @@
 @property (nonatomic, strong) NSString *imgUrl ;
 @property (nonatomic, strong) NSString *title ;
 @property (nonatomic, strong) NSString *link ;
+@property (nonatomic, strong) NSString *number ;
+@property (nonatomic, strong) NSString *dateString ;
 
 @end

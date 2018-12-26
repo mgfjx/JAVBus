@@ -140,12 +140,23 @@ static HtmlToJsonManager *instance ;
             TFHppleElement *e2 = [e1 firstChildWithTagName:@"img"];
             NSString *img = [e2 objectForKey:@"src"];
             NSString *title = [e2 objectForKey:@"title"];
-            NSLog(@"\n %@ \n %@ \n%@", img, title, link);
+            
+            TFHppleElement *e3 = [elt childrenWithClassName:@"photo-info"].firstObject;
+            TFHppleElement *e4 = [e3 firstChildWithTagName:@"span"];
+            NSArray *arr = [e4 childrenWithTagName:@"date"];
+            TFHppleElement *e5 = arr.firstObject;
+            TFHppleElement *e6 = arr.lastObject;
+            NSString *number = [e5 text];
+            NSString *dateStr = [e6 text];
+            
+            NSLog(@"\n %@ \n %@ \n%@ \n%@ \n%@", img, title, link, number, dateStr);
             
             MovieListModel *model = [MovieListModel new];
             model.imgUrl = img;
             model.title = title;
             model.link = link;
+            model.number = number;
+            model.dateString = dateStr;
             [array addObject:model];
         }
         callback([array copy]);

@@ -33,7 +33,7 @@
 
 - (void)setModel:(MovieListModel *)model {
     _model = model;
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl]];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"actressHolder"]];
     self.titleLabel.text = model.title;
 }
 
