@@ -161,7 +161,9 @@
     CGFloat height = [name boundingRectWithSize:CGSizeMake(itemWidth - 2*5, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:TitleFont} context:nil].size.height;
     
     height = ceilf(height) + 2*5;
-    CGFloat itemHeight = 200.0/147*itemWidth + height;
+    CGFloat imgHeight = ceilf(200.0/147*itemWidth);
+    CGFloat numAndDateHeight = 51;
+    CGFloat itemHeight = imgHeight + height + numAndDateHeight;
     
     return CGSizeMake(itemWidth, itemHeight);
 }

@@ -13,7 +13,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *numberWidthConstraint;
 
 @end
 
@@ -29,12 +32,21 @@
     
     self.backgroundColor = [UIColor colorWithHexString:@"#f0f0f0"];
     
+    self.numberLabel.layer.cornerRadius = self.numberLabel.height/8;
+    self.numberLabel.layer.masksToBounds = YES;
+    
 }
 
 - (void)setModel:(MovieListModel *)model {
     _model = model;
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"actressHolder"]];
     self.titleLabel.text = model.title;
+    self.numberLabel.text = model.number;
+    self.timeLabel.text = model.dateString;
+    
+    CGFloat width = [self.numberLabel.text boundingRectWithSize:CGSizeMake(self.titleLabel.width, self.numberLabel.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.numberLabel.font} context:nil].size.width;
+    self.numberWidthConstraint.constant = width + 5*2;
+    
 }
 
 - (void)setTitleFont:(UIFont *)titleFont {
