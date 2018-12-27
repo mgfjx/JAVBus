@@ -86,7 +86,7 @@
     self.scrollView.contentSize = CGSizeMake(titles.count * self.scrollView.width, self.scrollView.height);
     
     //子控制器
-    NSArray *controllers = @[@"MovieMainController", @"MovieUncensoredController", @"MovieXvideoController", @"MovieMainController", @"ActressCodeController", @"ActressCodeController", @"ActressUncensoredListController"];
+    NSArray *controllers = @[@"MovieMainController", @"MovieUncensoredController", @"MovieXvideoController", @"CensoredCategoryController", @"UnCensoredCategoryController", @"ActressCodeController", @"ActressUncensoredListController"];
     for (int i = 0; i < controllers.count; i++) {
         NSString *vcName = controllers[i];
         UIViewController *vc = [[NSClassFromString(vcName) alloc] init];

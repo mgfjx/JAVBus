@@ -57,6 +57,11 @@
 		ECF9456121D4ACD20043E898 /* MovieXvideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9456021D4ACD20043E898 /* MovieXvideoController.m */; };
 		ECF9456421D4AD5E0043E898 /* ActorListBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9456321D4AD5E0043E898 /* ActorListBaseController.m */; };
 		ECF9456721D4AFBA0043E898 /* ActressUncensoredListController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9456621D4AFBA0043E898 /* ActressUncensoredListController.m */; };
+		ECF9456A21D4B5B60043E898 /* MovieCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9456921D4B5B60043E898 /* MovieCategoryController.m */; };
+		ECF9456D21D4B7BC0043E898 /* CensoredCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9456C21D4B7BC0043E898 /* CensoredCategoryController.m */; };
+		ECF9457021D4B7CB0043E898 /* UnCensoredCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9456F21D4B7CB0043E898 /* UnCensoredCategoryController.m */; };
+		ECF9457421D4B86C0043E898 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9457321D4B86C0043E898 /* CategoryModel.m */; };
+		ECF9457721D4C0DD0043E898 /* CategoryItemListController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9457621D4C0DD0043E898 /* CategoryItemListController.m */; };
 		ECFD29BF21D37E960085E257 /* MovieListBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD29BE21D37E960085E257 /* MovieListBaseController.m */; };
 		ECFD29C221D37FBC0085E257 /* MovieMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD29C121D37FBC0085E257 /* MovieMainController.m */; };
 /* End PBXBuildFile section */
@@ -180,6 +185,16 @@
 		ECF9456321D4AD5E0043E898 /* ActorListBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActorListBaseController.m; sourceTree = "<group>"; };
 		ECF9456521D4AFB90043E898 /* ActressUncensoredListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressUncensoredListController.h; sourceTree = "<group>"; };
 		ECF9456621D4AFBA0043E898 /* ActressUncensoredListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressUncensoredListController.m; sourceTree = "<group>"; };
+		ECF9456821D4B5B60043E898 /* MovieCategoryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCategoryController.h; sourceTree = "<group>"; };
+		ECF9456921D4B5B60043E898 /* MovieCategoryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCategoryController.m; sourceTree = "<group>"; };
+		ECF9456B21D4B7BC0043E898 /* CensoredCategoryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CensoredCategoryController.h; sourceTree = "<group>"; };
+		ECF9456C21D4B7BC0043E898 /* CensoredCategoryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CensoredCategoryController.m; sourceTree = "<group>"; };
+		ECF9456E21D4B7CB0043E898 /* UnCensoredCategoryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnCensoredCategoryController.h; sourceTree = "<group>"; };
+		ECF9456F21D4B7CB0043E898 /* UnCensoredCategoryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnCensoredCategoryController.m; sourceTree = "<group>"; };
+		ECF9457221D4B86C0043E898 /* CategoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryModel.h; sourceTree = "<group>"; };
+		ECF9457321D4B86C0043E898 /* CategoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryModel.m; sourceTree = "<group>"; };
+		ECF9457521D4C0DD0043E898 /* CategoryItemListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryItemListController.h; sourceTree = "<group>"; };
+		ECF9457621D4C0DD0043E898 /* CategoryItemListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryItemListController.m; sourceTree = "<group>"; };
 		ECFD29BD21D37E960085E257 /* MovieListBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieListBaseController.h; sourceTree = "<group>"; };
 		ECFD29BE21D37E960085E257 /* MovieListBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieListBaseController.m; sourceTree = "<group>"; };
 		ECFD29C021D37FBC0085E257 /* MovieMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieMainController.h; sourceTree = "<group>"; };
@@ -428,19 +443,37 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		ECF9457121D4B85E0043E898 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ECF9457221D4B86C0043E898 /* CategoryModel.h */,
+				ECF9457321D4B86C0043E898 /* CategoryModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		ECFD29BC21D37E750085E257 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ECF9457121D4B85E0043E898 /* Model */,
 				ECFD29BD21D37E960085E257 /* MovieListBaseController.h */,
 				ECFD29BE21D37E960085E257 /* MovieListBaseController.m */,
 				ECF9456221D4AD5E0043E898 /* ActorListBaseController.h */,
 				ECF9456321D4AD5E0043E898 /* ActorListBaseController.m */,
+				ECF9456821D4B5B60043E898 /* MovieCategoryController.h */,
+				ECF9456921D4B5B60043E898 /* MovieCategoryController.m */,
 				ECFD29C021D37FBC0085E257 /* MovieMainController.h */,
 				ECFD29C121D37FBC0085E257 /* MovieMainController.m */,
 				ECF9455C21D4AAB60043E898 /* MovieUncensoredController.h */,
 				ECF9455D21D4AAB60043E898 /* MovieUncensoredController.m */,
 				ECF9455F21D4ACD20043E898 /* MovieXvideoController.h */,
 				ECF9456021D4ACD20043E898 /* MovieXvideoController.m */,
+				ECF9456B21D4B7BC0043E898 /* CensoredCategoryController.h */,
+				ECF9456C21D4B7BC0043E898 /* CensoredCategoryController.m */,
+				ECF9456E21D4B7CB0043E898 /* UnCensoredCategoryController.h */,
+				ECF9456F21D4B7CB0043E898 /* UnCensoredCategoryController.m */,
+				ECF9457521D4C0DD0043E898 /* CategoryItemListController.h */,
+				ECF9457621D4C0DD0043E898 /* CategoryItemListController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -739,6 +772,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECF9457721D4C0DD0043E898 /* CategoryItemListController.m in Sources */,
 				EC9ABE2121CFA5E300C4E90F /* AddressCell.m in Sources */,
 				ECF9455B21D46AB60043E898 /* MainTabViewController.m in Sources */,
 				EC0BC44621C2394900A6E50E /* MainViewController.m in Sources */,
@@ -754,6 +788,7 @@
 				EC0BC49921C25B5000A6E50E /* UIScrollView+Refresh.m in Sources */,
 				EC0BC4BD21C2653500A6E50E /* NJKWebViewProgress.m in Sources */,
 				ECF9456421D4AD5E0043E898 /* ActorListBaseController.m in Sources */,
+				ECF9456D21D4B7BC0043E898 /* CensoredCategoryController.m in Sources */,
 				ECF9455E21D4AAB60043E898 /* MovieUncensoredController.m in Sources */,
 				EC0BC4C021C2653500A6E50E /* RxWebViewController.m in Sources */,
 				ECF9456721D4AFBA0043E898 /* ActressUncensoredListController.m in Sources */,
@@ -765,7 +800,10 @@
 				ECD99AF021C7EDB90043DB0C /* MovieListModel.m in Sources */,
 				EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */,
 				EC0BC4A021C25B5000A6E50E /* NSString+RegExp.m in Sources */,
+				ECF9457421D4B86C0043E898 /* CategoryModel.m in Sources */,
 				EC0BC49821C25B5000A6E50E /* UIColor+Hex.m in Sources */,
+				ECF9456A21D4B5B60043E898 /* MovieCategoryController.m in Sources */,
+				ECF9457021D4B7CB0043E898 /* UnCensoredCategoryController.m in Sources */,
 				EC9D72FD21C7F41400C9F830 /* ActressDetailCell.m in Sources */,
 				EC0BC49621C25B5000A6E50E /* UIImageView+Scale.m in Sources */,
 				EC0BC49C21C25B5000A6E50E /* NSDate+XExtend.m in Sources */,

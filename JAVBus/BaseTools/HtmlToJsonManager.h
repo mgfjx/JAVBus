@@ -50,4 +50,18 @@
  */
 - (void)parseXvdieoListDataByPage:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
 
+/**
+ 请求有码类别
+ */
+- (void)parseCensoredCategoryListCallback:(void (^)(NSArray *array))callback ;
+/**
+ 请求无码类别
+ */
+- (void)parseUnCensoredCategoryListCallback:(void (^)(NSArray *array))callback ;
+
+/**
+ 类别详情
+ */
+- (void)parseCategoryListUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
+
 @end

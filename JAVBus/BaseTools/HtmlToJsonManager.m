@@ -11,6 +11,7 @@
 
 #import "ActressModel.h"
 #import "MovieListModel.h"
+#import "CategoryModel.h"
 
 static HtmlToJsonManager *instance ;
 
@@ -35,6 +36,42 @@ static HtmlToJsonManager *instance ;
     [HTTPMANAGER startGetUrl:url param:nil success:success failure:failure];
 }
 
+- (void)testIp:(NSString *)ip callback:(void (^)(NSArray *array))callback {
+    NSString *url = @"/actresses";
+    [self startGetUrl:url success:^(id resultDict) {
+        TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
+        NSArray *images  = [doc searchWithXPathQuery:@"//div[@class='photo-frame']"];
+        NSArray *hrefs  = [doc searchWithXPathQuery:@"//a[@class='avatar-box text-center']"];
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (int i = 0; i < images.count; i++) {
+            
+            TFHppleElement *e1 = images[i];
+            
+            TFHppleElement *imgElement = [e1 firstChildWithTagName:@"img"];
+            
+            TFHppleElement *href = hrefs[i];
+            
+            NSString *imgUrl = [imgElement objectForKey:@"src"];
+            NSString *name = [imgElement objectForKey:@"title"];
+            NSString *link = [href objectForKey:@"href"];
+            
+            ActressModel *model = [ActressModel new];
+            model.avatarUrl = imgUrl;
+            model.name = name;
+            model.link = link;
+            [array addObject:model];
+        }
+        
+        if (callback) {
+            callback([array copy]);
+        }
+    } failure:^(NSError *error) {
+        if (callback) {
+            callback(nil);
+        }
+    }];
+}
 
 /**
  请求所有影片列表通用方法
@@ -76,6 +113,9 @@ static HtmlToJsonManager *instance ;
     }];
 }
 
+/**
+ 请求女优列表通用
+ */
 - (void)parseBaseActorList:(NSString *)url callback:(void (^)(NSArray *array))callback {
     [self startGetUrl:url success:^(id resultDict) {
         TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
@@ -113,31 +153,38 @@ static HtmlToJsonManager *instance ;
     }];
 }
 
-- (void)testIp:(NSString *)ip callback:(void (^)(NSArray *array))callback {
-    NSString *url = @"/actresses";
+/**
+ 请求分类通用
+ */
+- (void)parseCategoryData:(NSString *)url callback:(void (^)(NSArray *array))callback {
     [self startGetUrl:url success:^(id resultDict) {
         TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
-        NSArray *images  = [doc searchWithXPathQuery:@"//div[@class='photo-frame']"];
-        NSArray *hrefs  = [doc searchWithXPathQuery:@"//a[@class='avatar-box text-center']"];
+        NSArray *titles  = [doc searchWithXPathQuery:@"//html/body/div[4]/h4"];
+        NSArray *sections  = [doc searchWithXPathQuery:@"//div[@class='row genre-box']"];
         
         NSMutableArray *array = [NSMutableArray array];
-        for (int i = 0; i < images.count; i++) {
+        for (int i = 0; i < titles.count; i++) {
             
-            TFHppleElement *e1 = images[i];
+            TFHppleElement *e1 = titles[i];
             
-            TFHppleElement *imgElement = [e1 firstChildWithTagName:@"img"];
+            TFHppleElement *e2 = sections[i];
+            NSArray *items = [e2 childrenWithTagName:@"a"];
             
-            TFHppleElement *href = hrefs[i];
+            NSMutableArray *itemArray = [NSMutableArray array];
+            for (TFHppleElement *el in items) {
+                NSString *title = el.text;
+                NSString *link = [el objectForKey:@"href"];
+                CategoryItemModel *model = [CategoryItemModel new];
+                model.title = title;
+                model.link = link;
+                [itemArray addObject:model];
+            }
             
-            NSString *imgUrl = [imgElement objectForKey:@"src"];
-            NSString *name = [imgElement objectForKey:@"title"];
-            NSString *link = [href objectForKey:@"href"];
-            
-            ActressModel *model = [ActressModel new];
-            model.avatarUrl = imgUrl;
-            model.name = name;
-            model.link = link;
+            CategoryModel *model = [CategoryModel new];
+            model.title = e1.text;
+            model.items = [itemArray copy];
             [array addObject:model];
+            
         }
         
         if (callback) {
@@ -217,6 +264,32 @@ static HtmlToJsonManager *instance ;
  @param page 分页
  */
 - (void)parseActressDetailUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback {
+    if (page > 1) {
+        url = [url stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld", page]];
+    }
+    [self parseBaseListDataUrl:url callback:callback];
+}
+
+/**
+ 请求有码类别
+ */
+- (void)parseCensoredCategoryListCallback:(void (^)(NSArray *array))callback {
+    NSString *url = @"/genre";
+    [self parseCategoryData:url callback:callback];
+}
+
+/**
+ 请求无码类别
+ */
+- (void)parseUnCensoredCategoryListCallback:(void (^)(NSArray *array))callback {
+    NSString *url = @"/uncensored/genre";
+    [self parseCategoryData:url callback:callback];
+}
+
+/**
+ 类别详情
+ */
+- (void)parseCategoryListUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback {
     if (page > 1) {
         url = [url stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld", page]];
     }
