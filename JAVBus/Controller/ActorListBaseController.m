@@ -105,6 +105,7 @@
     ActressDetailController *vc = [[ActressDetailController alloc] init];
     vc.model = model;
     vc.hidesBottomBarWhenPushed = YES;
+    vc.showSortBar = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

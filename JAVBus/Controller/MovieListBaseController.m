@@ -36,6 +36,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)requestData:(BOOL)refresh {
+    NSString *logo = [NSString stringWithFormat:@"子类必须为实现%@方法", NSStringFromSelector(_cmd)];
+    NSAssert(0, logo);
+}
+
 - (void)createBarButton {
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
