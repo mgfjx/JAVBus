@@ -11,7 +11,7 @@
 		9A4B0DA3D54BB094B29C64D5 /* libPods-JAVBusUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8115FEBAB3603AB5CB74D91E /* libPods-JAVBusUITests.a */; };
 		AFBB54BCC9FC8A3F8371087C /* libPods-JAVBusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B086890A2D06BA45EF4AAC7C /* libPods-JAVBusTests.a */; };
 		EC0BC44321C2394900A6E50E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC44221C2394900A6E50E /* AppDelegate.m */; };
-		EC0BC44621C2394900A6E50E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC44521C2394900A6E50E /* ViewController.m */; };
+		EC0BC44621C2394900A6E50E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC44521C2394900A6E50E /* MainViewController.m */; };
 		EC0BC44921C2394900A6E50E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC0BC44721C2394900A6E50E /* Main.storyboard */; };
 		EC0BC44B21C2394B00A6E50E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC0BC44A21C2394B00A6E50E /* Assets.xcassets */; };
 		EC0BC44E21C2394B00A6E50E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC0BC44C21C2394B00A6E50E /* LaunchScreen.storyboard */; };
@@ -54,6 +54,7 @@
 		ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AD821C697540043DB0C /* ActressDetailController.m */; };
 		ECD99AED21C7E0880043DB0C /* LJJWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AEB21C7E0880043DB0C /* LJJWaterFlowLayout.m */; };
 		ECD99AF021C7EDB90043DB0C /* MovieListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AEF21C7EDB90043DB0C /* MovieListModel.m */; };
+		ECF9455B21D46AB60043E898 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9455921D46AB50043E898 /* MainTabViewController.m */; };
 		ECFD29BF21D37E960085E257 /* MovieListBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD29BE21D37E960085E257 /* MovieListBaseController.m */; };
 		ECFD29C221D37FBC0085E257 /* MovieMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD29C121D37FBC0085E257 /* MovieMainController.m */; };
 /* End PBXBuildFile section */
@@ -88,8 +89,8 @@
 		EC0BC43E21C2394900A6E50E /* JAVBus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JAVBus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC0BC44121C2394900A6E50E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EC0BC44221C2394900A6E50E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EC0BC44421C2394900A6E50E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EC0BC44521C2394900A6E50E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EC0BC44421C2394900A6E50E /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		EC0BC44521C2394900A6E50E /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		EC0BC44821C2394900A6E50E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EC0BC44A21C2394B00A6E50E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC0BC44D21C2394B00A6E50E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -170,6 +171,8 @@
 		ECD99AEC21C7E0880043DB0C /* LJJWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJJWaterFlowLayout.h; sourceTree = "<group>"; };
 		ECD99AEE21C7EDB90043DB0C /* MovieListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieListModel.h; sourceTree = "<group>"; };
 		ECD99AEF21C7EDB90043DB0C /* MovieListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieListModel.m; sourceTree = "<group>"; };
+		ECF9455921D46AB50043E898 /* MainTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabViewController.m; sourceTree = "<group>"; };
+		ECF9455A21D46AB50043E898 /* MainTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabViewController.h; sourceTree = "<group>"; };
 		ECFD29BD21D37E960085E257 /* MovieListBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieListBaseController.h; sourceTree = "<group>"; };
 		ECFD29BE21D37E960085E257 /* MovieListBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieListBaseController.m; sourceTree = "<group>"; };
 		ECFD29C021D37FBC0085E257 /* MovieMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieMainController.h; sourceTree = "<group>"; };
@@ -262,8 +265,10 @@
 				EC0BC4A121C25CD500A6E50E /* Actress */,
 				EC0BC44121C2394900A6E50E /* AppDelegate.h */,
 				EC0BC44221C2394900A6E50E /* AppDelegate.m */,
-				EC0BC44421C2394900A6E50E /* ViewController.h */,
-				EC0BC44521C2394900A6E50E /* ViewController.m */,
+				ECF9455A21D46AB50043E898 /* MainTabViewController.h */,
+				ECF9455921D46AB50043E898 /* MainTabViewController.m */,
+				EC0BC44421C2394900A6E50E /* MainViewController.h */,
+				EC0BC44521C2394900A6E50E /* MainViewController.m */,
 				EC0BC44721C2394900A6E50E /* Main.storyboard */,
 				EC0BC44A21C2394B00A6E50E /* Assets.xcassets */,
 				EC0BC44C21C2394B00A6E50E /* LaunchScreen.storyboard */,
@@ -724,7 +729,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC9ABE2121CFA5E300C4E90F /* AddressCell.m in Sources */,
-				EC0BC44621C2394900A6E50E /* ViewController.m in Sources */,
+				ECF9455B21D46AB60043E898 /* MainTabViewController.m in Sources */,
+				EC0BC44621C2394900A6E50E /* MainViewController.m in Sources */,
 				EC0BC4BF21C2653500A6E50E /* RxWebViewNavigationViewController.m in Sources */,
 				EC0BC4AC21C25E3C00A6E50E /* ActressCell.m in Sources */,
 				EC0BC45121C2394B00A6E50E /* main.m in Sources */,

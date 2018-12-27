@@ -62,6 +62,10 @@
     [self.view addSubview:collection];
     self.collectionView = collection;
     
+    [collection mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.bottom.right.mas_equalTo(0);
+    }];
+    
     collection.canPullDown = YES;
     collection.canPullUp = YES;
     WeakSelf(weakSelf)
@@ -124,6 +128,7 @@
     
     ActressDetailController *vc = [[ActressDetailController alloc] init];
     vc.model = model;
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -20,5 +20,6 @@
 #import "UIView+AddFunc.h"
 #import "UIColor+Hex.h"
 #import "GlobalTool.h"
+#import <Masonry.h>
 
 #endif /* PrefixHeader_pch */

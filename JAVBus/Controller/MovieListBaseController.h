@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UICollectionView *collectionView ;
 @property (nonatomic, assign) NSInteger page ;
 
+@property (nonatomic, assign) BOOL showSortBar ;
+
 //子类实现获取数据方法
 - (void)requestData:(BOOL)refresh ;
 

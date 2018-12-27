@@ -7,7 +7,6 @@
 //
 
 #import "HtmlToJsonManager.h"
-#import <Ono.h>
 #import <TFHpple/TFHpple.h>
 
 #import "ActressModel.h"

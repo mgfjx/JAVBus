@@ -26,7 +26,9 @@
     self.page = 1;
     [self requestData:YES];
     [self createCollectionView];
-    [self createBarButton];
+    if (self.showSortBar) {
+        [self createBarButton];
+    }
     [self.collectionView startHeaderRefreshing];
 }
 
@@ -75,6 +77,10 @@
     
     [self.view addSubview:collection];
     self.collectionView = collection;
+    
+    [collection mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.bottom.right.mas_equalTo(0);
+    }];
     
     layout.headerReferenceSize = CGSizeMake(MainWidth, 30);
     
