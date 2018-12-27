@@ -15,9 +15,14 @@
 - (void)testIp:(NSString *)ip callback:(void (^)(NSArray *array))callback ;
 
 /**
- 获取首页影片
+ 获取有码影片
  */
-- (void)parseMainPageDataByPage:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
+- (void)parseCensoredListDataByPage:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
+
+/**
+ 获取无码影片
+ */
+- (void)parseUncensoredListDataByPage:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
 
 /**
  有码女优列表
@@ -27,10 +32,22 @@
 - (void)parseActressDataByPage:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
 
 /**
- 详情页
+ 无码女优列表
+ 
+ @param page 分页
+ */
+- (void)parseActressUncensoredListByPage:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
+
+/**
+ 女优详情列表页
  
  @param page 分页
  */
 - (void)parseActressDetailUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
+
+/**
+ 获取欧美影片
+ */
+- (void)parseXvdieoListDataByPage:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
 
 @end

@@ -10,7 +10,6 @@
 #import "LJJWaterFlowLayout.h"
 #import "MovieListModel.h"
 #import "ActressDetailCell.h"
-#import "PageCollectionReusableView.h"
 
 #define TitleFont [UIFont systemFontOfSize:14]
 
@@ -73,7 +72,6 @@
     collection.dataSource = self;
     collection.backgroundColor = [UIColor whiteColor];
     [collection registerNib:[UINib nibWithNibName:NSStringFromClass([ActressDetailCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([ActressDetailCell class])];
-    [collection registerNib:[UINib nibWithNibName:NSStringFromClass([PageCollectionReusableView class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([PageCollectionReusableView class])];
     
     [self.view addSubview:collection];
     self.collectionView = collection;
@@ -139,18 +137,6 @@
     CGFloat itemHeight = imgHeight + height + numAndDateHeight;
     
     return CGSizeMake(itemWidth, itemHeight);
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    UICollectionReusableView *reusableview = nil;
-    
-    if (kind == UICollectionElementKindSectionHeader) {
-        PageCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([PageCollectionReusableView class]) forIndexPath:indexPath];
-        
-        
-        reusableview = headerView;
-    }
-    return reusableview;
 }
 
 @end

@@ -1,18 +1,28 @@
 //
-//  ActressCodeController.m
+//  ActressUncensoredListController.m
 //  JAVBus
 //
-//  Created by mgfjx on 2018/12/13.
+//  Created by mgfjx on 2018/12/27.
 //  Copyright © 2018 mgfjx. All rights reserved.
 //
 
-#import "ActressCodeController.h"
+#import "ActressUncensoredListController.h"
 
-@interface ActressCodeController ()
+@interface ActressUncensoredListController ()
 
 @end
 
-@implementation ActressCodeController
+@implementation ActressUncensoredListController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 - (void)requestData:(BOOL)refresh {
     
@@ -22,7 +32,7 @@
         self.page ++;
     }
     
-    [HTMLTOJSONMANAGER parseActressDataByPage:self.page callback:^(NSArray *array) {
+    [HTMLTOJSONMANAGER parseActressUncensoredListByPage:self.page callback:^(NSArray *array) {
         if (refresh) {
             self.actressArray = array;
         }else{
