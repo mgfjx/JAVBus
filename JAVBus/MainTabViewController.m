@@ -32,8 +32,8 @@
 
 - (void)configuration {
     
-    UIViewController *nav1 = [[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] init]];
-    UIViewController *nav2 = [[UINavigationController alloc] initWithRootViewController:[[ActressCodeController alloc] init]];
+    UIViewController *nav1 = [[UINavigationController alloc] initWithRootViewController:[[ActressCodeController alloc] init]];
+    UIViewController *nav2 = [[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] init]];
     UIViewController *nav3 = [[UINavigationController alloc] initWithRootViewController:[[BaseViewController alloc] init]];
     
     
@@ -41,14 +41,14 @@
     
     {
         NSDictionary *dict1 = @{
-                                CYLTabBarItemTitle : @"首頁",
-                                CYLTabBarItemImage : @"tabbar_messageUnSelected",
-                                CYLTabBarItemSelectedImage : @"tabbar_messageSelected",
-                                };
-        NSDictionary *dict2 = @{
                                 CYLTabBarItemTitle : @"搜索",
                                 CYLTabBarItemImage : @"tabbar_scheduleUnSelected",
                                 CYLTabBarItemSelectedImage : @"tabbar_scheduleSelected",
+                                };
+        NSDictionary *dict2 = @{
+                                CYLTabBarItemTitle : @"首頁",
+                                CYLTabBarItemImage : @"tabbar_messageUnSelected",
+                                CYLTabBarItemSelectedImage : @"tabbar_messageSelected",
                                 };
         NSDictionary *dict3 = @{
                                 CYLTabBarItemTitle : @"論壇",
@@ -62,7 +62,7 @@
     
     [tabBarController setViewControllers:@[nav1, nav2, nav3]];
     
-//    tabBarController.selectedIndex = 2;
+    tabBarController.selectedIndex = 1;
     [tabBarController setTintColor:[UIColor colorWithHexString:@"#0099de"]];
     
 }
