@@ -62,6 +62,8 @@
 		ECF9457021D4B7CB0043E898 /* UnCensoredCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9456F21D4B7CB0043E898 /* UnCensoredCategoryController.m */; };
 		ECF9457421D4B86C0043E898 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9457321D4B86C0043E898 /* CategoryModel.m */; };
 		ECF9457721D4C0DD0043E898 /* CategoryItemListController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9457621D4C0DD0043E898 /* CategoryItemListController.m */; };
+		ECF9457A21D4CB630043E898 /* MovieDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9457921D4CB630043E898 /* MovieDetailController.m */; };
+		ECF9457D21D51AB20043E898 /* TitleLinkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9457C21D51AB20043E898 /* TitleLinkModel.m */; };
 		ECFD29BF21D37E960085E257 /* MovieListBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD29BE21D37E960085E257 /* MovieListBaseController.m */; };
 		ECFD29C221D37FBC0085E257 /* MovieMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD29C121D37FBC0085E257 /* MovieMainController.m */; };
 /* End PBXBuildFile section */
@@ -195,6 +197,10 @@
 		ECF9457321D4B86C0043E898 /* CategoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryModel.m; sourceTree = "<group>"; };
 		ECF9457521D4C0DD0043E898 /* CategoryItemListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryItemListController.h; sourceTree = "<group>"; };
 		ECF9457621D4C0DD0043E898 /* CategoryItemListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryItemListController.m; sourceTree = "<group>"; };
+		ECF9457821D4CB630043E898 /* MovieDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieDetailController.h; sourceTree = "<group>"; };
+		ECF9457921D4CB630043E898 /* MovieDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieDetailController.m; sourceTree = "<group>"; };
+		ECF9457B21D51AB20043E898 /* TitleLinkModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TitleLinkModel.h; sourceTree = "<group>"; };
+		ECF9457C21D51AB20043E898 /* TitleLinkModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TitleLinkModel.m; sourceTree = "<group>"; };
 		ECFD29BD21D37E960085E257 /* MovieListBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieListBaseController.h; sourceTree = "<group>"; };
 		ECFD29BE21D37E960085E257 /* MovieListBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieListBaseController.m; sourceTree = "<group>"; };
 		ECFD29C021D37FBC0085E257 /* MovieMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieMainController.h; sourceTree = "<group>"; };
@@ -448,6 +454,8 @@
 			children = (
 				ECF9457221D4B86C0043E898 /* CategoryModel.h */,
 				ECF9457321D4B86C0043E898 /* CategoryModel.m */,
+				ECF9457B21D51AB20043E898 /* TitleLinkModel.h */,
+				ECF9457C21D51AB20043E898 /* TitleLinkModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -474,6 +482,8 @@
 				ECF9456F21D4B7CB0043E898 /* UnCensoredCategoryController.m */,
 				ECF9457521D4C0DD0043E898 /* CategoryItemListController.h */,
 				ECF9457621D4C0DD0043E898 /* CategoryItemListController.m */,
+				ECF9457821D4CB630043E898 /* MovieDetailController.h */,
+				ECF9457921D4CB630043E898 /* MovieDetailController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -801,6 +811,8 @@
 				EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */,
 				EC0BC4A021C25B5000A6E50E /* NSString+RegExp.m in Sources */,
 				ECF9457421D4B86C0043E898 /* CategoryModel.m in Sources */,
+				ECF9457A21D4CB630043E898 /* MovieDetailController.m in Sources */,
+				ECF9457D21D51AB20043E898 /* TitleLinkModel.m in Sources */,
 				EC0BC49821C25B5000A6E50E /* UIColor+Hex.m in Sources */,
 				ECF9456A21D4B5B60043E898 /* MovieCategoryController.m in Sources */,
 				ECF9457021D4B7CB0043E898 /* UnCensoredCategoryController.m in Sources */,

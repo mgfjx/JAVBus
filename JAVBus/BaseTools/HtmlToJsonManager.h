@@ -64,4 +64,11 @@
  */
 - (void)parseCategoryListUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
 
+/**
+ 获取movie详情
+ 
+ @param number 番号
+ */
+- (void)parseMovieDetailByNumber:(NSString *)number callback:(void (^)(NSArray *array))callback ;
+
 @end

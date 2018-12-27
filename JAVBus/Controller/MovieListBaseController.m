@@ -10,6 +10,7 @@
 #import "LJJWaterFlowLayout.h"
 #import "MovieListModel.h"
 #import "ActressDetailCell.h"
+#import "MovieDetailController.h"
 
 #define TitleFont [UIFont systemFontOfSize:14]
 
@@ -142,6 +143,14 @@
     CGFloat itemHeight = imgHeight + height + numAndDateHeight;
     
     return CGSizeMake(itemWidth, itemHeight);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    MovieListModel *model = self.dataArray[indexPath.row];
+    MovieDetailController *vc = [MovieDetailController new];
+    vc.model = model;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
