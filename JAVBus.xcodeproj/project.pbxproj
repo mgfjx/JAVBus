@@ -64,6 +64,14 @@
 		ECF9457721D4C0DD0043E898 /* CategoryItemListController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9457621D4C0DD0043E898 /* CategoryItemListController.m */; };
 		ECF9457A21D4CB630043E898 /* MovieDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9457921D4CB630043E898 /* MovieDetailController.m */; };
 		ECF9457D21D51AB20043E898 /* TitleLinkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9457C21D51AB20043E898 /* TitleLinkModel.m */; };
+		ECF9458021D5ACD50043E898 /* MovieDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9457F21D5ACD50043E898 /* MovieDetailModel.m */; };
+		ECF9458421D5ECA10043E898 /* LinkButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9458321D5ECA10043E898 /* LinkButton.m */; };
+		ECF9458721D5FC220043E898 /* ScreenShotModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9458621D5FC220043E898 /* ScreenShotModel.m */; };
+		ECF9458B21D5FED70043E898 /* ScreenShotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9458921D5FED70043E898 /* ScreenShotCell.m */; };
+		ECF9458C21D5FED70043E898 /* ScreenShotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECF9458A21D5FED70043E898 /* ScreenShotCell.xib */; };
+		ECF9458F21D60AE00043E898 /* RecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9458E21D60AE00043E898 /* RecommendModel.m */; };
+		ECF9459321D60D560043E898 /* RecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9459121D60D560043E898 /* RecommendCell.m */; };
+		ECF9459421D60D560043E898 /* RecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECF9459221D60D560043E898 /* RecommendCell.xib */; };
 		ECFD29BF21D37E960085E257 /* MovieListBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD29BE21D37E960085E257 /* MovieListBaseController.m */; };
 		ECFD29C221D37FBC0085E257 /* MovieMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD29C121D37FBC0085E257 /* MovieMainController.m */; };
 /* End PBXBuildFile section */
@@ -201,6 +209,20 @@
 		ECF9457921D4CB630043E898 /* MovieDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieDetailController.m; sourceTree = "<group>"; };
 		ECF9457B21D51AB20043E898 /* TitleLinkModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TitleLinkModel.h; sourceTree = "<group>"; };
 		ECF9457C21D51AB20043E898 /* TitleLinkModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TitleLinkModel.m; sourceTree = "<group>"; };
+		ECF9457E21D5ACD50043E898 /* MovieDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieDetailModel.h; sourceTree = "<group>"; };
+		ECF9457F21D5ACD50043E898 /* MovieDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieDetailModel.m; sourceTree = "<group>"; };
+		ECF9458221D5ECA10043E898 /* LinkButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkButton.h; sourceTree = "<group>"; };
+		ECF9458321D5ECA10043E898 /* LinkButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LinkButton.m; sourceTree = "<group>"; };
+		ECF9458521D5FC220043E898 /* ScreenShotModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenShotModel.h; sourceTree = "<group>"; };
+		ECF9458621D5FC220043E898 /* ScreenShotModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenShotModel.m; sourceTree = "<group>"; };
+		ECF9458821D5FED70043E898 /* ScreenShotCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenShotCell.h; sourceTree = "<group>"; };
+		ECF9458921D5FED70043E898 /* ScreenShotCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenShotCell.m; sourceTree = "<group>"; };
+		ECF9458A21D5FED70043E898 /* ScreenShotCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenShotCell.xib; sourceTree = "<group>"; };
+		ECF9458D21D60AE00043E898 /* RecommendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendModel.h; sourceTree = "<group>"; };
+		ECF9458E21D60AE00043E898 /* RecommendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendModel.m; sourceTree = "<group>"; };
+		ECF9459021D60D560043E898 /* RecommendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommendCell.h; sourceTree = "<group>"; };
+		ECF9459121D60D560043E898 /* RecommendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommendCell.m; sourceTree = "<group>"; };
+		ECF9459221D60D560043E898 /* RecommendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendCell.xib; sourceTree = "<group>"; };
 		ECFD29BD21D37E960085E257 /* MovieListBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieListBaseController.h; sourceTree = "<group>"; };
 		ECFD29BE21D37E960085E257 /* MovieListBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieListBaseController.m; sourceTree = "<group>"; };
 		ECFD29C021D37FBC0085E257 /* MovieMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieMainController.h; sourceTree = "<group>"; };
@@ -456,13 +478,29 @@
 				ECF9457321D4B86C0043E898 /* CategoryModel.m */,
 				ECF9457B21D51AB20043E898 /* TitleLinkModel.h */,
 				ECF9457C21D51AB20043E898 /* TitleLinkModel.m */,
+				ECF9457E21D5ACD50043E898 /* MovieDetailModel.h */,
+				ECF9457F21D5ACD50043E898 /* MovieDetailModel.m */,
+				ECF9458521D5FC220043E898 /* ScreenShotModel.h */,
+				ECF9458621D5FC220043E898 /* ScreenShotModel.m */,
+				ECF9458D21D60AE00043E898 /* RecommendModel.h */,
+				ECF9458E21D60AE00043E898 /* RecommendModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		ECF9458121D5EB7A0043E898 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ECF9458221D5ECA10043E898 /* LinkButton.h */,
+				ECF9458321D5ECA10043E898 /* LinkButton.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		ECFD29BC21D37E750085E257 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ECF9458121D5EB7A0043E898 /* Views */,
 				ECF9457121D4B85E0043E898 /* Model */,
 				ECFD29BD21D37E960085E257 /* MovieListBaseController.h */,
 				ECFD29BE21D37E960085E257 /* MovieListBaseController.m */,
@@ -484,6 +522,12 @@
 				ECF9457621D4C0DD0043E898 /* CategoryItemListController.m */,
 				ECF9457821D4CB630043E898 /* MovieDetailController.h */,
 				ECF9457921D4CB630043E898 /* MovieDetailController.m */,
+				ECF9458821D5FED70043E898 /* ScreenShotCell.h */,
+				ECF9458921D5FED70043E898 /* ScreenShotCell.m */,
+				ECF9458A21D5FED70043E898 /* ScreenShotCell.xib */,
+				ECF9459021D60D560043E898 /* RecommendCell.h */,
+				ECF9459121D60D560043E898 /* RecommendCell.m */,
+				ECF9459221D60D560043E898 /* RecommendCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -602,9 +646,11 @@
 			files = (
 				EC0BC44E21C2394B00A6E50E /* LaunchScreen.storyboard in Resources */,
 				EC0BC4BB21C2653500A6E50E /* backItemImage_hl@2x.png in Resources */,
+				ECF9458C21D5FED70043E898 /* ScreenShotCell.xib in Resources */,
 				EC0BC4BC21C2653500A6E50E /* backItemImage@2x.png in Resources */,
 				EC0BC4AD21C25E3C00A6E50E /* ActressCell.xib in Resources */,
 				EC9ABE2221CFA5E300C4E90F /* AddressCell.xib in Resources */,
+				ECF9459421D60D560043E898 /* RecommendCell.xib in Resources */,
 				EC0BC44B21C2394B00A6E50E /* Assets.xcassets in Resources */,
 				EC0BC44921C2394900A6E50E /* Main.storyboard in Resources */,
 				EC9D72FE21C7F41400C9F830 /* ActressDetailCell.xib in Resources */,
@@ -790,6 +836,7 @@
 				EC0BC4AC21C25E3C00A6E50E /* ActressCell.m in Sources */,
 				EC0BC45121C2394B00A6E50E /* main.m in Sources */,
 				EC9ABE1621CE935E00C4E90F /* GlobalTool.m in Sources */,
+				ECF9458421D5ECA10043E898 /* LinkButton.m in Sources */,
 				EC0BC44321C2394900A6E50E /* AppDelegate.m in Sources */,
 				EC0BC49F21C25B5000A6E50E /* UIView+AddFunc.m in Sources */,
 				ECD99AED21C7E0880043DB0C /* LJJWaterFlowLayout.m in Sources */,
@@ -799,11 +846,16 @@
 				EC0BC4BD21C2653500A6E50E /* NJKWebViewProgress.m in Sources */,
 				ECF9456421D4AD5E0043E898 /* ActorListBaseController.m in Sources */,
 				ECF9456D21D4B7BC0043E898 /* CensoredCategoryController.m in Sources */,
+				ECF9458721D5FC220043E898 /* ScreenShotModel.m in Sources */,
+				ECF9458021D5ACD50043E898 /* MovieDetailModel.m in Sources */,
 				ECF9455E21D4AAB60043E898 /* MovieUncensoredController.m in Sources */,
+				ECF9458B21D5FED70043E898 /* ScreenShotCell.m in Sources */,
 				EC0BC4C021C2653500A6E50E /* RxWebViewController.m in Sources */,
 				ECF9456721D4AFBA0043E898 /* ActressUncensoredListController.m in Sources */,
+				ECF9459321D60D560043E898 /* RecommendCell.m in Sources */,
 				EC0BC4A521C25D3300A6E50E /* BaseViewController.m in Sources */,
 				EC0BC49E21C25B5000A6E50E /* SQPrintJsonLog.m in Sources */,
+				ECF9458F21D60AE00043E898 /* RecommendModel.m in Sources */,
 				EC0BC4BE21C2653500A6E50E /* NJKWebViewProgressView.m in Sources */,
 				EC0BC49D21C25B5000A6E50E /* UIAlertView+ActionBlock.m in Sources */,
 				ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */,

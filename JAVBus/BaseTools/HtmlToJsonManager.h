@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MovieDetailModel.h"
 
 @interface HtmlToJsonManager : NSObject
 
@@ -66,9 +67,7 @@
 
 /**
  获取movie详情
- 
- @param number 番号
  */
-- (void)parseMovieDetailByNumber:(NSString *)number callback:(void (^)(NSArray *array))callback ;
+- (void)parseMovieDetailByUrl:(NSString *)url callback:(void (^)(MovieDetailModel *model))callback ;
 
 @end

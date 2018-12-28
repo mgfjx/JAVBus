@@ -13,6 +13,9 @@
 #import "MovieListModel.h"
 #import "CategoryModel.h"
 #import "TitleLinkModel.h"
+#import "MovieDetailModel.h"
+#import "ScreenShotModel.h"
+#import "RecommendModel.h"
 
 static HtmlToJsonManager *instance ;
 
@@ -299,19 +302,16 @@ static HtmlToJsonManager *instance ;
 
 /**
  获取movie详情
-
- @param number 番号
  */
-- (void)parseMovieDetailByNumber:(NSString *)number callback:(void (^)(NSArray *array))callback {
-    NSString *url = [NSString stringWithFormat:@"/%@",number];
+- (void)parseMovieDetailByUrl:(NSString *)url callback:(void (^)(MovieDetailModel *model))callback {
+    url = url.length == 0 ? @"" : url;
     [self startGetUrl:url success:^(id resultDict) {
         TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
         NSArray *images = [doc searchWithXPathQuery:@"//a[@class='bigImage']"];
         NSString *imgUrl = [images.firstObject objectForKey:@"href"];
         
+        //信息
         NSArray *movieInfoArray = [doc searchWithXPathQuery:@"//html/body/div[5]/div[1]/div[2]/p"];
-        NSLog(@"当前信息有%d条", movieInfoArray.count);
-        
         NSInteger index = 0;
         NSMutableArray *array = [NSMutableArray array];
         for (TFHppleElement *ele in movieInfoArray) {
@@ -320,6 +320,7 @@ static HtmlToJsonManager *instance ;
             NSString *title = e1.text;
             NSString *content ;
             NSString *link ;
+            LinkType type  = LinkTypeNone;
             
             if ([title isEqualToString:@"識別碼:"]) {
                 TFHppleElement *e2 = spans.lastObject;
@@ -330,19 +331,23 @@ static HtmlToJsonManager *instance ;
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;
                 link = [e objectForKey:@"href"];
+                type = LinkTypeNormal;
             }else if ([title isEqualToString:@"發行商:"]) {
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;
                 link = [e objectForKey:@"href"];
+                type = LinkTypeNormal;
             }else if ([title isEqualToString:@"演員:"]) {
                 
             }else if ([title isEqualToString:@"導演:"]) {
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;
                 link = [e objectForKey:@"href"];
+                type = LinkTypeNormal;
             }else if ([title isEqualToString:@"系列:"]) {
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;
+                type = LinkTypeNormal;
             }else if ([title isEqualToString:@"識別碼:"]) {
                 
             }
@@ -358,6 +363,7 @@ static HtmlToJsonManager *instance ;
             TitleLinkModel *model = [TitleLinkModel new];
             model.title = content;
             model.link = link;
+            model.type = type;
             [array addObject:@{title:@[model]}];
             NSLog(@"title: %@, content: %@, link: %@", title, content, link);
         }
@@ -371,11 +377,13 @@ static HtmlToJsonManager *instance ;
             TitleLinkModel *model = [TitleLinkModel new];
             model.title = e.text;
             model.link = [e objectForKey:@"href"];
+            model.type = LinkTypeCategory;
             [arr1 addObject:model];
             NSLog(@"类别: %@", e.text);
         }
-        [array addObject:@{@"類別:":[arr1 copy]}];
-        
+        if (arr1.count > 0) {
+            [array addObject:@{@"類別:":[arr1 copy]}];
+        }
         
         //演员
         NSArray *actors = [doc searchWithXPathQuery:@"//div[@class='star-name']"];
@@ -385,13 +393,47 @@ static HtmlToJsonManager *instance ;
             TitleLinkModel *model = [TitleLinkModel new];
             model.title = e.text;
             model.link = [e objectForKey:@"href"];
+            model.type = LinkTypeActor;
             [arr2 addObject:model];
             NSLog(@"演员: %@", [e objectForKey:@"title"]);
         }
-        [array addObject:@{@"演員":[arr2 copy]}];
+        if (arr2.count > 0) {
+            [array addObject:@{@"演員":[arr2 copy]}];
+        }
+        
+        //截图
+        NSArray *screenshots = [doc searchWithXPathQuery:@"///a[@class='sample-box']"];
+        NSMutableArray *ssArr = [NSMutableArray array];
+        for (TFHppleElement *ele in screenshots) {
+            ScreenShotModel *model = [ScreenShotModel new];
+            model.bigPicUrl = [ele objectForKey:@"href"];
+            
+            TFHppleElement *subEle = [ele searchWithXPathQuery:@"//div/img"].firstObject;
+            model.smallPicUrl = [subEle objectForKey:@"src"];
+            model.title = [subEle objectForKey:@"title"];
+            [ssArr addObject:model];
+        }
+        
+        //推荐
+        NSArray *recommends = [doc searchWithXPathQuery:@"//*[@id='related-waterfall']/a"];
+        NSMutableArray *array3 = [NSMutableArray array];
+        for (TFHppleElement *ele in recommends) {
+            RecommendModel *model = [RecommendModel new];
+            model.title = [ele objectForKey:@"title"];
+            model.link = [ele objectForKey:@"href"];
+            TFHppleElement *subEle = [ele searchWithXPathQuery:@"//div/img"].firstObject;
+            model.imgUrl = [subEle objectForKey:@"src"];
+            [array3 addObject:model];
+        }
+        
+        MovieDetailModel *detail = [MovieDetailModel new];
+        detail.coverImgUrl = imgUrl;
+        detail.infoArray = [array copy];
+        detail.screenshots = [ssArr copy];
+        detail.recommends = [array3 copy];
         
         if (callback) {
-            callback([array copy]);
+            callback(detail);
         }
     } failure:^(NSError *error) {
         if (callback) {

@@ -7,10 +7,20 @@
 //
 
 #import "MovieDetailController.h"
+#import "LinkButton.h"
+#import "ActressDetailController.h"
+#import "ScreenShotCell.h"
+#import "ScreenShotModel.h"
+#import "RecommendModel.h"
+#import "RecommendCell.h"
 
-@interface MovieDetailController ()
+@interface MovieDetailController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UIScrollView *scrollView ;
+@property (nonatomic, strong) MovieDetailModel *detailModel ;
+
+@property (nonatomic, strong) UICollectionView *screenshotView ;
+@property (nonatomic, strong) UICollectionView *recommendView ;
 
 @end
 
@@ -31,8 +41,10 @@
 
 - (void)requestData {
     
-    [HTMLTOJSONMANAGER parseMovieDetailByNumber:self.model.number callback:^(NSArray *array) {
-        
+    [HTMLTOJSONMANAGER parseMovieDetailByUrl:self.model.link callback:^(MovieDetailModel *model) {
+        [self.scrollView stopHeaderRefreshing];
+        self.detailModel = model;
+        [self createDetailView];
     }];
     
 }
@@ -42,11 +54,14 @@
 }
 
 - (void)createScrollView {
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    scrollView.pagingEnabled = YES;
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
     scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:scrollView];
     self.scrollView = scrollView;
+    
+    [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
     
     scrollView.canPullDown = YES;
     WeakSelf(weakSelf)
@@ -54,6 +69,208 @@
         [weakSelf requestData];
     };
     [scrollView startHeaderRefreshing];
+}
+
+- (void)createDetailView {
+    
+    UIScrollView *scrollView = self.scrollView;
+    scrollView.contentSize = CGSizeMake(scrollView.width, scrollView.height);
+    
+    CGFloat maxHeight = 0;
+    CGFloat offset = 8;
+    
+    MovieDetailModel *model = self.detailModel;
+    
+    UIImageView *imgView;
+    {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, scrollView.width, scrollView.width*0.6)];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:model.coverImgUrl]];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.backgroundColor = [UIColor colorWithHexString:@"#333333"];
+        [scrollView addSubview:imageView];
+        imgView = imageView;
+        
+        maxHeight = CGRectGetMaxY(imgView.frame);
+    }
+    
+    {
+        NSArray *infos = model.infoArray;
+        
+        for (int i = 0; i < infos.count; i++) {
+            NSDictionary *dict = infos[i];
+            NSString *title = dict.allKeys.firstObject;
+            NSArray *items = [dict objectForKey:title];
+            
+            UILabel *label = [[UILabel alloc] init];
+            label.text = title;
+            [scrollView addSubview:label];
+            [label sizeToFit];
+            label.x = offset;
+            label.y = maxHeight + offset;
+            
+            maxHeight = CGRectGetMaxY(label.frame);
+            
+            CGFloat xPosition = 0;
+            for (TitleLinkModel *item in items) {
+                LinkButton *button = [LinkButton buttonWithType:UIButtonTypeCustom];
+                [button addTarget:self action:@selector(linkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+                [button setTitle:item.title forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor colorWithHexString:@"#aaaaaa"] forState:UIControlStateHighlighted];
+                button.model = item;
+                button.backgroundColor = [UIColor colorWithHexString:@"#1d65ee"];
+                button.titleLabel.font = [UIFont systemFontOfSize:14];
+                [scrollView addSubview:button];
+                [button sizeToFit];
+                button.layer.cornerRadius = button.height/4;
+                button.layer.masksToBounds = YES;
+                button.width = button.width + 2*offset;
+                if (xPosition + offset + button.width > scrollView.width - offset) {
+                    xPosition = 0;
+                    maxHeight = maxHeight + offset + button.height;
+                }
+                button.x = xPosition + offset;
+                button.y = maxHeight + offset;
+                
+                xPosition = CGRectGetMaxX(button.frame);
+                if (item == items.lastObject) {
+                    maxHeight = CGRectGetMaxY(button.frame);
+                }
+            }
+            
+        }
+    }
+    
+    //截图
+    {
+        if (model.screenshots.count > 0) {
+            
+            UILabel *label = [[UILabel alloc] init];
+            label.text = @"樣品圖像";
+            [scrollView addSubview:label];
+            [label sizeToFit];
+            label.x = offset;
+            label.y = maxHeight + offset;
+            maxHeight = CGRectGetMaxY(label.frame);
+            
+            CGFloat offset = 8;
+            CGFloat itemSize = 150;
+            UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+            layout.itemSize = CGSizeMake(itemSize, itemSize);
+            layout.minimumLineSpacing = offset;
+            layout.minimumInteritemSpacing = offset;
+            layout.sectionInset = UIEdgeInsetsMake(offset, offset, offset, offset);
+            layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+            
+            UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, maxHeight + offset, scrollView.width, itemSize) collectionViewLayout:layout];
+            collection.delegate = self;
+            collection.dataSource = self;
+            collection.backgroundColor = [UIColor clearColor];
+            collection.showsHorizontalScrollIndicator = NO;
+            [collection registerNib:[UINib nibWithNibName:NSStringFromClass([ScreenShotCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([ScreenShotCell class])];
+            
+            [scrollView addSubview:collection];
+            self.screenshotView = collection;
+            
+            maxHeight = CGRectGetMaxY(collection.frame);
+        }
+    }
+    
+    //推荐
+    {
+        if (model.recommends.count > 0) {
+            
+            UILabel *label = [[UILabel alloc] init];
+            label.text = @"同類影片";
+            [scrollView addSubview:label];
+            [label sizeToFit];
+            label.x = offset;
+            label.y = maxHeight + offset;
+            maxHeight = CGRectGetMaxY(label.frame);
+            
+            CGFloat offset = 8;
+            CGFloat itemSize = 147;
+            CGFloat itemHeight = 200/147.0*itemSize + 45;
+            UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+            layout.itemSize = CGSizeMake(itemSize, itemHeight);
+            layout.minimumLineSpacing = offset;
+            layout.minimumInteritemSpacing = offset;
+            layout.sectionInset = UIEdgeInsetsMake(offset, offset, offset, offset);
+            layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+            
+            UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, maxHeight + offset, scrollView.width, itemHeight) collectionViewLayout:layout];
+            collection.delegate = self;
+            collection.dataSource = self;
+            collection.backgroundColor = [UIColor clearColor];
+            collection.showsHorizontalScrollIndicator = NO;
+            [collection registerNib:[UINib nibWithNibName:NSStringFromClass([RecommendCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([RecommendCell class])];
+            
+            [scrollView addSubview:collection];
+            self.recommendView = collection;
+            
+            maxHeight = CGRectGetMaxY(collection.frame);
+        }
+    }
+    
+    scrollView.contentSize = CGSizeMake(scrollView.width, maxHeight + offset);
+}
+
+- (void)linkBtnClicked:(LinkButton *)sender {
+    TitleLinkModel *model = sender.model;
+    
+    if (model.type == LinkTypeActor) {
+        ActressDetailController *vc = [ActressDetailController new];
+        ActressModel *actor = [ActressModel new];
+        actor.name = model.title;
+        actor.link = model.link;
+        vc.model = actor;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+}
+
+#pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    if (collectionView == self.screenshotView) {
+        return self.detailModel.screenshots.count;
+    }else{
+        return self.detailModel.recommends.count;
+    }
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (collectionView == self.screenshotView) {
+        ScreenShotCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ScreenShotCell class]) forIndexPath:indexPath];
+        ScreenShotModel *model = self.detailModel.screenshots[indexPath.item];
+        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.smallPicUrl]];
+        return cell;
+    }else {
+        RecommendCell *cell = (RecommendCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([RecommendCell class]) forIndexPath:indexPath];
+        RecommendModel *model = self.detailModel.recommends[indexPath.item];
+        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl]];
+        cell.titleLabel.text = model.title;
+        return cell;
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (collectionView == self.screenshotView) {
+        ScreenShotModel *model = self.detailModel.screenshots[indexPath.item];
+    }else {
+        MovieListModel *listModel = [MovieListModel new];
+        RecommendModel *model = self.detailModel.recommends[indexPath.item];
+        listModel.number = model.title;
+        listModel.link  = model.link;
+        
+        MovieDetailController *vc = [MovieDetailController new];
+        vc.model = listModel;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end
