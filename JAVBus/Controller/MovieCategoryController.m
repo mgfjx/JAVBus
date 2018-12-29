@@ -60,6 +60,14 @@
     NSArray *infos = self.dataArray ;
     
     UIScrollView *scrollView = self.scrollView;
+    UIView *view = [scrollView viewWithTag:100];
+    if (view) {
+        [view removeFromSuperview];
+    }
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, scrollView.width, scrollView.height)];
+    bgView.tag = 100;
+    [scrollView addSubview:bgView];
     
     for (int i = 0; i < infos.count; i++) {
         maxHeight += offset;
@@ -71,7 +79,7 @@
         UILabel *label = [[UILabel alloc] init];
         label.text = title;
         label.font = [UIFont systemFontOfSize:18];
-        [scrollView addSubview:label];
+        [bgView addSubview:label];
         [label sizeToFit];
         label.x = offset;
         label.y = maxHeight + offset;
@@ -92,14 +100,14 @@
             button.backgroundColor = [UIColor colorWithHexString:@"#1d65ee"];
             button.backgroundColor = [UIColor randomColorWithAlpha:0.2];
             button.titleLabel.font = [UIFont systemFontOfSize:14];
-            [scrollView addSubview:button];
+            [bgView addSubview:button];
             [button sizeToFit];
             button.layer.cornerRadius = button.height/4;
             button.layer.masksToBounds = YES;
             button.layer.borderColor = [UIColor colorWithHexString:@"#aaaaaa"].CGColor;
             button.layer.borderWidth = 0.5;
             button.width = button.width + 2*offset;
-            if (xPosition + offset + button.width > scrollView.width - offset) {
+            if (xPosition + offset + button.width > bgView.width - offset) {
                 xPosition = offset;
                 maxHeight = maxHeight + offset + button.height;
             }
@@ -114,6 +122,7 @@
         
     }
     scrollView.contentSize = CGSizeMake(scrollView.width, maxHeight + offset);
+    bgView.height = scrollView.contentSize.height;
 }
 
 - (void)linkBtnClicked:(LinkButton *)sender {
