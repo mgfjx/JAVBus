@@ -12,6 +12,8 @@
 #import "MovieMainController.h"
 #import <JXCategoryView/JXCategoryView.h>
 
+#define CategoryHeight 40
+
 @interface MainViewController ()<JXCategoryViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView ;
@@ -40,7 +42,8 @@
 }
 
 - (void)createScrollView {
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    CGRect frame = self.view.bounds ;
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:frame];
     scrollView.pagingEnabled = YES;
     scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:scrollView];
@@ -56,7 +59,7 @@
 
 - (void)createCategoryView {
     
-    JXCategoryTitleView *titleCategoryView = [[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, kNavigationBarHeight, MainWidth, 40)];
+    JXCategoryTitleView *titleCategoryView = [[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, kNavigationBarHeight, MainWidth, CategoryHeight)];
     titleCategoryView.backgroundColor = [UIColor whiteColor];
     titleCategoryView.titleSelectedColor = [UIColor colorWithHexString:@"#0b7be1"];;
     titleCategoryView.titleFont = [UIFont systemFontOfSize:16];
