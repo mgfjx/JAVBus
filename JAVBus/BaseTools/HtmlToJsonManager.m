@@ -347,6 +347,7 @@ static HtmlToJsonManager *instance ;
             }else if ([title isEqualToString:@"系列:"]) {
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;
+                link = [e objectForKey:@"href"];
                 type = LinkTypeNormal;
             }else if ([title isEqualToString:@"識別碼:"]) {
                 

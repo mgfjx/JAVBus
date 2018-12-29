@@ -15,6 +15,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.model.name;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -13,6 +13,8 @@
 #import "ScreenShotModel.h"
 #import "RecommendModel.h"
 #import "RecommendCell.h"
+#import <IDMPhotoBrowser/IDMPhotoBrowser.h>
+#import "CategoryItemListController.h"
 
 @interface MovieDetailController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -43,6 +45,9 @@
     
     [HTMLTOJSONMANAGER parseMovieDetailByUrl:self.model.link callback:^(MovieDetailModel *model) {
         [self.scrollView stopHeaderRefreshing];
+        if (model) {
+//            self.scrollView.canPullDown = NO;
+        }
         self.detailModel = model;
         [self createDetailView];
     }];
@@ -77,18 +82,22 @@
     scrollView.contentSize = CGSizeMake(scrollView.width, scrollView.height);
     
     CGFloat maxHeight = 0;
-    CGFloat offset = 8;
+    CGFloat offset = 5;
     
     MovieDetailModel *model = self.detailModel;
     
     UIImageView *imgView;
     {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, scrollView.width, scrollView.width*0.6)];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:model.coverImgUrl]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:model.coverImgUrl] placeholderImage:MovieListPlaceHolder];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.backgroundColor = [UIColor colorWithHexString:@"#333333"];
         [scrollView addSubview:imageView];
         imgView = imageView;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCorver)];
+        imageView.userInteractionEnabled = YES;
+        [imageView addGestureRecognizer:tap];
         
         maxHeight = CGRectGetMaxY(imgView.frame);
     }
@@ -97,20 +106,24 @@
         NSArray *infos = model.infoArray;
         
         for (int i = 0; i < infos.count; i++) {
+            maxHeight += offset;
+            
             NSDictionary *dict = infos[i];
             NSString *title = dict.allKeys.firstObject;
             NSArray *items = [dict objectForKey:title];
             
             UILabel *label = [[UILabel alloc] init];
             label.text = title;
+            label.font = [UIFont systemFontOfSize:14];
             [scrollView addSubview:label];
             [label sizeToFit];
             label.x = offset;
             label.y = maxHeight + offset;
             
             maxHeight = CGRectGetMaxY(label.frame);
+            CGFloat currentMiddle = label.centerY;
             
-            CGFloat xPosition = 0;
+            CGFloat xPosition = CGRectGetMaxX(label.frame) + offset;
             for (TitleLinkModel *item in items) {
                 LinkButton *button = [LinkButton buttonWithType:UIButtonTypeCustom];
                 [button addTarget:self action:@selector(linkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -119,7 +132,7 @@
                 [button setTitleColor:[UIColor colorWithHexString:@"#aaaaaa"] forState:UIControlStateHighlighted];
                 button.model = item;
                 button.backgroundColor = [UIColor colorWithHexString:@"#1d65ee"];
-                button.titleLabel.font = [UIFont systemFontOfSize:14];
+                button.titleLabel.font = [UIFont systemFontOfSize:12];
                 [scrollView addSubview:button];
                 [button sizeToFit];
                 button.layer.cornerRadius = button.height/4;
@@ -128,9 +141,10 @@
                 if (xPosition + offset + button.width > scrollView.width - offset) {
                     xPosition = 0;
                     maxHeight = maxHeight + offset + button.height;
+                    currentMiddle = maxHeight + offset - button.height/2;
                 }
                 button.x = xPosition + offset;
-                button.y = maxHeight + offset;
+                button.centerY = currentMiddle;
                 
                 xPosition = CGRectGetMaxX(button.frame);
                 if (item == items.lastObject) {
@@ -147,6 +161,7 @@
             
             UILabel *label = [[UILabel alloc] init];
             label.text = @"樣品圖像";
+            label.font = [UIFont systemFontOfSize:14];
             [scrollView addSubview:label];
             [label sizeToFit];
             label.x = offset;
@@ -182,6 +197,7 @@
             
             UILabel *label = [[UILabel alloc] init];
             label.text = @"同類影片";
+            label.font = [UIFont systemFontOfSize:14];
             [scrollView addSubview:label];
             [label sizeToFit];
             label.x = offset;
@@ -220,6 +236,7 @@
     
     if (model.type == LinkTypeActor) {
         ActressDetailController *vc = [ActressDetailController new];
+        vc.showSortBar = YES;
         ActressModel *actor = [ActressModel new];
         actor.name = model.title;
         actor.link = model.link;
@@ -227,6 +244,22 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     
+    if (model.type == LinkTypeCategory || model.type == LinkTypeNormal) {
+        CategoryItemModel *itemModel = [CategoryItemModel new];
+        itemModel.title = model.title;
+        itemModel.link = model.link;
+        CategoryItemListController *vc = [CategoryItemListController new];
+        vc.model = itemModel;
+        vc.showSortBar = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+}
+
+- (void)tapCorver {
+    NSArray *photos = [IDMPhoto photosWithURLs:@[[NSURL URLWithString:self.detailModel.coverImgUrl]]];
+    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:photos];
+    [self presentViewController:browser animated:YES completion:nil];
 }
 
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
@@ -246,12 +279,12 @@
     if (collectionView == self.screenshotView) {
         ScreenShotCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ScreenShotCell class]) forIndexPath:indexPath];
         ScreenShotModel *model = self.detailModel.screenshots[indexPath.item];
-        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.smallPicUrl]];
+        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.smallPicUrl] placeholderImage:MovieListPlaceHolder];
         return cell;
     }else {
         RecommendCell *cell = (RecommendCell *)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([RecommendCell class]) forIndexPath:indexPath];
         RecommendModel *model = self.detailModel.recommends[indexPath.item];
-        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl]];
+        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:MovieListPlaceHolder];
         cell.titleLabel.text = model.title;
         return cell;
     }
@@ -260,7 +293,17 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (collectionView == self.screenshotView) {
-        ScreenShotModel *model = self.detailModel.screenshots[indexPath.item];
+        NSMutableArray *photos = [NSMutableArray new];
+        
+        for (ScreenShotModel *item in self.detailModel.screenshots) {
+            IDMPhoto *photo = [IDMPhoto photoWithURL:[NSURL URLWithString:item.bigPicUrl]];
+            [photos addObject:photo];
+        }
+        
+        IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:photos];
+        [browser setInitialPageIndex:indexPath.item];
+        [self presentViewController:browser animated:YES completion:nil];
+        
     }else {
         MovieListModel *listModel = [MovieListModel new];
         RecommendModel *model = self.detailModel.recommends[indexPath.item];

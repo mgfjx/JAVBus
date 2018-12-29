@@ -6,9 +6,9 @@
 //  Copyright © 2018 mgfjx. All rights reserved.
 //
 
-#import <CYLTabBarController/CYLTabBarController.h>
+#import "BaseViewController.h"
 
-@interface MainViewController : CYLTabBarController
+@interface MainViewController : BaseViewController
 
 
 @end

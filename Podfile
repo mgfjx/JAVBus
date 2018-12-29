@@ -8,12 +8,13 @@ target 'JAVBus' do
   # Pods for JAVBus
   
   pod 'TFHpple', '~> 2.0.0'
-  pod 'SDWebImage', '~> 4.0'
+  pod 'SDWebImage', '~> 4.0.0'
   pod 'MJRefresh', '~> 3.1.12'
   pod 'AFNetworking', '~> 3.2.1'
   pod 'CYLTabBarController', '~> 1.17.4'
   pod 'JXCategoryView','~>1.0.3'
   pod 'Masonry', '~> 1.1.0'
+  pod 'IDMPhotoBrowser', '~> 1.11.3'
 
   target 'JAVBusTests' do
     inherit! :search_paths

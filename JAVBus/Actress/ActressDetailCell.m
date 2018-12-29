@@ -39,7 +39,7 @@
 
 - (void)setModel:(MovieListModel *)model {
     _model = model;
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:[UIImage imageNamed:@"actressHolder"]];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:MovieListPlaceHolder];
     self.titleLabel.text = model.title;
     self.numberLabel.text = model.number;
     self.timeLabel.text = model.dateString;

@@ -26,4 +26,6 @@
 #define HTTPMANAGER [HttpManager manager]
 #define HTMLTOJSONMANAGER [HtmlToJsonManager manager]
 
+#define MovieListPlaceHolder [UIImage imageNamed:@"movie_placeholder"]
+
 #endif /* PublicDefines_h */
