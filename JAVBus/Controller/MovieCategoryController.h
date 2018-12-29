@@ -10,9 +10,10 @@
 
 @interface MovieCategoryController : BaseViewController
 
-@property (nonatomic, strong) UITableView *tableView ;
+@property (nonatomic, strong) UIScrollView *scrollView ;
 @property (nonatomic, strong) NSArray *dataArray ;
 
 - (void)requestData ;
+- (void)createViews ;
 
 @end

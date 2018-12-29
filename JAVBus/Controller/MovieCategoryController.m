@@ -10,8 +10,9 @@
 #import "CategoryModel.h"
 #import "MovieMainController.h"
 #import "CategoryItemListController.h"
+#import "LinkButton.h"
 
-@interface MovieCategoryController ()<UITableViewDelegate, UITableViewDataSource>
+@interface MovieCategoryController ()
 
 @end
 
@@ -20,8 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self createTableView];
-    [self.tableView startHeaderRefreshing];
+    [self createScrollView];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,72 +35,97 @@
     NSAssert(0, logo);
 }
 
-- (void)createTableView {
-    UITableView *table = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    table.delegate = self;
-    table.dataSource = self;
+- (void)createScrollView {
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    scrollView.showsHorizontalScrollIndicator = NO;
+    [self.view addSubview:scrollView];
+    self.scrollView = scrollView;
     
-    [self.view addSubview:table];
-    self.tableView = table;
-    
-    [table mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.bottom.right.mas_equalTo(0);
+    [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
     }];
     
-    table.tableFooterView = [UIView new];
-    table.canPullDown = YES;
+    scrollView.canPullDown = YES;
     WeakSelf(weakSelf)
-    table.headerRefreshBlock = ^(UIScrollView *rfScrollView) {
+    scrollView.headerRefreshBlock = ^(UIScrollView *rfScrollView) {
         [weakSelf requestData];
     };
+    [scrollView startHeaderRefreshing];
 }
 
-#pragma mark - UITableViewDelegate, UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.dataArray.count;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    CategoryModel *model = self.dataArray[section];
-    return model.items.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellReuse = NSStringFromClass([UITableViewCell class]);
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReuse];
+- (void)createViews {
     
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellReuse];
+    CGFloat maxHeight = 0;
+    CGFloat offset = 5;
+    NSArray *infos = self.dataArray ;
+    
+    UIScrollView *scrollView = self.scrollView;
+    
+    for (int i = 0; i < infos.count; i++) {
+        maxHeight += offset;
+        
+        CategoryModel *caModel = infos[i];
+        NSString *title = caModel.title;
+        NSArray *items = caModel.items;
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.text = title;
+        label.font = [UIFont systemFontOfSize:18];
+        [scrollView addSubview:label];
+        [label sizeToFit];
+        label.x = offset;
+        label.y = maxHeight + offset;
+        
+        maxHeight = CGRectGetMaxY(label.frame) + offset;
+        
+        CGFloat xPosition = CGRectGetMaxX(label.frame) + offset;
+        for (CategoryItemModel *cateItem in items) {
+            TitleLinkModel *item = [TitleLinkModel new];
+            item.title = cateItem.title;
+            item.link = cateItem.link;
+            LinkButton *button = [LinkButton buttonWithType:UIButtonTypeCustom];
+            [button addTarget:self action:@selector(linkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+            [button setTitle:item.title forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor colorWithHexString:@"#555555"] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor colorWithHexString:@"#aaaaaa"] forState:UIControlStateHighlighted];
+            button.model = item;
+            button.backgroundColor = [UIColor colorWithHexString:@"#1d65ee"];
+            button.backgroundColor = [UIColor randomColorWithAlpha:0.2];
+            button.titleLabel.font = [UIFont systemFontOfSize:14];
+            [scrollView addSubview:button];
+            [button sizeToFit];
+            button.layer.cornerRadius = button.height/4;
+            button.layer.masksToBounds = YES;
+            button.layer.borderColor = [UIColor colorWithHexString:@"#aaaaaa"].CGColor;
+            button.layer.borderWidth = 0.5;
+            button.width = button.width + 2*offset;
+            if (xPosition + offset + button.width > scrollView.width - offset) {
+                xPosition = offset;
+                maxHeight = maxHeight + offset + button.height;
+            }
+            button.x = xPosition + offset;
+            button.y = maxHeight;
+            
+            xPosition = CGRectGetMaxX(button.frame);
+            if (cateItem == items.lastObject) {
+                maxHeight = CGRectGetMaxY(button.frame);
+            }
+        }
+        
     }
-    
-    CategoryModel *model = self.dataArray[indexPath.section];
-    CategoryItemModel *itemModel = model.items[indexPath.row];
-    cell.textLabel.text = itemModel.title;
-    cell.textLabel.textColor = [UIColor grayColor];
-    
-    return cell;
+    scrollView.contentSize = CGSizeMake(scrollView.width, maxHeight + offset);
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    CategoryModel *model = self.dataArray[indexPath.section];
-    CategoryItemModel *itemModel = model.items[indexPath.row];
-    
+- (void)linkBtnClicked:(LinkButton *)sender {
+    TitleLinkModel *model = sender.model;
+    CategoryItemModel *itemModel = [CategoryItemModel new];
+    itemModel.title = model.title;
+    itemModel.link = model.link;
     CategoryItemListController *vc = [CategoryItemListController new];
     vc.model = itemModel;
-    vc.hidesBottomBarWhenPushed = YES;
     vc.showSortBar = YES;
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
-    
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 40;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    CategoryModel *model = self.dataArray[section];
-    return model.title;
 }
 
 @end

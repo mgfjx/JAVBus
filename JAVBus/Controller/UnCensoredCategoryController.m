@@ -27,13 +27,13 @@
 - (void)requestData {
     
     [HTMLTOJSONMANAGER parseUnCensoredCategoryListCallback:^(NSArray *array) {
-        [self.tableView stopHeaderRefreshing];
+        [self.scrollView stopHeaderRefreshing];
         
         if (array.count == 0) {
             return ;
         }
         self.dataArray = [array copy];
-        [self.tableView reloadData];
+        [self createViews];
     }];
     
 }

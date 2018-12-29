@@ -222,6 +222,7 @@
             [collection registerNib:[UINib nibWithNibName:NSStringFromClass([RecommendCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([RecommendCell class])];
             
             [scrollView addSubview:collection];
+            
             self.recommendView = collection;
             
             maxHeight = CGRectGetMaxY(collection.frame);
