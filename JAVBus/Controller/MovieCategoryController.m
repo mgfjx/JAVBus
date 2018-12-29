@@ -56,7 +56,7 @@
 - (void)createViews {
     
     CGFloat maxHeight = 0;
-    CGFloat offset = 5;
+    CGFloat offset = 5*3/2.0;
     NSArray *infos = self.dataArray ;
     
     UIScrollView *scrollView = self.scrollView;
@@ -84,7 +84,7 @@
         label.x = offset;
         label.y = maxHeight + offset;
         
-        maxHeight = CGRectGetMaxY(label.frame) + offset;
+        maxHeight = CGRectGetMaxY(label.frame);
         
         CGFloat xPosition = CGRectGetMaxX(label.frame) + offset;
         for (CategoryItemModel *cateItem in items) {
@@ -120,8 +120,12 @@
             }
         }
         
+        maxHeight += offset;
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, maxHeight - 0.5, bgView.width, 0.5)];
+        line.backgroundColor = [UIColor colorWithHexString:@"#aaaaaa"];
+        [bgView addSubview:line];
     }
-    scrollView.contentSize = CGSizeMake(scrollView.width, maxHeight + offset);
+    scrollView.contentSize = CGSizeMake(scrollView.width, maxHeight);
     bgView.height = scrollView.contentSize.height;
 }
 
