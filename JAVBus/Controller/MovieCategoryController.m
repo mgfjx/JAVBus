@@ -84,9 +84,9 @@
         label.x = offset;
         label.y = maxHeight + offset;
         
-        maxHeight = CGRectGetMaxY(label.frame);
+        maxHeight = CGRectGetMaxY(label.frame) + offset;
         
-        CGFloat xPosition = CGRectGetMaxX(label.frame) + offset;
+        CGFloat xPosition = offset;
         for (CategoryItemModel *cateItem in items) {
             TitleLinkModel *item = [TitleLinkModel new];
             item.title = cateItem.title;

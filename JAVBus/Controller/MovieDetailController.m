@@ -81,6 +81,15 @@
     UIScrollView *scrollView = self.scrollView;
     scrollView.contentSize = CGSizeMake(scrollView.width, scrollView.height);
     
+    UIView *view = [scrollView viewWithTag:100];
+    if (view) {
+        [view removeFromSuperview];
+    }
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, scrollView.width, 0)];
+    bgView.tag = 100;
+    [scrollView addSubview:bgView];
+    
     CGFloat maxHeight = 0;
     CGFloat offset = 5;
     
@@ -92,7 +101,7 @@
         [imageView sd_setImageWithURL:[NSURL URLWithString:model.coverImgUrl] placeholderImage:MovieListPlaceHolder];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.backgroundColor = [UIColor colorWithHexString:@"#333333"];
-        [scrollView addSubview:imageView];
+        [bgView addSubview:imageView];
         imgView = imageView;
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCorver)];
@@ -115,7 +124,7 @@
             UILabel *label = [[UILabel alloc] init];
             label.text = title;
             label.font = [UIFont systemFontOfSize:14];
-            [scrollView addSubview:label];
+            [bgView addSubview:label];
             [label sizeToFit];
             label.x = offset;
             label.y = maxHeight + offset;
@@ -133,7 +142,7 @@
                 button.model = item;
                 button.backgroundColor = [UIColor colorWithHexString:@"#1d65ee"];
                 button.titleLabel.font = [UIFont systemFontOfSize:12];
-                [scrollView addSubview:button];
+                [bgView addSubview:button];
                 [button sizeToFit];
                 button.layer.cornerRadius = button.height/4;
                 button.layer.masksToBounds = YES;
@@ -162,7 +171,7 @@
             UILabel *label = [[UILabel alloc] init];
             label.text = @"樣品圖像";
             label.font = [UIFont systemFontOfSize:14];
-            [scrollView addSubview:label];
+            [bgView addSubview:label];
             [label sizeToFit];
             label.x = offset;
             label.y = maxHeight + offset;
@@ -184,7 +193,7 @@
             collection.showsHorizontalScrollIndicator = NO;
             [collection registerNib:[UINib nibWithNibName:NSStringFromClass([ScreenShotCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([ScreenShotCell class])];
             
-            [scrollView addSubview:collection];
+            [bgView addSubview:collection];
             self.screenshotView = collection;
             
             maxHeight = CGRectGetMaxY(collection.frame);
@@ -198,7 +207,7 @@
             UILabel *label = [[UILabel alloc] init];
             label.text = @"同類影片";
             label.font = [UIFont systemFontOfSize:14];
-            [scrollView addSubview:label];
+            [bgView addSubview:label];
             [label sizeToFit];
             label.x = offset;
             label.y = maxHeight + offset;
@@ -221,7 +230,7 @@
             collection.showsHorizontalScrollIndicator = NO;
             [collection registerNib:[UINib nibWithNibName:NSStringFromClass([RecommendCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([RecommendCell class])];
             
-            [scrollView addSubview:collection];
+            [bgView addSubview:collection];
             
             self.recommendView = collection;
             
@@ -229,7 +238,9 @@
         }
     }
     
-    scrollView.contentSize = CGSizeMake(scrollView.width, maxHeight + offset);
+    maxHeight = maxHeight + offset;
+    bgView.height = maxHeight;
+    scrollView.contentSize = CGSizeMake(scrollView.width, bgView.height);
 }
 
 - (void)linkBtnClicked:(LinkButton *)sender {
