@@ -35,6 +35,8 @@
     self.numberLabel.layer.cornerRadius = self.numberLabel.height/8;
     self.numberLabel.layer.masksToBounds = YES;
     
+    self.imageView.clipsToBounds = YES;
+    
 }
 
 - (void)setModel:(MovieListModel *)model {
@@ -45,7 +47,13 @@
     self.timeLabel.text = model.dateString;
     
     CGFloat width = [self.numberLabel.text boundingRectWithSize:CGSizeMake(self.titleLabel.width, self.numberLabel.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.numberLabel.font} context:nil].size.width;
-    self.numberWidthConstraint.constant = width + 5*2;
+    CGFloat superWidth = self.titleLabel.width;
+    if (width + 5*2 > superWidth - 2*5) {
+        width = superWidth;
+    }else{
+        width = width + 2*5;
+    }
+    self.numberWidthConstraint.constant = width;
     
 }
 
@@ -57,6 +65,16 @@
 - (void)setItemHeight:(CGFloat)itemHeight {
     _itemHeight = itemHeight;
     self.heightConstraint.constant = itemHeight;
+}
+
+- (void)setFontSizeThatFits:(UILabel*)label {
+    CGFloat fontSizeThatFits;
+    [label.text sizeWithFont:label.font
+                 minFontSize:8.0
+              actualFontSize:&fontSizeThatFits
+                    forWidth:label.bounds.size.width
+               lineBreakMode:NSLineBreakByWordWrapping];
+    label.font = [label.font fontWithSize:fontSizeThatFits];
 }
 
 @end
