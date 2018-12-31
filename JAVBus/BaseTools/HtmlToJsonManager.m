@@ -443,4 +443,15 @@ static HtmlToJsonManager *instance ;
     }];
 }
 
+
+/**
+ 搜索影片
+ */
+- (void)parseSearchListByUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback {
+    if (page > 1) {
+        url = [url stringByAppendingPathComponent:[NSString stringWithFormat:@"/%ld", page]];
+    }
+    [self parseBaseListDataUrl:url callback:callback];
+}
+
 @end

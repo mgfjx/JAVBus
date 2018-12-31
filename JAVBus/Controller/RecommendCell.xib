@@ -20,8 +20,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="212" height="339"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IBk-97-l8P">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IBk-97-l8P">
                         <rect key="frame" x="0.0" y="0.0" width="212" height="288.5"/>
+                        <color key="backgroundColor" red="0.19997376203536987" green="0.20001503825187683" blue="0.19997116923332214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="IBk-97-l8P" secondAttribute="height" multiplier="147:200" id="OKm-9F-4M7"/>
                         </constraints>

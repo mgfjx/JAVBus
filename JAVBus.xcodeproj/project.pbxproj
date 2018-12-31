@@ -41,6 +41,9 @@
 		EC0BC4C021C2653500A6E50E /* RxWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC4BA21C2653500A6E50E /* RxWebViewController.m */; };
 		EC0BC4C321C2ADE900A6E50E /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC4C221C2ADE900A6E50E /* BaseModel.m */; };
 		EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC4C521C2AE1D00A6E50E /* ActressModel.m */; };
+		EC73608C21D90D5B0031DFE0 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73608B21D90D5B0031DFE0 /* SearchViewController.m */; };
+		EC73608F21D90EF00031DFE0 /* MovieSearchListController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73608E21D90EF00031DFE0 /* MovieSearchListController.m */; };
+		EC73609221D90F630031DFE0 /* ActressSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73609121D90F630031DFE0 /* ActressSearchController.m */; };
 		EC9ABE1621CE935E00C4E90F /* GlobalTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1521CE935E00C4E90F /* GlobalTool.m */; };
 		EC9ABE1D21CF4E8600C4E90F /* AddressSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1C21CF4E8600C4E90F /* AddressSettingController.m */; };
 		EC9ABE2121CFA5E300C4E90F /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1F21CFA5E300C4E90F /* AddressCell.m */; };
@@ -165,6 +168,13 @@
 		EC0BC4C221C2ADE900A6E50E /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		EC0BC4C421C2AE1D00A6E50E /* ActressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressModel.h; sourceTree = "<group>"; };
 		EC0BC4C521C2AE1D00A6E50E /* ActressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressModel.m; sourceTree = "<group>"; };
+		EC73608A21D90D5B0031DFE0 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		EC73608B21D90D5B0031DFE0 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		EC73608D21D90EF00031DFE0 /* MovieSearchListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieSearchListController.h; sourceTree = "<group>"; };
+		EC73608E21D90EF00031DFE0 /* MovieSearchListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieSearchListController.m; sourceTree = "<group>"; };
+		EC73609021D90F630031DFE0 /* ActressSearchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressSearchController.h; sourceTree = "<group>"; };
+		EC73609121D90F630031DFE0 /* ActressSearchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressSearchController.m; sourceTree = "<group>"; };
+		EC73609321D9C8870031DFE0 /* FontDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontDefine.h; sourceTree = "<group>"; };
 		EC9ABE1421CE935E00C4E90F /* GlobalTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalTool.h; sourceTree = "<group>"; };
 		EC9ABE1521CE935E00C4E90F /* GlobalTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalTool.m; sourceTree = "<group>"; };
 		EC9ABE1B21CF4E8600C4E90F /* AddressSettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressSettingController.h; sourceTree = "<group>"; };
@@ -350,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				EC0BC47E21C259F300A6E50E /* PublicDefines.h */,
+				EC73609321D9C8870031DFE0 /* FontDefine.h */,
 				EC0BC47D21C259F300A6E50E /* Singleton.h */,
 			);
 			path = Defines;
@@ -528,6 +539,12 @@
 				ECF9459021D60D560043E898 /* RecommendCell.h */,
 				ECF9459121D60D560043E898 /* RecommendCell.m */,
 				ECF9459221D60D560043E898 /* RecommendCell.xib */,
+				EC73608A21D90D5B0031DFE0 /* SearchViewController.h */,
+				EC73608B21D90D5B0031DFE0 /* SearchViewController.m */,
+				EC73608D21D90EF00031DFE0 /* MovieSearchListController.h */,
+				EC73608E21D90EF00031DFE0 /* MovieSearchListController.m */,
+				EC73609021D90F630031DFE0 /* ActressSearchController.h */,
+				EC73609121D90F630031DFE0 /* ActressSearchController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -846,6 +863,7 @@
 				ECFD29BF21D37E960085E257 /* MovieListBaseController.m in Sources */,
 				EC0BC49921C25B5000A6E50E /* UIScrollView+Refresh.m in Sources */,
 				EC0BC4BD21C2653500A6E50E /* NJKWebViewProgress.m in Sources */,
+				EC73608F21D90EF00031DFE0 /* MovieSearchListController.m in Sources */,
 				ECF9456421D4AD5E0043E898 /* ActorListBaseController.m in Sources */,
 				ECF9456D21D4B7BC0043E898 /* CensoredCategoryController.m in Sources */,
 				ECF9458721D5FC220043E898 /* ScreenShotModel.m in Sources */,
@@ -862,6 +880,8 @@
 				EC0BC49D21C25B5000A6E50E /* UIAlertView+ActionBlock.m in Sources */,
 				ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */,
 				ECD99AF021C7EDB90043DB0C /* MovieListModel.m in Sources */,
+				EC73609221D90F630031DFE0 /* ActressSearchController.m in Sources */,
+				EC73608C21D90D5B0031DFE0 /* SearchViewController.m in Sources */,
 				EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */,
 				EC0BC4A021C25B5000A6E50E /* NSString+RegExp.m in Sources */,
 				ECF9457421D4B86C0043E898 /* CategoryModel.m in Sources */,

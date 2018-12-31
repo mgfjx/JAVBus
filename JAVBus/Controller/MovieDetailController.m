@@ -123,7 +123,7 @@
             
             UILabel *label = [[UILabel alloc] init];
             label.text = title;
-            label.font = [UIFont systemFontOfSize:14];
+            label.font = MHMediumFont(14);
             [bgView addSubview:label];
             [label sizeToFit];
             label.x = offset;
@@ -164,13 +164,14 @@
         }
     }
     
+    maxHeight += offset;
     //截图
     {
         if (model.screenshots.count > 0) {
             
             UILabel *label = [[UILabel alloc] init];
             label.text = @"樣品圖像";
-            label.font = [UIFont systemFontOfSize:14];
+            label.font = MHMediumFont(14);
             [bgView addSubview:label];
             [label sizeToFit];
             label.x = offset;
@@ -200,13 +201,14 @@
         }
     }
     
+    maxHeight += offset;
     //推荐
     {
         if (model.recommends.count > 0) {
             
             UILabel *label = [[UILabel alloc] init];
             label.text = @"同類影片";
-            label.font = [UIFont systemFontOfSize:14];
+            label.font = MHMediumFont(14);
             [bgView addSubview:label];
             [label sizeToFit];
             label.x = offset;

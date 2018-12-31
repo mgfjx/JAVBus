@@ -21,5 +21,6 @@
 #import "UIColor+Hex.h"
 #import "GlobalTool.h"
 #import <Masonry.h>
+#import "FontDefine.h"
 
 #endif /* PrefixHeader_pch */

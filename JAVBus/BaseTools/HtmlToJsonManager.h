@@ -70,4 +70,9 @@
  */
 - (void)parseMovieDetailByUrl:(NSString *)url callback:(void (^)(MovieDetailModel *model))callback ;
 
+/**
+ 搜索影片
+ */
+- (void)parseSearchListByUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
+
 @end

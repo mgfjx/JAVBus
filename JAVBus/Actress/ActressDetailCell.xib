@@ -22,6 +22,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0i5-WB-57q">
                         <rect key="frame" x="0.0" y="0.0" width="276" height="375.5"/>
+                        <color key="backgroundColor" red="0.19997376203536987" green="0.20001503825187683" blue="0.19997116923332214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="0i5-WB-57q" secondAttribute="height" multiplier="147:200" id="Q4d-i7-ZWd"/>
                         </constraints>

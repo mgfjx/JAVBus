@@ -11,6 +11,7 @@
 #import "AddressSettingController.h"
 #import "MovieMainController.h"
 #import "MainViewController.h"
+#import "SearchViewController.h"
 
 @interface MainTabViewController ()
 
@@ -32,7 +33,7 @@
 
 - (void)configuration {
     
-    UIViewController *nav1 = [[UINavigationController alloc] initWithRootViewController:[[ActressCodeController alloc] init]];
+    UIViewController *nav1 = [[UINavigationController alloc] initWithRootViewController:[[SearchViewController alloc] init]];
     UIViewController *nav2 = [[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] init]];
     UIViewController *nav3 = [[UINavigationController alloc] initWithRootViewController:[[BaseViewController alloc] init]];
     
@@ -62,7 +63,7 @@
     
     [tabBarController setViewControllers:@[nav1, nav2, nav3]];
     
-    tabBarController.selectedIndex = 1;
+//    tabBarController.selectedIndex = 1;
     [tabBarController setTintColor:[UIColor colorWithHexString:@"#0099de"]];
     
 }
