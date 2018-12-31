@@ -75,4 +75,9 @@
  */
 - (void)parseSearchListByUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
 
+/**
+ 搜索演员
+ */
+- (void)parseSearchActorListByUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
+
 @end

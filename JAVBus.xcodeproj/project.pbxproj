@@ -44,6 +44,8 @@
 		EC73608C21D90D5B0031DFE0 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73608B21D90D5B0031DFE0 /* SearchViewController.m */; };
 		EC73608F21D90EF00031DFE0 /* MovieSearchListController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73608E21D90EF00031DFE0 /* MovieSearchListController.m */; };
 		EC73609221D90F630031DFE0 /* ActressSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73609121D90F630031DFE0 /* ActressSearchController.m */; };
+		EC73609721DA5C280031DFE0 /* ActressSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73609521DA5C280031DFE0 /* ActressSearchCell.m */; };
+		EC73609821DA5C280031DFE0 /* ActressSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC73609621DA5C280031DFE0 /* ActressSearchCell.xib */; };
 		EC9ABE1621CE935E00C4E90F /* GlobalTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1521CE935E00C4E90F /* GlobalTool.m */; };
 		EC9ABE1D21CF4E8600C4E90F /* AddressSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1C21CF4E8600C4E90F /* AddressSettingController.m */; };
 		EC9ABE2121CFA5E300C4E90F /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1F21CFA5E300C4E90F /* AddressCell.m */; };
@@ -175,6 +177,9 @@
 		EC73609021D90F630031DFE0 /* ActressSearchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressSearchController.h; sourceTree = "<group>"; };
 		EC73609121D90F630031DFE0 /* ActressSearchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressSearchController.m; sourceTree = "<group>"; };
 		EC73609321D9C8870031DFE0 /* FontDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontDefine.h; sourceTree = "<group>"; };
+		EC73609421DA5C280031DFE0 /* ActressSearchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressSearchCell.h; sourceTree = "<group>"; };
+		EC73609521DA5C280031DFE0 /* ActressSearchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressSearchCell.m; sourceTree = "<group>"; };
+		EC73609621DA5C280031DFE0 /* ActressSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActressSearchCell.xib; sourceTree = "<group>"; };
 		EC9ABE1421CE935E00C4E90F /* GlobalTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalTool.h; sourceTree = "<group>"; };
 		EC9ABE1521CE935E00C4E90F /* GlobalTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalTool.m; sourceTree = "<group>"; };
 		EC9ABE1B21CF4E8600C4E90F /* AddressSettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressSettingController.h; sourceTree = "<group>"; };
@@ -545,6 +550,9 @@
 				EC73608E21D90EF00031DFE0 /* MovieSearchListController.m */,
 				EC73609021D90F630031DFE0 /* ActressSearchController.h */,
 				EC73609121D90F630031DFE0 /* ActressSearchController.m */,
+				EC73609421DA5C280031DFE0 /* ActressSearchCell.h */,
+				EC73609521DA5C280031DFE0 /* ActressSearchCell.m */,
+				EC73609621DA5C280031DFE0 /* ActressSearchCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -670,6 +678,7 @@
 				ECF9459421D60D560043E898 /* RecommendCell.xib in Resources */,
 				EC0BC44B21C2394B00A6E50E /* Assets.xcassets in Resources */,
 				EC0BC44921C2394900A6E50E /* Main.storyboard in Resources */,
+				EC73609821DA5C280031DFE0 /* ActressSearchCell.xib in Resources */,
 				EC9D72FE21C7F41400C9F830 /* ActressDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -880,6 +889,7 @@
 				EC0BC49D21C25B5000A6E50E /* UIAlertView+ActionBlock.m in Sources */,
 				ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */,
 				ECD99AF021C7EDB90043DB0C /* MovieListModel.m in Sources */,
+				EC73609721DA5C280031DFE0 /* ActressSearchCell.m in Sources */,
 				EC73609221D90F630031DFE0 /* ActressSearchController.m in Sources */,
 				EC73608C21D90D5B0031DFE0 /* SearchViewController.m in Sources */,
 				EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */,

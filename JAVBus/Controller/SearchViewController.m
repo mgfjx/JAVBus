@@ -9,6 +9,7 @@
 #import "SearchViewController.h"
 #import <JXCategoryView/JXCategoryView.h>
 #import "MovieSearchListController.h"
+#import "ActressSearchController.h"
 
 #define CategoryHeight 40
 
@@ -52,7 +53,7 @@
 - (void)createSearchView {
     
     UISearchBar *search = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, MainWidth*0.8, 40)];
-    search.barStyle = UIBarStyleBlackOpaque;
+    search.barStyle = UIBarStyleDefault;
     search.showsScopeBar = YES;
     search.placeholder = @"搜尋 識別碼, 影片, 演員";
     search.delegate = self;
@@ -123,7 +124,7 @@
                 break;
                 
             case 2:
-                url = [NSString stringWithFormat:@"/search/%@", searchText];
+                url = [NSString stringWithFormat:@"/searchstar/%@", searchText];
                 break;
                 
             case 3:
@@ -153,17 +154,23 @@
     for (int i = 0; i < controllers.count; i++) {
         NSString *vcName = controllers[i];
         NSString *url = array[i];
+        
+        UIViewController *vc ;
         if (i != 2) {
-            MovieSearchListController *vc = (MovieSearchListController *)[[NSClassFromString(vcName) alloc] init];
-            vc.url = url;
+            MovieSearchListController *searchVC = (MovieSearchListController *)[[NSClassFromString(vcName) alloc] init];
+            searchVC.url = url;
+            vc = searchVC;
             [self addChildViewController:vc];
-            if (i == 0) {
-                vc.view.frame = CGRectMake(self.scrollView.width*i, CGRectGetMaxY(self.categoryView.frame), self.scrollView.width, self.scrollView.height - kTabBarHeight - CGRectGetMaxY(self.categoryView.frame));
-                [self.scrollView addSubview:vc.view];
-            }
         }else{
-            UIViewController *vc = [[NSClassFromString(vcName) alloc] init];
+            ActressSearchController *actorVC = (ActressSearchController *)[[NSClassFromString(vcName) alloc] init];
+            actorVC.url = url;
+            vc = actorVC;
             [self addChildViewController:vc];
+        }
+        
+        if (i == self.categoryView.selectedIndex) {
+            vc.view.frame = CGRectMake(self.scrollView.width*i, CGRectGetMaxY(self.categoryView.frame), self.scrollView.width, self.scrollView.height - kTabBarHeight - CGRectGetMaxY(self.categoryView.frame));
+            [self.scrollView addSubview:vc.view];
         }
     }
     

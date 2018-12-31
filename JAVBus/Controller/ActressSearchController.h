@@ -10,4 +10,6 @@
 
 @interface ActressSearchController : BaseViewController
 
+@property (nonatomic, strong) NSString *url ;
+
 @end

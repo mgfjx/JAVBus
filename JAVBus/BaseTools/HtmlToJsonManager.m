@@ -454,4 +454,48 @@ static HtmlToJsonManager *instance ;
     [self parseBaseListDataUrl:url callback:callback];
 }
 
+/**
+ 搜索演员
+ */
+- (void)parseSearchActorListByUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback {
+    if (page > 1) {
+        url = [url stringByAppendingPathComponent:[NSString stringWithFormat:@"/%ld", page]];
+    }
+    [self startGetUrl:url success:^(id resultDict) {
+        TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
+        NSArray *images  = [doc searchWithXPathQuery:@"//div[@class='photo-frame']"];
+        NSArray *hrefs  = [doc searchWithXPathQuery:@"//a[@class='avatar-box text-center']"];
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (int i = 0; i < images.count; i++) {
+            
+            TFHppleElement *e1 = images[i];
+            
+            TFHppleElement *imgElement = [e1 firstChildWithTagName:@"img"];
+            
+            TFHppleElement *href = hrefs[i];
+            
+            NSString *imgUrl = [imgElement objectForKey:@"src"];
+            NSString *name = [imgElement objectForKey:@"title"];
+            NSString *link = [href objectForKey:@"href"];
+            //            NSLog(@"\n %@ \n %@ \n %@", imgUrl, name, link);
+            
+            ActressModel *model = [ActressModel new];
+            model.avatarUrl = imgUrl;
+            model.name = name;
+            model.link = link;
+            [array addObject:model];
+        }
+        
+        if (callback) {
+            callback([array copy]);
+        }
+    } failure:^(NSError *error) {
+        if (callback) {
+            callback(nil);
+        }
+    }];
+}
+
+
 @end
