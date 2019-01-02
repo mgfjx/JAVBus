@@ -44,26 +44,25 @@ static HtmlToJsonManager *instance ;
     NSString *url = @"/actresses";
     [self startGetUrl:url success:^(id resultDict) {
         TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
-        NSArray *images  = [doc searchWithXPathQuery:@"//div[@class='photo-frame']"];
-        NSArray *hrefs  = [doc searchWithXPathQuery:@"//a[@class='avatar-box text-center']"];
+        NSArray *objects  = [doc searchWithXPathQuery:@"//a[@class='avatar-box text-center']"];
         
         NSMutableArray *array = [NSMutableArray array];
-        for (int i = 0; i < images.count; i++) {
+        for (int i = 0; i < objects.count; i++) {
             
-            TFHppleElement *e1 = images[i];
-            
-            TFHppleElement *imgElement = [e1 firstChildWithTagName:@"img"];
-            
-            TFHppleElement *href = hrefs[i];
+            TFHppleElement *e1 = objects[i];
+            TFHppleElement *imgElement = [e1 searchWithXPathQuery:@"//div/img"].firstObject;
+            TFHppleElement *e2 = [e1 searchWithXPathQuery:@"//div/span/button"].firstObject;
             
             NSString *imgUrl = [imgElement objectForKey:@"src"];
             NSString *name = [imgElement objectForKey:@"title"];
-            NSString *link = [href objectForKey:@"href"];
+            NSString *link = [e1 objectForKey:@"href"];
+//            NSLog(@"\n %@ \n %@ \n %@", imgUrl, name, link);
             
             ActressModel *model = [ActressModel new];
             model.avatarUrl = imgUrl;
             model.name = name;
             model.link = link;
+            model.censoredString = e2.text;
             [array addObject:model];
         }
         
@@ -464,27 +463,25 @@ static HtmlToJsonManager *instance ;
     }
     [self startGetUrl:url success:^(id resultDict) {
         TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
-        NSArray *images  = [doc searchWithXPathQuery:@"//div[@class='photo-frame']"];
-        NSArray *hrefs  = [doc searchWithXPathQuery:@"//a[@class='avatar-box text-center']"];
+        NSArray *objects  = [doc searchWithXPathQuery:@"//a[@class='avatar-box text-center']"];
         
         NSMutableArray *array = [NSMutableArray array];
-        for (int i = 0; i < images.count; i++) {
+        for (int i = 0; i < objects.count; i++) {
             
-            TFHppleElement *e1 = images[i];
-            
-            TFHppleElement *imgElement = [e1 firstChildWithTagName:@"img"];
-            
-            TFHppleElement *href = hrefs[i];
+            TFHppleElement *e1 = objects[i];
+            TFHppleElement *imgElement = [e1 searchWithXPathQuery:@"//div/img"].firstObject;
+            TFHppleElement *e2 = [e1 searchWithXPathQuery:@"//div/span/button"].firstObject;
             
             NSString *imgUrl = [imgElement objectForKey:@"src"];
             NSString *name = [imgElement objectForKey:@"title"];
-            NSString *link = [href objectForKey:@"href"];
-            //            NSLog(@"\n %@ \n %@ \n %@", imgUrl, name, link);
+            NSString *link = [e1 objectForKey:@"href"];
+//            NSLog(@"\n %@ \n %@ \n %@", imgUrl, name, link);
             
             ActressModel *model = [ActressModel new];
             model.avatarUrl = imgUrl;
             model.name = name;
             model.link = link;
+            model.censoredString = e2.text;
             [array addObject:model];
         }
         
@@ -502,10 +499,10 @@ static HtmlToJsonManager *instance ;
  解析论坛首页数据
  */
 - (void)parseForumHomeDataCallback:(void (^)(NSArray *array))callback {
-    NSString *url = @"/forum/forum.php";
+    NSString *url = @"https://avgle.com/video/MywvmvMUgvf/%E6%B3%A2%E5%A4%9A%E9%87%8E%E7%B5%90%E8%A1%A3-7%E6%9C%AC%E7%95%AA-4%E6%99%82%E9%96%93-xvsr-442-1";
     [self startGetUrl:url success:^(id resultDict) {
         TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
-        NSArray *images  = [doc searchWithXPathQuery:@"//*[@id='0.6370048003384481']/div[2]/ul"];
+        NSArray *images  = [doc searchWithXPathQuery:@"//html"];
         
         NSMutableArray *array = [NSMutableArray array];
         

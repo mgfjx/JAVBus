@@ -117,6 +117,7 @@
     
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.avatarUrl] placeholderImage:[UIImage imageNamed:@"actressHolder"]];
     cell.titleLabel.text = model.name;
+    cell.codeLabel.text = model.censoredString;
     
     return cell;
 }
