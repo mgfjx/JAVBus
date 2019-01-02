@@ -93,6 +93,10 @@
     for (int i = 0; i < controllers.count; i++) {
         NSString *vcName = controllers[i];
         UIViewController *vc = [[NSClassFromString(vcName) alloc] init];
+        if (i == 0 || i == 1) {
+            MovieListBaseController *baseVC = (MovieListBaseController *)vc;
+            baseVC.shouldNotOffset = YES;
+        }
         [self addChildViewController:vc];
         if (i == 0) {
             vc.view.frame = CGRectMake(self.scrollView.width*i, CGRectGetMaxY(self.categoryView.frame), self.scrollView.width, self.scrollView.height - kTabBarHeight - CGRectGetMaxY(self.categoryView.frame));

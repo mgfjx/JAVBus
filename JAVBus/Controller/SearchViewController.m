@@ -161,6 +161,7 @@
         if (i != 2) {
             MovieSearchListController *searchVC = (MovieSearchListController *)[[NSClassFromString(vcName) alloc] init];
             searchVC.url = url;
+            searchVC.shouldNotOffset = YES;
             vc = searchVC;
             [self addChildViewController:vc];
         }else{

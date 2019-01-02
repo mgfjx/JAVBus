@@ -82,8 +82,11 @@
     [self.view addSubview:collection];
     self.collectionView = collection;
     
+    CGFloat topOffset = self.shouldNotOffset ? 0 : kNavigationBarHeight;
+    
     [collection mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.bottom.right.mas_equalTo(0);
+        make.top.mas_equalTo(topOffset);
+        make.left.bottom.right.mas_equalTo(0);
     }];
     
     layout.headerReferenceSize = CGSizeMake(MainWidth, 30);

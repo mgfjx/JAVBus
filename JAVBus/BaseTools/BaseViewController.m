@@ -16,7 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    if (@available(iOS 11.0, *)){
+    }else{
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     self.view.backgroundColor = [UIColor whiteColor];
 }
 

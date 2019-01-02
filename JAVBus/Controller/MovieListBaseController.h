@@ -15,6 +15,7 @@
 @property (nonatomic, assign) NSInteger page ;
 
 @property (nonatomic, assign) BOOL showSortBar ;
+@property (nonatomic, assign) BOOL shouldNotOffset ;
 
 //子类实现获取数据方法
 - (void)requestData:(BOOL)refresh ;
