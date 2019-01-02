@@ -48,6 +48,9 @@
 		EC73609821DA5C280031DFE0 /* ActressSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC73609621DA5C280031DFE0 /* ActressSearchCell.xib */; };
 		EC73609B21DB9E020031DFE0 /* ForumHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73609A21DB9E020031DFE0 /* ForumHomeController.m */; };
 		EC94A1FB21DC52F000C1BBCD /* PublicDialogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC94A1FA21DC52EF00C1BBCD /* PublicDialogManager.m */; };
+		EC94A1FE21DCA1BA00C1BBCD /* ZHChineseConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = EC94A1FD21DCA1BA00C1BBCD /* ZHChineseConvert.m */; };
+		EC94A20121DCA2EE00C1BBCD /* TraditionalCode.txt in Resources */ = {isa = PBXBuildFile; fileRef = EC94A1FF21DCA2ED00C1BBCD /* TraditionalCode.txt */; };
+		EC94A20221DCA2EE00C1BBCD /* SimplifiedCode.txt in Resources */ = {isa = PBXBuildFile; fileRef = EC94A20021DCA2EE00C1BBCD /* SimplifiedCode.txt */; };
 		EC9ABE1621CE935E00C4E90F /* GlobalTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1521CE935E00C4E90F /* GlobalTool.m */; };
 		EC9ABE1D21CF4E8600C4E90F /* AddressSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1C21CF4E8600C4E90F /* AddressSettingController.m */; };
 		EC9ABE2121CFA5E300C4E90F /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABE1F21CFA5E300C4E90F /* AddressCell.m */; };
@@ -186,6 +189,10 @@
 		EC73609A21DB9E020031DFE0 /* ForumHomeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForumHomeController.m; sourceTree = "<group>"; };
 		EC94A1F921DC52EE00C1BBCD /* PublicDialogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicDialogManager.h; sourceTree = "<group>"; };
 		EC94A1FA21DC52EF00C1BBCD /* PublicDialogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicDialogManager.m; sourceTree = "<group>"; };
+		EC94A1FC21DCA1BA00C1BBCD /* ZHChineseConvert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHChineseConvert.h; sourceTree = "<group>"; };
+		EC94A1FD21DCA1BA00C1BBCD /* ZHChineseConvert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHChineseConvert.m; sourceTree = "<group>"; };
+		EC94A1FF21DCA2ED00C1BBCD /* TraditionalCode.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TraditionalCode.txt; sourceTree = "<group>"; };
+		EC94A20021DCA2EE00C1BBCD /* SimplifiedCode.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimplifiedCode.txt; sourceTree = "<group>"; };
 		EC9ABE1421CE935E00C4E90F /* GlobalTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalTool.h; sourceTree = "<group>"; };
 		EC9ABE1521CE935E00C4E90F /* GlobalTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalTool.m; sourceTree = "<group>"; };
 		EC9ABE1B21CF4E8600C4E90F /* AddressSettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressSettingController.h; sourceTree = "<group>"; };
@@ -446,6 +453,10 @@
 				EC9ABE1521CE935E00C4E90F /* GlobalTool.m */,
 				EC94A1F921DC52EE00C1BBCD /* PublicDialogManager.h */,
 				EC94A1FA21DC52EF00C1BBCD /* PublicDialogManager.m */,
+				EC94A1FC21DCA1BA00C1BBCD /* ZHChineseConvert.h */,
+				EC94A1FD21DCA1BA00C1BBCD /* ZHChineseConvert.m */,
+				EC94A20021DCA2EE00C1BBCD /* SimplifiedCode.txt */,
+				EC94A1FF21DCA2ED00C1BBCD /* TraditionalCode.txt */,
 			);
 			path = BaseTools;
 			sourceTree = "<group>";
@@ -686,7 +697,9 @@
 				EC0BC4AD21C25E3C00A6E50E /* ActressCell.xib in Resources */,
 				EC9ABE2221CFA5E300C4E90F /* AddressCell.xib in Resources */,
 				ECF9459421D60D560043E898 /* RecommendCell.xib in Resources */,
+				EC94A20121DCA2EE00C1BBCD /* TraditionalCode.txt in Resources */,
 				EC0BC44B21C2394B00A6E50E /* Assets.xcassets in Resources */,
+				EC94A20221DCA2EE00C1BBCD /* SimplifiedCode.txt in Resources */,
 				EC0BC44921C2394900A6E50E /* Main.storyboard in Resources */,
 				EC73609821DA5C280031DFE0 /* ActressSearchCell.xib in Resources */,
 				EC9D72FE21C7F41400C9F830 /* ActressDetailCell.xib in Resources */,
@@ -882,6 +895,7 @@
 				ECFD29BF21D37E960085E257 /* MovieListBaseController.m in Sources */,
 				EC0BC49921C25B5000A6E50E /* UIScrollView+Refresh.m in Sources */,
 				EC0BC4BD21C2653500A6E50E /* NJKWebViewProgress.m in Sources */,
+				EC94A1FE21DCA1BA00C1BBCD /* ZHChineseConvert.m in Sources */,
 				EC94A1FB21DC52F000C1BBCD /* PublicDialogManager.m in Sources */,
 				EC73608F21D90EF00031DFE0 /* MovieSearchListController.m in Sources */,
 				ECF9456421D4AD5E0043E898 /* ActorListBaseController.m in Sources */,

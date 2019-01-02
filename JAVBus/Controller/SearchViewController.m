@@ -10,6 +10,7 @@
 #import <JXCategoryView/JXCategoryView.h>
 #import "MovieSearchListController.h"
 #import "ActressSearchController.h"
+#import "ZHChineseConvert.h"
 
 #define CategoryHeight 40
 
@@ -112,6 +113,7 @@
     
     NSMutableArray *array = [NSMutableArray array];
     NSString *searchText = self.searchBar.text;
+    searchText = [ZHChineseConvert convertSimplifiedToTraditional:searchText];
     for (int i = 0; i < self.categoryView.titles.count; i++) {
         NSString *url ;
         switch (i) {
@@ -205,7 +207,6 @@
     }
     
     [self addChildControllers];
-    NSLog(@"%@", self.searchBar.text);
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
