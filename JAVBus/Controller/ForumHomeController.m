@@ -18,8 +18,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self createCycleScrollView];
-    [self requestData];
+//    [self createCycleScrollView];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(100, 100, 100, 100);
+    [button addTarget:self action:@selector(requestData) forControlEvents:UIControlEventTouchUpInside];
+    button.backgroundColor = [UIColor randomColor];
+    
+    [self.view addSubview:button];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,6 +39,8 @@
     [HTMLTOJSONMANAGER parseForumHomeDataCallback:^(NSArray *array) {
         
     }];
+    
+    
     
 }
 
