@@ -11,6 +11,7 @@
 typedef NS_ENUM(NSInteger, LinkType) {
     LinkTypeNone = 0,
     LinkTypeNormal,
+    LinkTypeNumber,
     LinkTypeActor,
     LinkTypeCategory,
 };

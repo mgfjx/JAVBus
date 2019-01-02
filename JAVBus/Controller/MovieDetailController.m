@@ -15,6 +15,7 @@
 #import "RecommendCell.h"
 #import <IDMPhotoBrowser/IDMPhotoBrowser.h>
 #import "CategoryItemListController.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface MovieDetailController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -266,6 +267,43 @@
         vc.model = itemModel;
         vc.showSortBar = YES;
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if (model.type == LinkTypeNumber) {
+        
+        NSString *code = model.title;
+        if (code.length == 0) {
+            code = @"";
+        }
+        
+        [PublicDialogManager showWaittingInView:self.view];
+        [HTTPMANAGER getVideoByCode:code SuccessCallback:^(NSDictionary *resultDict) {
+            [PublicDialogManager hideWaittingInView:self.view];
+            BOOL isSuccess = [resultDict[@"success"] boolValue];
+            if (isSuccess) {
+                NSDictionary *response = resultDict[@"response"];
+                NSArray *array = response[@"videos"];
+                if (array.count > 0) {
+                    NSDictionary *video = array.firstObject;
+                    NSString *preview_url = video[@"preview_video_url"];
+                    
+                    NSURL *videoURL = [NSURL URLWithString:preview_url];
+                    MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:videoURL];
+                    [moviePlayerController.moviePlayer prepareToPlay];
+                    moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
+                    [self presentViewController:moviePlayerController animated:YES completion:nil];
+                }else{
+                    [PublicDialogManager showText:@"未查询到相关预览视频" inView:self.view duration:1.0];
+                }
+            }else {
+                [PublicDialogManager showText:@"未查询到相关预览视频" inView:self.view duration:1.0];
+            }
+            
+        } FailCallback:^(NSError *error) {
+            [PublicDialogManager hideWaittingInView:self.view];
+            [PublicDialogManager showText:@"服务出错" inView:self.view duration:1.0];
+        }];
+        
     }
     
 }

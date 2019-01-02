@@ -173,4 +173,17 @@ static id singleton = nil;
     }];
 }
 
+/**
+ 根据番号从Avgle获取预览视频
+
+ @param code 番号
+ */
+- (void)getVideoByCode:(NSString *)code SuccessCallback:(SuccessCallback)success FailCallback:(FailCallback)failed {
+    NSString *url = [NSString stringWithFormat:@"https://api.avgle.com/v1/search/%@/0", code];
+    [self startGetUrl:url param:nil success:^(id resultDict) {
+        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:resultDict options:NSJSONReadingAllowFragments error:nil];
+        success(jsonDict);
+    } failure:failed];
+}
+
 @end

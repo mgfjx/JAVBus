@@ -16,6 +16,7 @@ target 'JAVBus' do
   pod 'Masonry', '~> 1.1.0'
   pod 'IDMPhotoBrowser', '~> 1.11.3'
   pod 'SDCycleScrollView', '~> 1.75'
+  pod 'MBProgressHUD', '~> 1.1.0'
 
   target 'JAVBusTests' do
     inherit! :search_paths

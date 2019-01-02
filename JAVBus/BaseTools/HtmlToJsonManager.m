@@ -325,6 +325,7 @@ static HtmlToJsonManager *instance ;
             if ([title isEqualToString:@"識別碼:"]) {
                 TFHppleElement *e2 = spans.lastObject;
                 content = e2.text;
+                type = LinkTypeNumber;
             }else if ([title isEqualToString:@"發行日期:"] || [title isEqualToString:@"長度:"]){
                 content = ele.text;
             }else if ([title isEqualToString:@"製作商:"]) {

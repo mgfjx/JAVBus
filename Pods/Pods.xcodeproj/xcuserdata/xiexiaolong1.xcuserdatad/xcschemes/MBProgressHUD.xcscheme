@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B224F904EA4C89C4458F96F7771FE111"
-               BlueprintName = "TFHpple"
+               BlueprintIdentifier = "586F2DFA9BDCC6675C2546793A69E5CC"
+               BlueprintName = "MBProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libTFHpple.a">
+               BuildableName = "libMBProgressHUD.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

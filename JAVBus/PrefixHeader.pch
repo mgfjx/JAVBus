@@ -22,5 +22,6 @@
 #import "GlobalTool.h"
 #import <Masonry.h>
 #import "FontDefine.h"
+#import "PublicDialogManager.h"
 
 #endif /* PrefixHeader_pch */
