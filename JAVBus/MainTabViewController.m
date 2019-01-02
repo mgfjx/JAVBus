@@ -58,13 +58,13 @@
                                 CYLTabBarItemSelectedImage : @"tabbar_workSelected",
                                 };
         
-        NSArray *tabBarItemsAttributes = @[ dict1, dict2, dict3];
+        NSArray *tabBarItemsAttributes = @[ dict1, dict2];
         tabBarController.tabBarItemsAttributes = tabBarItemsAttributes;
     }
     
-    [tabBarController setViewControllers:@[nav1, nav2, nav3]];
+    [tabBarController setViewControllers:@[nav1, nav2]];
     
-    tabBarController.selectedIndex = 2;
+    tabBarController.selectedIndex = 0;
     [tabBarController setTintColor:[UIColor colorWithHexString:@"#0099de"]];
     
 }
