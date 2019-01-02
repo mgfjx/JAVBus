@@ -80,4 +80,9 @@
  */
 - (void)parseSearchActorListByUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
 
+/**
+ 解析论坛首页数据
+ */
+- (void)parseForumHomeDataCallback:(void (^)(NSArray *array))callback ;
+
 @end

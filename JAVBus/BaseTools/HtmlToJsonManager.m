@@ -497,5 +497,27 @@ static HtmlToJsonManager *instance ;
     }];
 }
 
+/**
+ 解析论坛首页数据
+ */
+- (void)parseForumHomeDataCallback:(void (^)(NSArray *array))callback {
+    NSString *url = @"/forum/forum.php";
+    [self startGetUrl:url success:^(id resultDict) {
+        TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
+        NSArray *images  = [doc searchWithXPathQuery:@"//*[@id='0.6370048003384481']/div[2]/ul"];
+        
+        NSMutableArray *array = [NSMutableArray array];
+        
+        if (callback) {
+            callback([array copy]);
+        }
+    } failure:^(NSError *error) {
+        if (callback) {
+            callback(nil);
+        }
+    }];
+}
+
+
 
 @end

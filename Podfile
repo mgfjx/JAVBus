@@ -15,6 +15,7 @@ target 'JAVBus' do
   pod 'JXCategoryView','~>1.0.3'
   pod 'Masonry', '~> 1.1.0'
   pod 'IDMPhotoBrowser', '~> 1.11.3'
+  pod 'SDCycleScrollView', '~> 1.75'
 
   target 'JAVBusTests' do
     inherit! :search_paths

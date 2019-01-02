@@ -12,6 +12,7 @@
 #import "MovieMainController.h"
 #import "MainViewController.h"
 #import "SearchViewController.h"
+#import "ForumHomeController.h"
 
 @interface MainTabViewController ()
 
@@ -35,7 +36,7 @@
     
     UIViewController *nav1 = [[UINavigationController alloc] initWithRootViewController:[[SearchViewController alloc] init]];
     UIViewController *nav2 = [[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] init]];
-    UIViewController *nav3 = [[UINavigationController alloc] initWithRootViewController:[[BaseViewController alloc] init]];
+    UIViewController *nav3 = [[UINavigationController alloc] initWithRootViewController:[[ForumHomeController alloc] init]];
     
     
     CYLTabBarController *tabBarController = self;
@@ -63,7 +64,7 @@
     
     [tabBarController setViewControllers:@[nav1, nav2, nav3]];
     
-//    tabBarController.selectedIndex = 1;
+    tabBarController.selectedIndex = 2;
     [tabBarController setTintColor:[UIColor colorWithHexString:@"#0099de"]];
     
 }
