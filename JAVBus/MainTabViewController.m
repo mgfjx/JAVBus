@@ -43,19 +43,19 @@
     
     {
         NSDictionary *dict1 = @{
-                                CYLTabBarItemTitle : @"搜索",
-                                CYLTabBarItemImage : @"tabbar_scheduleUnSelected",
-                                CYLTabBarItemSelectedImage : @"tabbar_scheduleSelected",
+//                                CYLTabBarItemTitle : @"搜索",
+                                CYLTabBarItemImage : @"tabbar_search",
+                                CYLTabBarItemSelectedImage : @"tabbar_search_selected",
                                 };
         NSDictionary *dict2 = @{
-                                CYLTabBarItemTitle : @"首頁",
-                                CYLTabBarItemImage : @"tabbar_messageUnSelected",
-                                CYLTabBarItemSelectedImage : @"tabbar_messageSelected",
+//                                CYLTabBarItemTitle : @"首頁",
+                                CYLTabBarItemImage : @"tabbar_home",
+                                CYLTabBarItemSelectedImage : @"tabbar_home_selected",
                                 };
         NSDictionary *dict3 = @{
                                 CYLTabBarItemTitle : @"論壇",
-                                CYLTabBarItemImage : @"tabbar_workUnSelected",
-                                CYLTabBarItemSelectedImage : @"tabbar_workSelected",
+                                CYLTabBarItemImage : @"tabbar_search",
+                                CYLTabBarItemSelectedImage : @"tabbar_search_selected",
                                 };
         
         NSArray *tabBarItemsAttributes = @[ dict1, dict2];
@@ -64,7 +64,7 @@
     
     [tabBarController setViewControllers:@[nav1, nav2]];
     
-    tabBarController.selectedIndex = 0;
+//    tabBarController.selectedIndex = 2;
     [tabBarController setTintColor:[UIColor colorWithHexString:@"#0099de"]];
     
 }
