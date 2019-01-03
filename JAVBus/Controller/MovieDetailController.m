@@ -66,7 +66,8 @@
     self.scrollView = scrollView;
     
     [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.top.mas_equalTo(kNavigationBarHeight);
+        make.left.bottom.right.mas_equalTo(0);
     }];
     
     scrollView.canPullDown = YES;

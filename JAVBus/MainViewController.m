@@ -93,7 +93,7 @@
     for (int i = 0; i < controllers.count; i++) {
         NSString *vcName = controllers[i];
         UIViewController *vc = [[NSClassFromString(vcName) alloc] init];
-        if (i == 0 || i == 1) {
+        if (i == 0 || i == 1 || i == 2) {
             MovieListBaseController *baseVC = (MovieListBaseController *)vc;
             baseVC.shouldNotOffset = YES;
         }

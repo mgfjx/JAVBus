@@ -99,6 +99,11 @@
     self.tableView = table;
     table.tableFooterView = [UIView new];
     
+    [table mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(kNavigationBarHeight);
+        make.left.bottom.right.mas_equalTo(0);
+    }];
+    
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
     [table registerNib:[UINib nibWithNibName:NSStringFromClass([AddressCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([AddressCell class])];
 }
