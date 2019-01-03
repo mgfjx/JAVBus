@@ -16,6 +16,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.model.name;
+    [self createBarbutton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +51,30 @@
         [self.collectionView reloadData];
     }];
     
+}
+
+- (void)createBarbutton {
+    
+    BOOL isExsit = [DBMANAGER isActressExsit:self.model];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 30, 30);
+    [button addTarget:self action:@selector(collectionActress:) forControlEvents:UIControlEventTouchUpInside];
+    [button setImage:[UIImage imageNamed:@"collection_unselected"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"collection_selected"] forState:UIControlStateSelected];
+    button.selected = isExsit;
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)collectionActress:(UIButton *)sender {
+    if (sender.selected) {
+        [DBMANAGER deleteActress:self.model];
+    }else{
+        [DBMANAGER insertActress:self.model];
+    }
+    sender.selected = !sender.selected;
 }
 
 @end

@@ -23,5 +23,6 @@
 #import <Masonry.h>
 #import "FontDefine.h"
 #import "PublicDialogManager.h"
+#import "DBManager.h"
 
 #endif /* PrefixHeader_pch */

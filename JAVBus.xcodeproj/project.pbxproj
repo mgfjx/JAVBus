@@ -62,6 +62,10 @@
 		ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AD821C697540043DB0C /* ActressDetailController.m */; };
 		ECD99AED21C7E0880043DB0C /* LJJWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AEB21C7E0880043DB0C /* LJJWaterFlowLayout.m */; };
 		ECD99AF021C7EDB90043DB0C /* MovieListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AEF21C7EDB90043DB0C /* MovieListModel.m */; };
+		ECF79B2A21DDB372008C097D /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B2921DDB372008C097D /* DBManager.m */; };
+		ECF79B2D21DDE2C8008C097D /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B2C21DDE2C8008C097D /* CollectionViewController.m */; };
+		ECF79B3021DDE2DA008C097D /* ActressCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B2F21DDE2DA008C097D /* ActressCollectionController.m */; };
+		ECF79B3321DDE2F7008C097D /* MovieCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B3221DDE2F7008C097D /* MovieCollectionController.m */; };
 		ECF9455B21D46AB60043E898 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9455921D46AB50043E898 /* MainTabViewController.m */; };
 		ECF9455E21D4AAB60043E898 /* MovieUncensoredController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9455D21D4AAB60043E898 /* MovieUncensoredController.m */; };
 		ECF9456121D4ACD20043E898 /* MovieXvideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9456021D4ACD20043E898 /* MovieXvideoController.m */; };
@@ -213,6 +217,14 @@
 		ECD99AEC21C7E0880043DB0C /* LJJWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJJWaterFlowLayout.h; sourceTree = "<group>"; };
 		ECD99AEE21C7EDB90043DB0C /* MovieListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieListModel.h; sourceTree = "<group>"; };
 		ECD99AEF21C7EDB90043DB0C /* MovieListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieListModel.m; sourceTree = "<group>"; };
+		ECF79B2821DDB372008C097D /* DBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		ECF79B2921DDB372008C097D /* DBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		ECF79B2B21DDE2C8008C097D /* CollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		ECF79B2C21DDE2C8008C097D /* CollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		ECF79B2E21DDE2DA008C097D /* ActressCollectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressCollectionController.h; sourceTree = "<group>"; };
+		ECF79B2F21DDE2DA008C097D /* ActressCollectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressCollectionController.m; sourceTree = "<group>"; };
+		ECF79B3121DDE2F7008C097D /* MovieCollectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCollectionController.h; sourceTree = "<group>"; };
+		ECF79B3221DDE2F7008C097D /* MovieCollectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCollectionController.m; sourceTree = "<group>"; };
 		ECF9455921D46AB50043E898 /* MainTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabViewController.m; sourceTree = "<group>"; };
 		ECF9455A21D46AB50043E898 /* MainTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabViewController.h; sourceTree = "<group>"; };
 		ECF9455C21D4AAB60043E898 /* MovieUncensoredController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieUncensoredController.h; sourceTree = "<group>"; };
@@ -457,6 +469,8 @@
 				EC94A1FD21DCA1BA00C1BBCD /* ZHChineseConvert.m */,
 				EC94A20021DCA2EE00C1BBCD /* SimplifiedCode.txt */,
 				EC94A1FF21DCA2ED00C1BBCD /* TraditionalCode.txt */,
+				ECF79B2821DDB372008C097D /* DBManager.h */,
+				ECF79B2921DDB372008C097D /* DBManager.m */,
 			);
 			path = BaseTools;
 			sourceTree = "<group>";
@@ -574,6 +588,12 @@
 				EC73609621DA5C280031DFE0 /* ActressSearchCell.xib */,
 				EC73609921DB9E020031DFE0 /* ForumHomeController.h */,
 				EC73609A21DB9E020031DFE0 /* ForumHomeController.m */,
+				ECF79B2B21DDE2C8008C097D /* CollectionViewController.h */,
+				ECF79B2C21DDE2C8008C097D /* CollectionViewController.m */,
+				ECF79B2E21DDE2DA008C097D /* ActressCollectionController.h */,
+				ECF79B2F21DDE2DA008C097D /* ActressCollectionController.m */,
+				ECF79B3121DDE2F7008C097D /* MovieCollectionController.h */,
+				ECF79B3221DDE2F7008C097D /* MovieCollectionController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -900,6 +920,7 @@
 				EC73608F21D90EF00031DFE0 /* MovieSearchListController.m in Sources */,
 				ECF9456421D4AD5E0043E898 /* ActorListBaseController.m in Sources */,
 				ECF9456D21D4B7BC0043E898 /* CensoredCategoryController.m in Sources */,
+				ECF79B2D21DDE2C8008C097D /* CollectionViewController.m in Sources */,
 				ECF9458721D5FC220043E898 /* ScreenShotModel.m in Sources */,
 				ECF9458021D5ACD50043E898 /* MovieDetailModel.m in Sources */,
 				ECF9455E21D4AAB60043E898 /* MovieUncensoredController.m in Sources */,
@@ -918,6 +939,7 @@
 				EC73609721DA5C280031DFE0 /* ActressSearchCell.m in Sources */,
 				EC73609221D90F630031DFE0 /* ActressSearchController.m in Sources */,
 				EC73608C21D90D5B0031DFE0 /* SearchViewController.m in Sources */,
+				ECF79B2A21DDB372008C097D /* DBManager.m in Sources */,
 				EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */,
 				EC0BC4A021C25B5000A6E50E /* NSString+RegExp.m in Sources */,
 				ECF9457421D4B86C0043E898 /* CategoryModel.m in Sources */,
@@ -926,6 +948,7 @@
 				EC0BC49821C25B5000A6E50E /* UIColor+Hex.m in Sources */,
 				ECF9456A21D4B5B60043E898 /* MovieCategoryController.m in Sources */,
 				ECF9457021D4B7CB0043E898 /* UnCensoredCategoryController.m in Sources */,
+				ECF79B3021DDE2DA008C097D /* ActressCollectionController.m in Sources */,
 				EC9D72FD21C7F41400C9F830 /* ActressDetailCell.m in Sources */,
 				EC0BC49621C25B5000A6E50E /* UIImageView+Scale.m in Sources */,
 				EC0BC49C21C25B5000A6E50E /* NSDate+XExtend.m in Sources */,
@@ -934,6 +957,7 @@
 				ECD99AD621C6891A0043DB0C /* HtmlToJsonManager.m in Sources */,
 				EC0BC49721C25B5000A6E50E /* NSString+XExtend.m in Sources */,
 				EC0BC4A821C25DAB00A6E50E /* ActressCodeController.m in Sources */,
+				ECF79B3321DDE2F7008C097D /* MovieCollectionController.m in Sources */,
 				EC9ABE1D21CF4E8600C4E90F /* AddressSettingController.m in Sources */,
 				EC0BC4C321C2ADE900A6E50E /* BaseModel.m in Sources */,
 				EC0BC49A21C25B5000A6E50E /* NSDate+Utilities.m in Sources */,

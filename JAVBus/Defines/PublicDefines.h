@@ -25,6 +25,7 @@
 #define WeakSelf(weakSelf)      __weak __typeof(&*self)    weakSelf  = self;
 #define HTTPMANAGER [HttpManager manager]
 #define HTMLTOJSONMANAGER [HtmlToJsonManager manager]
+#define DBMANAGER [DBManager manager]
 
 #define MovieListPlaceHolder [UIImage imageNamed:@"movie_placeholder"]
 

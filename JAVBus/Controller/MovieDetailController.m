@@ -56,7 +56,32 @@
 }
 
 - (void)initViews {
+    [self createBarbutton];
     [self createScrollView];
+}
+
+- (void)createBarbutton {
+    
+    BOOL isExsit = [DBMANAGER isMovieExsit:self.model];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 30, 30);
+    [button addTarget:self action:@selector(collectionActress:) forControlEvents:UIControlEventTouchUpInside];
+    [button setImage:[UIImage imageNamed:@"collection_unselected"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"collection_selected"] forState:UIControlStateSelected];
+    button.selected = isExsit;
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)collectionActress:(UIButton *)sender {
+    if (sender.selected) {
+        [DBMANAGER deleteMovie:self.model];
+    }else{
+        [DBMANAGER insertMovie:self.model];
+    }
+    sender.selected = !sender.selected;
 }
 
 - (void)createScrollView {

@@ -8,6 +8,7 @@
 
 #import "ForumHomeController.h"
 #import <SDCycleScrollView/SDCycleScrollView.h>
+#import "DBManager.h"
 
 @interface ForumHomeController ()
 
@@ -36,10 +37,8 @@
 
 - (void)requestData {
     
-    [HTMLTOJSONMANAGER parseForumHomeDataCallback:^(NSArray *array) {
-        
-    }];
     
+    [[DBManager manager] queryActressList];
     
     
 }
