@@ -162,8 +162,10 @@
         yOffset = - (self.detailView.height - 30 ) + kNavigationBarHeight;
     }
     
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:0.25 delay:0. usingSpringWithDamping:0.4 initialSpringVelocity:0. options:UIViewAnimationOptionCurveLinear animations:^{
         self.detailView.y = yOffset;
+    } completion:^(BOOL finished) {
+        
     }];
     
     CGFloat angle = 0.0;
@@ -176,7 +178,7 @@
     animation.fromValue = [NSNumber numberWithFloat:0.f];
     animation.toValue = [NSNumber numberWithFloat: angle];
     animation.duration = 0.25;
-//    animation.removedOnCompletion = NO;
+    animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
     [sender.layer addAnimation:animation forKey:nil];
 }
