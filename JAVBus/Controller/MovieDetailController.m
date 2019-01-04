@@ -388,7 +388,7 @@
         listModel.title = model.title;
         listModel.number = [model.link lastPathComponent];
         listModel.link  = model.link;
-        listModel.imgUrl = self.detailModel.coverImgUrl;
+        listModel.imgUrl = model.imgUrl;
         
         NSArray *infos = self.detailModel.infoArray;
         for (int i = 0; i < infos.count; i++) {

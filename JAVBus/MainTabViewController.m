@@ -36,8 +36,8 @@
 
 - (void)configuration {
     
-    UIViewController *nav1 = [[UINavigationController alloc] initWithRootViewController:[[SearchViewController alloc] init]];
-    UIViewController *nav2 = [[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] init]];
+    UIViewController *nav1 = [[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] init]];
+    UIViewController *nav2 = [[UINavigationController alloc] initWithRootViewController:[[SearchViewController alloc] init]];
     UIViewController *nav3 = [[UINavigationController alloc] initWithRootViewController:[[CollectionViewController alloc] init]];
     UIViewController *nav4 = [[UINavigationController alloc] initWithRootViewController:[[SettingViewController alloc] init]];
     
@@ -46,14 +46,14 @@
     
     {
         NSDictionary *dict1 = @{
-//                                CYLTabBarItemTitle : @"搜索",
-                                CYLTabBarItemImage : @"tabbar_search",
-                                CYLTabBarItemSelectedImage : @"tabbar_search_selected",
-                                };
-        NSDictionary *dict2 = @{
 //                                CYLTabBarItemTitle : @"首頁",
                                 CYLTabBarItemImage : @"tabbar_home",
                                 CYLTabBarItemSelectedImage : @"tabbar_home_selected",
+                                };
+        NSDictionary *dict2 = @{
+//                                CYLTabBarItemTitle : @"搜索",
+                                CYLTabBarItemImage : @"tabbar_search",
+                                CYLTabBarItemSelectedImage : @"tabbar_search_selected",
                                 };
         NSDictionary *dict3 = @{
 //                                CYLTabBarItemTitle : @"收藏",
@@ -73,7 +73,7 @@
     
     [tabBarController setViewControllers:@[nav1, nav2, nav3, nav4]];
     
-    tabBarController.selectedIndex = 3;
+    tabBarController.selectedIndex = 2;
     [tabBarController setTintColor:[UIColor colorWithHexString:@"#0099de"]];
     
 }
