@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.model.name;
+//    self.collectionView.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -110,23 +111,29 @@
         button.centerX = bgView.width/2;
     }
     
-    UIScrollView *containerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, offset, bgView.width - 2*offset, controlBtn.y - 2*offset)];
+    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, offset, bgView.width - 2*offset, controlBtn.y - 2*offset)];
     containerView.centerX = bgView.width/2;
     containerView.backgroundColor = [UIColor whiteColor];
     containerView.layer.cornerRadius = containerView.height/8.0;
     containerView.layer.borderColor = [UIColor colorWithHexString:@"#eeeeee"].CGColor;
     containerView.layer.borderWidth = 0.5;
-    containerView.layer.masksToBounds = YES;
-    containerView.delegate = self;
     [bgView addSubview:containerView];
-    containerView.contentSize = CGSizeMake(containerView.width, containerView.height+1);
+    containerView.layer.shadowOpacity = 1.0;
+    containerView.layer.shadowColor = [UIColor blackColor].CGColor;
+    containerView.layer.shadowOffset = CGSizeMake(0, 0);
+    containerView.layer.shadowRadius = 10;
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:containerView.bounds];
+    scrollView.contentSize = CGSizeMake(containerView.width, containerView.height+1);
+    scrollView.delegate = self;
+    [containerView addSubview:scrollView];
     
     UIImageView *avatarImgView;
     {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, offset, 90, 90)];
         [imageView sd_setImageWithURL:[NSURL URLWithString:self.detailModel.avatarUrl] placeholderImage:MovieListPlaceHolder];
         imageView.centerX = containerView.width/2;
-        [containerView addSubview:imageView];
+        [scrollView addSubview:imageView];
         avatarImgView = imageView;
     }
     
@@ -137,7 +144,7 @@
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(avatarImgView.frame) + i*labelHeight, 150, labelHeight)];
             label.text = text;
             label.font = [UIFont systemFontOfSize:14];
-            [containerView addSubview:label];
+            [scrollView addSubview:label];
             [label sizeToFit];
             label.x = avatarImgView.centerX - 60;
         }
@@ -169,17 +176,15 @@
     animation.fromValue = [NSNumber numberWithFloat:0.f];
     animation.toValue = [NSNumber numberWithFloat: angle];
     animation.duration = 0.25;
-    animation.removedOnCompletion = NO;
+//    animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
     [sender.layer addAnimation:animation forKey:nil];
 }
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    NSLog(@"%f", scrollView.contentOffset.y);
     if (scrollView != self.collectionView) {
         if (scrollView.contentOffset.y > 40) {
-            NSLog(@"hehe");
             for (UIView *subView in self.detailView.subviews) {
                 if ([subView isKindOfClass:[UIButton class]]) {
                     UIButton *btn = (UIButton *)subView;
@@ -188,12 +193,6 @@
                 }
             }
         }
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if (scrollView.contentOffset.y < 10) {
-//        NSLog(@"hehe");
     }
 }
 

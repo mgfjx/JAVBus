@@ -10,6 +10,8 @@
 
 @interface SettingViewController ()<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) NSArray *dataArray ;
+
 @end
 
 @implementation SettingViewController
@@ -17,6 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"设置";
+    
+    NSArray *dataArray = @[
+                           @{@"title":@"清除缓存", @"imgName": @"clear_icon"},
+                           @{@"title":@"删除女优收藏", @"imgName": @"clear_icon"},
+                           @{@"title":@"删除影片收藏", @"imgName": @"clear_icon"},
+                           ];
+    self.dataArray = dataArray;
+    
     [self createTableView];
 }
 
@@ -48,7 +58,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -59,17 +69,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellReuse];
     }
     
-    NSString *title ;
-    NSString *imgName ;
-    switch (indexPath.row) {
-        case 0:
-            title = @"清除缓存";
-            imgName = @"clear_icon";
-            break;
-            
-        default:
-            break;
-    }
+    NSDictionary *dict = self.dataArray[indexPath.row];
+    
+    NSString *title = dict[@"title"] ;
+    NSString *imgName = dict[@"imgName"] ;
     
     cell.textLabel.text = title;
     cell.imageView.image = [UIImage imageNamed:imgName];
@@ -89,6 +92,16 @@
             NSString *text = [NSString stringWithFormat:@"已清理%.2fMB缓存",MBCache];
             [PublicDialogManager showText:text inView:self.view duration:2.0];
         }];
+    }
+    
+    if (indexPath.row == 1) {
+        [DBMANAGER deleteAllActress];
+        [PublicDialogManager showText:@"删除成功" inView:self.view duration:1.0];
+    }
+    
+    if (indexPath.row == 2) {
+        [DBMANAGER deleteAllMovie];
+        [PublicDialogManager showText:@"删除成功" inView:self.view duration:1.0];
     }
 }
 

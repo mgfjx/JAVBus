@@ -36,6 +36,11 @@
 - (BOOL)deleteActress:(ActressModel *)model ;
 
 /**
+ 删除所有女优数据
+ */
+- (BOOL)deleteAllActress ;
+
+/**
  插入电影数据
  */
 - (BOOL)insertMovie:(MovieListModel *)model ;
@@ -44,6 +49,11 @@
  删除电影数据
  */
 - (BOOL)deleteMovie:(MovieListModel *)model ;
+
+/**
+ 删除所有电影数据
+ */
+- (BOOL)deleteAllMovie ;
 
 /**
  查询收藏电影

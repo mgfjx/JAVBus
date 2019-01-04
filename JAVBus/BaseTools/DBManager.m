@@ -88,6 +88,10 @@ static DBManager *singleton ;
  插入女优数据
  */
 - (BOOL)insertActress:(ActressModel *)model {
+    BOOL isExsit = [self isActressExsit:model];
+    if (isExsit) {
+        return YES;
+    }
     NSString *sql = [NSString stringWithFormat:@"insert into 'ActressCollectionTable'(name,link,avatarUrl) values('%@','%@','%@')", model.name, model.link, model.avatarUrl];
     BOOL result = [self baseUpdateSql:sql];
     return result;
@@ -98,6 +102,15 @@ static DBManager *singleton ;
  */
 - (BOOL)deleteActress:(ActressModel *)model {
     NSString *sql = [NSString stringWithFormat:@"delete from ActressCollectionTable where name='%@'", model.name];
+    BOOL result = [self baseUpdateSql:sql];
+    return result;
+}
+
+/**
+ 删除所有女优数据
+ */
+- (BOOL)deleteAllActress {
+    NSString *sql = @"delete from ActressCollectionTable";
     BOOL result = [self baseUpdateSql:sql];
     return result;
 }
@@ -134,7 +147,20 @@ static DBManager *singleton ;
  删除电影数据
  */
 - (BOOL)deleteMovie:(MovieListModel *)model {
+    BOOL isExsit = [self isMovieExsit:model];
+    if (isExsit) {
+        return YES;
+    }
     NSString *sql = [NSString stringWithFormat:@"delete from MovieCollectionTable where number='%@'", model.number];
+    BOOL result = [self baseUpdateSql:sql];
+    return result;
+}
+
+/**
+ 删除所有电影数据
+ */
+- (BOOL)deleteAllMovie {
+    NSString *sql = @"delete from MovieCollectionTable";
     BOOL result = [self baseUpdateSql:sql];
     return result;
 }
