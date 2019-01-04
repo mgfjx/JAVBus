@@ -73,7 +73,7 @@
     button.selected = isExsit;
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.rightBarButtonItem = item;
+    self.navigationItem.rightBarButtonItems = @[self.sortItem, item];
 }
 
 - (void)collectionActress:(UIButton *)sender {
