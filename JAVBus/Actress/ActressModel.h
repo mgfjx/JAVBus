@@ -25,4 +25,6 @@
 
 @property (nonatomic, strong) NSString *censoredString ;
 
+@property (nonatomic, strong) NSArray *infoArray ;
+
 @end

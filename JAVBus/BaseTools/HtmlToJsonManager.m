@@ -266,11 +266,66 @@ static HtmlToJsonManager *instance ;
 
  @param page 分页
  */
-- (void)parseActressDetailUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback {
+- (void)parseActressDetailUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array, ActressModel *model))callback {
     if (page > 1) {
         url = [url stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld", page]];
     }
-    [self parseBaseListDataUrl:url callback:callback];
+    [self startGetUrl:url success:^(id resultDict) {
+        TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
+        
+        ActressModel *actor;
+        {
+            TFHppleElement *actorEle = [doc searchWithXPathQuery:@"//div[@class='avatar-box']"].firstObject;
+            TFHppleElement *avatarEle = [actorEle searchWithXPathQuery:@"//div/img"].firstObject;
+            NSString *avatarUrl = [avatarEle objectForKey:@"src"];
+            NSString *name = [avatarEle objectForKey:@"title"];
+            
+            ActressModel *model = [ActressModel new];
+            actor = model;
+            model.name = name;
+            model.avatarUrl = avatarUrl;
+            
+            NSArray *infoArray = [actorEle searchWithXPathQuery:@"//div/p"];
+            NSMutableArray *array = [NSMutableArray array];
+            for (TFHppleElement *ele in infoArray) {
+                [array addObject:ele.text];
+            }
+            model.infoArray = [array copy];
+        }
+        
+        NSArray *items = [doc searchWithXPathQuery:@"//a[@class='movie-box']"];
+        
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (TFHppleElement *elt in items) {
+            NSString *link = [elt objectForKey:@"href"];
+            TFHppleElement *e1 = [elt childrenWithClassName:@"photo-frame"].firstObject;
+            TFHppleElement *e2 = [e1 firstChildWithTagName:@"img"];
+            NSString *img = [e2 objectForKey:@"src"];
+            NSString *title = [e2 objectForKey:@"title"];
+            
+            TFHppleElement *e3 = [elt childrenWithClassName:@"photo-info"].firstObject;
+            TFHppleElement *e4 = [e3 firstChildWithTagName:@"span"];
+            NSArray *arr = [e4 childrenWithTagName:@"date"];
+            TFHppleElement *e5 = arr.firstObject;
+            TFHppleElement *e6 = arr.lastObject;
+            NSString *number = [e5 text];
+            NSString *dateStr = [e6 text];
+            
+            //            NSLog(@"\n %@ \n %@ \n%@ \n%@ \n%@", img, title, link, number, dateStr);
+            
+            MovieListModel *model = [MovieListModel new];
+            model.imgUrl = img;
+            model.title = title;
+            model.link = link;
+            model.number = number;
+            model.dateString = dateStr;
+            [array addObject:model];
+        }
+        callback([array copy], actor);
+    } failure:^(NSError *error) {
+        callback(nil, nil);
+    }];
 }
 
 /**

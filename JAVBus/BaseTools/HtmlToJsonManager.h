@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MovieDetailModel.h"
+#import "ActressModel.h"
 
 @interface HtmlToJsonManager : NSObject
 
@@ -44,7 +45,7 @@
  
  @param page 分页
  */
-- (void)parseActressDetailUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array))callback ;
+- (void)parseActressDetailUrl:(NSString *)url page:(NSInteger)page callback:(void (^)(NSArray *array, ActressModel *model))callback ;
 
 /**
  获取欧美影片
