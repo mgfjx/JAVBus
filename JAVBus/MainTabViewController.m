@@ -14,6 +14,7 @@
 #import "SearchViewController.h"
 #import "ForumHomeController.h"
 #import "CollectionViewController.h"
+#import "SettingViewController.h"
 
 @interface MainTabViewController ()
 
@@ -38,6 +39,7 @@
     UIViewController *nav1 = [[UINavigationController alloc] initWithRootViewController:[[SearchViewController alloc] init]];
     UIViewController *nav2 = [[UINavigationController alloc] initWithRootViewController:[[MainViewController alloc] init]];
     UIViewController *nav3 = [[UINavigationController alloc] initWithRootViewController:[[CollectionViewController alloc] init]];
+    UIViewController *nav4 = [[UINavigationController alloc] initWithRootViewController:[[SettingViewController alloc] init]];
     
     
     CYLTabBarController *tabBarController = self;
@@ -59,13 +61,19 @@
                                 CYLTabBarItemSelectedImage : @"tabbar_collection_selected",
                                 };
         
-        NSArray *tabBarItemsAttributes = @[ dict1, dict2, dict3];
+        NSDictionary *dict4 = @{
+//                                CYLTabBarItemTitle : @"设置",
+                                CYLTabBarItemImage : @"tabbar_setting_unselected",
+                                CYLTabBarItemSelectedImage : @"tabbar_setting_selected",
+                                };
+        
+        NSArray *tabBarItemsAttributes = @[ dict1, dict2, dict3, dict4];
         tabBarController.tabBarItemsAttributes = tabBarItemsAttributes;
     }
     
-    [tabBarController setViewControllers:@[nav1, nav2, nav3]];
+    [tabBarController setViewControllers:@[nav1, nav2, nav3, nav4]];
     
-    tabBarController.selectedIndex = 2;
+    tabBarController.selectedIndex = 3;
     [tabBarController setTintColor:[UIColor colorWithHexString:@"#0099de"]];
     
 }

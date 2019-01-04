@@ -385,8 +385,22 @@
     }else {
         MovieListModel *listModel = [MovieListModel new];
         RecommendModel *model = self.detailModel.recommends[indexPath.item];
-        listModel.number = model.title;
+        listModel.title = model.title;
+        listModel.number = [model.link lastPathComponent];
         listModel.link  = model.link;
+        listModel.imgUrl = self.detailModel.coverImgUrl;
+        
+        NSArray *infos = self.detailModel.infoArray;
+        for (int i = 0; i < infos.count; i++) {
+            NSDictionary *dict = infos[i];
+            NSString *title = dict.allKeys.firstObject;
+            if ([title isEqualToString:@"發行日期:"]) {
+                NSArray *items = [dict objectForKey:title];
+                TitleLinkModel *item = items.firstObject;
+                listModel.dateString = item.title;
+                break;
+            }
+        }
         
         MovieDetailController *vc = [MovieDetailController new];
         vc.model = listModel;

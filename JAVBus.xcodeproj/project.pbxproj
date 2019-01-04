@@ -66,6 +66,7 @@
 		ECF79B2D21DDE2C8008C097D /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B2C21DDE2C8008C097D /* CollectionViewController.m */; };
 		ECF79B3021DDE2DA008C097D /* ActressCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B2F21DDE2DA008C097D /* ActressCollectionController.m */; };
 		ECF79B3321DDE2F7008C097D /* MovieCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B3221DDE2F7008C097D /* MovieCollectionController.m */; };
+		ECF79B3A21DEF680008C097D /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B3921DEF680008C097D /* SettingViewController.m */; };
 		ECF9455B21D46AB60043E898 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9455921D46AB50043E898 /* MainTabViewController.m */; };
 		ECF9455E21D4AAB60043E898 /* MovieUncensoredController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9455D21D4AAB60043E898 /* MovieUncensoredController.m */; };
 		ECF9456121D4ACD20043E898 /* MovieXvideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF9456021D4ACD20043E898 /* MovieXvideoController.m */; };
@@ -225,6 +226,8 @@
 		ECF79B2F21DDE2DA008C097D /* ActressCollectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressCollectionController.m; sourceTree = "<group>"; };
 		ECF79B3121DDE2F7008C097D /* MovieCollectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCollectionController.h; sourceTree = "<group>"; };
 		ECF79B3221DDE2F7008C097D /* MovieCollectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCollectionController.m; sourceTree = "<group>"; };
+		ECF79B3821DEF680008C097D /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		ECF79B3921DEF680008C097D /* SettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		ECF9455921D46AB50043E898 /* MainTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabViewController.m; sourceTree = "<group>"; };
 		ECF9455A21D46AB50043E898 /* MainTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabViewController.h; sourceTree = "<group>"; };
 		ECF9455C21D4AAB60043E898 /* MovieUncensoredController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieUncensoredController.h; sourceTree = "<group>"; };
@@ -594,6 +597,8 @@
 				ECF79B2F21DDE2DA008C097D /* ActressCollectionController.m */,
 				ECF79B3121DDE2F7008C097D /* MovieCollectionController.h */,
 				ECF79B3221DDE2F7008C097D /* MovieCollectionController.m */,
+				ECF79B3821DEF680008C097D /* SettingViewController.h */,
+				ECF79B3921DEF680008C097D /* SettingViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -914,6 +919,7 @@
 				EC0BC49B21C25B5000A6E50E /* NSObject+runtimeCopy.m in Sources */,
 				ECFD29BF21D37E960085E257 /* MovieListBaseController.m in Sources */,
 				EC0BC49921C25B5000A6E50E /* UIScrollView+Refresh.m in Sources */,
+				ECF79B3A21DEF680008C097D /* SettingViewController.m in Sources */,
 				EC0BC4BD21C2653500A6E50E /* NJKWebViewProgress.m in Sources */,
 				EC94A1FE21DCA1BA00C1BBCD /* ZHChineseConvert.m in Sources */,
 				EC94A1FB21DC52F000C1BBCD /* PublicDialogManager.m in Sources */,

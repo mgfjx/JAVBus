@@ -20,8 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.model.name;
-    [self createBarbutton];
-//    self.collectionView.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,8 +39,9 @@
         [self.collectionView stopHeaderRefreshing];
         [self.collectionView stopFooterRefreshing];
         
+        model.link = self.model.link;
         self.detailModel = model;
-        if (array.count == 0) {
+        if (array.count == 0 || !model) {
             return ;
         }
         
@@ -56,6 +55,7 @@
         self.dataArray = [arr copy];
         [self.collectionView reloadData];
         [self createActorView];
+        [self createBarbutton];
     }];
     
 }
@@ -77,9 +77,9 @@
 
 - (void)collectionActress:(UIButton *)sender {
     if (sender.selected) {
-        [DBMANAGER deleteActress:self.model];
+        [DBMANAGER deleteActress:self.detailModel];
     }else{
-        [DBMANAGER insertActress:self.model];
+        [DBMANAGER insertActress:self.detailModel];
     }
     sender.selected = !sender.selected;
 }
