@@ -92,12 +92,13 @@
     layout.headerReferenceSize = CGSizeMake(MainWidth, 30);
     
     collection.canPullUp = YES;
+    WeakSelf(weakSelf)
     collection.headerRefreshBlock = ^(UIScrollView *rfScrollView) {
-        [self requestData:YES];
+        [weakSelf requestData:YES];
     };
     collection.canPullDown = YES;
     collection.footerRefreshBlock = ^(UIScrollView *rfScrollView) {
-        [self requestData:NO];
+        [weakSelf requestData:NO];
     };
     
 }
