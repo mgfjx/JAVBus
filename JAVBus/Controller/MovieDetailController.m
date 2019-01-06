@@ -139,6 +139,23 @@
     }
     
     {
+        NSString *content = self.model.title;
+        UIFont *font = MHMediumFont(18);
+        CGSize size = [content boundingRectWithSize:CGSizeMake(MainWidth - 2*offset, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font} context:nil].size;
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.font = font;
+        label.text = content;
+        label.numberOfLines = 0;
+        [bgView addSubview:label];
+        [label sizeToFit];
+        label.x = offset;
+        label.y = maxHeight + offset;
+        label.size = size;
+        maxHeight = CGRectGetMaxY(label.frame);
+    }
+    
+    {
         NSArray *infos = model.infoArray;
         
         for (int i = 0; i < infos.count; i++) {
@@ -161,19 +178,19 @@
             
             CGFloat xPosition = CGRectGetMaxX(label.frame) + offset;
             for (TitleLinkModel *item in items) {
-                LinkButton *button = [LinkButton buttonWithType:UIButtonTypeCustom];
-                [button addTarget:self action:@selector(linkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-                [button setTitle:item.title forState:UIControlStateNormal];
-                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                [button setTitleColor:[UIColor colorWithHexString:@"#aaaaaa"] forState:UIControlStateHighlighted];
+                LinkLabel *button = [LinkLabel new];
                 button.model = item;
+                button.text = item.title;
+                button.textColor = [UIColor whiteColor];
+                button.textAlignment = NSTextAlignmentCenter;
                 button.backgroundColor = [UIColor colorWithHexString:@"#1d65ee"];
-                button.titleLabel.font = [UIFont systemFontOfSize:12];
+                button.font = [UIFont systemFontOfSize:12];
                 [bgView addSubview:button];
                 [button sizeToFit];
                 button.layer.cornerRadius = button.height/4;
                 button.layer.masksToBounds = YES;
                 button.width = button.width + 2*offset;
+                button.height = button.height + 2*offset;
                 if (xPosition + offset + button.width > scrollView.width - offset) {
                     xPosition = 0;
                     maxHeight = maxHeight + offset + button.height;
@@ -186,6 +203,17 @@
                 if (item == items.lastObject) {
                     maxHeight = CGRectGetMaxY(button.frame);
                 }
+                
+                WeakSelf(weakSelf)
+                button.tapLabel = ^(LinkLabel *label) {
+                    [weakSelf linkBtnClicked:label];
+                };
+                button.longPressLabel = ^(LinkLabel *label) {
+                    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                    pasteboard.string = label.text;
+                    [PublicDialogManager showText:@"已复制" inView:weakSelf.view duration:1.5];
+                };
+                
             }
             
         }
@@ -272,7 +300,7 @@
     scrollView.contentSize = CGSizeMake(scrollView.width, bgView.height);
 }
 
-- (void)linkBtnClicked:(LinkButton *)sender {
+- (void)linkBtnClicked:(LinkLabel *)sender {
     TitleLinkModel *model = sender.model;
     
     if (model.type == LinkTypeActor) {

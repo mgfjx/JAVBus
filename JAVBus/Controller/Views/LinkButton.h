@@ -14,3 +14,12 @@
 @property (nonatomic, strong) TitleLinkModel *model ;
 
 @end
+
+@interface LinkLabel : UILabel
+
+@property (nonatomic, strong) TitleLinkModel *model ;
+
+@property (nonatomic, copy) void(^tapLabel)(LinkLabel *label) ;
+@property (nonatomic, copy) void(^longPressLabel)(LinkLabel *label) ;
+
+@end

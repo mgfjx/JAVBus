@@ -186,7 +186,7 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     if (scrollView != self.collectionView) {
-        if (scrollView.contentOffset.y > 40) {
+        if (scrollView.contentOffset.y > 70) {
             for (UIView *subView in self.detailView.subviews) {
                 if ([subView isKindOfClass:[UIButton class]]) {
                     UIButton *btn = (UIButton *)subView;
