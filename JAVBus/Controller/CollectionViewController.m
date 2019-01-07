@@ -11,6 +11,7 @@
 #import "MovieListBaseController.h"
 #import "MovieCollectionController.h"
 #import "ActressCollectionController.h"
+#import "ForumHomeController.h"
 
 #define CategoryHeight 40
 
@@ -35,6 +36,7 @@
 }
 
 - (void)initViews {
+    [self createBarButton];
     [self createScrollView];
     [self createCategoryView];
 }
@@ -109,6 +111,19 @@
         vc.view.frame = CGRectMake(self.scrollView.width*index, CGRectGetMaxY(self.categoryView.frame), self.scrollView.width, self.scrollView.height - kTabBarHeight - CGRectGetMaxY(self.categoryView.frame));
         [self.scrollView addSubview:vc.view];
     }
+}
+
+- (void)createBarButton {
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"論壇" style:UIBarButtonItemStylePlain target:self action:@selector(gotoForum)];
+    self.navigationItem.rightBarButtonItem = item;
+    
+}
+
+- (void)gotoForum {
+    ForumHomeController *vc = [ForumHomeController new];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

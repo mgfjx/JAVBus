@@ -12,6 +12,8 @@
 
 @interface ForumHomeController ()
 
+@property (nonatomic, strong) UIWebView *webView ;
+
 @end
 
 @implementation ForumHomeController
@@ -19,14 +21,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [self createCycleScrollView];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:webView];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(100, 100, 100, 100);
-    [button addTarget:self action:@selector(requestData) forControlEvents:UIControlEventTouchUpInside];
-    button.backgroundColor = [UIColor randomColor];
-    
-    [self.view addSubview:button];
+    NSString *url = [NSString stringWithFormat:@"%@/forum/forum.php", [GlobalTool shareInstance].baseUrl];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
     
 }
 
