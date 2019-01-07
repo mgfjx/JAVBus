@@ -10,7 +10,7 @@
 #import <SDCycleScrollView/SDCycleScrollView.h>
 #import "DBManager.h"
 
-@interface ForumHomeController ()
+@interface ForumHomeController ()<UIWebViewDelegate>
 
 @property (nonatomic, strong) UIWebView *webView ;
 
@@ -22,6 +22,7 @@
     [super viewDidLoad];
     
     UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    webView.delegate = self;
     [self.view addSubview:webView];
     
     NSString *url = [NSString stringWithFormat:@"%@/forum/forum.php", [GlobalTool shareInstance].baseUrl];
@@ -57,6 +58,12 @@
     cycleScrollView.imageURLStringsGroup = urls;
     
     [self.view addSubview:cycleScrollView];
+}
+
+#pragma mark - UIWebViewDelegate
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSString *text = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement"];//页面信息
+    NSLog(@"%@", text);
 }
 
 @end

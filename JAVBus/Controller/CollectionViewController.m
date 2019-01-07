@@ -12,6 +12,7 @@
 #import "MovieCollectionController.h"
 #import "ActressCollectionController.h"
 #import "ForumHomeController.h"
+#import "RxWebViewController.h"
 
 #define CategoryHeight 40
 
@@ -121,9 +122,18 @@
 }
 
 - (void)gotoForum {
+    
+    NSString *url = [NSString stringWithFormat:@"%@/forum/forum.php", [GlobalTool shareInstance].baseUrl];
+    
+    RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:url]];
+    webViewController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:webViewController animated:YES];
+    
+    /*
     ForumHomeController *vc = [ForumHomeController new];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+     */
 }
 
 @end
