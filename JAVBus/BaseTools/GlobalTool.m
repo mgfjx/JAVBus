@@ -13,6 +13,7 @@
 @synthesize columnNum = _columnNum;
 @synthesize baseUrl = _baseUrl;
 @synthesize ips = _ips;
+@synthesize descOrder = _descOrder;
 
 SingletonImplement(Instance)
 
@@ -68,6 +69,15 @@ SingletonImplement(Instance)
         [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
     }
     return path;
+}
+
+- (BOOL)descOrder {
+    _descOrder = [[NSUserDefaults standardUserDefaults] boolForKey:@"kCollectionDescending"];
+    return _descOrder;
+}
+
+- (void)setDescOrder:(BOOL)descOrder {
+    [[NSUserDefaults standardUserDefaults] setBool:descOrder forKey:@"kCollectionDescending"];
 }
 
 @end

@@ -127,7 +127,11 @@ static DBManager *singleton ;
  查询收藏女优
  */
 - (NSArray *)queryActressList {
-    NSString *sql = [NSString stringWithFormat:@"select * from 'ActressCollectionTable'"];
+    NSString *order = @"";
+    if ([GlobalTool shareInstance].descOrder) {
+        order = @"ORDER BY ID DESC";
+    }
+    NSString *sql = [NSString stringWithFormat:@"select * from 'ActressCollectionTable' %@", order];
     [self.db open];
     FMResultSet *result = [self.db executeQuery:sql];
     NSMutableArray *arr = [NSMutableArray array];
@@ -156,7 +160,7 @@ static DBManager *singleton ;
  */
 - (BOOL)deleteMovie:(MovieListModel *)model {
     BOOL isExsit = [self isMovieExsit:model];
-    if (isExsit) {
+    if (!isExsit) {
         return YES;
     }
     NSString *sql = [NSString stringWithFormat:@"delete from MovieCollectionTable where number='%@'", model.number];
@@ -177,7 +181,11 @@ static DBManager *singleton ;
  查询收藏电影
  */
 - (NSArray *)queryMovieList {
-    NSString *sql = [NSString stringWithFormat:@"select * from 'MovieCollectionTable'"];
+    NSString *order = @"";
+    if ([GlobalTool shareInstance].descOrder) {
+        order = @"ORDER BY ID DESC";
+    }
+    NSString *sql = [NSString stringWithFormat:@"select * from 'MovieCollectionTable' %@", order];
     [self.db open];
     FMResultSet *result = [self.db executeQuery:sql];
     NSMutableArray *arr = [NSMutableArray array];
@@ -244,7 +252,11 @@ static DBManager *singleton ;
  查询缓存电影
  */
 - (NSArray *)queryMovieCacheList {
-    NSString *sql = [NSString stringWithFormat:@"select * from 'MovieCachedTable'"];
+    NSString *order = @"";
+    if ([GlobalTool shareInstance].descOrder) {
+        order = @"ORDER BY ID DESC";
+    }
+    NSString *sql = [NSString stringWithFormat:@"select * from 'MovieCachedTable' %@", order];
     [self.db open];
     FMResultSet *result = [self.db executeQuery:sql];
     NSMutableArray *arr = [NSMutableArray array];

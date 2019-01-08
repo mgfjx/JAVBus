@@ -29,4 +29,9 @@ SingletonDeclare(Instance)
  */
 @property (nonatomic, strong, readonly) NSString *movieCacheDir ;
 
+/**
+ 是否降序
+ */
+@property (nonatomic, assign) BOOL descOrder ;
+
 @end

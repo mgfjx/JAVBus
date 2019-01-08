@@ -120,6 +120,21 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"論壇" style:UIBarButtonItemStylePlain target:self action:@selector(gotoForum)];
     self.navigationItem.rightBarButtonItem = item;
     
+    {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(0, 0, 40, 40);
+        [button addTarget:self action:@selector(changeSort) forControlEvents:UIControlEventTouchUpInside];
+        [button setImage:[UIImage imageNamed:@"sort"] forState:UIControlStateNormal];
+        [self.view addSubview:button];
+        
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:button];
+        self.navigationItem.leftBarButtonItem = item;
+    }
+    
+}
+
+- (void)changeSort {
+    [GlobalTool shareInstance].descOrder = ![GlobalTool shareInstance].descOrder;
 }
 
 - (void)gotoForum {

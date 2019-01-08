@@ -14,7 +14,7 @@
 @property (nonatomic, strong) UICollectionView *collectionView ;
 @property (nonatomic, assign) NSInteger page ;
 
-@property (nonatomic, assign) UINavigationItem *sortItem ;
+@property (nonatomic, assign) UIBarButtonItem *sortItem ;
 
 @property (nonatomic, assign) BOOL showSortBar ;
 @property (nonatomic, assign) BOOL shouldNotOffset ;
