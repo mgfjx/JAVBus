@@ -61,4 +61,13 @@ SingletonImplement(Instance)
     return ips;
 }
 
+- (NSString *)movieCacheDir {
+    NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *path = [document stringByAppendingPathComponent:@"/MovieCache"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    return path;
+}
+
 @end

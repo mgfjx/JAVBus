@@ -7,13 +7,14 @@
 //
 
 #import "PublicDialogManager.h"
-#import "MBProgressHUD.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 #define ContentColor [UIColor whiteColor]
 #define BackgroundColor [UIColor blackColor]
 #define BezelViewMargin 8.0f
 
 MBProgressHUD *hudInstance ;
+static dispatch_source_t currentTimer;
 
 @implementation PublicDialogManager
 
@@ -48,6 +49,30 @@ MBProgressHUD *hudInstance ;
     hud.removeFromSuperViewOnHide = YES;
     [hud hideAnimated:YES afterDelay:duration];
     hudInstance = hud;
+}
+
++ (void)test:(UIView *)view callback:(CGFloat (^)(void))callback {
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    
+    // Set some text to show the initial status.
+//    hud.label.text = NSLocalizedString(@"Preparing...", @"HUD preparing title");
+    // Will look best, if we set a minimum size.
+    hud.minSize = CGSizeMake(150.f, 100.f);
+    
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    currentTimer = timer;
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(timer, ^{
+        CGFloat progress = callback();
+        if (progress >= 1.0) {
+            [hud hideAnimated:YES];
+        }else{
+            hud.progress = progress;
+        }
+    });
+    dispatch_resume(timer);
+    
 }
 
 @end

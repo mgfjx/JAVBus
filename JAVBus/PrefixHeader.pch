@@ -24,5 +24,6 @@
 #import "FontDefine.h"
 #import "PublicDialogManager.h"
 #import "DBManager.h"
+#import "Encrypt.h"
 
 #endif /* PrefixHeader_pch */

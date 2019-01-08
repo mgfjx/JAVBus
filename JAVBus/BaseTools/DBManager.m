@@ -58,6 +58,14 @@ static DBManager *singleton ;
         }
     }
     
+    {
+        NSString *sql = @"create table if not exists MovieCachedTable ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'title' TEXT, 'link' TEXT,'imgUrl' TEXT,'number' TEXT,'dateString' TEXT)";
+        BOOL result = [db executeUpdate:sql];
+        if (result) {
+            NSLog(@"create table success");
+        }
+    }
+    
     [db close];
     
 }
@@ -191,6 +199,73 @@ static DBManager *singleton ;
  */
 - (BOOL)isMovieExsit:(MovieListModel *)model {
     NSString *sql = [NSString stringWithFormat:@"select COUNT(*) from MovieCollectionTable where number='%@'", model.number];
+    [self.db open];
+    FMResultSet *result = [self.db executeQuery:sql];
+    int count = 0;
+    while ([result next]) {
+        count = [result intForColumnIndex:0];
+    }
+    [self.db close];
+    return count > 0;
+}
+
+/**
+ 插入电影缓存数据
+ */
+- (BOOL)insertMovieCache:(MovieListModel *)model {
+    NSString *sql = [NSString stringWithFormat:@"insert into 'MovieCachedTable'(title,link,imgUrl,number,dateString) values('%@','%@','%@','%@','%@')", model.title, model.link, model.imgUrl,model.number,model.dateString];
+    BOOL result = [self baseUpdateSql:sql];
+    return result;
+}
+
+/**
+ 删除电影缓存数据
+ */
+- (BOOL)deleteMovieCache:(MovieListModel *)model {
+    BOOL isExsit = [self isMovieCacheExsit:model];
+    if (isExsit) {
+        return YES;
+    }
+    NSString *sql = [NSString stringWithFormat:@"delete from MovieCachedTable where number='%@'", model.number];
+    BOOL result = [self baseUpdateSql:sql];
+    return result;
+}
+
+/**
+ 删除所有电影缓存数据
+ */
+- (BOOL)deleteAllMovieCache {
+    NSString *sql = @"delete from MovieCachedTable";
+    BOOL result = [self baseUpdateSql:sql];
+    return result;
+}
+
+/**
+ 查询缓存电影
+ */
+- (NSArray *)queryMovieCacheList {
+    NSString *sql = [NSString stringWithFormat:@"select * from 'MovieCachedTable'"];
+    [self.db open];
+    FMResultSet *result = [self.db executeQuery:sql];
+    NSMutableArray *arr = [NSMutableArray array];
+    while ([result next]) {
+        MovieListModel *model = [MovieListModel new];
+        model.title = [result stringForColumn:@"title"];
+        model.link = [result stringForColumn:@"link"];
+        model.imgUrl = [result stringForColumn:@"imgUrl"];
+        model.number = [result stringForColumn:@"number"];
+        model.dateString = [result stringForColumn:@"dateString"];
+        [arr addObject:model];
+    }
+    [self.db close];
+    return [arr copy];
+}
+
+/**
+ 判断是否已缓存该电影
+ */
+- (BOOL)isMovieCacheExsit:(MovieListModel *)model {
+    NSString *sql = [NSString stringWithFormat:@"select COUNT(*) from MovieCachedTable where number='%@'", model.number];
     [self.db open];
     FMResultSet *result = [self.db executeQuery:sql];
     int count = 0;

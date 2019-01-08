@@ -13,6 +13,7 @@
 #import "ActressCollectionController.h"
 #import "ForumHomeController.h"
 #import "RxWebViewController.h"
+#import "MovieCachedController.h"
 
 #define CategoryHeight 40
 
@@ -65,7 +66,7 @@
     line.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
     [titleCategoryView addSubview:line];
     
-    NSArray *titles = @[@"女優", @"影片"];
+    NSArray *titles = @[@"女優", @"影片", @"缓存影片"];
     
     //------指示器属性配置------//
     //固定宽度
@@ -88,11 +89,11 @@
 - (void)addChildControllers {
     
     //子控制器
-    NSArray *controllers = @[@"ActressCollectionController", @"MovieCollectionController"];
+    NSArray *controllers = @[@"ActressCollectionController", @"MovieCollectionController", @"MovieCachedController"];
     for (int i = 0; i < controllers.count; i++) {
         NSString *vcName = controllers[i];
         UIViewController *vc = [[NSClassFromString(vcName) alloc] init];
-        if (i == 1) {
+        if (i >= 1) {
             MovieListBaseController *baseVC = (MovieListBaseController *)vc;
             baseVC.shouldNotOffset = YES;
         }

@@ -24,4 +24,9 @@ SingletonDeclare(Instance)
  */
 @property (nonatomic, strong) NSArray *ips ;
 
+/**
+ 影片预览文件夹
+ */
+@property (nonatomic, strong, readonly) NSString *movieCacheDir ;
+
 @end

@@ -57,6 +57,8 @@
 		EC9ABE2221CFA5E300C4E90F /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9ABE2021CFA5E300C4E90F /* AddressCell.xib */; };
 		EC9D72FD21C7F41400C9F830 /* ActressDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D72FB21C7F41400C9F830 /* ActressDetailCell.m */; };
 		EC9D72FE21C7F41400C9F830 /* ActressDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D72FC21C7F41400C9F830 /* ActressDetailCell.xib */; };
+		ECCCE41921E39D54006833FE /* Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCCE41821E39D51006833FE /* Encrypt.m */; };
+		ECCCE41C21E42F48006833FE /* MovieCachedController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCCE41B21E42F48006833FE /* MovieCachedController.m */; };
 		ECD4FD9B21C5428800645593 /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4FD9921C5428800645593 /* HttpManager.m */; };
 		ECD99AD621C6891A0043DB0C /* HtmlToJsonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AD421C6891A0043DB0C /* HtmlToJsonManager.m */; };
 		ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AD821C697540043DB0C /* ActressDetailController.m */; };
@@ -208,6 +210,10 @@
 		EC9D72FA21C7F41400C9F830 /* ActressDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressDetailCell.h; sourceTree = "<group>"; };
 		EC9D72FB21C7F41400C9F830 /* ActressDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressDetailCell.m; sourceTree = "<group>"; };
 		EC9D72FC21C7F41400C9F830 /* ActressDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActressDetailCell.xib; sourceTree = "<group>"; };
+		ECCCE41721E39D50006833FE /* Encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encrypt.h; sourceTree = "<group>"; };
+		ECCCE41821E39D51006833FE /* Encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Encrypt.m; sourceTree = "<group>"; };
+		ECCCE41A21E42F48006833FE /* MovieCachedController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCachedController.h; sourceTree = "<group>"; };
+		ECCCE41B21E42F48006833FE /* MovieCachedController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCachedController.m; sourceTree = "<group>"; };
 		ECD4FD9921C5428800645593 /* HttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpManager.m; sourceTree = "<group>"; };
 		ECD4FD9A21C5428800645593 /* HttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
 		ECD99AD421C6891A0043DB0C /* HtmlToJsonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlToJsonManager.m; sourceTree = "<group>"; };
@@ -474,6 +480,8 @@
 				EC94A1FF21DCA2ED00C1BBCD /* TraditionalCode.txt */,
 				ECF79B2821DDB372008C097D /* DBManager.h */,
 				ECF79B2921DDB372008C097D /* DBManager.m */,
+				ECCCE41721E39D50006833FE /* Encrypt.h */,
+				ECCCE41821E39D51006833FE /* Encrypt.m */,
 			);
 			path = BaseTools;
 			sourceTree = "<group>";
@@ -597,6 +605,8 @@
 				ECF79B2F21DDE2DA008C097D /* ActressCollectionController.m */,
 				ECF79B3121DDE2F7008C097D /* MovieCollectionController.h */,
 				ECF79B3221DDE2F7008C097D /* MovieCollectionController.m */,
+				ECCCE41A21E42F48006833FE /* MovieCachedController.h */,
+				ECCCE41B21E42F48006833FE /* MovieCachedController.m */,
 				ECF79B3821DEF680008C097D /* SettingViewController.h */,
 				ECF79B3921DEF680008C097D /* SettingViewController.m */,
 			);
@@ -920,6 +930,7 @@
 				ECFD29BF21D37E960085E257 /* MovieListBaseController.m in Sources */,
 				EC0BC49921C25B5000A6E50E /* UIScrollView+Refresh.m in Sources */,
 				ECF79B3A21DEF680008C097D /* SettingViewController.m in Sources */,
+				ECCCE41C21E42F48006833FE /* MovieCachedController.m in Sources */,
 				EC0BC4BD21C2653500A6E50E /* NJKWebViewProgress.m in Sources */,
 				EC94A1FE21DCA1BA00C1BBCD /* ZHChineseConvert.m in Sources */,
 				EC94A1FB21DC52F000C1BBCD /* PublicDialogManager.m in Sources */,
@@ -944,6 +955,7 @@
 				EC73609B21DB9E020031DFE0 /* ForumHomeController.m in Sources */,
 				EC73609721DA5C280031DFE0 /* ActressSearchCell.m in Sources */,
 				EC73609221D90F630031DFE0 /* ActressSearchController.m in Sources */,
+				ECCCE41921E39D54006833FE /* Encrypt.m in Sources */,
 				EC73608C21D90D5B0031DFE0 /* SearchViewController.m in Sources */,
 				ECF79B2A21DDB372008C097D /* DBManager.m in Sources */,
 				EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */,
@@ -1144,7 +1156,10 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JAVBus/PrefixHeader.pch";
 				INFOPLIST_FILE = JAVBus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1163,7 +1178,10 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JAVBus/PrefixHeader.pch";
 				INFOPLIST_FILE = JAVBus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1177,7 +1195,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JAVBusTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBusTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1192,7 +1214,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JAVBusTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBusTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1206,7 +1232,11 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JAVBusUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBusUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1220,7 +1250,11 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JAVBusUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBusUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

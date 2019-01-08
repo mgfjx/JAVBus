@@ -16,6 +16,7 @@
 #import <IDMPhotoBrowser/IDMPhotoBrowser.h>
 #import "CategoryItemListController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface MovieDetailController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -324,39 +325,75 @@
     }
     
     if (model.type == LinkTypeNumber) {
-        
         NSString *code = model.title;
         if (code.length == 0) {
             code = @"";
         }
         
-        [PublicDialogManager showWaittingInView:self.view];
-        [HTTPMANAGER getVideoByCode:code SuccessCallback:^(NSDictionary *resultDict) {
-            [PublicDialogManager hideWaittingInView:self.view];
-            BOOL isSuccess = [resultDict[@"success"] boolValue];
-            if (isSuccess) {
-                NSDictionary *response = resultDict[@"response"];
-                NSArray *array = response[@"videos"];
-                if (array.count > 0) {
-                    NSDictionary *video = array.firstObject;
-                    NSString *preview_url = video[@"preview_video_url"];
-                    
-                    NSURL *videoURL = [NSURL URLWithString:preview_url];
-                    MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:videoURL];
-                    [moviePlayerController.moviePlayer prepareToPlay];
-                    moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-                    [self presentViewController:moviePlayerController animated:YES completion:nil];
-                }else{
+        if ([DBMANAGER isMovieCacheExsit:self.model]) {
+            NSString *name = [NSString stringWithFormat:@"%@.mp4", [Encrypt md5Encrypt32:self.model.number]];
+            NSString *filePath = [[GlobalTool shareInstance].movieCacheDir stringByAppendingPathComponent:name];
+            MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
+            moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
+            [self presentViewController:moviePlayerController animated:YES completion:nil];
+        }else {
+            [PublicDialogManager showWaittingInView:self.view];
+            [HTTPMANAGER getVideoByCode:code SuccessCallback:^(NSDictionary *resultDict) {
+                BOOL isSuccess = [resultDict[@"success"] boolValue];
+                if (isSuccess) {
+                    NSDictionary *response = resultDict[@"response"];
+                    NSArray *array = response[@"videos"];
+                    if (array.count > 0) {
+                        NSDictionary *video = array.firstObject;
+                        NSString *preview_url = video[@"preview_video_url"];
+                        
+                        [HTTPMANAGER downloadFile:preview_url progress:^(NSProgress * _Nonnull downloadProgress) {
+                            float progress = downloadProgress.completedUnitCount*1.0 / downloadProgress.totalUnitCount*1.0;
+                            NSLog(@"progress: %f", progress);
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                MBProgressHUD *hud = [MBProgressHUD HUDForView:self.view];
+                                hud.mode = MBProgressHUDModeDeterminate;
+                                hud.progressObject = downloadProgress;
+                            });
+                        } completion:^(NSURL * _Nullable filePath, NSError * _Nullable error) {
+                            MBProgressHUD *hud = [MBProgressHUD HUDForView:self.view];
+                            UIImage *image = [[UIImage imageNamed:@"Checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                            UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+                            hud.customView = imageView;
+                            hud.mode = MBProgressHUDModeCustomView;
+                            [hud hideAnimated:YES afterDelay:2.f];
+                            
+                            NSString *path = [GlobalTool shareInstance].movieCacheDir;
+                            NSString *md5Str = [Encrypt md5Encrypt32:self.model.number];
+                            NSString *name = [NSString stringWithFormat:@"/%@.mp4", md5Str];
+                            NSString *savePath = [path stringByAppendingPathComponent:name];
+                            if ([[NSFileManager defaultManager] fileExistsAtPath:savePath]) {
+                                [[NSFileManager defaultManager] removeItemAtPath:savePath error:nil];
+                            }
+                            [[NSFileManager defaultManager] moveItemAtPath:filePath.path toPath:savePath error:&error];
+                            MovieListModel *mvModel = self.model;
+                            [DBMANAGER insertMovieCache:mvModel];
+                            
+                            if (error) {
+                                NSLog(@"%@", error);
+                            }else {
+                                MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:savePath]];
+                                moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
+                                [self presentViewController:moviePlayerController animated:YES completion:nil];
+                            }
+                        }];
+                    }else{
+                        [PublicDialogManager showText:@"未查询到相关预览视频" inView:self.view duration:1.0];
+                    }
+                }else {
                     [PublicDialogManager showText:@"未查询到相关预览视频" inView:self.view duration:1.0];
                 }
-            }else {
-                [PublicDialogManager showText:@"未查询到相关预览视频" inView:self.view duration:1.0];
-            }
-            
-        } FailCallback:^(NSError *error) {
-            [PublicDialogManager hideWaittingInView:self.view];
-            [PublicDialogManager showText:@"服务出错" inView:self.view duration:1.0];
-        }];
+                
+            } FailCallback:^(NSError *error) {
+                [PublicDialogManager hideWaittingInView:self.view];
+                [PublicDialogManager showText:@"服务出错" inView:self.view duration:1.0];
+            }];
+        }
         
     }
     

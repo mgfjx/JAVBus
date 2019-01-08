@@ -17,4 +17,6 @@
 + (void)showWaittingInView:(UIView *)view ;
 + (void)hideWaittingInView:(UIView *)view ;
 
++ (void)test:(UIView *)view callback:(CGFloat (^)(void))callback ;
+
 @end

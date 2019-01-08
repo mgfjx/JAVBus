@@ -65,4 +65,29 @@
  */
 - (BOOL)isMovieExsit:(MovieListModel *)model ;
 
+/**
+ 插入电影缓存数据
+ */
+- (BOOL)insertMovieCache:(MovieListModel *)model ;
+
+/**
+ 删除电影缓存数据
+ */
+- (BOOL)deleteMovieCache:(MovieListModel *)model ;
+
+/**
+ 删除所有电影缓存数据
+ */
+- (BOOL)deleteAllMovieCache ;
+
+/**
+ 查询缓存电影
+ */
+- (NSArray *)queryMovieCacheList ;
+
+/**
+ 判断是否已缓存该电影
+ */
+- (BOOL)isMovieCacheExsit:(MovieListModel *)model ;
+
 @end
