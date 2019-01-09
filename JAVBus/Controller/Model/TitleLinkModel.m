@@ -10,4 +10,18 @@
 
 @implementation TitleLinkModel
 
+- (NSString *)link {
+    if (!_link) {
+        _link = @"";
+    }
+    return _link;
+}
+
+- (NSString *)title {
+    if (!_title) {
+        _title = @"";
+    }
+    return _title;
+}
+
 @end

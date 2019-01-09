@@ -45,14 +45,23 @@
 
 - (void)requestData {
     
-    [HTMLTOJSONMANAGER parseMovieDetailByUrl:self.model.link callback:^(MovieDetailModel *model) {
+    if ([DBMANAGER isMovieDetailExsit:self.model]) {
         [self.scrollView stopHeaderRefreshing];
-        if (model) {
-//            self.scrollView.canPullDown = NO;
-        }
+        MovieDetailModel *model = [DBMANAGER queryMovieDetail:self.model];
         self.detailModel = model;
         [self createDetailView];
-    }];
+    }else{
+        [HTMLTOJSONMANAGER parseMovieDetailByUrl:self.model.link callback:^(MovieDetailModel *model) {
+            [self.scrollView stopHeaderRefreshing];
+            if (model) {
+                //            self.scrollView.canPullDown = NO;
+            }
+            model.title = self.model.title;
+            model.number = self.model.number;
+            self.detailModel = model;
+            [self createDetailView];
+        }];
+    }
     
 }
 
@@ -79,8 +88,10 @@
 - (void)collectionActress:(UIButton *)sender {
     if (sender.selected) {
         [DBMANAGER deleteMovie:self.model];
+        [DBMANAGER deleteMovieDetail:self.model];
     }else{
         [DBMANAGER insertMovie:self.model];
+        [DBMANAGER insertMovieDetail:self.detailModel];
     }
     sender.selected = !sender.selected;
 }
@@ -140,7 +151,7 @@
     }
     
     {
-        NSString *content = self.model.title;
+        NSString *content = model.title;
         UIFont *font = MHMediumFont(18);
         CGSize size = [content boundingRectWithSize:CGSizeMake(MainWidth - 2*offset, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font} context:nil].size;
         

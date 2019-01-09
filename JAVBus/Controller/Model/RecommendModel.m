@@ -10,4 +10,25 @@
 
 @implementation RecommendModel
 
+- (NSString *)link {
+    if (!_link) {
+        _link = @"";
+    }
+    return _link;
+}
+
+- (NSString *)title {
+    if (!_title) {
+        _title = @"";
+    }
+    return _title;
+}
+
+- (NSString *)imgUrl {
+    if (!_imgUrl) {
+        _imgUrl = @"";
+    }
+    return _imgUrl;
+}
+
 @end

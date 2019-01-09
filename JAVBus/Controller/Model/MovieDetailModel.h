@@ -10,6 +10,8 @@
 
 @interface MovieDetailModel : BaseModel
 
+@property (nonatomic, strong) NSString *title ;
+@property (nonatomic, strong) NSString *number ;
 @property (nonatomic, strong) NSString *coverImgUrl ;
 @property (nonatomic, strong) NSArray *infoArray ;
 @property (nonatomic, strong) NSArray *screenshots ;

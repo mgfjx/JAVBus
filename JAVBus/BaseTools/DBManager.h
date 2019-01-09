@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "ActressModel.h"
 #import "MovieListModel.h"
+#import "TitleLinkModel.h"
+#import "ScreenShotModel.h"
+#import "RecommendModel.h"
 
 @interface DBManager : NSObject
 
@@ -89,5 +92,25 @@
  判断是否已缓存该电影
  */
 - (BOOL)isMovieCacheExsit:(MovieListModel *)model ;
+
+/**
+ 插入电影详情数据
+ */
+- (BOOL)insertMovieDetail:(MovieDetailModel *)model ;
+
+/**
+ 判断是否已存在电影详情
+ */
+- (BOOL)isMovieDetailExsit:(MovieListModel *)model ;
+
+/**
+ 查询电影详情
+ */
+- (MovieDetailModel *)queryMovieDetail:(MovieListModel *)model ;
+
+/**
+ 删除电影详情数据
+ */
+- (BOOL)deleteMovieDetail:(MovieListModel *)model ;
 
 @end
