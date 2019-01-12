@@ -394,9 +394,11 @@
                             }
                         }];
                     }else{
+                        [PublicDialogManager hideWaittingInView:self.view];
                         [PublicDialogManager showText:@"未查询到相关预览视频" inView:self.view duration:1.0];
                     }
                 }else {
+                    [PublicDialogManager hideWaittingInView:self.view];
                     [PublicDialogManager showText:@"未查询到相关预览视频" inView:self.view duration:1.0];
                 }
                 
