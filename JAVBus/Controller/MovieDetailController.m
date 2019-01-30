@@ -367,6 +367,10 @@
                                 hud.progressObject = downloadProgress;
                             });
                         } completion:^(NSURL * _Nullable filePath, NSError * _Nullable error) {
+                            if (error) {
+                                [PublicDialogManager showText:@"获取预览失败, 请检查VPN, 稍后重试" inView:self.view duration:2.0];
+                                return ;
+                            }
                             MBProgressHUD *hud = [MBProgressHUD HUDForView:self.view];
                             UIImage *image = [[UIImage imageNamed:@"Checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
                             UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
