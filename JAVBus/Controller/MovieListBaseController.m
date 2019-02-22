@@ -7,9 +7,7 @@
 //
 
 #import "MovieListBaseController.h"
-#import "LJJWaterFlowLayout.h"
 #import "MovieListModel.h"
-#import "ActressDetailCell.h"
 #import "MovieDetailController.h"
 
 #define TitleFont [UIFont systemFontOfSize:14]

@@ -130,6 +130,48 @@
     return self.center.y;
 }
 
+- (CGFloat)left {
+    return self.x;
+}
 
+- (CGFloat)right {
+    return self.x + self.width;
+}
+
+- (CGFloat)top {
+    return self.y;
+}
+
+- (CGFloat)bottom {
+    return self.y + self.height;
+}
+
+- (void)setCornerRadius:(CGFloat)cornerRadius {
+    self.layer.cornerRadius = cornerRadius;
+}
+
+- (void)setBorderColor:(UIColor *)borderColor {
+    self.layer.borderColor = borderColor.CGColor;
+}
+
+- (void)setBorderWidth:(CGFloat)borderWidth {
+    self.layer.borderWidth = borderWidth;
+}
+
+- (void)setShadowColor:(UIColor *)shadowColor {
+    self.layer.shadowColor = shadowColor.CGColor;
+}
+
+- (void)setShadowOffset:(CGSize)shadowOffset {
+    self.layer.shadowOffset = shadowOffset;
+}
+
+- (void)setShadowRadius:(CGFloat)shadowRadius {
+    self.layer.shadowRadius = shadowRadius;
+}
+
+- (void)setShadowOpacity:(CGFloat)shadowOpacity {
+    self.layer.shadowOpacity = shadowOpacity;
+}
 
 @end

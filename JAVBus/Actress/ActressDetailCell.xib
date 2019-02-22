@@ -53,11 +53,25 @@
                         <color key="textColor" red="0.7615397572517395" green="0.079553030431270599" blue="0.19609469175338745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWK-TR-jRx">
+                        <rect key="frame" x="251" y="0.0" width="25" height="25"/>
+                        <color key="backgroundColor" red="0.99204951524734497" green="0.99221879243850708" blue="0.9920387864112854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="EKK-Nf-Rrh"/>
+                            <constraint firstAttribute="width" secondItem="MWK-TR-jRx" secondAttribute="height" multiplier="1:1" id="We4-dw-ONw"/>
+                        </constraints>
+                        <state key="normal" image="collection_operation"/>
+                        <connections>
+                            <action selector="operationBtnClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="A1D-RY-rRZ"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="0i5-WB-57q" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="04J-xd-hmf"/>
+                <constraint firstItem="MWK-TR-jRx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9UL-aS-gn7"/>
                 <constraint firstItem="vzF-5w-N6Q" firstAttribute="top" secondItem="3gh-GJ-txc" secondAttribute="bottom" id="Iav-UO-iRE"/>
+                <constraint firstAttribute="trailing" secondItem="MWK-TR-jRx" secondAttribute="trailing" id="KJ6-5e-hnC"/>
                 <constraint firstItem="b9b-jY-l0k" firstAttribute="top" secondItem="0i5-WB-57q" secondAttribute="bottom" constant="5" id="SEC-Hp-6AW"/>
                 <constraint firstItem="3gh-GJ-txc" firstAttribute="height" secondItem="b9b-jY-l0k" secondAttribute="height" id="bsR-bb-QcX"/>
                 <constraint firstItem="3gh-GJ-txc" firstAttribute="top" secondItem="b9b-jY-l0k" secondAttribute="bottom" id="c7l-Tq-tvn"/>
@@ -76,10 +90,14 @@
                 <outlet property="imageView" destination="0i5-WB-57q" id="nw5-Pc-t8r"/>
                 <outlet property="numberLabel" destination="b9b-jY-l0k" id="Ug2-Yr-WgR"/>
                 <outlet property="numberWidthConstraint" destination="Z1m-OA-9XI" id="PVv-XA-ui2"/>
+                <outlet property="operationBtn" destination="MWK-TR-jRx" id="Lx6-K3-1As"/>
                 <outlet property="timeLabel" destination="3gh-GJ-txc" id="sOj-7h-0GL"/>
                 <outlet property="titleLabel" destination="vzF-5w-N6Q" id="8bd-RT-68c"/>
             </connections>
-            <point key="canvasLocation" x="-890" y="-612.5"/>
+            <point key="canvasLocation" x="-1169" y="-744"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="collection_operation" width="36" height="36"/>
+    </resources>
 </document>

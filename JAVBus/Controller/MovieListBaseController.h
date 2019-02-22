@@ -7,6 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "ActressDetailCell.h"
+#import "LJJWaterFlowLayout.h"
 
 @interface MovieListBaseController : BaseViewController
 
@@ -21,5 +23,7 @@
 
 //子类实现获取数据方法
 - (void)requestData:(BOOL)refresh ;
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

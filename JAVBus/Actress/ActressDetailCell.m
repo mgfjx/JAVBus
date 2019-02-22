@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *numberWidthConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *operationBtn;
 
 @end
 
@@ -36,6 +37,9 @@
     self.numberLabel.layer.masksToBounds = YES;
     
     self.imageView.clipsToBounds = YES;
+    
+    self.operationBtn.cornerRadius = self.operationBtn.height/2;
+    self.operationBtn.hidden = YES;
     
 }
 
@@ -75,6 +79,17 @@
                     forWidth:label.bounds.size.width
                lineBreakMode:NSLineBreakByWordWrapping];
     label.font = [label.font fontWithSize:fontSizeThatFits];
+}
+
+- (void)setShowOperation:(BOOL)showOperation {
+    _showOperation = showOperation;
+    self.operationBtn.hidden = !showOperation;
+}
+
+- (IBAction)operationBtnClicked:(UIButton *)sender {
+    if (self.actionCallback) {
+        self.actionCallback(self.model);
+    }
 }
 
 @end

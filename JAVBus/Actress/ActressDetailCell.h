@@ -16,4 +16,10 @@
 
 @property (nonatomic, assign) CGFloat itemHeight ;
 
+/**
+ 显示操作控件
+ */
+@property (nonatomic, assign) BOOL showOperation ;
+@property (nonatomic, copy) void (^actionCallback) (MovieListModel *model) ;
+
 @end
