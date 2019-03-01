@@ -11,12 +11,19 @@
 
 #import <Foundation/Foundation.h>
 
+#import "HttpManager.h"
+#import "HtmlToJsonManager.h"
 #import "PublicDefines.h"
 #import "Singleton.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIScrollView+Refresh.h"
 #import "UIView+AddFunc.h"
 #import "UIColor+Hex.h"
-#import "HttpManager.h"
+#import "GlobalTool.h"
+#import <Masonry.h>
+#import "FontDefine.h"
+#import "PublicDialogManager.h"
+#import "DBManager.h"
+#import "Encrypt.h"
 
 #endif /* PrefixHeader_pch */

@@ -17,9 +17,16 @@
 
 #define MainWidth [UIScreen mainScreen].bounds.size.width
 #define MainHeight [UIScreen mainScreen].bounds.size.height
+#define iPhoneX (MainWidth == 375.f && MainHeight == 812.f ? YES : NO)
+#define kStatusBarHeight (iPhoneX  ? 44  : 20)
+#define kNavigationBarHeight (kStatusBarHeight + 44)
+#define kTabBarHeight (iPhoneX  ? (49+34)  : 49)
 
 #define WeakSelf(weakSelf)      __weak __typeof(&*self)    weakSelf  = self;
 #define HTTPMANAGER [HttpManager manager]
 #define HTMLTOJSONMANAGER [HtmlToJsonManager manager]
+#define DBMANAGER [DBManager manager]
+
+#define MovieListPlaceHolder [UIImage imageNamed:@"movie_placeholder"]
 
 #endif /* PublicDefines_h */

@@ -152,6 +152,22 @@ static id singleton = nil;
     }];
 }
 
+- (void)downloadFile:(NSString *)downloadUrl progress:(ProgressCallback)progress completion:(CompletionCallback)completion {
+    NSString * urlStr = downloadUrl;
+    /* 下载地址 */
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURLSessionDownloadTask *downloadTask = [self.manager downloadTaskWithRequest:request progress:progress destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        NSString *path = NSTemporaryDirectory();
+        NSString *savePath = [path stringByAppendingPathComponent:@"/cachefile.cache"];
+        [[NSFileManager defaultManager] moveItemAtPath:targetPath.path toPath:savePath error:nil];
+        return [NSURL URLWithString:savePath];
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        completion(filePath, error);
+    }];
+    [downloadTask resume];
+}
+
 - (void)startPostUrl:(NSString *)url param:(NSDictionary *)param success:(SuccessCallback)success failure:(FailCallback)failure {
     
     [self.manager POST:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -171,6 +187,19 @@ static id singleton = nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure_block(error);
     }];
+}
+
+/**
+ 根据番号从Avgle获取预览视频
+
+ @param code 番号
+ */
+- (void)getVideoByCode:(NSString *)code SuccessCallback:(SuccessCallback)success FailCallback:(FailCallback)failed {
+    NSString *url = [NSString stringWithFormat:@"https://api.avgle.com/v1/search/%@/0", code];
+    [self startGetUrl:url param:nil success:^(id resultDict) {
+        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:resultDict options:NSJSONReadingAllowFragments error:nil];
+        success(jsonDict);
+    } failure:failed];
 }
 
 @end

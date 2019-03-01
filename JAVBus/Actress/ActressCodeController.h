@@ -6,8 +6,8 @@
 //  Copyright © 2018 mgfjx. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "ActorListBaseController.h"
 
-@interface ActressCodeController : BaseViewController
+@interface ActressCodeController : ActorListBaseController
 
 @end

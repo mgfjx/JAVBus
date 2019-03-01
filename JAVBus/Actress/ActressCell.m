@@ -14,10 +14,12 @@
     [super awakeFromNib];
     // Initialization code
     
-    self.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.layer.borderWidth = 1;
+    self.layer.borderColor = [UIColor colorWithHexString:@"#eeeeee"].CGColor;
+    self.layer.borderWidth = 0.5;
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
+    
+    self.titleLabel.backgroundColor = [UIColor colorWithHexString:@"#606060"];
     
 }
 

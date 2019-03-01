@@ -2,7 +2,7 @@
 //  UIView+SetFrame.h
 //  CoreTextDemo
 //
-//  Created by mgfjx on 16/6/28.
+//  Created by 谢小龙 on 16/6/28.
 //  Copyright © 2016年 XXL. All rights reserved.
 //
 
@@ -44,5 +44,18 @@
 
 @property (nonatomic, assign) CGFloat centerX;
 @property (nonatomic, assign) CGFloat centerY;
+
+@property (nonatomic, assign, readonly) CGFloat left;
+@property (nonatomic, assign, readonly) CGFloat right;
+@property (nonatomic, assign, readonly) CGFloat top;
+@property (nonatomic, assign, readonly) CGFloat bottom;
+
+@property (nonatomic, assign) CGFloat cornerRadius ;
+@property (nonatomic, strong) UIColor *borderColor ;
+@property (nonatomic, assign) CGFloat borderWidth ;
+@property (nonatomic, assign) CGFloat shadowOpacity ;
+@property (nonatomic, strong) UIColor *shadowColor ;
+@property (nonatomic, assign) CGSize shadowOffset ;
+@property (nonatomic, assign) CGFloat shadowRadius ;
 
 @end

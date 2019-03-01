@@ -7,14 +7,9 @@
  */
 
 #import "SDWebImageCompat.h"
-#import "UIImage+MultiFormat.h"
 
 #if !__has_feature(objc_arc)
-    #error SDWebImage is ARC only. Either turn on ARC for the project or use -fobjc-arc flag
-#endif
-
-#if !OS_OBJECT_USE_OBJC
-    #error SDWebImage need ARC for dispatch object
+#error SDWebImage is ARC only. Either turn on ARC for the project or use -fobjc-arc flag
 #endif
 
 inline UIImage *SDScaledImageForKey(NSString * _Nullable key, UIImage * _Nullable image) {
@@ -31,14 +26,10 @@ inline UIImage *SDScaledImageForKey(NSString * _Nullable key, UIImage * _Nullabl
         for (UIImage *tempImage in image.images) {
             [scaledImages addObject:SDScaledImageForKey(key, tempImage)];
         }
-        
-        UIImage *animatedImage = [UIImage animatedImageWithImages:scaledImages duration:image.duration];
-        if (animatedImage) {
-            animatedImage.sd_imageLoopCount = image.sd_imageLoopCount;
-            animatedImage.sd_imageFormat = image.sd_imageFormat;
-        }
-        return animatedImage;
-    } else {
+
+        return [UIImage animatedImageWithImages:scaledImages duration:image.duration];
+    }
+    else {
 #if SD_WATCH
         if ([[WKInterfaceDevice currentDevice] respondsToSelector:@selector(screenScale)]) {
 #elif SD_UIKIT
@@ -56,12 +47,9 @@ inline UIImage *SDScaledImageForKey(NSString * _Nullable key, UIImage * _Nullabl
                     scale = 3.0;
                 }
             }
-            
-            if (scale != image.scale) {
-                UIImage *scaledImage = [[UIImage alloc] initWithCGImage:image.CGImage scale:scale orientation:image.imageOrientation];
-                scaledImage.sd_imageFormat = image.sd_imageFormat;
-                image = scaledImage;
-            }
+
+            UIImage *scaledImage = [[UIImage alloc] initWithCGImage:image.CGImage scale:scale orientation:image.imageOrientation];
+            image = scaledImage;
         }
         return image;
     }

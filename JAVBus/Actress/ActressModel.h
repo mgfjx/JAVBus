@@ -23,4 +23,8 @@
 @property (nonatomic, strong) NSString *hipLine ;
 @property (nonatomic, strong) NSString *hobby ;
 
+@property (nonatomic, strong) NSString *censoredString ;
+
+@property (nonatomic, strong) NSArray *infoArray ;
+
 @end
