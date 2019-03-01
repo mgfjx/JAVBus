@@ -113,4 +113,9 @@
  */
 - (BOOL)deleteMovieDetail:(MovieListModel *)model ;
 
+/**
+ 删除所有电影缓存数据
+ */
+- (BOOL)deleteAllCacheMovie ;
+
 @end

@@ -459,4 +459,13 @@ static DBManager *singleton ;
     return result;
 }
 
+/**
+ 删除所有电影缓存数据
+ */
+- (BOOL)deleteAllCacheMovie {
+    NSString *sql = @"delete from MovieCachedTable";
+    BOOL result = [self baseUpdateSql:sql];
+    return result;
+}
+
 @end
