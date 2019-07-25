@@ -98,7 +98,7 @@
     if (indexPath.section == 1) {
         
         AddressSettingController * vc = [AddressSettingController new];
-        vc.hidesBottomBarWhenPushed = YES;
+//        vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         
     }

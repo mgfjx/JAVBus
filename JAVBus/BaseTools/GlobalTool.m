@@ -38,7 +38,7 @@ SingletonImplement(Instance)
 - (NSString *)baseUrl {
     NSString *url = [[NSUserDefaults standardUserDefaults] objectForKey:@"kBaseUrl"];
     if (!url || url.length == 0) {
-        url = @"https://www.javbus.pw";
+        url = @"https://www.javbus.com";
     }
     return url;
 }

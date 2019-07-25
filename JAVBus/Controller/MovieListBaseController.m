@@ -152,7 +152,7 @@
     MovieListModel *model = self.dataArray[indexPath.row];
     MovieDetailController *vc = [MovieDetailController new];
     vc.model = model;
-    vc.hidesBottomBarWhenPushed = YES;
+//    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

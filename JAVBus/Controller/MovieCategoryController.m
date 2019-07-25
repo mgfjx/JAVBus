@@ -137,7 +137,7 @@
     CategoryItemListController *vc = [CategoryItemListController new];
     vc.model = itemModel;
     vc.showSortBar = YES;
-    vc.hidesBottomBarWhenPushed = YES;
+//    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

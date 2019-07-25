@@ -108,7 +108,7 @@
 
 - (void)settingClicked {
     AddressSettingController *vc = [AddressSettingController new];
-    vc.hidesBottomBarWhenPushed = YES;
+//    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

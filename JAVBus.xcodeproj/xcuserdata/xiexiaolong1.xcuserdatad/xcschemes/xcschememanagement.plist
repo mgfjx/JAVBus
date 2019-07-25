@@ -9,6 +9,29 @@
 			<key>orderHint</key>
 			<integer>16</integer>
 		</dict>
+		<key>JAVBus.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>EC0BC43D21C2394900A6E50E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EC0BC45521C2394B00A6E50E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EC0BC46021C2394B00A6E50E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>
