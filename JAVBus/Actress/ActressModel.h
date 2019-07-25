@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) NSString *name ;
 @property (nonatomic, strong) NSString *avatarUrl ;
-@property (nonatomic, strong) NSString *link ;
 
 @property (nonatomic, strong) NSString *birthday ;
 @property (nonatomic, strong) NSString *age ;
