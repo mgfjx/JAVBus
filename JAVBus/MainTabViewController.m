@@ -12,7 +12,6 @@
 #import "MovieMainController.h"
 #import "MainViewController.h"
 #import "SearchViewController.h"
-#import "ForumHomeController.h"
 #import "CollectionViewController.h"
 #import "SettingViewController.h"
 

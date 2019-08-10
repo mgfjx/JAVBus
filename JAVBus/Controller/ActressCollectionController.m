@@ -10,6 +10,8 @@
 
 @interface ActressCollectionController ()
 
+@property (nonatomic, assign) NSInteger pageSize ;
+
 @end
 
 @implementation ActressCollectionController
@@ -17,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.pageSize = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,8 +28,19 @@
 }
 
 - (void)requestData:(BOOL)refresh {
-    NSArray *array = [DBMANAGER queryActressList];
-    self.actressArray = [array copy];
+    if (refresh) {
+        self.pageSize = 0;
+    }else{
+        self.pageSize++;
+    }
+    NSArray *array = [DBMANAGER queryActressList:self.pageSize];
+    if (refresh) {
+        self.actressArray = [array copy];
+    }else{
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:self.actressArray];
+        [arr addObjectsFromArray:array];
+        self.actressArray = [arr copy];
+    }
     [self.collectionView stopHeaderRefreshing];
     [self.collectionView stopFooterRefreshing];
     [self.collectionView reloadData];
