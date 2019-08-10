@@ -10,4 +10,6 @@
 
 @interface BaseModel : NSObject
 
+@property (nonatomic, strong) NSString *link ;
+
 @end

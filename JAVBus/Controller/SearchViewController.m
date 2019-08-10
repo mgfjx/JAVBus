@@ -53,7 +53,16 @@
 
 - (void)createSearchView {
     
-    UISearchBar *search = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, MainWidth*0.8, 40)];
+    BOOL isChineseSimple = [[NSUserDefaults standardUserDefaults] boolForKey:@"kIsChineseSimple"];
+    NSString *title = @"繁体";
+    if (isChineseSimple) {
+        title = @"简体";
+    }
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStylePlain target:self action:@selector(changeSearchTextEncode)];
+    self.navigationItem.leftBarButtonItem = item;
+    
+    UISearchBar *search = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, MainWidth*0.6, 40)];
     search.barStyle = UIBarStyleDefault;
     search.showsScopeBar = YES;
     search.placeholder = @"搜尋 識別碼, 影片, 演員";
@@ -109,11 +118,31 @@
     
 }
 
+- (void)changeSearchTextEncode {
+    
+    BOOL value = [[NSUserDefaults standardUserDefaults] boolForKey:@"kIsChineseSimple"];
+    [[NSUserDefaults standardUserDefaults] setBool:!value forKey:@"kIsChineseSimple"];
+    
+    NSString *title = @"繁体";
+    if (!value) {
+        title = @"简体";
+    }
+    
+    self.navigationItem.leftBarButtonItem.title = title;
+    
+}
+
 - (void)addChildControllers {
     
     NSMutableArray *array = [NSMutableArray array];
     NSString *searchText = self.searchBar.text;
-    searchText = [ZHChineseConvert convertSimplifiedToTraditional:searchText];
+    BOOL isChineseSimple = [[NSUserDefaults standardUserDefaults] boolForKey:@"kIsChineseSimple"];
+    if (!isChineseSimple) {
+        searchText = [ZHChineseConvert convertSimplifiedToTraditional:searchText];
+    }else{
+        searchText = [ZHChineseConvert convertTraditionalToSimplified:searchText];
+    }
+    self.searchBar.text = searchText;
     for (int i = 0; i < self.categoryView.titles.count; i++) {
         NSString *url ;
         switch (i) {

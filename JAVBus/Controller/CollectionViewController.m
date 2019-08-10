@@ -142,7 +142,7 @@
     NSString *url = [NSString stringWithFormat:@"%@/forum/forum.php", [GlobalTool shareInstance].baseUrl];
     
     RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:url]];
-    webViewController.hidesBottomBarWhenPushed = YES;
+//    webViewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:webViewController animated:YES];
     
     /*

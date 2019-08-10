@@ -21,6 +21,9 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     self.view.backgroundColor = [UIColor whiteColor];
+    
+//    self.view.height = self.view.height - kTabBarHeight;
+    
 }
 
 - (void)didReceiveMemoryWarning {

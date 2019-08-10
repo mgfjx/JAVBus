@@ -94,17 +94,17 @@
             LinkButton *button = [LinkButton buttonWithType:UIButtonTypeCustom];
             [button addTarget:self action:@selector(linkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
             [button setTitle:item.title forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor colorWithHexString:@"#555555"] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor colorWithHexString:@"#666666"] forState:UIControlStateNormal];
             [button setTitleColor:[UIColor colorWithHexString:@"#aaaaaa"] forState:UIControlStateHighlighted];
             button.model = item;
             button.backgroundColor = [UIColor colorWithHexString:@"#1d65ee"];
-            button.backgroundColor = [UIColor randomColorWithAlpha:0.2];
+            button.backgroundColor = [UIColor randomColorWithAlpha:0.3];
             button.titleLabel.font = [UIFont systemFontOfSize:14];
             [bgView addSubview:button];
             [button sizeToFit];
-            button.layer.cornerRadius = button.height/4;
+            button.layer.cornerRadius = button.height*0.382;
             button.layer.masksToBounds = YES;
-            button.layer.borderColor = [UIColor colorWithHexString:@"#aaaaaa"].CGColor;
+            button.layer.borderColor = [UIColor colorWithHexString:@"#eeeeee"].CGColor;
             button.layer.borderWidth = 0.5;
             button.width = button.width + 2*offset;
             if (xPosition + offset + button.width > bgView.width - offset) {
@@ -137,7 +137,7 @@
     CategoryItemListController *vc = [CategoryItemListController new];
     vc.model = itemModel;
     vc.showSortBar = YES;
-    vc.hidesBottomBarWhenPushed = YES;
+//    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

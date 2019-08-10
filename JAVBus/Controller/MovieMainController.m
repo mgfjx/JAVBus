@@ -38,4 +38,12 @@
     
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.right.mas_equalTo(0);
+    }];
+}
+
 @end

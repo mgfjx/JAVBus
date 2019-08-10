@@ -12,6 +12,5 @@
 
 @property (nonatomic, strong) NSString *title ;
 @property (nonatomic, strong) NSString *imgUrl ;
-@property (nonatomic, strong) NSString *link ;
 
 @end

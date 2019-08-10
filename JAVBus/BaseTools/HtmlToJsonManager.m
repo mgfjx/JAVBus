@@ -137,7 +137,12 @@ static HtmlToJsonManager *instance ;
             NSString *imgUrl = [imgElement objectForKey:@"src"];
             NSString *name = [imgElement objectForKey:@"title"];
             NSString *link = [href objectForKey:@"href"];
-            //            NSLog(@"\n %@ \n %@ \n %@", imgUrl, name, link);
+            
+//            NSLog(@"\n %@ \n %@ \n %@", imgUrl, name, link);
+            
+            //替换某个字符
+            NSString *baseUrl = [GlobalTool shareInstance].baseUrl;
+            link = [link stringByReplacingOccurrencesOfString:baseUrl withString:@""];
             
             ActressModel *model = [ActressModel new];
             model.avatarUrl = imgUrl;
@@ -448,7 +453,11 @@ static HtmlToJsonManager *instance ;
             TFHppleElement *e = [ele childrenWithTagName:@"a"].firstObject;
             TitleLinkModel *model = [TitleLinkModel new];
             model.title = e.text;
-            model.link = [e objectForKey:@"href"];
+            NSString *link = [e objectForKey:@"href"];
+            //替换某个字符
+            NSString *baseUrl = [GlobalTool shareInstance].baseUrl;
+            link = [link stringByReplacingOccurrencesOfString:baseUrl withString:@""];
+            model.link = link;
             model.type = LinkTypeActor;
             [arr2 addObject:model];
             NSLog(@"演员: %@", [e objectForKey:@"title"]);
