@@ -86,6 +86,7 @@
     [collection mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(topOffset);
         make.left.bottom.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(-kTabBarHeight);
     }];
     
     layout.headerReferenceSize = CGSizeMake(MainWidth, 30);

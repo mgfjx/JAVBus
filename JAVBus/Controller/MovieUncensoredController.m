@@ -14,11 +14,6 @@
 
 @implementation MovieUncensoredController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -50,6 +45,14 @@
         [self.collectionView reloadData];
     }];
     
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.right.mas_equalTo(0);
+    }];
 }
 
 @end

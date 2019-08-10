@@ -104,7 +104,8 @@
     
     [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(kNavigationBarHeight);
-        make.left.bottom.right.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(-kTabBarHeight);
     }];
     
     scrollView.canPullDown = YES;
