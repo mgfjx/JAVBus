@@ -26,7 +26,7 @@
 /**
  查询收藏女优
  */
-- (NSArray *)queryActressList ;
+- (NSArray *)queryActressList:(NSInteger)pageSize ;
 
 /**
  判断是否已收藏该女优
@@ -61,7 +61,7 @@
 /**
  查询收藏电影
  */
-- (NSArray *)queryMovieList ;
+- (NSArray *)queryMovieList:(NSInteger)pageSize ;
 
 /**
  判断是否已收藏该电影
@@ -86,7 +86,7 @@
 /**
  查询缓存电影
  */
-- (NSArray *)queryMovieCacheList ;
+- (NSArray *)queryMovieCacheList:(NSInteger)pageSize;
 
 /**
  判断是否已缓存该电影

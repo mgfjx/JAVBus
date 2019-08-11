@@ -11,7 +11,6 @@
 #import "MovieListBaseController.h"
 #import "MovieCollectionController.h"
 #import "ActressCollectionController.h"
-#import "ForumHomeController.h"
 #import "RxWebViewController.h"
 #import "MovieCachedController.h"
 
@@ -145,11 +144,6 @@
 //    webViewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:webViewController animated:YES];
     
-    /*
-    ForumHomeController *vc = [ForumHomeController new];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-     */
 }
 
 @end

@@ -11,6 +11,8 @@
 
 static DBManager *singleton ;
 
+#define LimitSize 50;
+
 @interface DBManager ()
 
 @property (nonatomic, strong) FMDatabase *db ;
@@ -159,12 +161,13 @@ static DBManager *singleton ;
 /**
  查询收藏女优
  */
-- (NSArray *)queryActressList {
+- (NSArray *)queryActressList:(NSInteger)pageSize {
     NSString *order = @"";
     if ([GlobalTool shareInstance].descOrder) {
         order = @"ORDER BY ID DESC";
     }
-    NSString *sql = [NSString stringWithFormat:@"select * from 'ActressCollectionTable' %@", order];
+    NSInteger limitSize = LimitSize;
+    NSString *sql = [NSString stringWithFormat:@"select * from 'ActressCollectionTable' %@ limit %ld offset %ld", order, limitSize, pageSize*limitSize];
     [self.db open];
     FMResultSet *result = [self.db executeQuery:sql];
     NSMutableArray *arr = [NSMutableArray array];
@@ -213,12 +216,13 @@ static DBManager *singleton ;
 /**
  查询收藏电影
  */
-- (NSArray *)queryMovieList {
+- (NSArray *)queryMovieList:(NSInteger)pageSize {
     NSString *order = @"";
     if ([GlobalTool shareInstance].descOrder) {
         order = @"ORDER BY ID DESC";
     }
-    NSString *sql = [NSString stringWithFormat:@"select * from 'MovieCollectionTable' %@", order];
+    NSInteger limitSize = LimitSize;
+    NSString *sql = [NSString stringWithFormat:@"select * from 'MovieCollectionTable' %@ limit %ld offset %ld", order, limitSize, pageSize*limitSize];
     [self.db open];
     FMResultSet *result = [self.db executeQuery:sql];
     NSMutableArray *arr = [NSMutableArray array];
@@ -284,12 +288,13 @@ static DBManager *singleton ;
 /**
  查询缓存电影
  */
-- (NSArray *)queryMovieCacheList {
+- (NSArray *)queryMovieCacheList:(NSInteger)pageSize {
     NSString *order = @"";
     if ([GlobalTool shareInstance].descOrder) {
         order = @"ORDER BY ID DESC";
     }
-    NSString *sql = [NSString stringWithFormat:@"select * from 'MovieCachedTable' %@", order];
+    NSInteger limitSize = LimitSize;
+    NSString *sql = [NSString stringWithFormat:@"select * from 'MovieCachedTable' %@ limit %ld offset %ld", order, limitSize, pageSize*limitSize];
     [self.db open];
     FMResultSet *result = [self.db executeQuery:sql];
     NSMutableArray *arr = [NSMutableArray array];

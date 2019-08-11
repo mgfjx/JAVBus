@@ -10,11 +10,14 @@
 
 @interface MovieCollectionController ()
 
+@property (nonatomic, assign) NSInteger pageSize ;
+
 @end
 
 @implementation MovieCollectionController
 
 - (void)viewDidLoad {
+    self.pageSize = 0;
     [super viewDidLoad];
     
     [self.collectionView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -28,8 +31,19 @@
 }
 
 - (void)requestData:(BOOL)refresh {
-    NSArray *array = [DBMANAGER queryMovieList];
-    self.dataArray = [array copy];
+    if (refresh) {
+        self.pageSize = 0;
+    }else{
+        self.pageSize++;
+    }
+    NSArray *array = [DBMANAGER queryMovieList:self.pageSize];
+    if (refresh) {
+        self.dataArray = [array copy];
+    }else{
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:self.dataArray];
+        [arr addObjectsFromArray:array];
+        self.dataArray = [arr copy];
+    }
     [self.collectionView stopHeaderRefreshing];
     [self.collectionView stopFooterRefreshing];
     [self.collectionView reloadData];
