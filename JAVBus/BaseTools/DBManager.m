@@ -11,6 +11,8 @@
 
 static DBManager *singleton ;
 
+#define LimitSize 50;
+
 @interface DBManager ()
 
 @property (nonatomic, strong) FMDatabase *db ;
@@ -164,8 +166,8 @@ static DBManager *singleton ;
     if ([GlobalTool shareInstance].descOrder) {
         order = @"ORDER BY ID DESC";
     }
-    NSInteger limitSize = 20;
-    NSString *sql = [NSString stringWithFormat:@"select * from 'ActressCollectionTable' %@ limit %ld offset %ld", order, limitSize, pageSize*20];
+    NSInteger limitSize = LimitSize;
+    NSString *sql = [NSString stringWithFormat:@"select * from 'ActressCollectionTable' %@ limit %ld offset %ld", order, limitSize, pageSize*limitSize];
     [self.db open];
     FMResultSet *result = [self.db executeQuery:sql];
     NSMutableArray *arr = [NSMutableArray array];
@@ -219,8 +221,8 @@ static DBManager *singleton ;
     if ([GlobalTool shareInstance].descOrder) {
         order = @"ORDER BY ID DESC";
     }
-    NSInteger limitSize = 20;
-    NSString *sql = [NSString stringWithFormat:@"select * from 'MovieCollectionTable' %@ limit %ld offset %ld", order, limitSize, pageSize*20];
+    NSInteger limitSize = LimitSize;
+    NSString *sql = [NSString stringWithFormat:@"select * from 'MovieCollectionTable' %@ limit %ld offset %ld", order, limitSize, pageSize*limitSize];
     [self.db open];
     FMResultSet *result = [self.db executeQuery:sql];
     NSMutableArray *arr = [NSMutableArray array];
@@ -291,8 +293,8 @@ static DBManager *singleton ;
     if ([GlobalTool shareInstance].descOrder) {
         order = @"ORDER BY ID DESC";
     }
-    NSInteger limitSize = 20;
-    NSString *sql = [NSString stringWithFormat:@"select * from 'MovieCachedTable' %@ limit %ld offset %ld", order, limitSize, pageSize*20];
+    NSInteger limitSize = LimitSize;
+    NSString *sql = [NSString stringWithFormat:@"select * from 'MovieCachedTable' %@ limit %ld offset %ld", order, limitSize, pageSize*limitSize];
     [self.db open];
     FMResultSet *result = [self.db executeQuery:sql];
     NSMutableArray *arr = [NSMutableArray array];
