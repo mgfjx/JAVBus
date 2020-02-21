@@ -63,6 +63,7 @@
 		ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AD821C697540043DB0C /* ActressDetailController.m */; };
 		ECD99AED21C7E0880043DB0C /* LJJWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AEB21C7E0880043DB0C /* LJJWaterFlowLayout.m */; };
 		ECD99AF021C7EDB90043DB0C /* MovieListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AEF21C7EDB90043DB0C /* MovieListModel.m */; };
+		ECDF476F2380484B0080EDA7 /* VideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDF476D2380484B0080EDA7 /* VideoPlayerView.m */; };
 		ECF79B2A21DDB372008C097D /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B2921DDB372008C097D /* DBManager.m */; };
 		ECF79B2D21DDE2C8008C097D /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B2C21DDE2C8008C097D /* CollectionViewController.m */; };
 		ECF79B3021DDE2DA008C097D /* ActressCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B2F21DDE2DA008C097D /* ActressCollectionController.m */; };
@@ -221,6 +222,8 @@
 		ECD99AEC21C7E0880043DB0C /* LJJWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJJWaterFlowLayout.h; sourceTree = "<group>"; };
 		ECD99AEE21C7EDB90043DB0C /* MovieListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieListModel.h; sourceTree = "<group>"; };
 		ECD99AEF21C7EDB90043DB0C /* MovieListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieListModel.m; sourceTree = "<group>"; };
+		ECDF476D2380484B0080EDA7 /* VideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerView.m; sourceTree = "<group>"; };
+		ECDF476E2380484B0080EDA7 /* VideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerView.h; sourceTree = "<group>"; };
 		ECF79B2821DDB372008C097D /* DBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		ECF79B2921DDB372008C097D /* DBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		ECF79B2B21DDE2C8008C097D /* CollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
@@ -579,6 +582,8 @@
 				ECF9457621D4C0DD0043E898 /* CategoryItemListController.m */,
 				ECF9457821D4CB630043E898 /* MovieDetailController.h */,
 				ECF9457921D4CB630043E898 /* MovieDetailController.m */,
+				ECDF476E2380484B0080EDA7 /* VideoPlayerView.h */,
+				ECDF476D2380484B0080EDA7 /* VideoPlayerView.m */,
 				ECF9458821D5FED70043E898 /* ScreenShotCell.h */,
 				ECF9458921D5FED70043E898 /* ScreenShotCell.m */,
 				ECF9458A21D5FED70043E898 /* ScreenShotCell.xib */,
@@ -950,6 +955,7 @@
 				EC73609721DA5C280031DFE0 /* ActressSearchCell.m in Sources */,
 				EC73609221D90F630031DFE0 /* ActressSearchController.m in Sources */,
 				ECCCE41921E39D54006833FE /* Encrypt.m in Sources */,
+				ECDF476F2380484B0080EDA7 /* VideoPlayerView.m in Sources */,
 				EC73608C21D90D5B0031DFE0 /* SearchViewController.m in Sources */,
 				ECF79B2A21DDB372008C097D /* DBManager.m in Sources */,
 				EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */,
@@ -1145,7 +1151,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8NS66RBJDR;
+				DEVELOPMENT_TEAM = 2V79KT8XV5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JAVBus/PrefixHeader.pch";
 				INFOPLIST_FILE = JAVBus/Info.plist;
@@ -1154,9 +1160,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1167,7 +1173,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8NS66RBJDR;
+				DEVELOPMENT_TEAM = 2V79KT8XV5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JAVBus/PrefixHeader.pch";
 				INFOPLIST_FILE = JAVBus/Info.plist;
@@ -1176,9 +1182,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -17,6 +17,8 @@
 #import "CategoryItemListController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <AVKit/AVKit.h>
+#import "VideoPlayerView.h"
 
 @interface MovieDetailController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -25,6 +27,7 @@
 
 @property (nonatomic, strong) UICollectionView *screenshotView ;
 @property (nonatomic, strong) UICollectionView *recommendView ;
+@property (nonatomic, strong) AVPlayerViewController *playerVC ;
 
 @end
 
@@ -345,9 +348,12 @@
         if ([DBMANAGER isMovieCacheExsit:self.model]) {
             NSString *name = [NSString stringWithFormat:@"%@.mp4", [Encrypt md5Encrypt32:self.model.number]];
             NSString *filePath = [[GlobalTool shareInstance].movieCacheDir stringByAppendingPathComponent:name];
-            MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
-            moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-            [self presentViewController:moviePlayerController animated:YES completion:nil];
+            
+            [self playWithUrl:filePath];
+            
+//            MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
+//            moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
+//            [self presentViewController:moviePlayerController animated:YES completion:nil];
         }else {
             [PublicDialogManager showWaittingInView:self.view];
             [HTTPMANAGER getVideoByCode:code SuccessCallback:^(NSDictionary *resultDict) {
@@ -393,9 +399,7 @@
                             if (error) {
                                 NSLog(@"%@", error);
                             }else {
-                                MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:savePath]];
-                                moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-                                [self presentViewController:moviePlayerController animated:YES completion:nil];
+                                [self playWithUrl:savePath];
                             }
                         }];
                     }else{
@@ -414,6 +418,27 @@
         }
         
     }
+    
+}
+
+- (void)playWithUrl:(NSString *)url {
+    
+//    AVPlayerViewController *playerVC = [[AVPlayerViewController alloc] init];
+//    playerVC.player = [AVPlayer playerWithURL:url];
+//    playerVC.view.frame = self.view.bounds;
+//    playerVC.showsPlaybackControls = YES;
+//    [self.view addSubview:playerVC.view];
+//    self.playerVC = playerVC;
+//
+//    if (playerVC.readyForDisplay) {
+//        [playerVC.player play];
+//    }
+//    [playerVC.player play];
+    
+    VideoPlayerView *videoView = [[VideoPlayerView alloc] initWithFrame:CGRectZero videoURL:url];
+//    videoView.delegate = self;
+    [[UIApplication sharedApplication].keyWindow addSubview:videoView];
+//    videoPlayerView = videoView;
     
 }
 
