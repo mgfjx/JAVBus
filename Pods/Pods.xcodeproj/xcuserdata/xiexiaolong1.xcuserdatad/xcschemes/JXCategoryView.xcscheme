@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2C1D54019BD7B8808EE8C740BE7A2583"
+               BlueprintIdentifier = "8BEAFAA726C1965864B79B4B441AA513"
+               BuildableName = "libJXCategoryView.a"
                BlueprintName = "JXCategoryView"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libJXCategoryView.a">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

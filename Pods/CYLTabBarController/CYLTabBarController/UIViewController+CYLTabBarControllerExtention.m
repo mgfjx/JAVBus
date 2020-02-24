@@ -2,13 +2,14 @@
 //  UIViewController+CYLTabBarControllerExtention.m
 //  CYLTabBarController
 //
-//  v1.16.0 Created by 微博@iOS程序犭袁 ( http://weibo.com/luohanchenyilong/ ) on 16/2/26.
+//  v1.21.x Created by 微博@iOS程序犭袁 ( http://weibo.com/luohanchenyilong/ ) on 16/2/26.
 //  Copyright © 2018年 https://github.com/ChenYilong .All rights reserved.
 //
 
 #import "UIViewController+CYLTabBarControllerExtention.h"
 #import "CYLTabBarController.h"
 #import <objc/runtime.h>
+#define kActualView     [self cyl_getActualBadgeSuperView]
 
 @implementation UIViewController (CYLTabBarControllerExtention)
 
@@ -118,28 +119,29 @@
     return (self == CYLPlusChildViewController);
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (void)cyl_showTabBadgePoint {
     if (self.cyl_isPlusChildViewController) {
         return;
     }
-    [self.cyl_tabButton cyl_showTabBadgePoint];
-    [[[self cyl_getViewControllerInsteadOfNavigationController] cyl_tabBarController].tabBar layoutIfNeeded];
+    [self cyl_showBadge];
 }
 
 - (void)cyl_removeTabBadgePoint {
     if (self.cyl_isPlusChildViewController) {
         return;
     }
-    [self.cyl_tabButton cyl_removeTabBadgePoint];
-    [[[self cyl_getViewControllerInsteadOfNavigationController] cyl_tabBarController].tabBar layoutIfNeeded];
+    [self cyl_clearBadge];
 }
 
 - (BOOL)cyl_isShowTabBadgePoint {
     if (self.cyl_isPlusChildViewController) {
         return NO;
     }
-    return [self.cyl_tabButton cyl_isShowTabBadgePoint];
+    return [self cyl_isShowBadge];;
 }
+#pragma clang diagnostic pop
 
 - (void)cyl_setTabBadgePointView:(UIView *)tabBadgePointView {
     if (self.cyl_isPlusChildViewController) {
@@ -293,6 +295,161 @@
         }
     }];
     return atIndex;
+}
+
+
+- (void)cyl_handleNavigationBackAction {
+    [self cyl_handleNavigationBackActionWithAnimated:YES];
+}
+
+- (void)cyl_handleNavigationBackActionWithAnimated:(BOOL)animated {
+    if (!self.presentationController) {
+        [self.navigationController popViewControllerAnimated:animated];
+        return;
+    }
+    if (self.navigationController.viewControllers.count > 1) {
+        [self.navigationController popViewControllerAnimated:animated];
+    } else {
+        [self dismissViewControllerAnimated:animated completion:nil];
+    }
+}
+
+#pragma mark -- public methods
+
+/**
+ *  show badge with red dot style and CYLBadgeAnimationTypeNone by default.
+ */
+- (void)cyl_showBadge {
+    [kActualView cyl_showBadge];
+}
+
+- (void)cyl_showBadgeValue:(NSString *)value
+             animationType:(CYLBadgeAnimationType)animationType {
+    [kActualView cyl_showBadgeValue:value animationType:animationType];
+}
+
+- (void)cyl_clearBadge {
+    [kActualView cyl_clearBadge];
+}
+
+- (void)cyl_resumeBadge {
+    [kActualView cyl_resumeBadge];
+}
+
+- (BOOL)cyl_isShowBadge {
+    return [kActualView cyl_isShowBadge];
+}
+
+- (BOOL)cyl_isPauseBadge {
+    return [kActualView cyl_isPauseBadge];
+}
+
+#pragma mark -- private method
+
+/**
+ *  Because UIBarButtonItem is kind of NSObject, it is not able to directly attach badge.
+ This method is used to find actual view (non-nil) inside UIBarButtonItem instance.
+ *
+ *  @return view
+ */
+- (UITabBarItem *)cyl_getActualBadgeSuperView {
+    UIViewController *viewController = self.cyl_getViewControllerInsteadOfNavigationController;
+    UITabBarItem *viewControllerItem = viewController.tabBarItem;
+    UIControl *viewControllerControl = viewControllerItem.cyl_tabButton;
+    UITabBarItem *navigationViewControllerItem = viewController.navigationController.tabBarItem;
+    if (viewControllerControl) {
+        return viewControllerItem;
+    }
+    return navigationViewControllerItem;
+}
+
+#pragma mark -- setter/getter
+- (UILabel *)cyl_badge {
+    return kActualView.cyl_badge;
+}
+
+- (void)cyl_setBadge:(UILabel *)label {
+    [kActualView cyl_setBadge:label];
+}
+
+- (UIFont *)cyl_badgeFont {
+    return kActualView.cyl_badgeFont;
+}
+
+- (void)cyl_setBadgeFont:(UIFont *)badgeFont {
+    [kActualView cyl_setBadgeFont:badgeFont];
+}
+
+- (UIColor *)cyl_badgeBackgroundColor {
+    return [kActualView cyl_badgeBackgroundColor];
+}
+
+- (void)cyl_setBadgeBackgroundColor:(UIColor *)badgeBackgroundColor {
+    [kActualView cyl_setBadgeBackgroundColor:badgeBackgroundColor];
+}
+
+- (UIColor *)cyl_badgeTextColor {
+    return [kActualView cyl_badgeTextColor];
+}
+
+- (void)cyl_setBadgeTextColor:(UIColor *)badgeTextColor {
+    [kActualView cyl_setBadgeTextColor:badgeTextColor];
+}
+
+- (CYLBadgeAnimationType)cyl_badgeAnimationType {
+    return [kActualView cyl_badgeAnimationType];
+}
+
+- (void)cyl_setBadgeAnimationType:(CYLBadgeAnimationType)animationType {
+    [kActualView cyl_setBadgeAnimationType:animationType];
+}
+
+- (CGRect)cyl_badgeFrame {
+    return [kActualView cyl_badgeFrame];
+}
+
+- (void)cyl_setBadgeFrame:(CGRect)badgeFrame {
+    [kActualView cyl_setBadgeFrame:badgeFrame];
+}
+
+- (CGPoint)cyl_badgeCenterOffset {
+    return [kActualView cyl_badgeCenterOffset];
+}
+
+- (void)cyl_setBadgeCenterOffset:(CGPoint)badgeCenterOffset {
+    [kActualView cyl_setBadgeCenterOffset:badgeCenterOffset];
+}
+
+- (NSInteger)cyl_badgeMaximumBadgeNumber {
+    return [kActualView cyl_badgeMaximumBadgeNumber];
+}
+
+- (void)cyl_setBadgeMaximumBadgeNumber:(NSInteger)badgeMaximumBadgeNumber {
+    [kActualView cyl_setBadgeMaximumBadgeNumber:badgeMaximumBadgeNumber];
+}
+
+- (CGFloat)cyl_badgeMargin {
+    return [kActualView cyl_badgeMargin];
+}
+
+- (void)cyl_setBadgeMargin:(CGFloat)badgeMargin {
+    [kActualView cyl_setBadgeMargin:badgeMargin];
+}
+
+- (CGFloat)cyl_badgeRadius {
+    return [kActualView cyl_badgeRadius];
+}
+
+- (void)cyl_setBadgeRadius:(CGFloat)badgeRadius {
+    [kActualView cyl_setBadgeRadius:badgeRadius];
+}
+
+- (CGFloat)cyl_badgeCornerRadius {
+    return [kActualView cyl_badgeCornerRadius];
+}
+
+- (void)cyl_setBadgeCornerRadius:(CGFloat)cyl_badgeCornerRadius {
+    [kActualView cyl_setBadgeCornerRadius:cyl_badgeCornerRadius];
 }
 
 @end

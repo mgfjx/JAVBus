@@ -624,7 +624,6 @@
 				EC0BC43A21C2394900A6E50E /* Sources */,
 				EC0BC43B21C2394900A6E50E /* Frameworks */,
 				EC0BC43C21C2394900A6E50E /* Resources */,
-				03EC0B27CA338B3313FB3E59 /* [CP] Embed Pods Frameworks */,
 				3017ADEB2178B24D9F172618 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -644,8 +643,6 @@
 				EC0BC45221C2394B00A6E50E /* Sources */,
 				EC0BC45321C2394B00A6E50E /* Frameworks */,
 				EC0BC45421C2394B00A6E50E /* Resources */,
-				123894640922D106836DF182 /* [CP] Embed Pods Frameworks */,
-				6B051D00D26BA348CFC0DFCC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -665,8 +662,6 @@
 				EC0BC45D21C2394B00A6E50E /* Sources */,
 				EC0BC45E21C2394B00A6E50E /* Frameworks */,
 				EC0BC45F21C2394B00A6E50E /* Resources */,
-				DB88AE2D364BC8481C58DB00 /* [CP] Embed Pods Frameworks */,
-				C3FB94E3180B1CFD78E4F7AE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -758,54 +753,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03EC0B27CA338B3313FB3E59 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JAVBus/Pods-JAVBus-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		123894640922D106836DF182 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JAVBusTests/Pods-JAVBusTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3017ADEB2178B24D9F172618 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-JAVBus/Pods-JAVBus-resources.sh",
-				"${PODS_ROOT}/IDMPhotoBrowser/Classes/IDMPhotoBrowser.bundle",
-				"${PODS_ROOT}/IDMPhotoBrowser/Classes/IDMPBLocalizations.bundle",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JAVBus/Pods-JAVBus-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JAVBus/Pods-JAVBus-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JAVBus/Pods-JAVBus-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JAVBus/Pods-JAVBus-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		44B619B642591C916C693F2C /* [CP] Check Pods Manifest.lock */ = {
@@ -826,36 +788,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6B051D00D26BA348CFC0DFCC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JAVBusTests/Pods-JAVBusTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C3FB94E3180B1CFD78E4F7AE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JAVBusUITests/Pods-JAVBusUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CF5DDD7EF3FB4AF9158EF34A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -872,21 +804,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DB88AE2D364BC8481C58DB00 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JAVBusUITests/Pods-JAVBusUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FBB4B5866A19BD29C5377224 /* [CP] Check Pods Manifest.lock */ = {
@@ -1151,7 +1068,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2V79KT8XV5;
+				DEVELOPMENT_TEAM = TNU67Y7CV2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JAVBus/PrefixHeader.pch";
 				INFOPLIST_FILE = JAVBus/Info.plist;
@@ -1160,7 +1077,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1173,7 +1090,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2V79KT8XV5;
+				DEVELOPMENT_TEAM = TNU67Y7CV2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JAVBus/PrefixHeader.pch";
 				INFOPLIST_FILE = JAVBus/Info.plist;
@@ -1182,7 +1099,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

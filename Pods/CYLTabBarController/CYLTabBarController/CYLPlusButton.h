@@ -2,13 +2,15 @@
 //  CYLPlusButton.h
 //  CYLTabBarController
 //
-//  v1.16.0 Created by 微博@iOS程序犭袁 ( http://weibo.com/luohanchenyilong/ ) on 10/20/15.
+//  v1.21.x Created by 微博@iOS程序犭袁 ( http://weibo.com/luohanchenyilong/ ) on 10/20/15.
 //  Copyright © 2018 https://github.com/ChenYilong . All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-
 #import "CYLConstants.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
 @class CYLPlusButton;
 
 @protocol CYLPlusButtonSubclassing
@@ -79,15 +81,17 @@ FOUNDATION_EXTERN UIViewController *CYLPlusChildViewController;
 @interface CYLPlusButton : UIButton
 
 + (void)registerPlusButton;
-
++ (void)removePlusButton;
 - (void)plusChildViewControllerButtonClicked:(UIButton<CYLPlusButtonSubclassing> *)sender;
 
 @end
 
 #pragma mark - Deprecated API
 
-@interface CYLPlusButton (CYLDeprecated)
+@interface CYLPlusButton (CYLPlusButtonDeprecated)
 
 + (void)registerSubclass CYL_DEPRECATED("Deprecated in 1.6.0. Use `+[CYLPlusButton registerPlusButton]` instead.");
 
 @end
+
+NS_ASSUME_NONNULL_END

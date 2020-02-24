@@ -14,7 +14,9 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - CYLTabBarController (1.17.22)
+  - CYLTabBarController (1.28.5):
+    - CYLTabBarController/Core (= 1.28.5)
+  - CYLTabBarController/Core (1.28.5)
   - DACircularProgress (2.3.1)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -37,7 +39,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.1)
-  - CYLTabBarController (~> 1.17.4)
+  - CYLTabBarController (~> 1.28.5)
   - FMDB (~> 2.7.5)
   - IDMPhotoBrowser (~> 1.11.3)
   - JXCategoryView (~> 1.0.3)
@@ -48,9 +50,25 @@ DEPENDENCIES:
   - SDWebImage (~> 4.0.0)
   - TFHpple (~> 2.0.0)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - CYLTabBarController
+    - DACircularProgress
+    - FMDB
+    - IDMPhotoBrowser
+    - JXCategoryView
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - pop
+    - SDCycleScrollView
+    - SDWebImage
+    - TFHpple
+
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  CYLTabBarController: 35784c2969383583d11cc56ff5abce078f19d94a
+  CYLTabBarController: edd9fecba9afa3f2e9e44ed50ca6dde69941f25f
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
@@ -63,6 +81,6 @@ SPEC CHECKSUMS:
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   TFHpple: a916fe0799eb30aa29b2670d14d5868cdd3a5b81
 
-PODFILE CHECKSUM: d8d620189c5685e2fc6468e14707d2d7b3d511f5
+PODFILE CHECKSUM: d8dab681224f19b181e157df99cc87e8052c2c5b
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.8.4

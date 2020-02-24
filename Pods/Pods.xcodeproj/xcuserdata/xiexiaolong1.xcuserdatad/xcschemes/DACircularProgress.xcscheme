@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C791F0A928C1A8FE97074DFC9ACF4E75"
+               BlueprintIdentifier = "7A23764A8EFEFE42461DCFA4EC550069"
+               BuildableName = "libDACircularProgress.a"
                BlueprintName = "DACircularProgress"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libDACircularProgress.a">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
