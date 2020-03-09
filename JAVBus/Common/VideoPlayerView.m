@@ -16,9 +16,7 @@
     
     UIButton *closeBtn;
     UIButton *playBtn;
-    UIProgressView *progressView;
     
-    UISlider *slider;
     CGSize videoSize;
     
 }
@@ -27,6 +25,9 @@
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
 @property (nonatomic, strong) UIView *controlView;
 @property (nonatomic, strong) AVAsset *asset;
+
+@property (nonatomic, strong) UIProgressView *progressView ;
+@property (nonatomic, strong) UISlider *slider;
 
 @end
 
@@ -62,10 +63,17 @@ static CGFloat controlView_heightScale = 0.15;
         playBtn = button;
         
         UISlider *sliderView = [[UISlider alloc] init];
+        sliderView.continuous = NO;
         [controlView addSubview:sliderView];
         [sliderView setThumbImage:[UIImage imageNamed:@"slider"] forState:UIControlStateNormal];
         [sliderView addTarget:self action:@selector(progressSlider:) forControlEvents:UIControlEventValueChanged];
-        slider = sliderView;
+        self.slider = sliderView;
+        
+        UIProgressView *progressView = [[UIProgressView alloc] init];
+        progressView.progress = 0.0f;
+        progressView.backgroundColor = [UIColor randomColorWithAlpha:0.5];
+        [controlView addSubview:progressView];
+        self.progressView = progressView;
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToShowControlView:)];
         [self addGestureRecognizer:tap];
@@ -136,15 +144,19 @@ static CGFloat controlView_heightScale = 0.15;
     self.player = player;
     
     [self initViewsFrame];
-    [self.player  addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, NSEC_PER_SEC) queue:NULL usingBlock:^(CMTime time) {
-            //进度 当前时间/总时间
-            CGFloat progress = CMTimeGetSeconds(self.player.currentItem.currentTime) / CMTimeGetSeconds(self.player.currentItem.duration);
+    
+    WeakSelf(weakSelf);
+    [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, NSEC_PER_SEC) queue:NULL usingBlock:^(CMTime time) {
+        //进度 当前时间/总时间
+        CGFloat progress = CMTimeGetSeconds(self.player.currentItem.currentTime) / CMTimeGetSeconds(self.player.currentItem.duration);
+        
+        NSLog(@"%@", [NSThread currentThread]);
+//        [weakSelf.progressView setProgress:progress animated:NO];
+        weakSelf.slider.value = progress;
+        //在这里截取播放进度并处理
+        if (progress == 1.0f) {
             
-            [progressView setProgress:progress animated:NO];
-            //在这里截取播放进度并处理
-            if (progress == 1.0f) {
-                
-            }
+        }
     }];
     
 }
@@ -175,8 +187,8 @@ static CGFloat controlView_heightScale = 0.15;
     playBtn.frame = CGRectMake(5, 0, controlView_height, controlView_height);
     playBtn.selected = YES;
     
-    slider.frame = CGRectMake(CGRectGetMaxX(playBtn.frame), 0, CGRectGetWidth(_controlView.frame) - CGRectGetMaxX(playBtn.frame) - 10, 10);
-    slider.center = CGPointMake(slider.center.x, CGRectGetMidY(_controlView.bounds));
+    self.slider.frame = CGRectMake(CGRectGetMaxX(playBtn.frame), 0, CGRectGetWidth(_controlView.frame) - CGRectGetMaxX(playBtn.frame) - 10, 10);
+    self.slider.center = CGPointMake(self.slider.center.x, CGRectGetMidY(_controlView.bounds));
     
     [self.player play];
 }
@@ -192,7 +204,7 @@ static CGFloat controlView_heightScale = 0.15;
         
         NSInteger dragedSeconds = floorf(total * sliderView.value);
         
-//        NSLog(@"dragedSeconds:%ld",dragedSeconds);
+        //        NSLog(@"dragedSeconds:%ld",dragedSeconds);
         
         //转换成CMTime才能给player来控制播放进度
         CMTime dragedCMTime = CMTimeMake(dragedSeconds, 1);
@@ -212,11 +224,11 @@ static CGFloat controlView_heightScale = 0.15;
 #pragma mark - button event
 - (void)closeBtnClicked:(UIButton *)sender{
     
-//    [self.playerLayer removeFromSuperlayer];
-//    self.playerLayer = nil;
-//    [self.player pause];
-//    self.player = nil;
-//
+    //    [self.playerLayer removeFromSuperlayer];
+    //    self.playerLayer = nil;
+    //    [self.player pause];
+    //    self.player = nil;
+    //
     [self removeFromSuperview];
     if (self.delegate && [self.delegate respondsToSelector:@selector(onVideoCloseBtnClicked)]) {
         [self.delegate onVideoCloseBtnClicked];
@@ -246,7 +258,7 @@ static CGFloat controlView_heightScale = 0.15;
         CGFloat controlView_height = self.frame.size.height * controlView_heightScale;
         
         CGRect controlViewFrame = self.controlView.frame;
-        NSLog(@"controlViewFrame == %@",NSStringFromCGRect(controlViewFrame));
+        //        NSLog(@"controlViewFrame == %@",NSStringFromCGRect(controlViewFrame));
         controlViewFrame.origin.y = controlViewFrame.origin.y + controlView_height * (isControlViewShow ? 1 : -1);
         [UIView animateWithDuration:0.25 animations:^{
             
@@ -304,7 +316,7 @@ static CGFloat controlView_heightScale = 0.15;
         CMTime duration = [_player.currentItem duration];
         CGFloat totalDuration = CMTimeGetSeconds(duration);
         
-        [progressView setProgress:timeInterval / totalDuration animated:NO];
+        [self.progressView setProgress:timeInterval / totalDuration animated:NO];
     }
     
 }

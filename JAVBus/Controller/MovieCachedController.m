@@ -7,7 +7,7 @@
 //
 
 #import "MovieCachedController.h"
-#import <AVKit/AVKit.h>
+#import "VideoPlayerManager.h"
 
 @interface MovieCachedController ()
 
@@ -68,25 +68,9 @@
     MovieListModel *model = self.dataArray[indexPath.row];
     NSString *name = [NSString stringWithFormat:@"%@.mp4", [Encrypt md5Encrypt32:model.number]];
     NSString *filePath = [[GlobalTool shareInstance].movieCacheDir stringByAppendingPathComponent:name];
-//    MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
-//    moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-//    [self presentViewController:moviePlayerController animated:YES completion:nil];
     
-//    AVPlayerViewController *moviePlayerController = [[AVPlayerViewController alloc] init];
+    [[VideoPlayerManager shareManager] showPlayerWithUrl:filePath];
     
-    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-    
-    AVPlayerViewController *moviePlayerController = [[AVPlayerViewController alloc] init];
-    moviePlayerController.player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:filePath]];
-    moviePlayerController.view.frame = self.view.bounds;
-    moviePlayerController.showsPlaybackControls = YES;
-//self.playerVC.entersFullScreenWhenPlaybackBegins = YES;//开启这个播放的时候支持（全屏）横竖屏哦
-    moviePlayerController.exitsFullScreenWhenPlaybackEnds = YES;//开启这个所有 item 播放完毕可以退出全屏
-    [keyWindow addSubview:moviePlayerController.view];
-    
-    if (moviePlayerController.readyForDisplay) {
-        [moviePlayerController.player play];
-    }
 }
 
 - (void)showFuncSelection {

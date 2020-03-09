@@ -18,7 +18,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <AVKit/AVKit.h>
-#import "VideoPlayerView.h"
+#import "VideoPlayerManager.h"
 
 @interface MovieDetailController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -435,10 +435,7 @@
 //    }
 //    [playerVC.player play];
     
-    VideoPlayerView *videoView = [[VideoPlayerView alloc] initWithFrame:CGRectZero videoURL:url];
-//    videoView.delegate = self;
-    [[UIApplication sharedApplication].keyWindow addSubview:videoView];
-//    videoPlayerView = videoView;
+    [[VideoPlayerManager shareManager] showPlayerWithUrl:url];
     
 }
 
