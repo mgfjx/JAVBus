@@ -27,8 +27,13 @@ SingletonImplement(Manager);
     }
     
     VideoPlayerView *videoView = [[VideoPlayerView alloc] initWithFrame:CGRectZero videoURL:videoUrl];
+    videoView.behavior = VideoCompletedNone;
     [[UIApplication sharedApplication].keyWindow addSubview:videoView];
     self.playerView = videoView;
+    
+    videoView.onVideoCloseBtnClicked = ^{
+        self.playerView = nil;
+    };
     
 }
 

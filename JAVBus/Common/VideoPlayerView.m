@@ -65,7 +65,7 @@ static CGFloat controlView_heightScale = 0.15;
         UISlider *sliderView = [[UISlider alloc] init];
         sliderView.continuous = NO;
         [controlView addSubview:sliderView];
-        [sliderView setThumbImage:[UIImage imageNamed:@"slider"] forState:UIControlStateNormal];
+        [sliderView setThumbImage:[UIImage imageNamed:@"slider_btn"] forState:UIControlStateNormal];
         [sliderView addTarget:self action:@selector(progressSlider:) forControlEvents:UIControlEventValueChanged];
         self.slider = sliderView;
         
@@ -146,16 +146,19 @@ static CGFloat controlView_heightScale = 0.15;
     [self initViewsFrame];
     
     WeakSelf(weakSelf);
-    [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, NSEC_PER_SEC) queue:NULL usingBlock:^(CMTime time) {
+    [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(0.25, NSEC_PER_SEC) queue:NULL usingBlock:^(CMTime time) {
         //进度 当前时间/总时间
         CGFloat progress = CMTimeGetSeconds(self.player.currentItem.currentTime) / CMTimeGetSeconds(self.player.currentItem.duration);
         
-        NSLog(@"%@", [NSThread currentThread]);
-//        [weakSelf.progressView setProgress:progress animated:NO];
-        weakSelf.slider.value = progress;
+        NSLog(@"%lu", (unsigned long)weakSelf.slider.state);
+        if (weakSelf.slider.state != UIControlStateHighlighted) {
+            [weakSelf.slider setValue:progress animated:YES];
+        }
         //在这里截取播放进度并处理
         if (progress == 1.0f) {
-            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf dealWithCompletedPlay];
+            });
         }
     }];
     
@@ -191,6 +194,17 @@ static CGFloat controlView_heightScale = 0.15;
     self.slider.center = CGPointMake(self.slider.center.x, CGRectGetMidY(_controlView.bounds));
     
     [self.player play];
+}
+
+- (void)dealWithCompletedPlay {
+    
+    if (self.behavior == VideoCompletedLoop) {
+        self.videoPath = _videoPath;
+    } else if (self.behavior == VideoCompletedRemove) {
+        [self closeBtnClicked: nil];
+    } else {
+        playBtn.selected = NO;
+    }
 }
 
 #pragma mark - slider滑动事件
@@ -234,6 +248,10 @@ static CGFloat controlView_heightScale = 0.15;
         [self.delegate onVideoCloseBtnClicked];
     }
     
+    if (self.onVideoCloseBtnClicked) {
+        self.onVideoCloseBtnClicked();
+    }
+    
 }
 
 - (void)playAndPause:(UIButton *)sender{
@@ -245,7 +263,12 @@ static CGFloat controlView_heightScale = 0.15;
     if (sender.selected) {
         [self.player pause];
     }else{
-        [self.player play];
+        CGFloat progress = CMTimeGetSeconds(self.player.currentItem.currentTime) / CMTimeGetSeconds(self.player.currentItem.duration);
+        if (progress >= 1.0f) {
+            self.videoPath = _videoPath;
+        }else{
+            [self.player play];
+        }
     }
     
     sender.selected = !sender.selected;
