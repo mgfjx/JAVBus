@@ -64,6 +64,8 @@ static CGFloat controlView_heightScale = 0.15;
         
         UISlider *sliderView = [[UISlider alloc] init];
         sliderView.continuous = NO;
+        sliderView.minimumTrackTintColor = [UIColor blackColor];
+        sliderView.maximumTrackTintColor = [UIColor lightGrayColor];
         [controlView addSubview:sliderView];
         [sliderView setThumbImage:[UIImage imageNamed:@"slider_btn"] forState:UIControlStateNormal];
         [sliderView addTarget:self action:@selector(progressSlider:) forControlEvents:UIControlEventValueChanged];
@@ -150,7 +152,6 @@ static CGFloat controlView_heightScale = 0.15;
         //进度 当前时间/总时间
         CGFloat progress = CMTimeGetSeconds(self.player.currentItem.currentTime) / CMTimeGetSeconds(self.player.currentItem.duration);
         
-        NSLog(@"%lu", (unsigned long)weakSelf.slider.state);
         if (weakSelf.slider.state != UIControlStateHighlighted) {
             [weakSelf.slider setValue:progress animated:YES];
         }
@@ -199,7 +200,13 @@ static CGFloat controlView_heightScale = 0.15;
 - (void)dealWithCompletedPlay {
     
     if (self.behavior == VideoCompletedLoop) {
-        self.videoPath = _videoPath;
+        CMTime dragedCMTime = CMTimeMake(0, 1);
+        
+        [_player pause];
+        [_player seekToTime:dragedCMTime completionHandler:^(BOOL finish){
+            [self->_player play];
+            self->playBtn.selected = YES;
+        }];
     } else if (self.behavior == VideoCompletedRemove) {
         [self closeBtnClicked: nil];
     } else {
@@ -265,7 +272,13 @@ static CGFloat controlView_heightScale = 0.15;
     }else{
         CGFloat progress = CMTimeGetSeconds(self.player.currentItem.currentTime) / CMTimeGetSeconds(self.player.currentItem.duration);
         if (progress >= 1.0f) {
-            self.videoPath = _videoPath;
+            CMTime dragedCMTime = CMTimeMake(0, 1);
+            
+            [_player pause];
+            [_player seekToTime:dragedCMTime completionHandler:^(BOOL finish){
+                [self->_player play];
+                self->playBtn.selected = YES;
+            }];
         }else{
             [self.player play];
         }

@@ -27,7 +27,7 @@ SingletonImplement(Manager);
     }
     
     VideoPlayerView *videoView = [[VideoPlayerView alloc] initWithFrame:CGRectZero videoURL:videoUrl];
-    videoView.behavior = VideoCompletedNone;
+    videoView.behavior = VideoCompletedLoop;
     [[UIApplication sharedApplication].keyWindow addSubview:videoView];
     self.playerView = videoView;
     
