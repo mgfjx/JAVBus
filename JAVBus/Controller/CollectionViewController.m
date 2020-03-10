@@ -13,10 +13,11 @@
 #import "ActressCollectionController.h"
 #import "RxWebViewController.h"
 #import "MovieCachedController.h"
+#import <SafariServices/SafariServices.h>
 
 #define CategoryHeight 40
 
-@interface CollectionViewController ()<JXCategoryViewDelegate, UISearchBarDelegate>
+@interface CollectionViewController ()<JXCategoryViewDelegate, UISearchBarDelegate, SFSafariViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView ;
 @property (nonatomic, strong) JXCategoryTitleView *categoryView ;
@@ -138,11 +139,32 @@
 
 - (void)gotoForum {
     
-    NSString *url = [NSString stringWithFormat:@"%@/forum/forum.php", [GlobalTool shareInstance].baseUrl];
+    NSString *urlString = [NSString stringWithFormat:@"%@/forum/forum.php", [GlobalTool shareInstance].baseUrl];
     
-    RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:url]];
-//    webViewController.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:webViewController animated:YES];
+    //    RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:url]];
+    ////    webViewController.hidesBottomBarWhenPushed = YES;
+    //    [self.navigationController pushViewController:webViewController animated:YES];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:url];
+    safariVC.delegate = self;
+    
+    
+    //    self.navigationController.navigationBarHidden = YES;
+//        [self.navigationController pushViewController:safariVC animated:YES];
+    // 建议
+    [self presentViewController:safariVC animated:YES completion:nil];
+    
+}
+
+#pragma mark - SFSafariViewControllerDelegate
+//加载完成
+- (void)safariViewController:(SFSafariViewController *)controller didCompleteInitialLoad:(BOOL)didLoadSuccessfully {
+    
+}
+
+//点击左上角的done
+- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
     
 }
 
