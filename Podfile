@@ -20,6 +20,10 @@ target 'JAVBus' do
   pod 'SDCycleScrollView', '~> 1.75'
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'FMDB', '~> 2.7.5'
+  
+  # google sdk
+  pod 'GoogleAPIClientForREST/Drive', '~> 1.3.11'
+  pod 'GoogleSignIn', '~> 5.0.2'
 
   target 'JAVBusTests' do
     inherit! :search_paths

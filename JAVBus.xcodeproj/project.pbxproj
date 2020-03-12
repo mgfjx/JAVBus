@@ -57,8 +57,16 @@
 		EC9D72FD21C7F41400C9F830 /* ActressDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D72FB21C7F41400C9F830 /* ActressDetailCell.m */; };
 		EC9D72FE21C7F41400C9F830 /* ActressDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D72FC21C7F41400C9F830 /* ActressDetailCell.xib */; };
 		ECA791692416141300EDFF51 /* VideoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA791682416141300EDFF51 /* VideoPlayerManager.m */; };
+		ECAE2413241A077E0050FA8A /* GGDriveFileController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE2412241A077E0050FA8A /* GGDriveFileController.m */; };
+		ECAE2417241A14710050FA8A /* GGDriveFolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE2415241A14710050FA8A /* GGDriveFolderCell.m */; };
+		ECAE2418241A14710050FA8A /* GGDriveFolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAE2416241A14710050FA8A /* GGDriveFolderCell.xib */; };
+		ECAE241C241A1B8A0050FA8A /* GGDriveFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE241A241A1B890050FA8A /* GGDriveFileCell.m */; };
+		ECAE241D241A1B8A0050FA8A /* GGDriveFileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAE241B241A1B8A0050FA8A /* GGDriveFileCell.xib */; };
 		ECCCE41921E39D54006833FE /* Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCCE41821E39D51006833FE /* Encrypt.m */; };
 		ECCCE41C21E42F48006833FE /* MovieCachedController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCCE41B21E42F48006833FE /* MovieCachedController.m */; };
+		ECD4F4F724167D800076269B /* GoogleDriveController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4F4F624167D800076269B /* GoogleDriveController.m */; };
+		ECD4F4FB241795AA0076269B /* GoogleSignInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4F4FA241795AA0076269B /* GoogleSignInManager.m */; };
+		ECD4F4FE2417D9010076269B /* GoogleDriveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4F4FD2417D9010076269B /* GoogleDriveManager.m */; };
 		ECD4FD9B21C5428800645593 /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4FD9921C5428800645593 /* HttpManager.m */; };
 		ECD99AD621C6891A0043DB0C /* HtmlToJsonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AD421C6891A0043DB0C /* HtmlToJsonManager.m */; };
 		ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AD821C697540043DB0C /* ActressDetailController.m */; };
@@ -211,10 +219,24 @@
 		EC9D72FC21C7F41400C9F830 /* ActressDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActressDetailCell.xib; sourceTree = "<group>"; };
 		ECA791672416141300EDFF51 /* VideoPlayerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPlayerManager.h; sourceTree = "<group>"; };
 		ECA791682416141300EDFF51 /* VideoPlayerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerManager.m; sourceTree = "<group>"; };
+		ECAE2411241A077E0050FA8A /* GGDriveFileController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGDriveFileController.h; sourceTree = "<group>"; };
+		ECAE2412241A077E0050FA8A /* GGDriveFileController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGDriveFileController.m; sourceTree = "<group>"; };
+		ECAE2414241A14710050FA8A /* GGDriveFolderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGDriveFolderCell.h; sourceTree = "<group>"; };
+		ECAE2415241A14710050FA8A /* GGDriveFolderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGDriveFolderCell.m; sourceTree = "<group>"; };
+		ECAE2416241A14710050FA8A /* GGDriveFolderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GGDriveFolderCell.xib; sourceTree = "<group>"; };
+		ECAE2419241A1B890050FA8A /* GGDriveFileCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGDriveFileCell.h; sourceTree = "<group>"; };
+		ECAE241A241A1B890050FA8A /* GGDriveFileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGDriveFileCell.m; sourceTree = "<group>"; };
+		ECAE241B241A1B8A0050FA8A /* GGDriveFileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GGDriveFileCell.xib; sourceTree = "<group>"; };
 		ECCCE41721E39D50006833FE /* Encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encrypt.h; sourceTree = "<group>"; };
 		ECCCE41821E39D51006833FE /* Encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Encrypt.m; sourceTree = "<group>"; };
 		ECCCE41A21E42F48006833FE /* MovieCachedController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCachedController.h; sourceTree = "<group>"; };
 		ECCCE41B21E42F48006833FE /* MovieCachedController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCachedController.m; sourceTree = "<group>"; };
+		ECD4F4F524167D7F0076269B /* GoogleDriveController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleDriveController.h; sourceTree = "<group>"; };
+		ECD4F4F624167D800076269B /* GoogleDriveController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoogleDriveController.m; sourceTree = "<group>"; };
+		ECD4F4F9241795AA0076269B /* GoogleSignInManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleSignInManager.h; sourceTree = "<group>"; };
+		ECD4F4FA241795AA0076269B /* GoogleSignInManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManager.m; sourceTree = "<group>"; };
+		ECD4F4FC2417D9010076269B /* GoogleDriveManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleDriveManager.h; sourceTree = "<group>"; };
+		ECD4F4FD2417D9010076269B /* GoogleDriveManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoogleDriveManager.m; sourceTree = "<group>"; };
 		ECD4FD9921C5428800645593 /* HttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpManager.m; sourceTree = "<group>"; };
 		ECD4FD9A21C5428800645593 /* HttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
 		ECD99AD421C6891A0043DB0C /* HtmlToJsonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlToJsonManager.m; sourceTree = "<group>"; };
@@ -542,6 +564,18 @@
 				ECDF476D2380484B0080EDA7 /* VideoPlayerView.m */,
 				ECA791672416141300EDFF51 /* VideoPlayerManager.h */,
 				ECA791682416141300EDFF51 /* VideoPlayerManager.m */,
+				ECD4F4F9241795AA0076269B /* GoogleSignInManager.h */,
+				ECD4F4FA241795AA0076269B /* GoogleSignInManager.m */,
+				ECD4F4FC2417D9010076269B /* GoogleDriveManager.h */,
+				ECD4F4FD2417D9010076269B /* GoogleDriveManager.m */,
+				ECAE2411241A077E0050FA8A /* GGDriveFileController.h */,
+				ECAE2412241A077E0050FA8A /* GGDriveFileController.m */,
+				ECAE2414241A14710050FA8A /* GGDriveFolderCell.h */,
+				ECAE2415241A14710050FA8A /* GGDriveFolderCell.m */,
+				ECAE2416241A14710050FA8A /* GGDriveFolderCell.xib */,
+				ECAE2419241A1B890050FA8A /* GGDriveFileCell.h */,
+				ECAE241A241A1B890050FA8A /* GGDriveFileCell.m */,
+				ECAE241B241A1B8A0050FA8A /* GGDriveFileCell.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -622,6 +656,8 @@
 				ECCCE41B21E42F48006833FE /* MovieCachedController.m */,
 				ECF79B3821DEF680008C097D /* SettingViewController.h */,
 				ECF79B3921DEF680008C097D /* SettingViewController.m */,
+				ECD4F4F524167D7F0076269B /* GoogleDriveController.h */,
+				ECD4F4F624167D800076269B /* GoogleDriveController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -735,7 +771,9 @@
 			files = (
 				EC0BC44E21C2394B00A6E50E /* LaunchScreen.storyboard in Resources */,
 				EC0BC4BB21C2653500A6E50E /* backItemImage_hl@2x.png in Resources */,
+				ECAE2418241A14710050FA8A /* GGDriveFolderCell.xib in Resources */,
 				ECF9458C21D5FED70043E898 /* ScreenShotCell.xib in Resources */,
+				ECAE241D241A1B8A0050FA8A /* GGDriveFileCell.xib in Resources */,
 				EC0BC4BC21C2653500A6E50E /* backItemImage@2x.png in Resources */,
 				EC0BC4AD21C25E3C00A6E50E /* ActressCell.xib in Resources */,
 				EC9ABE2221CFA5E300C4E90F /* AddressCell.xib in Resources */,
@@ -846,6 +884,7 @@
 			files = (
 				ECF9457721D4C0DD0043E898 /* CategoryItemListController.m in Sources */,
 				EC9ABE2121CFA5E300C4E90F /* AddressCell.m in Sources */,
+				ECAE2417241A14710050FA8A /* GGDriveFolderCell.m in Sources */,
 				ECF9455B21D46AB60043E898 /* MainTabViewController.m in Sources */,
 				EC0BC44621C2394900A6E50E /* MainViewController.m in Sources */,
 				EC0BC4BF21C2653500A6E50E /* RxWebViewNavigationViewController.m in Sources */,
@@ -859,10 +898,12 @@
 				EC0BC49B21C25B5000A6E50E /* NSObject+runtimeCopy.m in Sources */,
 				ECFD29BF21D37E960085E257 /* MovieListBaseController.m in Sources */,
 				EC0BC49921C25B5000A6E50E /* UIScrollView+Refresh.m in Sources */,
+				ECD4F4FE2417D9010076269B /* GoogleDriveManager.m in Sources */,
 				ECF79B3A21DEF680008C097D /* SettingViewController.m in Sources */,
 				ECCCE41C21E42F48006833FE /* MovieCachedController.m in Sources */,
 				EC0BC4BD21C2653500A6E50E /* NJKWebViewProgress.m in Sources */,
 				EC94A1FE21DCA1BA00C1BBCD /* ZHChineseConvert.m in Sources */,
+				ECAE241C241A1B8A0050FA8A /* GGDriveFileCell.m in Sources */,
 				EC94A1FB21DC52F000C1BBCD /* PublicDialogManager.m in Sources */,
 				EC73608F21D90EF00031DFE0 /* MovieSearchListController.m in Sources */,
 				ECF9456421D4AD5E0043E898 /* ActorListBaseController.m in Sources */,
@@ -890,6 +931,7 @@
 				ECF79B2A21DDB372008C097D /* DBManager.m in Sources */,
 				EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */,
 				EC0BC4A021C25B5000A6E50E /* NSString+RegExp.m in Sources */,
+				ECAE2413241A077E0050FA8A /* GGDriveFileController.m in Sources */,
 				ECF9457421D4B86C0043E898 /* CategoryModel.m in Sources */,
 				ECF9457A21D4CB630043E898 /* MovieDetailController.m in Sources */,
 				ECF9457D21D51AB20043E898 /* TitleLinkModel.m in Sources */,
@@ -906,9 +948,11 @@
 				EC0BC49721C25B5000A6E50E /* NSString+XExtend.m in Sources */,
 				EC0BC4A821C25DAB00A6E50E /* ActressCodeController.m in Sources */,
 				ECF79B3321DDE2F7008C097D /* MovieCollectionController.m in Sources */,
+				ECD4F4FB241795AA0076269B /* GoogleSignInManager.m in Sources */,
 				ECA791692416141300EDFF51 /* VideoPlayerManager.m in Sources */,
 				EC9ABE1D21CF4E8600C4E90F /* AddressSettingController.m in Sources */,
 				EC0BC4C321C2ADE900A6E50E /* BaseModel.m in Sources */,
+				ECD4F4F724167D800076269B /* GoogleDriveController.m in Sources */,
 				EC0BC49A21C25B5000A6E50E /* NSDate+Utilities.m in Sources */,
 				ECFD29C221D37FBC0085E257 /* MovieMainController.m in Sources */,
 			);

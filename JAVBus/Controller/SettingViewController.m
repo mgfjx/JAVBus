@@ -8,6 +8,7 @@
 
 #import "SettingViewController.h"
 #import "AddressSettingController.h"
+#import "GoogleDriveController.h"
 
 @interface SettingViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -22,16 +23,19 @@
     self.title = @"设置";
     
     NSArray *dataArray = @[
-                           @[
-                               @{@"title":@"清除缓存图片", @"imgName": @"clear_icon"},
-                               @{@"title":@"删除女优收藏", @"imgName": @"clear_icon"},
-                               @{@"title":@"删除影片收藏", @"imgName": @"clear_icon"},
-                               @{@"title":@"删除影片缓存", @"imgName": @"clear_icon"},
-                               ],
-                           @[
-                               @{@"title":@"选择域名", @"imgName": @"tabbar_setting_unselected"}
-                               ],
-                           ];
+        @[
+            @{@"title":@"备份", @"imgName": @"tabbar_setting_unselected"},
+        ],
+        @[
+            @{@"title":@"清除缓存图片", @"imgName": @"clear_icon"},
+            @{@"title":@"删除女优收藏", @"imgName": @"clear_icon"},
+            @{@"title":@"删除影片收藏", @"imgName": @"clear_icon"},
+            @{@"title":@"删除影片缓存", @"imgName": @"clear_icon"},
+        ],
+        @[
+            @{@"title":@"选择域名", @"imgName": @"tabbar_setting_unselected"}
+        ],
+    ];
     self.dataArray = dataArray;
     
     [self createTableView];
@@ -95,15 +99,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
+        GoogleDriveController *vc = [GoogleDriveController new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if (indexPath.section == 2) {
         
         AddressSettingController * vc = [AddressSettingController new];
-//        vc.hidesBottomBarWhenPushed = YES;
+        //        vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         
     }
     
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             
             //获取缓存图片的大小(字节)

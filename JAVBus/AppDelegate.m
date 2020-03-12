@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "GoogleSignInManager.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,10 @@
     if (@available(iOS 11.0, *)){
         [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
     }
+    
+    [[GoogleSignInManager shareManager] configration];
+    
+    
     return YES;
 }
 
