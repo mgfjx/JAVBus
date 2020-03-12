@@ -10,12 +10,13 @@
 #import "GoogleDriveManager.h"
 #import "GGDriveFolderCell.h"
 #import "GGDriveFileCell.h"
+#import "DropBoxManager.h"
 
 @interface GGDriveFileController ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) NSArray *folderArray ;
 @property (nonatomic, strong) NSArray *fileArray ;
 @property (nonatomic, strong) UITableView *tableView ;
+@property (nonatomic, strong) UIActivityIndicatorView *indicator ;
 
 @end
 
@@ -26,9 +27,6 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.folderArray = @[@1,@1,@1,@1,@1,];
-    self.fileArray = @[@1,@1,@1,@1,@1,];
-    
     [self initViews];
     
     [self getData];
@@ -36,15 +34,17 @@
 
 - (void)getData {
     
-    [[GoogleDriveManager shareManager] getAllFileList:^(NSArray<GTLRDrive_File *> * _Nonnull fileList) {
+    [self.indicator startAnimating];
+    [[DropBoxManager shareManager] getAllFiles:^(NSArray<DBFILESMetadata *> * _Nonnull fileList) {
+        self.fileArray = fileList;
         [self.tableView reloadData];
+        [self.indicator stopAnimating];
     }];
-    
 }
 
 - (void)initViews {
     
-    CGFloat navHeight = 44;
+    CGFloat navHeight = 44 ;
     if (self.modalPresentationStyle == UIModalPresentationFullScreen) {
         navHeight = iPhoneX?88:64;
     }
@@ -59,6 +59,7 @@
     }];
     
     //返回
+    /*
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self action:@selector(completeClicked:) forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:@"完成" forState:UIControlStateNormal];
@@ -67,6 +68,12 @@
     [button setTitleColor:[UIColor colorWithHexString:@"#7497e8"] forState:UIControlStateHighlighted];
     [naviView addSubview:button];
     [button sizeToFit];
+     */
+    
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//    indicator.backgroundColor = [UIColor randomColor];
+    [naviView addSubview:indicator];
+    self.indicator = indicator;
     
     //標題
     UILabel *titleLabel = [[UILabel alloc] init];
@@ -74,12 +81,13 @@
     titleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.textColor = [UIColor colorWithHexString:@"#333333"];
+//    titleLabel.backgroundColor = [UIColor randomColorWithAlpha:0.5];
     [naviView addSubview:titleLabel];
     
     //右側功能按鈕
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightBtn addTarget:self action:@selector(completeClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [rightBtn setTitle:@"刷新" forState:UIControlStateNormal];
+    [rightBtn setTitle:@"完成" forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor colorWithHexString:@"#005fe1"] forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor colorWithHexString:@"#7497e8"] forState:UIControlStateHighlighted];
     rightBtn.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -95,12 +103,11 @@
         make.height.mas_equalTo(1);
     }];
     
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+    [indicator mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
-        make.bottom.mas_equalTo(-8);
         make.centerY.equalTo(titleLabel.mas_centerY).offset(0);
-        make.height.mas_equalTo(button.height);
-        make.width.mas_equalTo(button.width);
+        make.height.mas_equalTo(30);
+        make.width.mas_equalTo(30);
     }];
     
     [rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -111,7 +118,7 @@
     }];
     
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(button.mas_right).offset(8);
+        make.left.equalTo(indicator.mas_right).offset(8);
         make.right.equalTo(rightBtn.mas_left).offset(-8);
         make.bottom.mas_equalTo(0);
         make.height.mas_equalTo(44);
@@ -120,7 +127,7 @@
     UITableView *table = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     table.delegate = self;
     table.dataSource = self;
-    
+    table.backgroundColor = [UIColor colorWithHexString:@"#f2f2f7"];
     [self.view addSubview:table];
     self.tableView = table;
     
@@ -146,18 +153,27 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.folderArray.count + self.fileArray.count;
+    return self.fileArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row < self.folderArray.count) {
+    
+    DBFILESMetadata *file = self.fileArray[indexPath.row];
+    
+    if ([file isKindOfClass:[DBFILESFolderMetadata class]]) {
+        
+        DBFILESFolderMetadata *folder = (DBFILESFolderMetadata *)file;
+        
         NSString *cellReuse = NSStringFromClass([GGDriveFolderCell class]);
         GGDriveFolderCell *cell = (GGDriveFolderCell *)[tableView dequeueReusableCellWithIdentifier:cellReuse];
-        
+        cell.titleLabel.text = folder.name;
         return cell;
     }else {
+        DBFILESFileMetadata *fileObj = (DBFILESFileMetadata *)file;
+        
         NSString *cellReuse = NSStringFromClass([GGDriveFileCell class]);
         GGDriveFileCell *cell = (GGDriveFileCell *)[tableView dequeueReusableCellWithIdentifier:cellReuse];
+        cell.titleLabel.text = fileObj.name;
         
         return cell;
     }

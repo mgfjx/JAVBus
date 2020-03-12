@@ -24,6 +24,9 @@ target 'JAVBus' do
   # google sdk
   pod 'GoogleAPIClientForREST/Drive', '~> 1.3.11'
   pod 'GoogleSignIn', '~> 5.0.2'
+  
+  # DropBox
+  pod 'ObjectiveDropboxOfficial', '~> 3.10.0'
 
   target 'JAVBusTests' do
     inherit! :search_paths

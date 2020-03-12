@@ -74,6 +74,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ObjectiveDropboxOfficial.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-JAVBus.xcscheme</key>
 		<dict>
 			<key>isShown</key>

@@ -10,6 +10,7 @@
 #import "GoogleSignInManager.h"
 #import "GoogleDriveManager.h"
 #import "GGDriveFileController.h"
+#import "DropBoxManager.h"
 
 @interface GoogleDriveController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -71,6 +72,40 @@
         tagBtn = button;
     }
     
+    {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = tagBtn.frame;
+        [button addTarget:self action:@selector(signInDropBox) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:@"SignIn DropBox" forState:UIControlStateNormal];
+        button.backgroundColor = [UIColor randomColorWithAlpha:0.7];
+        [self.view addSubview:button];
+        button.y = CGRectGetMaxY(tagBtn.frame) + 20;
+        maxY = CGRectGetMaxY(button.frame);
+        tagBtn = button;
+    }
+    
+    {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = tagBtn.frame;
+        [button addTarget:self action:@selector(getDropBoxFiles) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:@"DropBox Files" forState:UIControlStateNormal];
+        button.backgroundColor = [UIColor randomColorWithAlpha:0.7];
+        [self.view addSubview:button];
+        button.y = CGRectGetMaxY(tagBtn.frame) + 20;
+        maxY = CGRectGetMaxY(button.frame);
+        tagBtn = button;
+    }
+    
+}
+
+- (void)getDropBoxFiles {
+    
+    
+    
+}
+
+- (void)signInDropBox {
+    [[DropBoxManager shareManager] signIn];
 }
 
 - (void)judgeFile {

@@ -23,21 +23,22 @@
                             <constraint firstAttribute="width" secondItem="NJn-Mj-riV" secondAttribute="height" id="JCL-Th-QeV"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="gutl.jpg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTg-OG-qWl">
-                        <rect key="frame" x="41" y="16" width="52" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="gutl.jpg" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTg-OG-qWl">
+                        <rect key="frame" x="41" y="16" width="355" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HCX-YQ-0TV">
                         <rect key="frame" x="41" y="49" width="363" height="1"/>
-                        <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.9488552213" green="0.94870942830000005" blue="0.96930819749999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="b9Z-Jd-Yxp"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="PTg-OG-qWl" secondAttribute="trailing" constant="8" id="Blu-bG-77F"/>
                     <constraint firstItem="NJn-Mj-riV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PIE-ll-Z7L"/>
                     <constraint firstItem="PTg-OG-qWl" firstAttribute="centerY" secondItem="NJn-Mj-riV" secondAttribute="centerY" id="SMn-L5-QhC"/>
                     <constraint firstItem="NJn-Mj-riV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="bqW-Rs-5DU"/>
@@ -48,7 +49,11 @@
                     <constraint firstAttribute="trailing" secondItem="HCX-YQ-0TV" secondAttribute="trailing" id="w7I-44-zQm"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="titleLabel" destination="PTg-OG-qWl" id="CtJ-A2-Tax"/>
+            </connections>
             <point key="canvasLocation" x="-59.420289855072468" y="76.339285714285708"/>
         </tableViewCell>
     </objects>

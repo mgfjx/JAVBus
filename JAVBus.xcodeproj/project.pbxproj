@@ -62,6 +62,7 @@
 		ECAE2418241A14710050FA8A /* GGDriveFolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAE2416241A14710050FA8A /* GGDriveFolderCell.xib */; };
 		ECAE241C241A1B8A0050FA8A /* GGDriveFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE241A241A1B890050FA8A /* GGDriveFileCell.m */; };
 		ECAE241D241A1B8A0050FA8A /* GGDriveFileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAE241B241A1B8A0050FA8A /* GGDriveFileCell.xib */; };
+		ECAE2420241A77A20050FA8A /* DropBoxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE241F241A77A20050FA8A /* DropBoxManager.m */; };
 		ECCCE41921E39D54006833FE /* Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCCE41821E39D51006833FE /* Encrypt.m */; };
 		ECCCE41C21E42F48006833FE /* MovieCachedController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCCE41B21E42F48006833FE /* MovieCachedController.m */; };
 		ECD4F4F724167D800076269B /* GoogleDriveController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4F4F624167D800076269B /* GoogleDriveController.m */; };
@@ -227,6 +228,8 @@
 		ECAE2419241A1B890050FA8A /* GGDriveFileCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGDriveFileCell.h; sourceTree = "<group>"; };
 		ECAE241A241A1B890050FA8A /* GGDriveFileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGDriveFileCell.m; sourceTree = "<group>"; };
 		ECAE241B241A1B8A0050FA8A /* GGDriveFileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GGDriveFileCell.xib; sourceTree = "<group>"; };
+		ECAE241E241A77A20050FA8A /* DropBoxManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropBoxManager.h; sourceTree = "<group>"; };
+		ECAE241F241A77A20050FA8A /* DropBoxManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropBoxManager.m; sourceTree = "<group>"; };
 		ECCCE41721E39D50006833FE /* Encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encrypt.h; sourceTree = "<group>"; };
 		ECCCE41821E39D51006833FE /* Encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Encrypt.m; sourceTree = "<group>"; };
 		ECCCE41A21E42F48006833FE /* MovieCachedController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCachedController.h; sourceTree = "<group>"; };
@@ -576,6 +579,8 @@
 				ECAE2419241A1B890050FA8A /* GGDriveFileCell.h */,
 				ECAE241A241A1B890050FA8A /* GGDriveFileCell.m */,
 				ECAE241B241A1B8A0050FA8A /* GGDriveFileCell.xib */,
+				ECAE241E241A77A20050FA8A /* DropBoxManager.h */,
+				ECAE241F241A77A20050FA8A /* DropBoxManager.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -910,6 +915,7 @@
 				ECF9456D21D4B7BC0043E898 /* CensoredCategoryController.m in Sources */,
 				ECF79B2D21DDE2C8008C097D /* CollectionViewController.m in Sources */,
 				ECF9458721D5FC220043E898 /* ScreenShotModel.m in Sources */,
+				ECAE2420241A77A20050FA8A /* DropBoxManager.m in Sources */,
 				ECF9458021D5ACD50043E898 /* MovieDetailModel.m in Sources */,
 				ECF9455E21D4AAB60043E898 /* MovieUncensoredController.m in Sources */,
 				ECF9458B21D5FED70043E898 /* ScreenShotCell.m in Sources */,

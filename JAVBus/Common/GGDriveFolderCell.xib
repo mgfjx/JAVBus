@@ -58,8 +58,12 @@
                     <constraint firstItem="Ulc-Ox-u5K" firstAttribute="centerY" secondItem="mgD-UK-Hn6" secondAttribute="centerY" id="q7q-T7-d0W"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <point key="canvasLocation" x="36.956521739130437" y="101.45089285714285"/>
+            <connections>
+                <outlet property="titleLabel" destination="ezE-ye-dn4" id="kPf-wY-gye"/>
+            </connections>
+            <point key="canvasLocation" x="-402" y="92"/>
         </tableViewCell>
     </objects>
     <resources>

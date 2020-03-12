@@ -51,6 +51,7 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.15.7)
+  - ObjectiveDropboxOfficial (3.10.0)
   - pop (1.0.12)
   - SDCycleScrollView (1.75):
     - SDWebImage (>= 4.0.0)
@@ -70,6 +71,7 @@ DEPENDENCIES:
   - Masonry (~> 1.1.0)
   - MBProgressHUD (~> 1.1.0)
   - MJRefresh (~> 3.1.12)
+  - ObjectiveDropboxOfficial (~> 3.10.0)
   - SDCycleScrollView (~> 1.75)
   - SDWebImage (~> 4.0.0)
   - TFHpple (~> 2.0.0)
@@ -90,6 +92,7 @@ SPEC REPOS:
     - Masonry
     - MBProgressHUD
     - MJRefresh
+    - ObjectiveDropboxOfficial
     - pop
     - SDCycleScrollView
     - SDWebImage
@@ -110,11 +113,12 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  ObjectiveDropboxOfficial: 19a4913d4d52fba035d41f40da71df0d6b303327
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   TFHpple: a916fe0799eb30aa29b2670d14d5868cdd3a5b81
 
-PODFILE CHECKSUM: 5e528286901fbbb60e32d98d5d06ef728e7cfef9
+PODFILE CHECKSUM: 3f1bf1442aa59699f03065a0d4857a66d847dbab
 
 COCOAPODS: 1.8.4
