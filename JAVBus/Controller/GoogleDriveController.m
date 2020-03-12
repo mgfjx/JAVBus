@@ -76,7 +76,7 @@
 - (void)judgeFile {
     
     GGDriveFileController *vc = [GGDriveFileController new];
-    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+//    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self presentViewController:vc animated:YES completion:nil];
     
 }

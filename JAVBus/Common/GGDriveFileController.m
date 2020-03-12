@@ -44,7 +44,10 @@
 
 - (void)initViews {
     
-    CGFloat navHeight = iPhoneX?88:64;
+    CGFloat navHeight = 44;
+    if (self.modalPresentationStyle == UIModalPresentationFullScreen) {
+        navHeight = iPhoneX?88:64;
+    }
     
     UIView *naviView = [[UIView alloc] init];
     naviView.backgroundColor = [UIColor whiteColor];
@@ -60,7 +63,8 @@
     [button addTarget:self action:@selector(completeClicked:) forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:@"完成" forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:15];
-    [button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor colorWithHexString:@"#005fe1"] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor colorWithHexString:@"#7497e8"] forState:UIControlStateHighlighted];
     [naviView addSubview:button];
     [button sizeToFit];
     
@@ -76,7 +80,8 @@
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightBtn addTarget:self action:@selector(completeClicked:) forControlEvents:UIControlEventTouchUpInside];
     [rightBtn setTitle:@"刷新" forState:UIControlStateNormal];
-    [rightBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [rightBtn setTitleColor:[UIColor colorWithHexString:@"#005fe1"] forState:UIControlStateNormal];
+    [rightBtn setTitleColor:[UIColor colorWithHexString:@"#7497e8"] forState:UIControlStateHighlighted];
     rightBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [naviView addSubview:rightBtn];
     [rightBtn sizeToFit];
