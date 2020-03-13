@@ -345,15 +345,12 @@
             code = @"";
         }
         
-        if ([DBMANAGER isMovieCacheExsit:self.model]) {
-            NSString *name = [NSString stringWithFormat:@"%@.mp4", [Encrypt md5Encrypt32:self.model.number]];
-            NSString *filePath = [[GlobalTool shareInstance].movieCacheDir stringByAppendingPathComponent:name];
-            
+        NSString *name = [NSString stringWithFormat:@"%@.mp4", [Encrypt md5Encrypt32:self.model.number]];
+        NSString *filePath = [[GlobalTool shareInstance].movieCacheDir stringByAppendingPathComponent:name];
+        BOOL isFileExsit = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+        
+        if ([DBMANAGER isMovieCacheExsit:self.model] && isFileExsit) {
             [self playWithUrl:filePath];
-            
-//            MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
-//            moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-//            [self presentViewController:moviePlayerController animated:YES completion:nil];
         }else {
             [PublicDialogManager showWaittingInView:self.view];
             [HTTPMANAGER getVideoByCode:code SuccessCallback:^(NSDictionary *resultDict) {
