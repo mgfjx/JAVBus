@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DropBoxManager : NSObject
 
+@property (nonatomic, assign, readonly) BOOL isSignIn ;
+
 SingletonDeclare(Manager);
 
 - (void)configration ;
@@ -20,7 +22,7 @@ SingletonDeclare(Manager);
 - (void)signIn ;
 - (BOOL)handleUrl:(NSURL *)url ;
 
-- (void)getAllFiles:(void(^)(NSArray<DBFILESMetadata *> *fileList))completeCallback ;
+- (void)getAllFiles:(NSString *)searchPath callback:(void(^)(NSArray<DBFILESMetadata *> *fileList))completeCallback ;
 
 @end
 

@@ -10,7 +10,6 @@
 #import "GoogleSignInManager.h"
 #import "GoogleDriveManager.h"
 #import "GGDriveFileController.h"
-#import "DropBoxManager.h"
 
 @interface GoogleDriveController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -110,9 +109,14 @@
 
 - (void)judgeFile {
     
+    if (![DropBoxManager shareManager].isSignIn) {
+        [[DropBoxManager shareManager] signIn];
+        return;
+    }
+    
     GGDriveFileController *vc = [GGDriveFileController new];
-//    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    [self presentViewController:vc animated:YES completion:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

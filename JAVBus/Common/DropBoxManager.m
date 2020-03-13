@@ -23,9 +23,14 @@ SingletonImplement(Manager);
 }
 
 - (void)signIn {
-    [DBClientsManager authorizeFromController:[UIApplication sharedApplication] controller:[UIApplication sharedApplication].keyWindow.rootViewController openURL:^(NSURL *url) {
+    UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController ;
+    [DBClientsManager authorizeFromController:[UIApplication sharedApplication] controller:rootVC openURL:^(NSURL *url) {
         [[UIApplication sharedApplication] openURL:url];
     }];
+}
+
+- (BOOL)isSignIn {
+    return [DBClientsManager authorizedClient] || [DBClientsManager authorizedTeamClient];
 }
 
 - (BOOL)handleUrl:(NSURL *)url {
@@ -43,11 +48,23 @@ SingletonImplement(Manager);
     return NO;
 }
 
-- (void)getAllFiles:(void(^)(NSArray<DBFILESMetadata *> *fileList))completeCallback {
+- (void)getAllFiles:(NSString *)searchPath callback:(void(^)(NSArray<DBFILESMetadata *> *fileList))completeCallback {
+    
+    if (!searchPath) {
+        searchPath = @"";
+    }
+    
+    if (!self.isSignIn) {
+        if (completeCallback) {
+            completeCallback(@[]);
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self signIn];
+        });
+        return;
+    }
     
     DBUserClient *client = [DBClientsManager authorizedClient];
-    
-    NSString *searchPath = @"";
     
     // list folder metadata contents (folder will be root "/" Dropbox folder if app has permission
     // "Full Dropbox" or "/Apps/<APP_NAME>/" if app has permission "App Folder").

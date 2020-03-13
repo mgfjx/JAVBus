@@ -25,5 +25,6 @@
 #import "PublicDialogManager.h"
 #import "DBManager.h"
 #import "Encrypt.h"
+#import "DropBoxManager.h"
 
 #endif /* PrefixHeader_pch */

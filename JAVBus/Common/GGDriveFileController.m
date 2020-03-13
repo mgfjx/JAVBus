@@ -10,13 +10,11 @@
 #import "GoogleDriveManager.h"
 #import "GGDriveFolderCell.h"
 #import "GGDriveFileCell.h"
-#import "DropBoxManager.h"
 
 @interface GGDriveFileController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *fileArray ;
 @property (nonatomic, strong) UITableView *tableView ;
-@property (nonatomic, strong) UIActivityIndicatorView *indicator ;
 
 @end
 
@@ -27,6 +25,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    self.title = @"DropBox";
+    
     [self initViews];
     
     [self getData];
@@ -34,94 +34,48 @@
 
 - (void)getData {
     
-    [self.indicator startAnimating];
-    [[DropBoxManager shareManager] getAllFiles:^(NSArray<DBFILESMetadata *> * _Nonnull fileList) {
+    if (!self.folderPath) {
+        self.folderPath = @"";
+    }
+    
+    [PublicDialogManager showWaittingInView:self.view];
+    [[DropBoxManager shareManager] getAllFiles:self.folderPath callback:^(NSArray<DBFILESMetadata *> * _Nonnull fileList) {
+        [PublicDialogManager hideWaittingInView:self.view];
         self.fileArray = fileList;
         [self.tableView reloadData];
-        [self.indicator stopAnimating];
     }];
 }
 
 - (void)initViews {
     
-    CGFloat navHeight = 44 ;
-    if (self.modalPresentationStyle == UIModalPresentationFullScreen) {
-        navHeight = iPhoneX?88:64;
-    }
+    UIView *controlView = [[UIView alloc] init];
+    controlView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:controlView];
     
-    UIView *naviView = [[UIView alloc] init];
-    naviView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:naviView];
-    
-    [naviView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(navHeight);
-    }];
-    
-    //返回
-    /*
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self action:@selector(completeClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@"完成" forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:15];
-    [button setTitleColor:[UIColor colorWithHexString:@"#005fe1"] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor colorWithHexString:@"#7497e8"] forState:UIControlStateHighlighted];
-    [naviView addSubview:button];
-    [button sizeToFit];
-     */
-    
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//    indicator.backgroundColor = [UIColor randomColor];
-    [naviView addSubview:indicator];
-    self.indicator = indicator;
-    
-    //標題
-    UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.text = @"Google Drive";
-    titleLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightBold];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.textColor = [UIColor colorWithHexString:@"#333333"];
-//    titleLabel.backgroundColor = [UIColor randomColorWithAlpha:0.5];
-    [naviView addSubview:titleLabel];
-    
-    //右側功能按鈕
-    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightBtn addTarget:self action:@selector(completeClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [rightBtn setTitle:@"完成" forState:UIControlStateNormal];
-    [rightBtn setTitleColor:[UIColor colorWithHexString:@"#005fe1"] forState:UIControlStateNormal];
-    [rightBtn setTitleColor:[UIColor colorWithHexString:@"#7497e8"] forState:UIControlStateHighlighted];
-    rightBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [naviView addSubview:rightBtn];
-    [rightBtn sizeToFit];
+    [button addTarget:self action:@selector(backupToCurrentFolder) forControlEvents:UIControlEventTouchUpInside];
+    [button setTitle:@"备份到当前目录" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor colorWithHexString:@"#006be3"] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor colorWithHexString:@"#6d9cea"] forState:UIControlStateHighlighted];
+    [controlView addSubview:button];
     
     UIView *line = [[UIView alloc] init];
     line.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
-    [naviView addSubview:line];
+    [controlView addSubview:line];
     
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
+        make.left.right.top.mas_equalTo(0);
         make.height.mas_equalTo(1);
     }];
     
-    [indicator mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
-        make.centerY.equalTo(titleLabel.mas_centerY).offset(0);
-        make.height.mas_equalTo(30);
-        make.width.mas_equalTo(30);
+    [controlView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(iPhoneX?60:40);
     }];
     
-    [rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-10);
-        make.centerY.equalTo(titleLabel.mas_centerY).offset(0);
-        make.height.mas_equalTo(rightBtn.height);
-        make.width.mas_equalTo(rightBtn.width);
-    }];
-    
-    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(indicator.mas_right).offset(8);
-        make.right.equalTo(rightBtn.mas_left).offset(-8);
-        make.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(44);
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(iPhoneX?-20:0);
     }];
     
     UITableView *table = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -137,8 +91,9 @@
     table.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [table mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
-        make.top.equalTo(naviView.mas_bottom).offset(0);
+        make.left.right.mas_equalTo(0);
+        make.top.mas_offset(kNavigationBarHeight);
+        make.bottom.equalTo(controlView.mas_top).offset(0);
     }];
     
 }
@@ -181,10 +136,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    DBFILESMetadata *file = self.fileArray[indexPath.row];
+    if ([file isKindOfClass:[DBFILESFolderMetadata class]]) {
+        DBFILESFolderMetadata *folder = (DBFILESFolderMetadata *)file;
+        
+        GGDriveFileController *vc = [GGDriveFileController new];
+        vc.folderPath = folder.pathDisplay;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }else {
+        DBFILESFileMetadata *fileObj = (DBFILESFileMetadata *)file;
+        [self downloadImage:fileObj.pathDisplay];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44;
+}
+
+- (void)downloadImage:(NSString *)imagePath {
+    
+}
+
+- (void)backupToCurrentFolder {
+    
+    
+    
 }
 
 @end
