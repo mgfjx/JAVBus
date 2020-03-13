@@ -62,29 +62,29 @@
                                 <color key="textColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15m" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcf-Wv-GAh">
-                                <rect key="frame" x="0.0" y="23" width="200" height="15"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2014-04-27 02:48:53" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4N-P9-tsA">
+                                <rect key="frame" x="0.0" y="23" width="294" height="12"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
                                 <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2014-04-27 02:48:53" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4N-P9-tsA">
-                                <rect key="frame" x="200" y="23" width="134" height="14.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15m" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcf-Wv-GAh">
+                                <rect key="frame" x="294" y="23" width="40" height="12"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="134" id="fId-NA-5bZ"/>
+                                    <constraint firstAttribute="width" constant="40" id="9tl-LL-9pC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
                                 <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Q4N-P9-tsA" firstAttribute="leading" secondItem="tcf-Wv-GAh" secondAttribute="trailing" id="0po-XY-j1j"/>
-                            <constraint firstItem="tcf-Wv-GAh" firstAttribute="centerY" secondItem="Q4N-P9-tsA" secondAttribute="centerY" id="OAx-A4-I5m"/>
+                            <constraint firstItem="tcf-Wv-GAh" firstAttribute="leading" secondItem="Q4N-P9-tsA" secondAttribute="trailing" id="EaE-Xw-V0P"/>
+                            <constraint firstItem="tcf-Wv-GAh" firstAttribute="top" secondItem="PTg-OG-qWl" secondAttribute="bottom" constant="2" id="JRy-hQ-s24"/>
+                            <constraint firstItem="Q4N-P9-tsA" firstAttribute="centerY" secondItem="tcf-Wv-GAh" secondAttribute="centerY" id="QTR-Hg-gmY"/>
                             <constraint firstItem="PTg-OG-qWl" firstAttribute="leading" secondItem="YsN-7h-cHh" secondAttribute="leading" id="Sgs-rN-XB4"/>
-                            <constraint firstItem="tcf-Wv-GAh" firstAttribute="leading" secondItem="YsN-7h-cHh" secondAttribute="leading" id="gXk-HT-tkh"/>
-                            <constraint firstAttribute="trailing" secondItem="Q4N-P9-tsA" secondAttribute="trailing" id="jTW-5z-gNc"/>
-                            <constraint firstItem="Q4N-P9-tsA" firstAttribute="top" secondItem="PTg-OG-qWl" secondAttribute="bottom" constant="2" id="oaf-BL-Ajg"/>
+                            <constraint firstAttribute="trailing" secondItem="tcf-Wv-GAh" secondAttribute="trailing" id="WoD-aq-anD"/>
+                            <constraint firstItem="Q4N-P9-tsA" firstAttribute="leading" secondItem="YsN-7h-cHh" secondAttribute="leading" id="lTE-Ek-GMn"/>
                             <constraint firstAttribute="trailing" secondItem="PTg-OG-qWl" secondAttribute="trailing" constant="20" symbolic="YES" id="tct-wd-iDF"/>
                             <constraint firstItem="PTg-OG-qWl" firstAttribute="centerY" secondItem="YsN-7h-cHh" secondAttribute="centerY" constant="-10" id="wSh-FK-dmk"/>
                         </constraints>
@@ -108,7 +108,9 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="dateLabel" destination="Q4N-P9-tsA" id="4i1-Ed-A3A"/>
                 <outlet property="recoverBtn" destination="ny3-z3-WNs" id="iz9-uD-7bC"/>
+                <outlet property="sizeLabel" destination="tcf-Wv-GAh" id="VOm-gl-fqe"/>
                 <outlet property="titleLabel" destination="PTg-OG-qWl" id="CtJ-A2-Tax"/>
             </connections>
             <point key="canvasLocation" x="-446.37681159420293" y="-86.383928571428569"/>
