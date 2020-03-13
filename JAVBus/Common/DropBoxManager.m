@@ -79,49 +79,152 @@ SingletonImplement(Manager);
             if (completeCallback) {
                 completeCallback(@[]);
             }
-            NSString *title = @"";
-            NSString *message = @"";
-            if (routeError) {
-                // Route-specific request error
-                title = @"Route-specific error";
-                if ([routeError isPath]) {
-                    message = [NSString stringWithFormat:@"Invalid path: %@", routeError.path];
-                }
-            } else {
-                // Generic request error
-                title = @"Generic request error";
-                if ([error isInternalServerError]) {
-                    DBRequestInternalServerError *internalServerError = [error asInternalServerError];
-                    message = [NSString stringWithFormat:@"%@", internalServerError];
-                } else if ([error isBadInputError]) {
-                    DBRequestBadInputError *badInputError = [error asBadInputError];
-                    message = [NSString stringWithFormat:@"%@", badInputError];
-                } else if ([error isAuthError]) {
-                    DBRequestAuthError *authError = [error asAuthError];
-                    message = [NSString stringWithFormat:@"%@", authError];
-                } else if ([error isRateLimitError]) {
-                    DBRequestRateLimitError *rateLimitError = [error asRateLimitError];
-                    message = [NSString stringWithFormat:@"%@", rateLimitError];
-                } else if ([error isHttpError]) {
-                    DBRequestHttpError *genericHttpError = [error asHttpError];
-                    message = [NSString stringWithFormat:@"%@", genericHttpError];
-                } else if ([error isClientError]) {
-                    DBRequestClientError *genericLocalError = [error asClientError];
-                    message = [NSString stringWithFormat:@"%@", genericLocalError];
-                }
-            }
             
-            UIAlertController *alertController =
-            [UIAlertController alertControllerWithTitle:title
-                                                message:message
-                                         preferredStyle:(UIAlertControllerStyle)UIAlertControllerStyleAlert];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
-                                                                style:(UIAlertActionStyle)UIAlertActionStyleCancel
-                                                              handler:nil]];
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
         }
     }];
     
+}
+
+//同步数据库
+- (void)syncDBFiles:(void (^)(CGFloat progress))progressCallback completeCallback:(void (^)(BOOL completed))completeCallback {
+    
+    NSData *fileData = [NSData dataWithContentsOfFile:[DBManager manager].dbPath];
+    
+    if (!fileData) {
+        NSLog(@"fileData 为空!");
+        return;
+    }
+    
+    // For overriding on upload
+    DBFILESWriteMode *mode = [[DBFILESWriteMode alloc] initWithOverwrite];
+    
+    DBUserClient *client = [DBClientsManager authorizedClient];
+    
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    hud.mode = MBProgressHUDModeDeterminate;
+    [[[client.filesRoutes uploadData:@"/JAVBus/JavBus.db"
+                                mode:mode
+                          autorename:@(YES)
+                      clientModified:nil
+                                mute:@(NO)
+                      propertyGroups:nil
+                      strictConflict:nil
+                           inputData:fileData]
+      setResponseBlock:^(DBFILESFileMetadata *result, DBFILESUploadError *routeError, DBRequestError *networkError) {
+        if (result) {
+            NSLog(@"%@\n", result);
+            if (completeCallback) {
+                completeCallback(YES);
+            }
+        } else {
+            NSLog(@"%@\n%@\n", routeError, networkError);
+            if (completeCallback) {
+                completeCallback(NO);
+            }
+            [self dealWithRouteError:routeError requestError:networkError];
+        }
+    }] setProgressBlock:^(int64_t bytesUploaded, int64_t totalBytesUploaded, int64_t totalBytesExpectedToUploaded) {
+        NSLog(@"上传进度: %f", totalBytesUploaded*1.0/totalBytesExpectedToUploaded);
+        CGFloat upload = totalBytesUploaded*1.0/totalBytesExpectedToUploaded;
+        if (progressCallback) {
+            progressCallback(upload);
+        }
+    }];
+    
+}
+
+//恢复数据库
+- (void)recoverDBFile:(DBFILESFileMetadata *)file
+     progressCallback:(void (^)(CGFloat progress))progressCallback
+     completeCallback:(void (^)(BOOL completed))completeCallback { 
+    
+    NSString *pathDisplay = file.pathDisplay;
+    
+    DBUserClient *client = [DBClientsManager authorizedClient];
+    [[[client.filesRoutes downloadData:pathDisplay]
+      setResponseBlock:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *error, NSData *fileData) {
+        if (result) {
+            NSString *filePath = [DBManager manager].dbPath;
+            [fileData writeToFile:filePath atomically:YES];
+            if (completeCallback) {
+                completeCallback(YES);
+            }
+        } else {
+            [self dealWithRouteError:routeError requestError:error];
+            if (completeCallback) {
+                completeCallback(NO);
+            }
+        }
+    }] setProgressBlock:^(int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+        NSLog(@"上传进度: %f", totalBytesWritten*1.0/totalBytesExpectedToWrite);
+        CGFloat progress = totalBytesWritten*1.0/totalBytesExpectedToWrite;
+        if (progressCallback) {
+            progressCallback(progress);
+        }
+    }];
+    
+}
+
+
+/// 处理错误
+- (void)dealWithRouteError:(id)routeError requestError:(DBRequestError *)error {
+    
+    
+    NSString *title = @"";
+    NSString *message = @"";
+    BOOL isPath = NO;
+    id path = @"";
+    
+    if ([routeError isKindOfClass:[DBFILESDownloadError class]]) {
+        DBFILESDownloadError *downloadError = (DBFILESDownloadError *)routeError;
+        isPath = [downloadError isPath];
+        path = downloadError.path;
+    }
+    
+    if ([routeError isKindOfClass:[DBFILESUploadError class]]) {
+        DBFILESUploadError *downloadError = (DBFILESUploadError *)routeError;
+        isPath = [downloadError isPath];
+        path = downloadError.path;
+    }
+    
+    if (routeError) {
+        // Route-specific request error
+        title = @"Route-specific error";
+        if (isPath) {
+            message = [NSString stringWithFormat:@"Invalid path: %@", path];
+        }
+    } else {
+        // Generic request error
+        title = @"Generic request error";
+        if ([error isInternalServerError]) {
+            DBRequestInternalServerError *internalServerError = [error asInternalServerError];
+            message = [NSString stringWithFormat:@"%@", internalServerError];
+        } else if ([error isBadInputError]) {
+            DBRequestBadInputError *badInputError = [error asBadInputError];
+            message = [NSString stringWithFormat:@"%@", badInputError];
+        } else if ([error isAuthError]) {
+            DBRequestAuthError *authError = [error asAuthError];
+            message = [NSString stringWithFormat:@"%@", authError];
+        } else if ([error isRateLimitError]) {
+            DBRequestRateLimitError *rateLimitError = [error asRateLimitError];
+            message = [NSString stringWithFormat:@"%@", rateLimitError];
+        } else if ([error isHttpError]) {
+            DBRequestHttpError *genericHttpError = [error asHttpError];
+            message = [NSString stringWithFormat:@"%@", genericHttpError];
+        } else if ([error isClientError]) {
+            DBRequestClientError *genericLocalError = [error asClientError];
+            message = [NSString stringWithFormat:@"%@", genericLocalError];
+        }
+    }
+    
+    UIAlertController *alertController =
+    [UIAlertController alertControllerWithTitle:title
+                                        message:message
+                                 preferredStyle:(UIAlertControllerStyle)UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                        style:(UIAlertActionStyle)UIAlertActionStyleCancel
+                                                      handler:nil]];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

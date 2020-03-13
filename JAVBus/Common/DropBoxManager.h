@@ -24,6 +24,14 @@ SingletonDeclare(Manager);
 
 - (void)getAllFiles:(NSString *)searchPath callback:(void(^)(NSArray<DBFILESMetadata *> *fileList))completeCallback ;
 
+//同步数据库
+- (void)syncDBFiles:(void (^)(CGFloat progress))progressCallback completeCallback:(void (^)(BOOL completed))completeCallback ;
+
+//恢复数据库
+- (void)recoverDBFile:(DBFILESFileMetadata *)file
+     progressCallback:(void (^)(CGFloat progress))progressCallback
+     completeCallback:(void (^)(BOOL completed))completeCallback ;
+
 @end
 
 NS_ASSUME_NONNULL_END

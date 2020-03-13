@@ -10,6 +10,7 @@
 #import "GoogleDriveManager.h"
 #import "GGDriveFolderCell.h"
 #import "GGDriveFileCell.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface GGDriveFileController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -23,9 +24,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#f2f2f7"];
     
-    self.title = @"DropBox";
+    if (self.folderPath.length == 0) {
+        self.title = @"/";
+    }else{
+        self.title = self.folderPath;
+    }
     
     [self initViews];
     
@@ -48,40 +53,13 @@
 
 - (void)initViews {
     
-    UIView *controlView = [[UIView alloc] init];
-    controlView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:controlView];
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self action:@selector(backupToCurrentFolder) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@"备份到当前目录" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor colorWithHexString:@"#006be3"] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor colorWithHexString:@"#6d9cea"] forState:UIControlStateHighlighted];
-    [controlView addSubview:button];
-    
-    UIView *line = [[UIView alloc] init];
-    line.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
-    [controlView addSubview:line];
-    
-    [line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(1);
-    }];
-    
-    [controlView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(iPhoneX?60:40);
-    }];
-    
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
-        make.bottom.mas_equalTo(iPhoneX?-20:0);
-    }];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"同步" style:UIBarButtonItemStylePlain target:self action:@selector(backupToCurrentFolder)];
+    self.navigationItem.rightBarButtonItem = item;
     
     UITableView *table = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     table.delegate = self;
     table.dataSource = self;
-    table.backgroundColor = [UIColor colorWithHexString:@"#f2f2f7"];
+    table.backgroundColor = [UIColor clearColor];
     [self.view addSubview:table];
     self.tableView = table;
     
@@ -93,7 +71,7 @@
     [table mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
         make.top.mas_offset(kNavigationBarHeight);
-        make.bottom.equalTo(controlView.mas_top).offset(0);
+        make.bottom.mas_equalTo(iPhoneX?-20:0);
     }];
     
 }
@@ -128,7 +106,11 @@
         
         NSString *cellReuse = NSStringFromClass([GGDriveFileCell class]);
         GGDriveFileCell *cell = (GGDriveFileCell *)[tableView dequeueReusableCellWithIdentifier:cellReuse];
-        cell.titleLabel.text = fileObj.name;
+        cell.file = fileObj;
+        WeakSelf(weakSelf);
+        cell.recoverCallback = ^(DBFILESFileMetadata * _Nonnull file) {
+            [weakSelf recoverBtnClicked:file];
+        };
         
         return cell;
     }
@@ -159,9 +141,33 @@
     
 }
 
+//恢复数据库
+- (void)recoverBtnClicked:(DBFILESFileMetadata *)file {
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeDeterminate;
+    [[DropBoxManager shareManager] recoverDBFile:file progressCallback:^(CGFloat progress) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            hud.progress = progress;
+        });
+    } completeCallback:^(BOOL completed) {
+        [hud hideAnimated:YES];
+    }];
+    
+}
+
 - (void)backupToCurrentFolder {
     
-    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeDeterminate;
+    [[DropBoxManager shareManager] syncDBFiles:^(CGFloat progress) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            hud.progress = progress;
+        });
+    } completeCallback:^(BOOL completed) {
+        [hud hideAnimated:YES];
+        [self getData];
+    }];
     
 }
 

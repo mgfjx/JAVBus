@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import "AddressSettingController.h"
 #import "GoogleDriveController.h"
+#import "GGDriveFileController.h"
 
 @interface SettingViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -24,7 +25,7 @@
     
     NSArray *dataArray = @[
         @[
-            @{@"title":@"备份", @"imgName": @"tabbar_setting_unselected"},
+            @{@"title":@"DropBox备份与恢复", @"imgName": @"dropbox"},
         ],
         @[
             @{@"title":@"清除缓存图片", @"imgName": @"clear_icon"},
@@ -53,10 +54,10 @@
     table.dataSource = self;
     if (@available(iOS 13.0, *)) {
         table.backgroundColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-            return traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark ? [UIColor blackColor]:[UIColor colorWithHexString:@"#ecedee"];
+            return traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark ? [UIColor blackColor]:[UIColor colorWithHexString:@"#f2f2f7"];
         }];
     } else {
-        table.backgroundColor = [UIColor colorWithHexString:@"#ecedee"];
+        table.backgroundColor = [UIColor colorWithHexString:@"#f2f2f7"];
     }
     
     [self.view addSubview:table];
@@ -106,7 +107,16 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     if (indexPath.section == 0) {
-        GoogleDriveController *vc = [GoogleDriveController new];
+//        GoogleDriveController *vc = [GoogleDriveController new];
+//        [self.navigationController pushViewController:vc animated:YES];
+        
+        if (![DropBoxManager shareManager].isSignIn) {
+            [[DropBoxManager shareManager] signIn];
+            return;
+        }
+        
+        GGDriveFileController *vc = [GGDriveFileController new];
+        vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
     

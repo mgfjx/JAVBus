@@ -15,6 +15,7 @@
 
 @interface DBManager : NSObject
 
+@property (nonatomic, strong) NSString *dbPath ;
 + (instancetype)manager ;
 
 

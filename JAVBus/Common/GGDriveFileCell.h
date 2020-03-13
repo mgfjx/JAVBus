@@ -12,7 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GGDriveFileCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) DBFILESFileMetadata *file;
+@property (nonatomic, copy) void (^recoverCallback) (DBFILESFileMetadata *file) ;
 
 @end
 

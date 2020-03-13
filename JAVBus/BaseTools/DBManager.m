@@ -7,7 +7,7 @@
 //
 
 #import "DBManager.h"
-#import <FMDB/FMDB.h>
+#import <fmdb/FMDB.h>
 
 static DBManager *singleton ;
 
@@ -58,6 +58,7 @@ static DBManager *singleton ;
     
     NSString *dbPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     dbPath = [NSString stringWithFormat:@"%@/JavBus.db", dbPath];
+    self.dbPath = dbPath ;
     NSLog(@"dbPath: %@", dbPath);
     
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
