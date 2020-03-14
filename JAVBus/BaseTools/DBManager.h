@@ -12,6 +12,7 @@
 #import "TitleLinkModel.h"
 #import "ScreenShotModel.h"
 #import "RecommendModel.h"
+#import "MagneticModel.h"
 
 @interface DBManager : NSObject
 

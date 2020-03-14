@@ -69,7 +69,9 @@
 /**
  获取movie详情
  */
-- (void)parseMovieDetailByUrl:(NSString *)url callback:(void (^)(MovieDetailModel *model))callback ;
+- (void)parseMovieDetailByUrl:(NSString *)url
+               detailCallback:(void (^)(MovieDetailModel *model))detailCallback
+             magneticCallback:(void (^)(NSArray *magneticList))magneticCallback ;
 
 /**
  搜索影片

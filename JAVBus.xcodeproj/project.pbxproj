@@ -41,6 +41,8 @@
 		EC0BC4C021C2653500A6E50E /* RxWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC4BA21C2653500A6E50E /* RxWebViewController.m */; };
 		EC0BC4C321C2ADE900A6E50E /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC4C221C2ADE900A6E50E /* BaseModel.m */; };
 		EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC4C521C2AE1D00A6E50E /* ActressModel.m */; };
+		EC5F058F241D14C40055B6B5 /* MagneticModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F058E241D14C40055B6B5 /* MagneticModel.m */; };
+		EC5F0592241D16590055B6B5 /* NSString+XLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F0591241D16590055B6B5 /* NSString+XLHelper.m */; };
 		EC73608C21D90D5B0031DFE0 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73608B21D90D5B0031DFE0 /* SearchViewController.m */; };
 		EC73608F21D90EF00031DFE0 /* MovieSearchListController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73608E21D90EF00031DFE0 /* MovieSearchListController.m */; };
 		EC73609221D90F630031DFE0 /* ActressSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73609121D90F630031DFE0 /* ActressSearchController.m */; };
@@ -192,6 +194,10 @@
 		EC0BC4C221C2ADE900A6E50E /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		EC0BC4C421C2AE1D00A6E50E /* ActressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressModel.h; sourceTree = "<group>"; };
 		EC0BC4C521C2AE1D00A6E50E /* ActressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressModel.m; sourceTree = "<group>"; };
+		EC5F058D241D14C40055B6B5 /* MagneticModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagneticModel.h; sourceTree = "<group>"; };
+		EC5F058E241D14C40055B6B5 /* MagneticModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagneticModel.m; sourceTree = "<group>"; };
+		EC5F0590241D16590055B6B5 /* NSString+XLHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+XLHelper.h"; sourceTree = "<group>"; };
+		EC5F0591241D16590055B6B5 /* NSString+XLHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+XLHelper.m"; sourceTree = "<group>"; };
 		EC73608A21D90D5B0031DFE0 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		EC73608B21D90D5B0031DFE0 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		EC73608D21D90EF00031DFE0 /* MovieSearchListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieSearchListController.h; sourceTree = "<group>"; };
@@ -459,6 +465,8 @@
 				EC0BC48921C25B5000A6E50E /* NSDate+XExtend.m */,
 				EC0BC48721C25B5000A6E50E /* NSString+RegExp.h */,
 				EC0BC49521C25B5000A6E50E /* NSString+RegExp.m */,
+				EC5F0590241D16590055B6B5 /* NSString+XLHelper.h */,
+				EC5F0591241D16590055B6B5 /* NSString+XLHelper.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -598,6 +606,8 @@
 				ECF9458621D5FC220043E898 /* ScreenShotModel.m */,
 				ECF9458D21D60AE00043E898 /* RecommendModel.h */,
 				ECF9458E21D60AE00043E898 /* RecommendModel.m */,
+				EC5F058D241D14C40055B6B5 /* MagneticModel.h */,
+				EC5F058E241D14C40055B6B5 /* MagneticModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -906,6 +916,7 @@
 				ECD4F4FE2417D9010076269B /* GoogleDriveManager.m in Sources */,
 				ECF79B3A21DEF680008C097D /* SettingViewController.m in Sources */,
 				ECCCE41C21E42F48006833FE /* MovieCachedController.m in Sources */,
+				EC5F058F241D14C40055B6B5 /* MagneticModel.m in Sources */,
 				EC0BC4BD21C2653500A6E50E /* NJKWebViewProgress.m in Sources */,
 				EC94A1FE21DCA1BA00C1BBCD /* ZHChineseConvert.m in Sources */,
 				ECAE241C241A1B8A0050FA8A /* GGDriveFileCell.m in Sources */,
@@ -915,6 +926,7 @@
 				ECF9456D21D4B7BC0043E898 /* CensoredCategoryController.m in Sources */,
 				ECF79B2D21DDE2C8008C097D /* CollectionViewController.m in Sources */,
 				ECF9458721D5FC220043E898 /* ScreenShotModel.m in Sources */,
+				EC5F0592241D16590055B6B5 /* NSString+XLHelper.m in Sources */,
 				ECAE2420241A77A20050FA8A /* DropBoxManager.m in Sources */,
 				ECF9458021D5ACD50043E898 /* MovieDetailModel.m in Sources */,
 				ECF9455E21D4AAB60043E898 /* MovieUncensoredController.m in Sources */,

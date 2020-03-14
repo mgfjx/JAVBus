@@ -12,6 +12,7 @@
 #import "ScreenShotCell.h"
 #import "ScreenShotModel.h"
 #import "RecommendModel.h"
+#import "MagneticModel.h"
 #import "RecommendCell.h"
 #import <IDMPhotoBrowser/IDMPhotoBrowser.h>
 #import "CategoryItemListController.h"
@@ -19,6 +20,8 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <AVKit/AVKit.h>
 #import "VideoPlayerManager.h"
+
+#define kMainTextColor @"#333333"
 
 @interface MovieDetailController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -54,15 +57,14 @@
         self.detailModel = model;
         [self createDetailView];
     }else{
-        [HTMLTOJSONMANAGER parseMovieDetailByUrl:self.model.link callback:^(MovieDetailModel *model) {
+        [HTMLTOJSONMANAGER parseMovieDetailByUrl:self.model.link detailCallback:^(MovieDetailModel *model) {
             [self.scrollView stopHeaderRefreshing];
-            if (model) {
-                //            self.scrollView.canPullDown = NO;
-            }
             model.title = self.model.title;
             model.number = self.model.number;
             self.detailModel = model;
             [self createDetailView];
+        } magneticCallback:^(NSArray *magneticList) {
+            
         }];
     }
     
@@ -162,6 +164,7 @@
         UILabel *label = [[UILabel alloc] init];
         label.font = font;
         label.text = content;
+        label.textColor = [UIColor colorWithHexString:kMainTextColor];
         label.numberOfLines = 0;
         [bgView addSubview:label];
         [label sizeToFit];
@@ -183,6 +186,7 @@
             
             UILabel *label = [[UILabel alloc] init];
             label.text = title;
+            label.textColor = [UIColor colorWithHexString:kMainTextColor];
             label.font = MHMediumFont(14);
             [bgView addSubview:label];
             [label sizeToFit];
@@ -243,6 +247,7 @@
             UILabel *label = [[UILabel alloc] init];
             label.text = @"樣品圖像";
             label.font = MHMediumFont(14);
+            label.textColor = [UIColor colorWithHexString:kMainTextColor];
             [bgView addSubview:label];
             [label sizeToFit];
             label.x = offset;
@@ -279,6 +284,7 @@
             
             UILabel *label = [[UILabel alloc] init];
             label.text = @"同類影片";
+            label.textColor = [UIColor colorWithHexString:kMainTextColor];
             label.font = MHMediumFont(14);
             [bgView addSubview:label];
             [label sizeToFit];
@@ -419,21 +425,7 @@
 }
 
 - (void)playWithUrl:(NSString *)url {
-    
-//    AVPlayerViewController *playerVC = [[AVPlayerViewController alloc] init];
-//    playerVC.player = [AVPlayer playerWithURL:url];
-//    playerVC.view.frame = self.view.bounds;
-//    playerVC.showsPlaybackControls = YES;
-//    [self.view addSubview:playerVC.view];
-//    self.playerVC = playerVC;
-//
-//    if (playerVC.readyForDisplay) {
-//        [playerVC.player play];
-//    }
-//    [playerVC.player play];
-    
     [[VideoPlayerManager shareManager] showPlayerWithUrl:url];
-    
 }
 
 - (void)tapCorver {
@@ -466,6 +458,7 @@
         RecommendModel *model = self.detailModel.recommends[indexPath.item];
         [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:MovieListPlaceHolder];
         cell.titleLabel.text = model.title;
+        cell.titleLabel.textColor = [UIColor colorWithHexString:kMainTextColor];
         return cell;
     }
 }
