@@ -20,7 +20,7 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <AVKit/AVKit.h>
 #import "VideoPlayerManager.h"
-#import "MagneticItemView.h"
+#import "MagneticListView.h"
 
 #define kMainTextColor @"#333333"
 
@@ -34,6 +34,9 @@
 @property (nonatomic, strong) UICollectionView *screenshotView ;
 @property (nonatomic, strong) UICollectionView *recommendView ;
 @property (nonatomic, strong) AVPlayerViewController *playerVC ;
+
+@property (nonatomic, strong) MagneticListView *magneticView;
+@property (nonatomic, strong) UIView *recommendContainer;
 
 @end
 
@@ -68,7 +71,7 @@
             [self createDetailView];
         } magneticCallback:^(NSArray *magneticList) {
             self.magneticList = magneticList;
-            [self createDetailView];
+            self.magneticView.magneticArray = magneticList;
         }];
     }
     
@@ -178,11 +181,16 @@
         maxHeight = CGRectGetMaxY(label.frame);
     }
     
+    //简介
     {
+        UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, maxHeight, bgView.width, 0)];
+        [bgView addSubview:container];
+        
         NSArray *infos = model.infoArray;
         
+        CGFloat heightRecord = 0;
         for (int i = 0; i < infos.count; i++) {
-            maxHeight += offset;
+            heightRecord += offset;
             
             NSDictionary *dict = infos[i];
             NSString *title = dict.allKeys.firstObject;
@@ -192,12 +200,12 @@
             label.text = title;
             label.textColor = [UIColor colorWithHexString:kMainTextColor];
             label.font = MHMediumFont(14);
-            [bgView addSubview:label];
+            [container addSubview:label];
             [label sizeToFit];
             label.x = offset;
-            label.y = maxHeight + offset;
+            label.y = heightRecord + offset;
             
-            maxHeight = CGRectGetMaxY(label.frame);
+            heightRecord = CGRectGetMaxY(label.frame);
             CGFloat currentMiddle = label.centerY;
             
             CGFloat xPosition = CGRectGetMaxX(label.frame) + offset;
@@ -207,9 +215,9 @@
                 button.text = item.title;
                 button.textColor = [UIColor whiteColor];
                 button.textAlignment = NSTextAlignmentCenter;
-                button.backgroundColor = [UIColor colorWithHexString:@"#1d65ee"];
+                button.backgroundColor = [UIColor colorWithHexString:@"#febe00"];
                 button.font = [UIFont systemFontOfSize:12];
-                [bgView addSubview:button];
+                [container addSubview:button];
                 [button sizeToFit];
                 button.layer.cornerRadius = button.height/4;
                 button.layer.masksToBounds = YES;
@@ -217,15 +225,15 @@
                 button.height = button.height + 2*offset;
                 if (xPosition + offset + button.width > scrollView.width - offset) {
                     xPosition = 0;
-                    maxHeight = maxHeight + offset + button.height;
-                    currentMiddle = maxHeight + offset - button.height/2;
+                    heightRecord = heightRecord + offset + button.height;
+                    currentMiddle = heightRecord + offset - button.height/2;
                 }
                 button.x = xPosition + offset;
                 button.centerY = currentMiddle;
                 
                 xPosition = CGRectGetMaxX(button.frame);
                 if (item == items.lastObject) {
-                    maxHeight = CGRectGetMaxY(button.frame);
+                    heightRecord = CGRectGetMaxY(button.frame);
                 }
                 
                 WeakSelf(weakSelf)
@@ -242,11 +250,14 @@
             
         }
         
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, maxHeight+10, bgView.width, 1)];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, heightRecord+10, bgView.width, 1)];
         line.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
-        [bgView addSubview:line];
+        [container addSubview:line];
+        heightRecord = CGRectGetMaxY(line.frame);
         
-        maxHeight = CGRectGetMaxY(line.frame);
+        container.height = heightRecord;
+        
+        maxHeight = CGRectGetMaxY(container.frame);
     }
     
     maxHeight += offset;
@@ -254,40 +265,48 @@
     {
         if (model.screenshots.count > 0) {
             
+            UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, maxHeight, bgView.width, 0)];
+            [bgView addSubview:container];
+            
+            CGFloat heightRecord = 0;
+            
             UILabel *label = [[UILabel alloc] init];
             label.text = @"樣品圖像";
             label.font = MHMediumFont(14);
             label.textColor = [UIColor colorWithHexString:kMainTextColor];
-            [bgView addSubview:label];
+            [container addSubview:label];
             [label sizeToFit];
             label.x = offset;
-            label.y = maxHeight + offset;
-            maxHeight = CGRectGetMaxY(label.frame);
+            label.y = heightRecord + offset;
+            heightRecord = CGRectGetMaxY(label.frame);
             
             CGFloat offset = 8;
-            CGFloat itemSize = 150;
+            CGFloat itemSize = 90;
             UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-            layout.itemSize = CGSizeMake(itemSize, itemSize);
+            layout.itemSize = CGSizeMake(itemSize*4.0/3, itemSize);
             layout.minimumLineSpacing = offset;
             layout.minimumInteritemSpacing = offset;
             layout.sectionInset = UIEdgeInsetsMake(offset, offset, offset, offset);
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             
-            UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, maxHeight + offset, scrollView.width, itemSize) collectionViewLayout:layout];
+            UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, heightRecord + offset, scrollView.width, itemSize) collectionViewLayout:layout];
             collection.delegate = self;
             collection.dataSource = self;
             collection.backgroundColor = [UIColor clearColor];
             collection.showsHorizontalScrollIndicator = NO;
             [collection registerNib:[UINib nibWithNibName:NSStringFromClass([ScreenShotCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([ScreenShotCell class])];
             
-            [bgView addSubview:collection];
+            [container addSubview:collection];
             self.screenshotView = collection;
             
-            maxHeight = CGRectGetMaxY(collection.frame);
-            
-            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, maxHeight, bgView.width, 1)];
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(collection.frame) + offset, bgView.width, 1)];
             line.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
-            [bgView addSubview:line];
+            [container addSubview:line];
+            
+            heightRecord = CGRectGetMaxY(line.frame);
+            container.height = heightRecord;
+            
+            maxHeight = CGRectGetMaxY(container.frame);
         }
     }
     
@@ -295,33 +314,25 @@
     {
         
         CGFloat itemHeight = 40;
-        UIView *container = [[UIView alloc] initWithFrame:CGRectMake(20, maxHeight+10, bgView.width - 2*20, (self.magneticList.count+1)*itemHeight)];
+        MagneticListView *container = [[MagneticListView alloc] initWithFrame:CGRectMake(20, maxHeight+10, bgView.width - 2*20, itemHeight)];
         container.clipsToBounds = YES;
         container.layer.cornerRadius = 8;
         container.layer.borderColor = [UIColor colorWithHexString:@"#f2f2f7"].CGColor;
         container.layer.borderWidth = 1.0f;
         [bgView addSubview:container];
+        self.magneticView = container;
+        
+        container.frameChangeCallback = ^(CGRect frame) {
+            [UIView animateWithDuration:0.15 animations:^{
+                self.magneticView.frame = frame;
+                self.recommendContainer.y = CGRectGetMaxY(frame);
+                self.scrollView.contentSize = CGSizeMake(self.scrollView.width, CGRectGetMaxY(self.recommendContainer.frame));
+            } completion:^(BOOL finished) {
+                
+            }];
+        };
+        
         maxHeight = CGRectGetMaxY(container.frame);
-        
-        UILabel *label = [[UILabel alloc] init];
-        label.text = @"磁力鏈接";
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = MHMediumFont(14);
-        label.textColor = [UIColor colorWithHexString:kMainTextColor];
-        [container addSubview:label];
-        label.frame = CGRectMake(0, 0, container.width, itemHeight);
-        
-        for (int i = 0; i < self.magneticList.count; i++) {
-            if (self.magneticList.count == 0) {
-                break;
-            }
-            MagneticModel *model = self.magneticList[i%self.magneticList.count];
-            
-            MagneticItemView *view = [[MagneticItemView alloc] initWithFrame:CGRectMake(0, (i+1)*itemHeight, container.width, itemHeight)];
-            view.model = model;
-            [container addSubview:view];
-            view.backgroundColor = i%2==0 ? [UIColor colorWithHexString:@"#f2f2f7"]:[UIColor whiteColor];
-        }
     }
     
     maxHeight += offset;
@@ -329,15 +340,21 @@
     {
         if (model.recommends.count > 0) {
             
+            UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, maxHeight, bgView.width, 0)];
+            [bgView addSubview:container];
+            self.recommendContainer = container;
+            
+            CGFloat heightRecord = 0;
+            
             UILabel *label = [[UILabel alloc] init];
             label.text = @"同類影片";
             label.textColor = [UIColor colorWithHexString:kMainTextColor];
             label.font = MHMediumFont(14);
-            [bgView addSubview:label];
+            [container addSubview:label];
             [label sizeToFit];
             label.x = offset;
-            label.y = maxHeight + offset;
-            maxHeight = CGRectGetMaxY(label.frame);
+            label.y = heightRecord + offset;
+            heightRecord = CGRectGetMaxY(label.frame);
             
             CGFloat offset = 8;
             CGFloat itemSize = 147;
@@ -349,18 +366,21 @@
             layout.sectionInset = UIEdgeInsetsMake(offset, offset, offset, offset);
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             
-            UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, maxHeight + offset, scrollView.width, itemHeight) collectionViewLayout:layout];
+            UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, heightRecord + offset, scrollView.width, itemHeight) collectionViewLayout:layout];
             collection.delegate = self;
             collection.dataSource = self;
             collection.backgroundColor = [UIColor clearColor];
             collection.showsHorizontalScrollIndicator = NO;
             [collection registerNib:[UINib nibWithNibName:NSStringFromClass([RecommendCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([RecommendCell class])];
             
-            [bgView addSubview:collection];
+            [container addSubview:collection];
             
             self.recommendView = collection;
             
-            maxHeight = CGRectGetMaxY(collection.frame);
+            heightRecord = CGRectGetMaxY(collection.frame);
+            
+            container.height = heightRecord;
+            maxHeight = CGRectGetMaxY(container.frame);
         }
     }
     

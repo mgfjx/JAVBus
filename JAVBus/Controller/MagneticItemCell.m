@@ -6,9 +6,9 @@
 //  Copyright © 2020 mgfjx. All rights reserved.
 //
 
-#import "MagneticItemView.h"
+#import "MagneticItemCell.h"
 
-@interface MagneticItemView ()
+@interface MagneticItemCell ()
 
 @property (nonatomic, strong) UIImageView *iconView ;
 @property (nonatomic, strong) UIImageView *hdImgView ;
@@ -18,10 +18,10 @@
 
 @end
 
-@implementation MagneticItemView
+@implementation MagneticItemCell
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self initViews];
     }
@@ -38,9 +38,6 @@
 
 - (void)initViews {
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedSelf)];
-    [self addGestureRecognizer:tap];
-    
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.image = [UIImage imageNamed:@"magnetIcon"];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -50,6 +47,7 @@
     UILabel *titleLabel = [UILabel new];
     titleLabel.textColor = [UIColor colorWithHexString:@"#333333"];
     titleLabel.font = [UIFont systemFontOfSize:14];
+    titleLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
     [self addSubview:titleLabel];
     self.titleLabel = titleLabel;
     
@@ -80,7 +78,7 @@
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(imageView.mas_right).offset(8);
         make.centerY.equalTo(imageView.mas_centerY).offset(-5);
-        make.right.mas_equalTo(-8);
+        make.right.equalTo(hdImgView.mas_left).offset(-8);
     }];
     
     [hdImgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -110,13 +108,6 @@
     
     self.hdImgView.hidden = !model.isHD;
     
-}
-
-- (void)clickedSelf {
-    
-    [PublicDialogManager showText:@"已複製磁鏈" inView:self duration:1.0];
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = self.model.link;
 }
 
 @end

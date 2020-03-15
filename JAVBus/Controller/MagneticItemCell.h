@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MagneticItemView : UIView
+@interface MagneticItemCell : UITableViewCell
 
 @property (nonatomic, strong) MagneticModel *model ;
 
