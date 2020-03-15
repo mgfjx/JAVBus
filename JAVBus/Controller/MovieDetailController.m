@@ -62,6 +62,7 @@
         MovieDetailModel *model = [DBMANAGER queryMovieDetail:self.model];
         self.detailModel = model;
         [self createDetailView];
+        self.magneticView.magneticArray = model.magneticArray;
     }else{
         [HTMLTOJSONMANAGER parseMovieDetailByUrl:self.model.link detailCallback:^(MovieDetailModel *model) {
             [self.scrollView stopHeaderRefreshing];
@@ -322,11 +323,12 @@
         [bgView addSubview:container];
         self.magneticView = container;
         
+        WeakSelf(weakSelf)
         container.frameChangeCallback = ^(CGRect frame) {
             [UIView animateWithDuration:0.15 animations:^{
-                self.magneticView.frame = frame;
-                self.recommendContainer.y = CGRectGetMaxY(frame);
-                self.scrollView.contentSize = CGSizeMake(self.scrollView.width, CGRectGetMaxY(self.recommendContainer.frame));
+                weakSelf.magneticView.frame = frame;
+                weakSelf.recommendContainer.y = CGRectGetMaxY(frame);
+                weakSelf.scrollView.contentSize = CGSizeMake(weakSelf.scrollView.width, CGRectGetMaxY(weakSelf.recommendContainer.frame));
             } completion:^(BOOL finished) {
                 
             }];
