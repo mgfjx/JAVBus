@@ -20,6 +20,7 @@
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <AVKit/AVKit.h>
 #import "VideoPlayerManager.h"
+#import "MagneticItemView.h"
 
 #define kMainTextColor @"#333333"
 
@@ -27,6 +28,8 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView ;
 @property (nonatomic, strong) MovieDetailModel *detailModel ;
+
+@property (nonatomic, strong) NSArray *magneticList ;
 
 @property (nonatomic, strong) UICollectionView *screenshotView ;
 @property (nonatomic, strong) UICollectionView *recommendView ;
@@ -64,7 +67,8 @@
             self.detailModel = model;
             [self createDetailView];
         } magneticCallback:^(NSArray *magneticList) {
-            
+            self.magneticList = magneticList;
+            [self createDetailView];
         }];
     }
     
@@ -237,6 +241,12 @@
             }
             
         }
+        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, maxHeight+10, bgView.width, 1)];
+        line.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
+        [bgView addSubview:line];
+        
+        maxHeight = CGRectGetMaxY(line.frame);
     }
     
     maxHeight += offset;
@@ -274,6 +284,43 @@
             self.screenshotView = collection;
             
             maxHeight = CGRectGetMaxY(collection.frame);
+            
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, maxHeight, bgView.width, 1)];
+            line.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
+            [bgView addSubview:line];
+        }
+    }
+    
+    //磁力链接
+    {
+        
+        CGFloat itemHeight = 40;
+        UIView *container = [[UIView alloc] initWithFrame:CGRectMake(20, maxHeight+10, bgView.width - 2*20, (self.magneticList.count+1)*itemHeight)];
+        container.clipsToBounds = YES;
+        container.layer.cornerRadius = 8;
+        container.layer.borderColor = [UIColor colorWithHexString:@"#f2f2f7"].CGColor;
+        container.layer.borderWidth = 1.0f;
+        [bgView addSubview:container];
+        maxHeight = CGRectGetMaxY(container.frame);
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.text = @"磁力鏈接";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = MHMediumFont(14);
+        label.textColor = [UIColor colorWithHexString:kMainTextColor];
+        [container addSubview:label];
+        label.frame = CGRectMake(0, 0, container.width, itemHeight);
+        
+        for (int i = 0; i < self.magneticList.count; i++) {
+            if (self.magneticList.count == 0) {
+                break;
+            }
+            MagneticModel *model = self.magneticList[i%self.magneticList.count];
+            
+            MagneticItemView *view = [[MagneticItemView alloc] initWithFrame:CGRectMake(0, (i+1)*itemHeight, container.width, itemHeight)];
+            view.model = model;
+            [container addSubview:view];
+            view.backgroundColor = i%2==0 ? [UIColor colorWithHexString:@"#f2f2f7"]:[UIColor whiteColor];
         }
     }
     

@@ -538,13 +538,14 @@ static HtmlToJsonManager *instance ;
                         TFHppleElement *sizeEle = tdArray[1];
                         TFHppleElement *dateEle = tdArray[2];
                         
-                        TFHppleElement *linkA = [linkEle childrenWithTagName:@"a"].firstObject;
+                        NSArray *alinkArray = [linkEle childrenWithTagName:@"a"];
+                        TFHppleElement *linkA = alinkArray.firstObject;
                         NSString *href = [linkA objectForKey:@"href"];
                         NSString *title = [linkA text];
                         model.link = [href clearSpecialCharacter];
                         model.text = [title clearSpecialCharacter];
                         
-                        TFHppleElement *hdA = [linkEle childrenWithTagName:@"a"].lastObject;
+                        TFHppleElement *hdA = alinkArray.lastObject;
                         if (linkA != hdA) {
                             //显示高清
                             model.isHD = YES;
