@@ -18,4 +18,20 @@
     return temp;
 }
 
+//base64编码
+- (NSString *)base64Encode {
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *base64Str = [data base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+    return base64Str;
+}
+
+//base64解码
+- (NSString *)base64Decode {
+    NSData *nsdataFromBase64String = [[NSData alloc]initWithBase64EncodedString:self options:NSDataBase64EncodingEndLineWithLineFeed];
+
+    NSString *base64Decoded = [[NSString alloc]initWithData:nsdataFromBase64String encoding:NSUTF8StringEncoding];
+
+    return base64Decoded;
+}
+
 @end

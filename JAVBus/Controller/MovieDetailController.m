@@ -414,9 +414,6 @@
     
     if (model.type == LinkTypeNumber) {
         NSString *code = model.title;
-        if (code.length == 0) {
-            code = @"";
-        }
         
         NSString *name = [NSString stringWithFormat:@"%@.mp4", [Encrypt md5Encrypt32:self.model.number]];
         NSString *filePath = [[GlobalTool shareInstance].movieCacheDir stringByAppendingPathComponent:name];

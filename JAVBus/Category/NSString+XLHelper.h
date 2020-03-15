@@ -14,6 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)clearSpecialCharacter ;
 
+//base64编码
+- (NSString *)base64Encode ;
+
+//base64解码
+- (NSString *)base64Decode ;
+
 @end
 
 NS_ASSUME_NONNULL_END
