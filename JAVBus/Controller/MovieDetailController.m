@@ -38,6 +38,8 @@
 @property (nonatomic, strong) MagneticListView *magneticView;
 @property (nonatomic, strong) UIView *recommendContainer;
 
+@property (nonatomic, strong) UIButton *refreshCollectionBtn;
+
 @end
 
 @implementation MovieDetailController
@@ -57,7 +59,14 @@
 
 - (void)requestData {
     
-    if ([DBMANAGER isMovieDetailExsit:self.model]) {
+    BOOL isListCollected = [DBMANAGER isMovieExsit:self.model];
+    BOOL isDetailCollected = [DBMANAGER isMovieDetailExsit:self.model];
+    
+    if (isListCollected) {
+        self.refreshCollectionBtn.hidden = NO;
+    }
+    
+    if (isDetailCollected) {
         [self.scrollView stopHeaderRefreshing];
         MovieDetailModel *model = [DBMANAGER queryMovieDetail:self.model];
         self.detailModel = model;
@@ -81,6 +90,41 @@
 - (void)initViews {
     [self createBarbutton];
     [self createScrollView];
+    [self createRefreshButton];
+}
+
+- (void)createRefreshButton {
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:self action:@selector(refreshCollection) forControlEvents:UIControlEventTouchUpInside];
+    [button setImage:[UIImage imageNamed:@"movie_refresh"] forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    button.hidden = YES;
+    self.refreshCollectionBtn = button;
+    
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-20);
+        make.bottom.equalTo(self.scrollView.mas_bottom).offset(-20);
+        make.height.width.mas_equalTo(30);
+    }];
+    
+}
+
+- (void)refreshCollection {
+    [self.scrollView startHeaderRefreshing];
+    [HTMLTOJSONMANAGER parseMovieDetailByUrl:self.model.link detailCallback:^(MovieDetailModel *model) {
+        [self.scrollView stopHeaderRefreshing];
+        model.title = self.model.title;
+        model.number = self.model.number;
+        self.detailModel = model;
+        [self createDetailView];
+        [DBMANAGER deleteMovieDetail:self.model];
+        [DBMANAGER insertMovieDetail:self.detailModel];
+    } magneticCallback:^(NSArray *magneticList) {
+        self.magneticList = magneticList;
+        self.magneticView.magneticArray = magneticList;
+    }];
+    
 }
 
 - (void)createBarbutton {
@@ -329,6 +373,7 @@
                 weakSelf.magneticView.frame = frame;
                 weakSelf.recommendContainer.y = CGRectGetMaxY(frame);
                 weakSelf.scrollView.contentSize = CGSizeMake(weakSelf.scrollView.width, CGRectGetMaxY(weakSelf.recommendContainer.frame));
+                bgView.height = CGRectGetMaxY(weakSelf.recommendContainer.frame);
             } completion:^(BOOL finished) {
                 
             }];
