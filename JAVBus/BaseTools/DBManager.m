@@ -102,6 +102,14 @@ static DBManager *singleton ;
         }
     }
     
+    //影片详情增加磁力链接
+    {
+        if (![db columnExists:@"magnetic" inTableWithName:@"MovieDetailTable"]) {
+            NSString *alertStr = @"ALTER TABLE MovieDetailTable ADD magnetic TEXT" ;
+            [db executeUpdate:alertStr];
+        }
+    }
+    
     [db close];
     
 }
@@ -369,7 +377,15 @@ static DBManager *singleton ;
     }
     NSString *recommendJson = [self objectToJson:array3];
     
-    NSString *sql = [NSString stringWithFormat:@"insert into 'MovieDetailTable'(title,number,coverImgUrl,infoArray,screenshots,recommends) values('%@','%@','%@','%@','%@','%@')", model.title, model.number, model.coverImgUrl,categoryJson,screenshotsJson,recommendJson];
+    NSArray *magneticArr = model.magneticArray;
+    NSMutableArray *array4 = [NSMutableArray array];
+    for (MagneticModel *model in magneticArr) {
+        NSDictionary *itemDict = @{@"title":model.text,@"date":model.date,@"link":model.link, @"size": model.size, @"isHD": @(model.isHD)};
+        [array4 addObject:itemDict];
+    }
+    NSString *magneticJson = [self objectToJson:array4];
+    
+    NSString *sql = [NSString stringWithFormat:@"insert into 'MovieDetailTable'(title,number,coverImgUrl,infoArray,screenshots,recommends,magnetic) values('%@','%@','%@','%@','%@','%@','%@')", model.title, model.number, model.coverImgUrl,categoryJson,screenshotsJson,recommendJson,magneticJson];
     BOOL result = [self baseUpdateSql:sql];
     return result;
 }
@@ -442,9 +458,23 @@ static DBManager *singleton ;
             [array3 addObject:model];
         }
         
+        NSString *magnetics = [result stringForColumn:@"magnetic"];
+        NSArray *magneticsArr = [self objectWithJsonString:magnetics];
+        NSMutableArray *array4 = [NSMutableArray array];
+        for (NSDictionary *dict in magneticsArr) {
+            MagneticModel *model = [MagneticModel new];
+            model.text = dict[@"title"];
+            model.date = dict[@"date"];
+            model.link = dict[@"link"];
+            model.size = dict[@"size"];
+            model.isHD = [dict[@"isHD"] boolValue];
+            [array4 addObject:model];
+        }
+        
         model.infoArray = [array1 copy];
         model.screenshots = [array2 copy];
         model.recommends = [array3 copy];
+        model.magneticArray = [array4 copy];
         
         [arr addObject:model];
     }
@@ -455,7 +485,7 @@ static DBManager *singleton ;
 /**
  删除电影详情数据
  */
-- (BOOL)deleteMovieDetail:(MovieListModel *)model {
+- (BOOL)deleteMovieDetail:(MovieDetailModel *)model {
     BOOL isExsit = [self isMovieDetailExsit:model];
     if (!isExsit) {
         return YES;

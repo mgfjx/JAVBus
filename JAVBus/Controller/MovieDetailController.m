@@ -82,6 +82,7 @@
             [self createDetailView];
         } magneticCallback:^(NSArray *magneticList) {
             self.magneticList = magneticList;
+            self.detailModel.magneticArray = magneticList;
             self.magneticView.magneticArray = magneticList;
         }];
     }
@@ -119,7 +120,7 @@
         model.number = self.model.number;
         self.detailModel = model;
         [self createDetailView];
-        [DBMANAGER deleteMovieDetail:self.model];
+        [DBMANAGER deleteMovieDetail:self.detailModel];
         [DBMANAGER insertMovieDetail:self.detailModel];
     } magneticCallback:^(NSArray *magneticList) {
         self.magneticList = magneticList;
@@ -146,7 +147,7 @@
 - (void)collectionActress:(UIButton *)sender {
     if (sender.selected) {
         [DBMANAGER deleteMovie:self.model];
-        [DBMANAGER deleteMovieDetail:self.model];
+        [DBMANAGER deleteMovieDetail:self.detailModel];
     }else{
         [DBMANAGER insertMovie:self.model];
         [DBMANAGER insertMovieDetail:self.detailModel];

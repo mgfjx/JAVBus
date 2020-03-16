@@ -113,7 +113,7 @@
 /**
  删除电影详情数据
  */
-- (BOOL)deleteMovieDetail:(MovieListModel *)model ;
+- (BOOL)deleteMovieDetail:(MovieDetailModel *)model ;
 
 /**
  删除所有电影缓存数据
