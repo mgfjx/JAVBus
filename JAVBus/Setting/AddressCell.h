@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddressSettingController.h"
 
 @interface AddressCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UIView *indicatorView;
-@property (weak, nonatomic) IBOutlet UIImageView *selectImageView;
-
+@property (nonatomic, strong) AddressModel *model ;
 
 @end

@@ -72,7 +72,7 @@
     
     [tabBarController setViewControllers:@[nav1, nav2, nav3, nav4]];
     
-    tabBarController.selectedIndex = 2;
+    tabBarController.selectedIndex = 0;
     [tabBarController setTintColor:[UIColor colorWithHexString:@"#0099de"]];
     
 }

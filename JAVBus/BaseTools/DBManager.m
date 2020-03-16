@@ -474,4 +474,20 @@ static DBManager *singleton ;
     return result;
 }
 
+/**
+ 数据库字段数据更改
+ */
+- (BOOL)modifyMovieDetailDataType {
+    
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    // app版本
+    NSString *app_Version= [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    
+    NSString *lastVersion = @"1.0.0";
+    
+    NSLog(@"%@", app_Version);
+    
+    return YES;
+}
+
 @end
