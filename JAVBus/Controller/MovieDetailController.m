@@ -21,6 +21,7 @@
 #import <AVKit/AVKit.h>
 #import "VideoPlayerManager.h"
 #import "MagneticListView.h"
+#import <SafariServices/SafariServices.h>
 
 #define kMainTextColor @"#333333"
 
@@ -608,9 +609,16 @@
             }
         }
         
-        MovieDetailController *vc = [MovieDetailController new];
-        vc.model = listModel;
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([listModel.number containsString:@"forum.php?"]) {
+            NSString *urlString = [NSString stringWithFormat:@"%@/forum/%@", [GlobalTool shareInstance].baseUrl, listModel.number];
+            NSURL *url = [NSURL URLWithString:urlString];
+            SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:url];
+            [self presentViewController:safariVC animated:YES completion:nil];
+        }else {
+            MovieDetailController *vc = [MovieDetailController new];
+            vc.model = listModel;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 

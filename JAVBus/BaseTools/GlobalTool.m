@@ -57,6 +57,9 @@ SingletonImplement(Instance)
                 @"https://www.busdmm.cc",
                 @"https://www.dmmbus.co",
                 @"https://www.seedmm.co",
+                @"https://www.dmmsee.cloud",
+                @"https://www.cdnbus.cloud",
+                @"https://www.busjav.cloud",
                 ];
     }
     return ips;

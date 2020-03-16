@@ -22,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"地址设置";
+    
     [self initViews];
     self.dataArray = [GlobalTool shareInstance].ips;
     [self testIp];
@@ -109,6 +111,8 @@
 }
 
 - (void)testIp {
+    self.validIpArray = @[];
+    [self.tableView reloadData];
     NSMutableArray *arr = [NSMutableArray array];
     for (NSString *ip in self.dataArray) {
         [HTMLTOJSONMANAGER testIp:ip callback:^(NSArray *array) {
@@ -147,7 +151,7 @@
     if ([self.validIpArray containsObject:ip]) {
         cell.indicatorView.backgroundColor = [UIColor colorWithHexString:@"#00a600"];
     }else {
-        cell.indicatorView.backgroundColor = [UIColor colorWithHexString:@"#aaaaaa"];
+        cell.indicatorView.backgroundColor = [UIColor colorWithHexString:@"#e82220"];
     }
     
     

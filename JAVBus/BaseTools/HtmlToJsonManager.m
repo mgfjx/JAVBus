@@ -43,6 +43,7 @@ static HtmlToJsonManager *instance ;
 
 - (void)testIp:(NSString *)ip callback:(void (^)(NSArray *array))callback {
     NSString *url = @"/actresses";
+    url = [NSString stringWithFormat:@"%@%@", ip, url];
     [self startGetUrl:url success:^(id resultDict) {
         TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
         NSArray *objects  = [doc searchWithXPathQuery:@"//a[@class='avatar-box text-center']"];
@@ -483,7 +484,7 @@ static HtmlToJsonManager *instance ;
             [ssArr addObject:model];
         }
         
-        //推荐
+        //推荐 //*[@id="related-waterfall"]/a
         NSArray *recommends = [doc searchWithXPathQuery:@"//*[@id='related-waterfall']/a"];
         NSMutableArray *array3 = [NSMutableArray array];
         for (TFHppleElement *ele in recommends) {
