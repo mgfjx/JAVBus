@@ -120,9 +120,4 @@
  */
 - (BOOL)deleteAllCacheMovie ;
 
-/**
- 数据库字段数据更改
- */
-- (BOOL)modifyMovieDetailDataType ;
-
 @end
