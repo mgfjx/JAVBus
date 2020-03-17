@@ -120,11 +120,12 @@
         model.number = self.model.number;
         self.detailModel = model;
         [self createDetailView];
-        [DBMANAGER deleteMovieDetail:self.detailModel];
-        [DBMANAGER insertMovieDetail:self.detailModel];
+        [DBMANAGER updateMovieDetail:self.detailModel];
     } magneticCallback:^(NSArray *magneticList) {
         self.magneticList = magneticList;
+        self.detailModel.magneticArray = magneticList;
         self.magneticView.magneticArray = magneticList;
+        [DBMANAGER updateMovieDetail:self.detailModel];
     }];
     
 }

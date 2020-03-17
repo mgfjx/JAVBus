@@ -391,6 +391,57 @@ static DBManager *singleton ;
 }
 
 /**
+ 更新电影详情数据
+ */
+- (BOOL)updateMovieDetail:(MovieDetailModel *)model {
+    
+    NSArray *categoryArr = model.infoArray;
+    NSMutableArray *array1 = [NSMutableArray array];
+    for (int i = 0; i < categoryArr.count; i++) {
+        
+        NSDictionary *dict = categoryArr[i];
+        NSString *title = dict.allKeys.firstObject;
+        NSArray *items = [dict objectForKey:title];
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (TitleLinkModel *item in items) {
+            NSDictionary *itemDict = @{@"title":item.title,@"link":item.link,@"type":@(item.type)};
+            [array addObject:itemDict];
+        }
+        [array1 addObject:@{title:[array copy]}];
+    }
+    NSString *categoryJson = [self objectToJson:array1];
+    
+    NSArray *screenshotsArr = model.screenshots;
+    NSMutableArray *array2 = [NSMutableArray array];
+    for (ScreenShotModel *model in screenshotsArr) {
+        NSDictionary *itemDict = @{@"title":model.title,@"smallPicUrl":model.smallPicUrl,@"bigPicUrl":model.bigPicUrl};
+        [array2 addObject:itemDict];
+    }
+    NSString *screenshotsJson = [self objectToJson:array2];
+    
+    NSArray *recommendArr = model.recommends;
+    NSMutableArray *array3 = [NSMutableArray array];
+    for (RecommendModel *model in recommendArr) {
+        NSDictionary *itemDict = @{@"title":model.title,@"imgUrl":model.imgUrl,@"link":model.link};
+        [array3 addObject:itemDict];
+    }
+    NSString *recommendJson = [self objectToJson:array3];
+    
+    NSArray *magneticArr = model.magneticArray;
+    NSMutableArray *array4 = [NSMutableArray array];
+    for (MagneticModel *model in magneticArr) {
+        NSDictionary *itemDict = @{@"title":model.text,@"date":model.date,@"link":model.link, @"size": model.size, @"isHD": @(model.isHD)};
+        [array4 addObject:itemDict];
+    }
+    NSString *magneticJson = [self objectToJson:array4];
+    
+    NSString *sql = [NSString stringWithFormat:@"update 'MovieDetailTable' set title='%@',coverImgUrl='%@',infoArray='%@',screenshots='%@',recommends='%@',magnetic='%@' where number='%@'", model.title, model.coverImgUrl,categoryJson,screenshotsJson,recommendJson,magneticJson,model.number];
+    BOOL result = [self baseUpdateSql:sql];
+    return result;
+}
+
+/**
  判断是否已存在电影详情
  */
 - (BOOL)isMovieDetailExsit:(MovieListModel *)model {

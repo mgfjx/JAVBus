@@ -101,6 +101,11 @@
 - (BOOL)insertMovieDetail:(MovieDetailModel *)model ;
 
 /**
+ 更新电影详情数据
+ */
+- (BOOL)updateMovieDetail:(MovieDetailModel *)model ;
+
+/**
  判断是否已存在电影详情
  */
 - (BOOL)isMovieDetailExsit:(MovieListModel *)model ;
