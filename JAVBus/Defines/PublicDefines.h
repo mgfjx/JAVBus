@@ -17,15 +17,12 @@
 
 #define MainWidth [UIScreen mainScreen].bounds.size.width
 #define MainHeight [UIScreen mainScreen].bounds.size.height
-#define iPhoneX ({\
-BOOL isPhoneX = NO;\
+#define iPhoneX \
+({BOOL isPhoneX = NO;\
 if (@available(iOS 11.0, *)) {\
-    if (!UIEdgeInsetsEqualToEdgeInsets([UIApplication sharedApplication].delegate.window.safeAreaInsets, UIEdgeInsetsZero)) {\
-    isPhoneX = YES;\
-    }\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
 }\
-isPhoneX;\
-})
+(isPhoneX);})
 #define kStatusBarHeight (iPhoneX  ? 44  : 20)
 #define kNavigationBarHeight (kStatusBarHeight + 44)
 #define kTabBarHeight (iPhoneX  ? (49+34)  : 49)
