@@ -11,5 +11,5 @@
 ![1](./readmesrc/javbus5.PNG)
 ![1](./readmesrc/javbus6.PNG)
 ![1](./readmesrc/javbus7.PNG)
-![1](./readmesrc/javbus8.PNG)
-![1](./readmesrc/javbus9.PNG)
+![1](./readmesrc/javbus8.png)
+![1](./readmesrc/javbus9.png)
