@@ -70,9 +70,9 @@
 
 + (instancetype)randomColorWithAlpha:(CGFloat)alpha{
     
-    CGFloat r = random()%255/255.0;
-    CGFloat g = random()%255/255.0;
-    CGFloat b = random()%255/255.0;
+    CGFloat r = arc4random()%255/255.0;
+    CGFloat g = arc4random()%255/255.0;
+    CGFloat b = arc4random()%255/255.0;
     
     return [UIColor colorWithRed:r green:g blue:b alpha:alpha];
 }

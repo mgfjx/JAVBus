@@ -16,5 +16,6 @@
 @property (nonatomic, strong) NSArray *infoArray ;
 @property (nonatomic, strong) NSArray *screenshots ;
 @property (nonatomic, strong) NSArray *recommends ;
+@property (nonatomic, strong) NSArray *magneticArray ;
 
 @end

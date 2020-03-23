@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "GoogleSignInManager.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,11 @@
     if (@available(iOS 11.0, *)){
         [[UIScrollView appearance] setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
     }
+    
+    [[GoogleSignInManager shareManager] configration];
+    [[DropBoxManager shareManager] configration];
+    
+    
     return YES;
 }
 
@@ -47,6 +53,10 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
+    return [[DropBoxManager shareManager] handleUrl:url];
 }
 
 

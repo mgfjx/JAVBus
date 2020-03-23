@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="31" id="KGk-i7-Jjw" customClass="GGDriveFolderCell">
+            <rect key="frame" x="0.0" y="0.0" width="423" height="51"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="423" height="51"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folderIcon" translatesAutoresizingMaskIntoConstraints="NO" id="mgD-UK-Hn6">
+                        <rect key="frame" x="8" y="13" width="25.5" height="25.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="mgD-UK-Hn6" secondAttribute="height" multiplier="1:1" id="Lxz-Rd-ucQ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JAVBus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezE-ye-dn4">
+                        <rect key="frame" x="41.5" y="16.5" width="345" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nak-5W-NK8">
+                        <rect key="frame" x="41.5" y="50" width="381.5" height="1"/>
+                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Ohp-Or-BAU"/>
+                        </constraints>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folderMore" translatesAutoresizingMaskIntoConstraints="NO" id="Ulc-Ox-u5K">
+                        <rect key="frame" x="394.5" y="15.5" width="20.5" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Ulc-Ox-u5K" secondAttribute="height" id="7L5-rW-JNO"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="mgD-UK-Hn6" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.5" id="4KK-6u-d9I"/>
+                    <constraint firstItem="mgD-UK-Hn6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6FO-Cc-J4y"/>
+                    <constraint firstItem="ezE-ye-dn4" firstAttribute="leading" secondItem="mgD-UK-Hn6" secondAttribute="trailing" constant="8" id="7rP-u2-EZw"/>
+                    <constraint firstItem="ezE-ye-dn4" firstAttribute="centerY" secondItem="mgD-UK-Hn6" secondAttribute="centerY" id="8Es-ay-kT0"/>
+                    <constraint firstAttribute="trailing" secondItem="Ulc-Ox-u5K" secondAttribute="trailing" constant="8" id="Agw-g2-lFb"/>
+                    <constraint firstItem="mgD-UK-Hn6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="OQb-nF-GcL"/>
+                    <constraint firstAttribute="bottom" secondItem="Nak-5W-NK8" secondAttribute="bottom" id="OQd-pD-kg0"/>
+                    <constraint firstItem="Ulc-Ox-u5K" firstAttribute="leading" secondItem="ezE-ye-dn4" secondAttribute="trailing" constant="8" id="an7-ox-UJf"/>
+                    <constraint firstItem="Ulc-Ox-u5K" firstAttribute="height" secondItem="mgD-UK-Hn6" secondAttribute="height" multiplier="0.8" id="gNZ-90-vFS"/>
+                    <constraint firstAttribute="trailing" secondItem="Nak-5W-NK8" secondAttribute="trailing" constant="0.01" id="hSu-qP-lj9"/>
+                    <constraint firstItem="Nak-5W-NK8" firstAttribute="leading" secondItem="ezE-ye-dn4" secondAttribute="leading" id="l5Q-Bt-OFh"/>
+                    <constraint firstItem="Ulc-Ox-u5K" firstAttribute="centerY" secondItem="mgD-UK-Hn6" secondAttribute="centerY" id="q7q-T7-d0W"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="titleLabel" destination="ezE-ye-dn4" id="kPf-wY-gye"/>
+            </connections>
+            <point key="canvasLocation" x="-402" y="92"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="folderIcon" width="67" height="67"/>
+        <image name="folderMore" width="67" height="67"/>
+    </resources>
+</document>

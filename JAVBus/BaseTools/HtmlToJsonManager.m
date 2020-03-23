@@ -16,6 +16,7 @@
 #import "MovieDetailModel.h"
 #import "ScreenShotModel.h"
 #import "RecommendModel.h"
+#import "MagneticModel.h"
 
 static HtmlToJsonManager *instance ;
 
@@ -42,6 +43,7 @@ static HtmlToJsonManager *instance ;
 
 - (void)testIp:(NSString *)ip callback:(void (^)(NSArray *array))callback {
     NSString *url = @"/actresses";
+    url = [NSString stringWithFormat:@"%@%@", ip, url];
     [self startGetUrl:url success:^(id resultDict) {
         TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
         NSArray *objects  = [doc searchWithXPathQuery:@"//a[@class='avatar-box text-center']"];
@@ -362,14 +364,17 @@ static HtmlToJsonManager *instance ;
 /**
  获取movie详情
  */
-- (void)parseMovieDetailByUrl:(NSString *)url callback:(void (^)(MovieDetailModel *model))callback {
+- (void)parseMovieDetailByUrl:(NSString *)url
+               detailCallback:(void (^)(MovieDetailModel *model))detailCallback
+             magneticCallback:(void (^)(NSArray *magneticList))magneticCallback {
     url = url.length == 0 ? @"" : url;
     [self startGetUrl:url success:^(id resultDict) {
+        
         TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:resultDict];
         NSArray *images = [doc searchWithXPathQuery:@"//a[@class='bigImage']"];
         NSString *imgUrl = [images.firstObject objectForKey:@"href"];
         
-        //信息
+        //页面静态信息
         NSArray *movieInfoArray = [doc searchWithXPathQuery:@"//html/body/div[5]/div[1]/div[2]/p"];
         NSInteger index = 0;
         NSMutableArray *array = [NSMutableArray array];
@@ -479,7 +484,7 @@ static HtmlToJsonManager *instance ;
             [ssArr addObject:model];
         }
         
-        //推荐
+        //推荐 //*[@id="related-waterfall"]/a
         NSArray *recommends = [doc searchWithXPathQuery:@"//*[@id='related-waterfall']/a"];
         NSMutableArray *array3 = [NSMutableArray array];
         for (TFHppleElement *ele in recommends) {
@@ -497,12 +502,86 @@ static HtmlToJsonManager *instance ;
         detail.screenshots = [ssArr copy];
         detail.recommends = [array3 copy];
         
-        if (callback) {
-            callback(detail);
+        if (detailCallback) {
+            detailCallback(detail);
         }
+        
+        //请求磁力链接动态内容
+        NSArray *paramsArr = [doc searchWithXPathQuery:@"//html/body/script[3]/text()"];
+        if (paramsArr.count > 0) {
+            TFHppleElement *ele = paramsArr.firstObject;
+            NSString *string = ele.content;
+            NSString *temp = [string clearSpecialCharacter];
+            
+            NSArray *array = [temp componentsSeparatedByString:@";"];
+            if (array.count >= 3) {
+                NSString *gid = [(NSString *)array[0] componentsSeparatedByString:@"="].lastObject;
+                NSString *uc = [(NSString *)array[1] componentsSeparatedByString:@"="].lastObject;
+                NSString *img = [(NSString *)array[2] componentsSeparatedByString:@"="].lastObject;
+                img = [img stringByReplacingOccurrencesOfString:@"'" withString:@""];
+                NSString *floor = [@(arc4random()%899 + 100) stringValue];
+                NSString *shortUrl = [NSString stringWithFormat:@"/ajax/uncledatoolsbyajax.php?gid=%@&lang=zh&img=%@&uc=%@&floor=%@", gid, img, uc, floor];
+                
+                [self startGetUrl:shortUrl success:^(id resultDict) {
+                    TFHpple * doc = [[TFHpple alloc] initWithHTMLData:resultDict];
+                    NSArray *links = [doc searchWithXPathQuery:@"//tr"];
+                    
+                    NSMutableArray *array = [NSMutableArray array];
+                    for (TFHppleElement *ele in links) {
+                        NSArray *tdArray = [ele childrenWithTagName:@"td"];
+                        if (tdArray.count < 3) {
+                            continue;
+                        }
+                        
+                        MagneticModel *model = [MagneticModel new];
+                        
+                        TFHppleElement *linkEle = tdArray[0];
+                        TFHppleElement *sizeEle = tdArray[1];
+                        TFHppleElement *dateEle = tdArray[2];
+                        
+                        NSArray *alinkArray = [linkEle childrenWithTagName:@"a"];
+                        TFHppleElement *linkA = alinkArray.firstObject;
+                        NSString *href = [linkA objectForKey:@"href"];
+                        NSString *title = [linkA text];
+                        model.link = [href clearSpecialCharacter];
+                        model.text = [title clearSpecialCharacter];
+                        
+                        TFHppleElement *hdA = alinkArray.lastObject;
+                        if (linkA != hdA) {
+                            //显示高清
+                            model.isHD = YES;
+                        }else{
+                            model.isHD = NO;
+                        }
+                        TFHppleElement *sizeA = [sizeEle childrenWithTagName:@"a"].firstObject;
+                        TFHppleElement *dateA = [dateEle childrenWithTagName:@"a"].firstObject;
+                        NSString *sizeString = [[sizeA text] clearSpecialCharacter];
+                        NSString *dateString = [[dateA text] clearSpecialCharacter];
+                        
+                        model.size = sizeString;
+                        model.date = dateString;
+                        
+                        [array addObject:model];
+                    }
+                    if (magneticCallback) {
+                        magneticCallback([array copy]);
+                    }
+                    
+                } failure:^(NSError *error) {
+                    NSLog(@"%@", error);
+                    if (magneticCallback) {
+                        magneticCallback(@[]);
+                    }
+                }];
+            }
+        }
+        
     } failure:^(NSError *error) {
-        if (callback) {
-            callback(nil);
+        if (detailCallback) {
+            detailCallback(nil);
+        }
+        if (magneticCallback) {
+            magneticCallback(@[]);
         }
     }];
 }

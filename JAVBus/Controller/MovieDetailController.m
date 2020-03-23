@@ -12,19 +12,34 @@
 #import "ScreenShotCell.h"
 #import "ScreenShotModel.h"
 #import "RecommendModel.h"
+#import "MagneticModel.h"
 #import "RecommendCell.h"
 #import <IDMPhotoBrowser/IDMPhotoBrowser.h>
 #import "CategoryItemListController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <AVKit/AVKit.h>
+#import "VideoPlayerManager.h"
+#import "MagneticListView.h"
+#import <SafariServices/SafariServices.h>
+
+#define kMainTextColor @"#333333"
 
 @interface MovieDetailController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UIScrollView *scrollView ;
 @property (nonatomic, strong) MovieDetailModel *detailModel ;
 
+@property (nonatomic, strong) NSArray *magneticList ;
+
 @property (nonatomic, strong) UICollectionView *screenshotView ;
 @property (nonatomic, strong) UICollectionView *recommendView ;
+@property (nonatomic, strong) AVPlayerViewController *playerVC ;
+
+@property (nonatomic, strong) MagneticListView *magneticView;
+@property (nonatomic, strong) UIView *recommendContainer;
+
+@property (nonatomic, strong) UIButton *refreshCollectionBtn;
 
 @end
 
@@ -45,21 +60,36 @@
 
 - (void)requestData {
     
-    if ([DBMANAGER isMovieDetailExsit:self.model]) {
+    BOOL isListCollected = [DBMANAGER isMovieExsit:self.model];
+    BOOL isDetailCollected = [DBMANAGER isMovieDetailExsit:self.model];
+    
+    if (isListCollected) {
+        self.refreshCollectionBtn.hidden = NO;
+    }
+    
+    if (isDetailCollected) {
         [self.scrollView stopHeaderRefreshing];
         MovieDetailModel *model = [DBMANAGER queryMovieDetail:self.model];
         self.detailModel = model;
         [self createDetailView];
+        self.magneticView.magneticArray = model.magneticArray;
     }else{
-        [HTMLTOJSONMANAGER parseMovieDetailByUrl:self.model.link callback:^(MovieDetailModel *model) {
+        [HTMLTOJSONMANAGER parseMovieDetailByUrl:self.model.link detailCallback:^(MovieDetailModel *model) {
             [self.scrollView stopHeaderRefreshing];
-            if (model) {
-                //            self.scrollView.canPullDown = NO;
-            }
             model.title = self.model.title;
             model.number = self.model.number;
             self.detailModel = model;
             [self createDetailView];
+            if (isListCollected && !isDetailCollected) {
+                [DBMANAGER insertMovieDetail:self.detailModel];
+            }
+        } magneticCallback:^(NSArray *magneticList) {
+            self.magneticList = magneticList;
+            self.detailModel.magneticArray = magneticList;
+            self.magneticView.magneticArray = magneticList;
+            if (isListCollected && !isDetailCollected) {
+                [DBMANAGER updateMovieDetail:self.detailModel];
+            }
         }];
     }
     
@@ -68,6 +98,42 @@
 - (void)initViews {
     [self createBarbutton];
     [self createScrollView];
+    [self createRefreshButton];
+}
+
+- (void)createRefreshButton {
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:self action:@selector(refreshCollection) forControlEvents:UIControlEventTouchUpInside];
+    [button setImage:[UIImage imageNamed:@"movie_refresh"] forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    button.hidden = YES;
+    self.refreshCollectionBtn = button;
+    
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-20);
+        make.bottom.equalTo(self.scrollView.mas_bottom).offset(-20);
+        make.height.width.mas_equalTo(30);
+    }];
+    
+}
+
+- (void)refreshCollection {
+    [self.scrollView startHeaderRefreshing];
+    [HTMLTOJSONMANAGER parseMovieDetailByUrl:self.model.link detailCallback:^(MovieDetailModel *model) {
+        [self.scrollView stopHeaderRefreshing];
+        model.title = self.model.title;
+        model.number = self.model.number;
+        self.detailModel = model;
+        [self createDetailView];
+        [DBMANAGER updateMovieDetail:self.detailModel];
+    } magneticCallback:^(NSArray *magneticList) {
+        self.magneticList = magneticList;
+        self.detailModel.magneticArray = magneticList;
+        self.magneticView.magneticArray = magneticList;
+        [DBMANAGER updateMovieDetail:self.detailModel];
+    }];
+    
 }
 
 - (void)createBarbutton {
@@ -88,7 +154,7 @@
 - (void)collectionActress:(UIButton *)sender {
     if (sender.selected) {
         [DBMANAGER deleteMovie:self.model];
-        [DBMANAGER deleteMovieDetail:self.model];
+        [DBMANAGER deleteMovieDetail:self.detailModel];
     }else{
         [DBMANAGER insertMovie:self.model];
         [DBMANAGER insertMovieDetail:self.detailModel];
@@ -159,6 +225,7 @@
         UILabel *label = [[UILabel alloc] init];
         label.font = font;
         label.text = content;
+        label.textColor = [UIColor colorWithHexString:kMainTextColor];
         label.numberOfLines = 0;
         [bgView addSubview:label];
         [label sizeToFit];
@@ -168,11 +235,16 @@
         maxHeight = CGRectGetMaxY(label.frame);
     }
     
+    //简介
     {
+        UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, maxHeight, bgView.width, 0)];
+        [bgView addSubview:container];
+        
         NSArray *infos = model.infoArray;
         
+        CGFloat heightRecord = 0;
         for (int i = 0; i < infos.count; i++) {
-            maxHeight += offset;
+            heightRecord += offset;
             
             NSDictionary *dict = infos[i];
             NSString *title = dict.allKeys.firstObject;
@@ -180,13 +252,14 @@
             
             UILabel *label = [[UILabel alloc] init];
             label.text = title;
+            label.textColor = [UIColor colorWithHexString:kMainTextColor];
             label.font = MHMediumFont(14);
-            [bgView addSubview:label];
+            [container addSubview:label];
             [label sizeToFit];
             label.x = offset;
-            label.y = maxHeight + offset;
+            label.y = heightRecord + offset;
             
-            maxHeight = CGRectGetMaxY(label.frame);
+            heightRecord = CGRectGetMaxY(label.frame);
             CGFloat currentMiddle = label.centerY;
             
             CGFloat xPosition = CGRectGetMaxX(label.frame) + offset;
@@ -196,9 +269,9 @@
                 button.text = item.title;
                 button.textColor = [UIColor whiteColor];
                 button.textAlignment = NSTextAlignmentCenter;
-                button.backgroundColor = [UIColor colorWithHexString:@"#1d65ee"];
+                button.backgroundColor = [UIColor colorWithHexString:@"#febe00"];
                 button.font = [UIFont systemFontOfSize:12];
-                [bgView addSubview:button];
+                [container addSubview:button];
                 [button sizeToFit];
                 button.layer.cornerRadius = button.height/4;
                 button.layer.masksToBounds = YES;
@@ -206,15 +279,15 @@
                 button.height = button.height + 2*offset;
                 if (xPosition + offset + button.width > scrollView.width - offset) {
                     xPosition = 0;
-                    maxHeight = maxHeight + offset + button.height;
-                    currentMiddle = maxHeight + offset - button.height/2;
+                    heightRecord = heightRecord + offset + button.height;
+                    currentMiddle = heightRecord + offset - button.height/2;
                 }
                 button.x = xPosition + offset;
                 button.centerY = currentMiddle;
                 
                 xPosition = CGRectGetMaxX(button.frame);
                 if (item == items.lastObject) {
-                    maxHeight = CGRectGetMaxY(button.frame);
+                    heightRecord = CGRectGetMaxY(button.frame);
                 }
                 
                 WeakSelf(weakSelf)
@@ -230,6 +303,15 @@
             }
             
         }
+        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, heightRecord+10, bgView.width, 1)];
+        line.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
+        [container addSubview:line];
+        heightRecord = CGRectGetMaxY(line.frame);
+        
+        container.height = heightRecord;
+        
+        maxHeight = CGRectGetMaxY(container.frame);
     }
     
     maxHeight += offset;
@@ -237,36 +319,76 @@
     {
         if (model.screenshots.count > 0) {
             
+            UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, maxHeight, bgView.width, 0)];
+            [bgView addSubview:container];
+            
+            CGFloat heightRecord = 0;
+            
             UILabel *label = [[UILabel alloc] init];
             label.text = @"樣品圖像";
             label.font = MHMediumFont(14);
-            [bgView addSubview:label];
+            label.textColor = [UIColor colorWithHexString:kMainTextColor];
+            [container addSubview:label];
             [label sizeToFit];
             label.x = offset;
-            label.y = maxHeight + offset;
-            maxHeight = CGRectGetMaxY(label.frame);
+            label.y = heightRecord + offset;
+            heightRecord = CGRectGetMaxY(label.frame);
             
             CGFloat offset = 8;
-            CGFloat itemSize = 150;
+            CGFloat itemSize = 90;
             UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-            layout.itemSize = CGSizeMake(itemSize, itemSize);
+            layout.itemSize = CGSizeMake(itemSize*4.0/3, itemSize);
             layout.minimumLineSpacing = offset;
             layout.minimumInteritemSpacing = offset;
             layout.sectionInset = UIEdgeInsetsMake(offset, offset, offset, offset);
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             
-            UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, maxHeight + offset, scrollView.width, itemSize) collectionViewLayout:layout];
+            UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, heightRecord + offset, scrollView.width, itemSize) collectionViewLayout:layout];
             collection.delegate = self;
             collection.dataSource = self;
             collection.backgroundColor = [UIColor clearColor];
             collection.showsHorizontalScrollIndicator = NO;
             [collection registerNib:[UINib nibWithNibName:NSStringFromClass([ScreenShotCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([ScreenShotCell class])];
             
-            [bgView addSubview:collection];
+            [container addSubview:collection];
             self.screenshotView = collection;
             
-            maxHeight = CGRectGetMaxY(collection.frame);
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(collection.frame) + offset, bgView.width, 1)];
+            line.backgroundColor = [UIColor colorWithHexString:@"#eeeeee"];
+            [container addSubview:line];
+            
+            heightRecord = CGRectGetMaxY(line.frame);
+            container.height = heightRecord;
+            
+            maxHeight = CGRectGetMaxY(container.frame);
         }
+    }
+    
+    //磁力链接
+    {
+        
+        CGFloat itemHeight = 40;
+        MagneticListView *container = [[MagneticListView alloc] initWithFrame:CGRectMake(20, maxHeight+10, bgView.width - 2*20, itemHeight)];
+        container.clipsToBounds = YES;
+        container.layer.cornerRadius = 8;
+        container.layer.borderColor = [UIColor colorWithHexString:@"#f2f2f7"].CGColor;
+        container.layer.borderWidth = 1.0f;
+        [bgView addSubview:container];
+        self.magneticView = container;
+        
+        WeakSelf(weakSelf)
+        container.frameChangeCallback = ^(CGRect frame) {
+            [UIView animateWithDuration:0.15 animations:^{
+                weakSelf.magneticView.frame = frame;
+                weakSelf.recommendContainer.y = CGRectGetMaxY(frame);
+                weakSelf.scrollView.contentSize = CGSizeMake(weakSelf.scrollView.width, CGRectGetMaxY(weakSelf.recommendContainer.frame));
+                bgView.height = CGRectGetMaxY(weakSelf.recommendContainer.frame);
+            } completion:^(BOOL finished) {
+                
+            }];
+        };
+        
+        maxHeight = CGRectGetMaxY(container.frame);
     }
     
     maxHeight += offset;
@@ -274,14 +396,21 @@
     {
         if (model.recommends.count > 0) {
             
+            UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, maxHeight, bgView.width, 0)];
+            [bgView addSubview:container];
+            self.recommendContainer = container;
+            
+            CGFloat heightRecord = 0;
+            
             UILabel *label = [[UILabel alloc] init];
             label.text = @"同類影片";
+            label.textColor = [UIColor colorWithHexString:kMainTextColor];
             label.font = MHMediumFont(14);
-            [bgView addSubview:label];
+            [container addSubview:label];
             [label sizeToFit];
             label.x = offset;
-            label.y = maxHeight + offset;
-            maxHeight = CGRectGetMaxY(label.frame);
+            label.y = heightRecord + offset;
+            heightRecord = CGRectGetMaxY(label.frame);
             
             CGFloat offset = 8;
             CGFloat itemSize = 147;
@@ -293,18 +422,21 @@
             layout.sectionInset = UIEdgeInsetsMake(offset, offset, offset, offset);
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             
-            UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, maxHeight + offset, scrollView.width, itemHeight) collectionViewLayout:layout];
+            UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectMake(0, heightRecord + offset, scrollView.width, itemHeight) collectionViewLayout:layout];
             collection.delegate = self;
             collection.dataSource = self;
             collection.backgroundColor = [UIColor clearColor];
             collection.showsHorizontalScrollIndicator = NO;
             [collection registerNib:[UINib nibWithNibName:NSStringFromClass([RecommendCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([RecommendCell class])];
             
-            [bgView addSubview:collection];
+            [container addSubview:collection];
             
             self.recommendView = collection;
             
-            maxHeight = CGRectGetMaxY(collection.frame);
+            heightRecord = CGRectGetMaxY(collection.frame);
+            
+            container.height = heightRecord;
+            maxHeight = CGRectGetMaxY(container.frame);
         }
     }
     
@@ -338,16 +470,13 @@
     
     if (model.type == LinkTypeNumber) {
         NSString *code = model.title;
-        if (code.length == 0) {
-            code = @"";
-        }
         
-        if ([DBMANAGER isMovieCacheExsit:self.model]) {
-            NSString *name = [NSString stringWithFormat:@"%@.mp4", [Encrypt md5Encrypt32:self.model.number]];
-            NSString *filePath = [[GlobalTool shareInstance].movieCacheDir stringByAppendingPathComponent:name];
-            MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
-            moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-            [self presentViewController:moviePlayerController animated:YES completion:nil];
+        NSString *name = [NSString stringWithFormat:@"%@.mp4", [Encrypt md5Encrypt32:self.model.number]];
+        NSString *filePath = [[GlobalTool shareInstance].movieCacheDir stringByAppendingPathComponent:name];
+        BOOL isFileExsit = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+        
+        if ([DBMANAGER isMovieCacheExsit:self.model] && isFileExsit) {
+            [self playWithUrl:filePath];
         }else {
             [PublicDialogManager showWaittingInView:self.view];
             [HTTPMANAGER getVideoByCode:code SuccessCallback:^(NSDictionary *resultDict) {
@@ -393,9 +522,7 @@
                             if (error) {
                                 NSLog(@"%@", error);
                             }else {
-                                MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:savePath]];
-                                moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-                                [self presentViewController:moviePlayerController animated:YES completion:nil];
+                                [self playWithUrl:savePath];
                             }
                         }];
                     }else{
@@ -415,6 +542,10 @@
         
     }
     
+}
+
+- (void)playWithUrl:(NSString *)url {
+    [[VideoPlayerManager shareManager] showPlayerWithUrl:url];
 }
 
 - (void)tapCorver {
@@ -447,6 +578,7 @@
         RecommendModel *model = self.detailModel.recommends[indexPath.item];
         [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:MovieListPlaceHolder];
         cell.titleLabel.text = model.title;
+        cell.titleLabel.textColor = [UIColor colorWithHexString:kMainTextColor];
         return cell;
     }
 }
@@ -485,9 +617,16 @@
             }
         }
         
-        MovieDetailController *vc = [MovieDetailController new];
-        vc.model = listModel;
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([listModel.number containsString:@"forum.php?"]) {
+            NSString *urlString = [NSString stringWithFormat:@"%@/forum/%@", [GlobalTool shareInstance].baseUrl, listModel.number];
+            NSURL *url = [NSURL URLWithString:urlString];
+            SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:url];
+            [self presentViewController:safariVC animated:YES completion:nil];
+        }else {
+            MovieDetailController *vc = [MovieDetailController new];
+            vc.model = listModel;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 

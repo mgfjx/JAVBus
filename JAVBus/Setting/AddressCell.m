@@ -8,6 +8,15 @@
 
 #import "AddressCell.h"
 
+@interface AddressCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIView *indicatorView;
+@property (weak, nonatomic) IBOutlet UIImageView *selectImageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingView;
+
+@end
+
 @implementation AddressCell
 
 - (void)awakeFromNib {
@@ -20,10 +29,28 @@
     
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setModel:(AddressModel *)model {
+    _model = model;
+    
+    self.selectImageView.hidden = !model.selected;
+    self.titleLabel.text = model.ipAddress;
+    
+    if (model.type == AddressTypeFailed) {
+        self.indicatorView.backgroundColor = [UIColor colorWithHexString:@"#e82220"];
+        [self.loadingView stopAnimating];
+        self.loadingView.hidden = YES;
+        self.indicatorView.hidden = NO;
+    }else if (model.type == AddressTypeSuccess) {
+        self.indicatorView.backgroundColor = [UIColor colorWithHexString:@"#00a600"];
+        [self.loadingView stopAnimating];
+        self.loadingView.hidden = YES;
+        self.indicatorView.hidden = NO;
+    }else if (model.type == AddressTypeLoading) {
+        self.indicatorView.hidden = YES;
+        self.loadingView.hidden = NO;
+        [self.loadingView startAnimating];
+    }
+    
 }
 
 @end

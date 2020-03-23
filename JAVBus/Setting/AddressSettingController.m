@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) UITableView *tableView ;
 @property (nonatomic, strong) NSArray *dataArray ;
-@property (nonatomic, strong) NSArray *validIpArray ;
 
 @end
 
@@ -22,8 +21,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"地址设置";
+    
     [self initViews];
-    self.dataArray = [GlobalTool shareInstance].ips;
+    NSArray *ips = [GlobalTool shareInstance].ips ;
+    
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSString *ip in ips) {
+        AddressModel *model = [AddressModel new];
+        model.ipAddress = ip;
+        NSString *baseUrl = [GlobalTool shareInstance].baseUrl;
+        model.selected = [ip isEqualToString:baseUrl];
+        model.type = AddressTypeFailed;
+        [array addObject:model];
+    }
+    
+    self.dataArray = [array copy];
     [self testIp];
     [self createBarButton];
     
@@ -109,14 +122,16 @@
 }
 
 - (void)testIp {
-    NSMutableArray *arr = [NSMutableArray array];
-    for (NSString *ip in self.dataArray) {
-        [HTMLTOJSONMANAGER testIp:ip callback:^(NSArray *array) {
+    for (AddressModel *model in self.dataArray) {
+        model.type = AddressTypeLoading;
+        [self.tableView reloadData];
+        [HTMLTOJSONMANAGER testIp:model.ipAddress callback:^(NSArray *array) {
             if (array.count > 0) {
-                [arr addObject:ip];
-                [self.tableView reloadData];
-                self.validIpArray = [arr copy];
+                model.type = AddressTypeSuccess;
+            }else {
+                model.type = AddressTypeFailed;
             }
+            [self.tableView reloadData];
         }];
     }
     
@@ -135,33 +150,33 @@
     NSString *cellReuse = NSStringFromClass([AddressCell class]);
     AddressCell *cell = (AddressCell *)[tableView dequeueReusableCellWithIdentifier:cellReuse];
     
-    NSString *ip = self.dataArray[indexPath.row];
-    cell.titleLabel.text = ip;
-    NSString *baseUrl = [GlobalTool shareInstance].baseUrl;
-    if ([ip isEqualToString:baseUrl]) {
-        cell.selectImageView.hidden = NO;
-    }else{
-        cell.selectImageView.hidden = YES;
-    }
-    
-    if ([self.validIpArray containsObject:ip]) {
-        cell.indicatorView.backgroundColor = [UIColor colorWithHexString:@"#00a600"];
-    }else {
-        cell.indicatorView.backgroundColor = [UIColor colorWithHexString:@"#aaaaaa"];
-    }
-    
+    AddressModel *model = self.dataArray[indexPath.row];
+    cell.model = model ;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    [GlobalTool shareInstance].baseUrl = self.dataArray[indexPath.row];
+    
+    for (AddressModel *model in self.dataArray) {
+        model.selected = NO;
+    }
+    
+    AddressModel *currentModel = self.dataArray[indexPath.row];
+    currentModel.selected = YES;
+    [GlobalTool shareInstance].baseUrl = currentModel.ipAddress;
     [tableView reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 50;
 }
+
+@end
+
+
+@implementation AddressModel
+
 
 @end

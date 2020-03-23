@@ -14,11 +14,35 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - CYLTabBarController (1.17.22)
+  - AppAuth (1.3.0):
+    - AppAuth/Core (= 1.3.0)
+    - AppAuth/ExternalUserAgent (= 1.3.0)
+  - AppAuth/Core (1.3.0)
+  - AppAuth/ExternalUserAgent (1.3.0)
+  - CYLTabBarController (1.28.5):
+    - CYLTabBarController/Core (= 1.28.5)
+  - CYLTabBarController/Core (1.28.5)
   - DACircularProgress (2.3.1)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - GoogleAPIClientForREST/Core (1.3.11):
+    - GTMSessionFetcher (>= 1.1.7)
+  - GoogleAPIClientForREST/Drive (1.3.11):
+    - GoogleAPIClientForREST/Core
+    - GTMSessionFetcher (>= 1.1.7)
+  - GoogleSignIn (5.0.2):
+    - AppAuth (~> 1.2)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GTMAppAuth (1.0.0):
+    - AppAuth/Core (~> 1.0)
+    - GTMSessionFetcher (~> 1.1)
+  - GTMSessionFetcher (1.3.1):
+    - GTMSessionFetcher/Full (= 1.3.1)
+  - GTMSessionFetcher/Core (1.3.1)
+  - GTMSessionFetcher/Full (1.3.1):
+    - GTMSessionFetcher/Core (= 1.3.1)
   - IDMPhotoBrowser (1.11.3):
     - DACircularProgress
     - pop
@@ -27,6 +51,7 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.15.7)
+  - ObjectiveDropboxOfficial (3.10.0)
   - pop (1.0.12)
   - SDCycleScrollView (1.75):
     - SDWebImage (>= 4.0.0)
@@ -37,32 +62,63 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.1)
-  - CYLTabBarController (~> 1.17.4)
+  - CYLTabBarController (~> 1.28.5)
   - FMDB (~> 2.7.5)
+  - GoogleAPIClientForREST/Drive (~> 1.3.11)
+  - GoogleSignIn (~> 5.0.2)
   - IDMPhotoBrowser (~> 1.11.3)
   - JXCategoryView (~> 1.0.3)
   - Masonry (~> 1.1.0)
   - MBProgressHUD (~> 1.1.0)
   - MJRefresh (~> 3.1.12)
+  - ObjectiveDropboxOfficial (~> 3.10.0)
   - SDCycleScrollView (~> 1.75)
   - SDWebImage (~> 4.0.0)
   - TFHpple (~> 2.0.0)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - AppAuth
+    - CYLTabBarController
+    - DACircularProgress
+    - FMDB
+    - GoogleAPIClientForREST
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
+    - IDMPhotoBrowser
+    - JXCategoryView
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - ObjectiveDropboxOfficial
+    - pop
+    - SDCycleScrollView
+    - SDWebImage
+    - TFHpple
+
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  CYLTabBarController: 35784c2969383583d11cc56ff5abce078f19d94a
+  AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
+  CYLTabBarController: edd9fecba9afa3f2e9e44ed50ca6dde69941f25f
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  GoogleAPIClientForREST: 0f19a8280dfe6471f76016645d26eb5dae305101
+  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
+  GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
+  GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   IDMPhotoBrowser: b96159fe4adb991a844068eb17dab9c0b7d7e51a
   JXCategoryView: b04d90ff1786d9ebd0fbc37715a622d07075418b
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  ObjectiveDropboxOfficial: 19a4913d4d52fba035d41f40da71df0d6b303327
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   TFHpple: a916fe0799eb30aa29b2670d14d5868cdd3a5b81
 
-PODFILE CHECKSUM: d8d620189c5685e2fc6468e14707d2d7b3d511f5
+PODFILE CHECKSUM: 3f1bf1442aa59699f03065a0d4857a66d847dbab
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.9.1

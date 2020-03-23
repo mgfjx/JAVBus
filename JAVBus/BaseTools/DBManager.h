@@ -12,9 +12,11 @@
 #import "TitleLinkModel.h"
 #import "ScreenShotModel.h"
 #import "RecommendModel.h"
+#import "MagneticModel.h"
 
 @interface DBManager : NSObject
 
+@property (nonatomic, strong) NSString *dbPath ;
 + (instancetype)manager ;
 
 
@@ -99,6 +101,11 @@
 - (BOOL)insertMovieDetail:(MovieDetailModel *)model ;
 
 /**
+ 更新电影详情数据
+ */
+- (BOOL)updateMovieDetail:(MovieDetailModel *)model ;
+
+/**
  判断是否已存在电影详情
  */
 - (BOOL)isMovieDetailExsit:(MovieListModel *)model ;
@@ -111,7 +118,7 @@
 /**
  删除电影详情数据
  */
-- (BOOL)deleteMovieDetail:(MovieListModel *)model ;
+- (BOOL)deleteMovieDetail:(MovieDetailModel *)model ;
 
 /**
  删除所有电影缓存数据

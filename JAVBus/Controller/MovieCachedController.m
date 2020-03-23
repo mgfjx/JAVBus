@@ -7,7 +7,8 @@
 //
 
 #import "MovieCachedController.h"
-#import <MediaPlayer/MediaPlayer.h>
+#import "VideoPlayerManager.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface MovieCachedController ()
 
@@ -66,11 +67,76 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     MovieListModel *model = self.dataArray[indexPath.row];
+    
+    NSString *code = model.number;
     NSString *name = [NSString stringWithFormat:@"%@.mp4", [Encrypt md5Encrypt32:model.number]];
     NSString *filePath = [[GlobalTool shareInstance].movieCacheDir stringByAppendingPathComponent:name];
-    MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:filePath]];
-    moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-    [self presentViewController:moviePlayerController animated:YES completion:nil];
+    
+    BOOL isFileExsit = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+    
+    if ([DBMANAGER isMovieCacheExsit:model] && isFileExsit) {
+        [[VideoPlayerManager shareManager] showPlayerWithUrl:filePath];
+    }else {
+        [PublicDialogManager showWaittingInView:self.view];
+        [HTTPMANAGER getVideoByCode:code SuccessCallback:^(NSDictionary *resultDict) {
+            BOOL isSuccess = [resultDict[@"success"] boolValue];
+            if (isSuccess) {
+                NSDictionary *response = resultDict[@"response"];
+                NSArray *array = response[@"videos"];
+                if (array.count > 0) {
+                    NSDictionary *video = array.firstObject;
+                    NSString *preview_url = video[@"preview_video_url"];
+                    
+                    [HTTPMANAGER downloadFile:preview_url progress:^(NSProgress * _Nonnull downloadProgress) {
+                        float progress = downloadProgress.completedUnitCount*1.0 / downloadProgress.totalUnitCount*1.0;
+                        NSLog(@"progress: %f", progress);
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            MBProgressHUD *hud = [MBProgressHUD HUDForView:self.view];
+                            hud.mode = MBProgressHUDModeDeterminate;
+                            hud.progressObject = downloadProgress;
+                        });
+                    } completion:^(NSURL * _Nullable filePath, NSError * _Nullable error) {
+                        if (error) {
+                            [PublicDialogManager showText:@"获取预览失败, 请检查VPN, 稍后重试" inView:self.view duration:2.0];
+                            return ;
+                        }
+                        MBProgressHUD *hud = [MBProgressHUD HUDForView:self.view];
+                        UIImage *image = [[UIImage imageNamed:@"Checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+                        hud.customView = imageView;
+                        hud.mode = MBProgressHUDModeCustomView;
+                        [hud hideAnimated:YES afterDelay:2.f];
+                        
+                        NSString *path = [GlobalTool shareInstance].movieCacheDir;
+                        NSString *md5Str = [Encrypt md5Encrypt32:model.number];
+                        NSString *name = [NSString stringWithFormat:@"/%@.mp4", md5Str];
+                        NSString *savePath = [path stringByAppendingPathComponent:name];
+                        if ([[NSFileManager defaultManager] fileExistsAtPath:savePath]) {
+                            [[NSFileManager defaultManager] removeItemAtPath:savePath error:nil];
+                        }
+                        [[NSFileManager defaultManager] moveItemAtPath:filePath.path toPath:savePath error:&error];
+                        
+                        if (error) {
+                            NSLog(@"%@", error);
+                        }else {
+                            [[VideoPlayerManager shareManager] showPlayerWithUrl:savePath];
+                        }
+                    }];
+                }else{
+                    [PublicDialogManager hideWaittingInView:self.view];
+                    [PublicDialogManager showText:@"未查询到相关预览视频" inView:self.view duration:1.0];
+                }
+            }else {
+                [PublicDialogManager hideWaittingInView:self.view];
+                [PublicDialogManager showText:@"未查询到相关预览视频" inView:self.view duration:1.0];
+            }
+            
+        } FailCallback:^(NSError *error) {
+            [PublicDialogManager hideWaittingInView:self.view];
+            [PublicDialogManager showText:@"服务出错" inView:self.view duration:1.0];
+        }];
+    }
+    
 }
 
 - (void)showFuncSelection {

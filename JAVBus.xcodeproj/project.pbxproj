@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,6 +41,9 @@
 		EC0BC4C021C2653500A6E50E /* RxWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC4BA21C2653500A6E50E /* RxWebViewController.m */; };
 		EC0BC4C321C2ADE900A6E50E /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC4C221C2ADE900A6E50E /* BaseModel.m */; };
 		EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC4C521C2AE1D00A6E50E /* ActressModel.m */; };
+		EC5F058F241D14C40055B6B5 /* MagneticModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F058E241D14C40055B6B5 /* MagneticModel.m */; };
+		EC5F0592241D16590055B6B5 /* NSString+XLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F0591241D16590055B6B5 /* NSString+XLHelper.m */; };
+		EC5F0595241D26D00055B6B5 /* MagneticItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5F0594241D26D00055B6B5 /* MagneticItemCell.m */; };
 		EC73608C21D90D5B0031DFE0 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73608B21D90D5B0031DFE0 /* SearchViewController.m */; };
 		EC73608F21D90EF00031DFE0 /* MovieSearchListController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73608E21D90EF00031DFE0 /* MovieSearchListController.m */; };
 		EC73609221D90F630031DFE0 /* ActressSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC73609121D90F630031DFE0 /* ActressSearchController.m */; };
@@ -56,13 +59,25 @@
 		EC9ABE2221CFA5E300C4E90F /* AddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9ABE2021CFA5E300C4E90F /* AddressCell.xib */; };
 		EC9D72FD21C7F41400C9F830 /* ActressDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D72FB21C7F41400C9F830 /* ActressDetailCell.m */; };
 		EC9D72FE21C7F41400C9F830 /* ActressDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D72FC21C7F41400C9F830 /* ActressDetailCell.xib */; };
+		ECA791692416141300EDFF51 /* VideoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA791682416141300EDFF51 /* VideoPlayerManager.m */; };
+		ECAE2413241A077E0050FA8A /* GGDriveFileController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE2412241A077E0050FA8A /* GGDriveFileController.m */; };
+		ECAE2417241A14710050FA8A /* GGDriveFolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE2415241A14710050FA8A /* GGDriveFolderCell.m */; };
+		ECAE2418241A14710050FA8A /* GGDriveFolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAE2416241A14710050FA8A /* GGDriveFolderCell.xib */; };
+		ECAE241C241A1B8A0050FA8A /* GGDriveFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE241A241A1B890050FA8A /* GGDriveFileCell.m */; };
+		ECAE241D241A1B8A0050FA8A /* GGDriveFileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAE241B241A1B8A0050FA8A /* GGDriveFileCell.xib */; };
+		ECAE2420241A77A20050FA8A /* DropBoxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAE241F241A77A20050FA8A /* DropBoxManager.m */; };
+		ECBCAAA7241E165500005732 /* MagneticListView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECBCAAA6241E165500005732 /* MagneticListView.m */; };
 		ECCCE41921E39D54006833FE /* Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCCE41821E39D51006833FE /* Encrypt.m */; };
 		ECCCE41C21E42F48006833FE /* MovieCachedController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECCCE41B21E42F48006833FE /* MovieCachedController.m */; };
+		ECD4F4F724167D800076269B /* GoogleDriveController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4F4F624167D800076269B /* GoogleDriveController.m */; };
+		ECD4F4FB241795AA0076269B /* GoogleSignInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4F4FA241795AA0076269B /* GoogleSignInManager.m */; };
+		ECD4F4FE2417D9010076269B /* GoogleDriveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4F4FD2417D9010076269B /* GoogleDriveManager.m */; };
 		ECD4FD9B21C5428800645593 /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4FD9921C5428800645593 /* HttpManager.m */; };
 		ECD99AD621C6891A0043DB0C /* HtmlToJsonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AD421C6891A0043DB0C /* HtmlToJsonManager.m */; };
 		ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AD821C697540043DB0C /* ActressDetailController.m */; };
 		ECD99AED21C7E0880043DB0C /* LJJWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AEB21C7E0880043DB0C /* LJJWaterFlowLayout.m */; };
 		ECD99AF021C7EDB90043DB0C /* MovieListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD99AEF21C7EDB90043DB0C /* MovieListModel.m */; };
+		ECDF476F2380484B0080EDA7 /* VideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDF476D2380484B0080EDA7 /* VideoPlayerView.m */; };
 		ECF79B2A21DDB372008C097D /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B2921DDB372008C097D /* DBManager.m */; };
 		ECF79B2D21DDE2C8008C097D /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B2C21DDE2C8008C097D /* CollectionViewController.m */; };
 		ECF79B3021DDE2DA008C097D /* ActressCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF79B2F21DDE2DA008C097D /* ActressCollectionController.m */; };
@@ -181,6 +196,12 @@
 		EC0BC4C221C2ADE900A6E50E /* BaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		EC0BC4C421C2AE1D00A6E50E /* ActressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressModel.h; sourceTree = "<group>"; };
 		EC0BC4C521C2AE1D00A6E50E /* ActressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressModel.m; sourceTree = "<group>"; };
+		EC5F058D241D14C40055B6B5 /* MagneticModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagneticModel.h; sourceTree = "<group>"; };
+		EC5F058E241D14C40055B6B5 /* MagneticModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagneticModel.m; sourceTree = "<group>"; };
+		EC5F0590241D16590055B6B5 /* NSString+XLHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+XLHelper.h"; sourceTree = "<group>"; };
+		EC5F0591241D16590055B6B5 /* NSString+XLHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+XLHelper.m"; sourceTree = "<group>"; };
+		EC5F0593241D26D00055B6B5 /* MagneticItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagneticItemCell.h; sourceTree = "<group>"; };
+		EC5F0594241D26D00055B6B5 /* MagneticItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagneticItemCell.m; sourceTree = "<group>"; };
 		EC73608A21D90D5B0031DFE0 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		EC73608B21D90D5B0031DFE0 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		EC73608D21D90EF00031DFE0 /* MovieSearchListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieSearchListController.h; sourceTree = "<group>"; };
@@ -207,10 +228,30 @@
 		EC9D72FA21C7F41400C9F830 /* ActressDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActressDetailCell.h; sourceTree = "<group>"; };
 		EC9D72FB21C7F41400C9F830 /* ActressDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActressDetailCell.m; sourceTree = "<group>"; };
 		EC9D72FC21C7F41400C9F830 /* ActressDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActressDetailCell.xib; sourceTree = "<group>"; };
+		ECA791672416141300EDFF51 /* VideoPlayerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPlayerManager.h; sourceTree = "<group>"; };
+		ECA791682416141300EDFF51 /* VideoPlayerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerManager.m; sourceTree = "<group>"; };
+		ECAE2411241A077E0050FA8A /* GGDriveFileController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGDriveFileController.h; sourceTree = "<group>"; };
+		ECAE2412241A077E0050FA8A /* GGDriveFileController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGDriveFileController.m; sourceTree = "<group>"; };
+		ECAE2414241A14710050FA8A /* GGDriveFolderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGDriveFolderCell.h; sourceTree = "<group>"; };
+		ECAE2415241A14710050FA8A /* GGDriveFolderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGDriveFolderCell.m; sourceTree = "<group>"; };
+		ECAE2416241A14710050FA8A /* GGDriveFolderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GGDriveFolderCell.xib; sourceTree = "<group>"; };
+		ECAE2419241A1B890050FA8A /* GGDriveFileCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGDriveFileCell.h; sourceTree = "<group>"; };
+		ECAE241A241A1B890050FA8A /* GGDriveFileCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGDriveFileCell.m; sourceTree = "<group>"; };
+		ECAE241B241A1B8A0050FA8A /* GGDriveFileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GGDriveFileCell.xib; sourceTree = "<group>"; };
+		ECAE241E241A77A20050FA8A /* DropBoxManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropBoxManager.h; sourceTree = "<group>"; };
+		ECAE241F241A77A20050FA8A /* DropBoxManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropBoxManager.m; sourceTree = "<group>"; };
+		ECBCAAA5241E165500005732 /* MagneticListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagneticListView.h; sourceTree = "<group>"; };
+		ECBCAAA6241E165500005732 /* MagneticListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagneticListView.m; sourceTree = "<group>"; };
 		ECCCE41721E39D50006833FE /* Encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encrypt.h; sourceTree = "<group>"; };
 		ECCCE41821E39D51006833FE /* Encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Encrypt.m; sourceTree = "<group>"; };
 		ECCCE41A21E42F48006833FE /* MovieCachedController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCachedController.h; sourceTree = "<group>"; };
 		ECCCE41B21E42F48006833FE /* MovieCachedController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCachedController.m; sourceTree = "<group>"; };
+		ECD4F4F524167D7F0076269B /* GoogleDriveController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleDriveController.h; sourceTree = "<group>"; };
+		ECD4F4F624167D800076269B /* GoogleDriveController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoogleDriveController.m; sourceTree = "<group>"; };
+		ECD4F4F9241795AA0076269B /* GoogleSignInManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleSignInManager.h; sourceTree = "<group>"; };
+		ECD4F4FA241795AA0076269B /* GoogleSignInManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInManager.m; sourceTree = "<group>"; };
+		ECD4F4FC2417D9010076269B /* GoogleDriveManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleDriveManager.h; sourceTree = "<group>"; };
+		ECD4F4FD2417D9010076269B /* GoogleDriveManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoogleDriveManager.m; sourceTree = "<group>"; };
 		ECD4FD9921C5428800645593 /* HttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpManager.m; sourceTree = "<group>"; };
 		ECD4FD9A21C5428800645593 /* HttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
 		ECD99AD421C6891A0043DB0C /* HtmlToJsonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HtmlToJsonManager.m; sourceTree = "<group>"; };
@@ -221,6 +262,8 @@
 		ECD99AEC21C7E0880043DB0C /* LJJWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJJWaterFlowLayout.h; sourceTree = "<group>"; };
 		ECD99AEE21C7EDB90043DB0C /* MovieListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieListModel.h; sourceTree = "<group>"; };
 		ECD99AEF21C7EDB90043DB0C /* MovieListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieListModel.m; sourceTree = "<group>"; };
+		ECDF476D2380484B0080EDA7 /* VideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerView.m; sourceTree = "<group>"; };
+		ECDF476E2380484B0080EDA7 /* VideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerView.h; sourceTree = "<group>"; };
 		ECF79B2821DDB372008C097D /* DBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		ECF79B2921DDB372008C097D /* DBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		ECF79B2B21DDE2C8008C097D /* CollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
@@ -354,6 +397,7 @@
 				EC0BC47B21C2587900A6E50E /* PrefixHeader.pch */,
 				EC0BC47C21C259E200A6E50E /* Defines */,
 				EC0BC47F21C25B5000A6E50E /* Category */,
+				ECA79166241613E600EDFF51 /* Common */,
 				EC0BC4AE21C2651D00A6E50E /* Library */,
 				EC0BC4A221C25D1D00A6E50E /* BaseTools */,
 				EC9ABE1721CF4BE200C4E90F /* Setting */,
@@ -427,6 +471,8 @@
 				EC0BC48921C25B5000A6E50E /* NSDate+XExtend.m */,
 				EC0BC48721C25B5000A6E50E /* NSString+RegExp.h */,
 				EC0BC49521C25B5000A6E50E /* NSString+RegExp.m */,
+				EC5F0590241D16590055B6B5 /* NSString+XLHelper.h */,
+				EC5F0591241D16590055B6B5 /* NSString+XLHelper.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -528,6 +574,31 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		ECA79166241613E600EDFF51 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				ECDF476E2380484B0080EDA7 /* VideoPlayerView.h */,
+				ECDF476D2380484B0080EDA7 /* VideoPlayerView.m */,
+				ECA791672416141300EDFF51 /* VideoPlayerManager.h */,
+				ECA791682416141300EDFF51 /* VideoPlayerManager.m */,
+				ECD4F4F9241795AA0076269B /* GoogleSignInManager.h */,
+				ECD4F4FA241795AA0076269B /* GoogleSignInManager.m */,
+				ECD4F4FC2417D9010076269B /* GoogleDriveManager.h */,
+				ECD4F4FD2417D9010076269B /* GoogleDriveManager.m */,
+				ECAE2411241A077E0050FA8A /* GGDriveFileController.h */,
+				ECAE2412241A077E0050FA8A /* GGDriveFileController.m */,
+				ECAE2414241A14710050FA8A /* GGDriveFolderCell.h */,
+				ECAE2415241A14710050FA8A /* GGDriveFolderCell.m */,
+				ECAE2416241A14710050FA8A /* GGDriveFolderCell.xib */,
+				ECAE2419241A1B890050FA8A /* GGDriveFileCell.h */,
+				ECAE241A241A1B890050FA8A /* GGDriveFileCell.m */,
+				ECAE241B241A1B8A0050FA8A /* GGDriveFileCell.xib */,
+				ECAE241E241A77A20050FA8A /* DropBoxManager.h */,
+				ECAE241F241A77A20050FA8A /* DropBoxManager.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		ECF9457121D4B85E0043E898 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,6 +612,8 @@
 				ECF9458621D5FC220043E898 /* ScreenShotModel.m */,
 				ECF9458D21D60AE00043E898 /* RecommendModel.h */,
 				ECF9458E21D60AE00043E898 /* RecommendModel.m */,
+				EC5F058D241D14C40055B6B5 /* MagneticModel.h */,
+				EC5F058E241D14C40055B6B5 /* MagneticModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -579,6 +652,10 @@
 				ECF9457621D4C0DD0043E898 /* CategoryItemListController.m */,
 				ECF9457821D4CB630043E898 /* MovieDetailController.h */,
 				ECF9457921D4CB630043E898 /* MovieDetailController.m */,
+				EC5F0593241D26D00055B6B5 /* MagneticItemCell.h */,
+				EC5F0594241D26D00055B6B5 /* MagneticItemCell.m */,
+				ECBCAAA5241E165500005732 /* MagneticListView.h */,
+				ECBCAAA6241E165500005732 /* MagneticListView.m */,
 				ECF9458821D5FED70043E898 /* ScreenShotCell.h */,
 				ECF9458921D5FED70043E898 /* ScreenShotCell.m */,
 				ECF9458A21D5FED70043E898 /* ScreenShotCell.xib */,
@@ -604,6 +681,8 @@
 				ECCCE41B21E42F48006833FE /* MovieCachedController.m */,
 				ECF79B3821DEF680008C097D /* SettingViewController.h */,
 				ECF79B3921DEF680008C097D /* SettingViewController.m */,
+				ECD4F4F524167D7F0076269B /* GoogleDriveController.h */,
+				ECD4F4F624167D800076269B /* GoogleDriveController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -619,7 +698,6 @@
 				EC0BC43A21C2394900A6E50E /* Sources */,
 				EC0BC43B21C2394900A6E50E /* Frameworks */,
 				EC0BC43C21C2394900A6E50E /* Resources */,
-				03EC0B27CA338B3313FB3E59 /* [CP] Embed Pods Frameworks */,
 				3017ADEB2178B24D9F172618 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -639,8 +717,6 @@
 				EC0BC45221C2394B00A6E50E /* Sources */,
 				EC0BC45321C2394B00A6E50E /* Frameworks */,
 				EC0BC45421C2394B00A6E50E /* Resources */,
-				123894640922D106836DF182 /* [CP] Embed Pods Frameworks */,
-				6B051D00D26BA348CFC0DFCC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -660,8 +736,6 @@
 				EC0BC45D21C2394B00A6E50E /* Sources */,
 				EC0BC45E21C2394B00A6E50E /* Frameworks */,
 				EC0BC45F21C2394B00A6E50E /* Resources */,
-				DB88AE2D364BC8481C58DB00 /* [CP] Embed Pods Frameworks */,
-				C3FB94E3180B1CFD78E4F7AE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -722,7 +796,9 @@
 			files = (
 				EC0BC44E21C2394B00A6E50E /* LaunchScreen.storyboard in Resources */,
 				EC0BC4BB21C2653500A6E50E /* backItemImage_hl@2x.png in Resources */,
+				ECAE2418241A14710050FA8A /* GGDriveFolderCell.xib in Resources */,
 				ECF9458C21D5FED70043E898 /* ScreenShotCell.xib in Resources */,
+				ECAE241D241A1B8A0050FA8A /* GGDriveFileCell.xib in Resources */,
 				EC0BC4BC21C2653500A6E50E /* backItemImage@2x.png in Resources */,
 				EC0BC4AD21C25E3C00A6E50E /* ActressCell.xib in Resources */,
 				EC9ABE2221CFA5E300C4E90F /* AddressCell.xib in Resources */,
@@ -753,54 +829,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03EC0B27CA338B3313FB3E59 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JAVBus/Pods-JAVBus-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		123894640922D106836DF182 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JAVBusTests/Pods-JAVBusTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3017ADEB2178B24D9F172618 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-JAVBus/Pods-JAVBus-resources.sh",
-				"${PODS_ROOT}/IDMPhotoBrowser/Classes/IDMPhotoBrowser.bundle",
-				"${PODS_ROOT}/IDMPhotoBrowser/Classes/IDMPBLocalizations.bundle",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JAVBus/Pods-JAVBus-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JAVBus/Pods-JAVBus-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JAVBus/Pods-JAVBus-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JAVBus/Pods-JAVBus-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		44B619B642591C916C693F2C /* [CP] Check Pods Manifest.lock */ = {
@@ -821,36 +864,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6B051D00D26BA348CFC0DFCC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JAVBusTests/Pods-JAVBusTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C3FB94E3180B1CFD78E4F7AE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JAVBusUITests/Pods-JAVBusUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CF5DDD7EF3FB4AF9158EF34A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -867,21 +880,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DB88AE2D364BC8481C58DB00 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JAVBusUITests/Pods-JAVBusUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FBB4B5866A19BD29C5377224 /* [CP] Check Pods Manifest.lock */ = {
@@ -911,6 +909,7 @@
 			files = (
 				ECF9457721D4C0DD0043E898 /* CategoryItemListController.m in Sources */,
 				EC9ABE2121CFA5E300C4E90F /* AddressCell.m in Sources */,
+				ECAE2417241A14710050FA8A /* GGDriveFolderCell.m in Sources */,
 				ECF9455B21D46AB60043E898 /* MainTabViewController.m in Sources */,
 				EC0BC44621C2394900A6E50E /* MainViewController.m in Sources */,
 				EC0BC4BF21C2653500A6E50E /* RxWebViewNavigationViewController.m in Sources */,
@@ -924,16 +923,21 @@
 				EC0BC49B21C25B5000A6E50E /* NSObject+runtimeCopy.m in Sources */,
 				ECFD29BF21D37E960085E257 /* MovieListBaseController.m in Sources */,
 				EC0BC49921C25B5000A6E50E /* UIScrollView+Refresh.m in Sources */,
+				ECD4F4FE2417D9010076269B /* GoogleDriveManager.m in Sources */,
 				ECF79B3A21DEF680008C097D /* SettingViewController.m in Sources */,
 				ECCCE41C21E42F48006833FE /* MovieCachedController.m in Sources */,
+				EC5F058F241D14C40055B6B5 /* MagneticModel.m in Sources */,
 				EC0BC4BD21C2653500A6E50E /* NJKWebViewProgress.m in Sources */,
 				EC94A1FE21DCA1BA00C1BBCD /* ZHChineseConvert.m in Sources */,
+				ECAE241C241A1B8A0050FA8A /* GGDriveFileCell.m in Sources */,
 				EC94A1FB21DC52F000C1BBCD /* PublicDialogManager.m in Sources */,
 				EC73608F21D90EF00031DFE0 /* MovieSearchListController.m in Sources */,
 				ECF9456421D4AD5E0043E898 /* ActorListBaseController.m in Sources */,
 				ECF9456D21D4B7BC0043E898 /* CensoredCategoryController.m in Sources */,
 				ECF79B2D21DDE2C8008C097D /* CollectionViewController.m in Sources */,
 				ECF9458721D5FC220043E898 /* ScreenShotModel.m in Sources */,
+				EC5F0592241D16590055B6B5 /* NSString+XLHelper.m in Sources */,
+				ECAE2420241A77A20050FA8A /* DropBoxManager.m in Sources */,
 				ECF9458021D5ACD50043E898 /* MovieDetailModel.m in Sources */,
 				ECF9455E21D4AAB60043E898 /* MovieUncensoredController.m in Sources */,
 				ECF9458B21D5FED70043E898 /* ScreenShotCell.m in Sources */,
@@ -950,10 +954,13 @@
 				EC73609721DA5C280031DFE0 /* ActressSearchCell.m in Sources */,
 				EC73609221D90F630031DFE0 /* ActressSearchController.m in Sources */,
 				ECCCE41921E39D54006833FE /* Encrypt.m in Sources */,
+				ECDF476F2380484B0080EDA7 /* VideoPlayerView.m in Sources */,
 				EC73608C21D90D5B0031DFE0 /* SearchViewController.m in Sources */,
 				ECF79B2A21DDB372008C097D /* DBManager.m in Sources */,
 				EC0BC4C621C2AE1D00A6E50E /* ActressModel.m in Sources */,
+				EC5F0595241D26D00055B6B5 /* MagneticItemCell.m in Sources */,
 				EC0BC4A021C25B5000A6E50E /* NSString+RegExp.m in Sources */,
+				ECAE2413241A077E0050FA8A /* GGDriveFileController.m in Sources */,
 				ECF9457421D4B86C0043E898 /* CategoryModel.m in Sources */,
 				ECF9457A21D4CB630043E898 /* MovieDetailController.m in Sources */,
 				ECF9457D21D51AB20043E898 /* TitleLinkModel.m in Sources */,
@@ -962,6 +969,7 @@
 				ECF9457021D4B7CB0043E898 /* UnCensoredCategoryController.m in Sources */,
 				ECF79B3021DDE2DA008C097D /* ActressCollectionController.m in Sources */,
 				EC9D72FD21C7F41400C9F830 /* ActressDetailCell.m in Sources */,
+				ECBCAAA7241E165500005732 /* MagneticListView.m in Sources */,
 				EC0BC49621C25B5000A6E50E /* UIImageView+Scale.m in Sources */,
 				EC0BC49C21C25B5000A6E50E /* NSDate+XExtend.m in Sources */,
 				ECF9456121D4ACD20043E898 /* MovieXvideoController.m in Sources */,
@@ -970,8 +978,11 @@
 				EC0BC49721C25B5000A6E50E /* NSString+XExtend.m in Sources */,
 				EC0BC4A821C25DAB00A6E50E /* ActressCodeController.m in Sources */,
 				ECF79B3321DDE2F7008C097D /* MovieCollectionController.m in Sources */,
+				ECD4F4FB241795AA0076269B /* GoogleSignInManager.m in Sources */,
+				ECA791692416141300EDFF51 /* VideoPlayerManager.m in Sources */,
 				EC9ABE1D21CF4E8600C4E90F /* AddressSettingController.m in Sources */,
 				EC0BC4C321C2ADE900A6E50E /* BaseModel.m in Sources */,
+				ECD4F4F724167D800076269B /* GoogleDriveController.m in Sources */,
 				EC0BC49A21C25B5000A6E50E /* NSDate+Utilities.m in Sources */,
 				ECFD29C221D37FBC0085E257 /* MovieMainController.m in Sources */,
 			);
@@ -1145,7 +1156,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8NS66RBJDR;
+				DEVELOPMENT_TEAM = 2V79KT8XV5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JAVBus/PrefixHeader.pch";
 				INFOPLIST_FILE = JAVBus/Info.plist;
@@ -1154,9 +1165,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1167,7 +1179,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8NS66RBJDR;
+				DEVELOPMENT_TEAM = 2V79KT8XV5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JAVBus/PrefixHeader.pch";
 				INFOPLIST_FILE = JAVBus/Info.plist;
@@ -1176,9 +1188,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

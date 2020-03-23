@@ -63,6 +63,8 @@ static id singleton = nil;
     configuration.timeoutIntervalForRequest = 30;
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseUrl sessionConfiguration:configuration];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    //添加防盗链 ps:请求详情里面的磁力链接需要 否则返回空
+    [manager.requestSerializer setValue:@"https://www.javbus.com" forHTTPHeaderField:@"referer"];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
