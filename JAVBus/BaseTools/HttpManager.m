@@ -184,7 +184,34 @@ static id singleton = nil;
 }
 
 - (void)startGetUrl:(NSString *)url param:(NSDictionary *)param success:(SuccessCallback)success_block failure:(FailCallback)failure_block {
+    
+    NSData *cookiesdata = [[NSUserDefaults standardUserDefaults] objectForKey:@"kUserDefaultsCookie"];
+    if([cookiesdata length]) {
+        NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData:cookiesdata];
+        NSHTTPCookie *cookie;
+        for (cookie in cookies) {
+            if ([cookie.name isEqualToString:@"existmag"]) {
+                NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
+                [cookieProperties setObject:cookie.name forKey:NSHTTPCookieName];
+                
+                NSString *valueString = [GlobalTool shareInstance].showHasMag ? @"mag" : @"all";
+                
+                [cookieProperties setObject:valueString forKey:NSHTTPCookieValue];
+                [cookieProperties setObject:cookie.domain forKey:NSHTTPCookieDomain];
+                [cookieProperties setObject:cookie.path forKey:NSHTTPCookiePath];
+                [cookieProperties setObject:cookie.expiresDate forKey:NSHTTPCookieExpires];
+                cookie = [NSHTTPCookie cookieWithProperties:cookieProperties];
+            }
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+        }
+    }
+    
     [self.manager GET:url parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL: [NSURL URLWithString:url]];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"kUserDefaultsCookie"];
+        
         success_block(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure_block(error);
