@@ -96,6 +96,11 @@
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.avatarUrl] placeholderImage:[UIImage imageNamed:@"actressHolder"]];
     cell.titleLabel.text = model.name;
     
+    WeakSelf(weakSelf);
+    cell.longPressCallback = ^{
+        [weakSelf unCollectionActor:model];
+    };
+    
     return cell;
 }
 
@@ -107,6 +112,30 @@
 //    vc.hidesBottomBarWhenPushed = YES;
     vc.showSortBar = YES;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+/// 取消收藏
+- (void)unCollectionActor:(ActressModel *)model {
+    NSLog(@"%@", model.name);
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"操作" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"取消收藏" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [DBMANAGER deleteActress:model];
+        NSMutableArray *array = [self.actressArray mutableCopy];
+        [array removeObject:model];
+        self.actressArray = [array copy];
+        [self.collectionView reloadData];
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [alert addAction:confirm];
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

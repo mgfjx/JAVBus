@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ActressCell : UICollectionViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (nonatomic, copy) void (^longPressCallback)() ;
 
 @end
