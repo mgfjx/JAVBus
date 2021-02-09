@@ -439,7 +439,11 @@ static HtmlToJsonManager *instance ;
         NSArray *categorys = [ce searchWithXPathQuery:@"//span[@class='genre']"];
         NSMutableArray *arr1 = [NSMutableArray array];
         for (TFHppleElement *ele in categorys) {
-            TFHppleElement *e = [ele childrenWithTagName:@"a"].firstObject;
+            TFHppleElement *e1 = [ele childrenWithTagName:@"label"].firstObject;
+            if (!e1) {
+                continue;
+            }
+            TFHppleElement *e = [e1 childrenWithTagName:@"a"].firstObject;
             TitleLinkModel *model = [TitleLinkModel new];
             model.title = e.text;
             model.link = [e objectForKey:@"href"];
