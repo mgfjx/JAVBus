@@ -498,6 +498,7 @@
                             });
                         } completion:^(NSURL * _Nullable filePath, NSError * _Nullable error) {
                             if (error) {
+                                [PublicDialogManager hideWaittingInView:self.view];
                                 [PublicDialogManager showText:@"获取预览失败, 请检查VPN, 稍后重试" inView:self.view duration:2.0];
                                 return ;
                             }
