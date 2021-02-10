@@ -413,7 +413,7 @@ static HtmlToJsonManager *instance ;
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;
                 link = [e objectForKey:@"href"];
-                type = LinkTypeNormal;
+                type = LinkTypeSeries;
             }else if ([title isEqualToString:@"識別碼:"]) {
                 
             }

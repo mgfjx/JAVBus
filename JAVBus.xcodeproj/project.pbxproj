@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20FA9D8906F3E0738C121653 /* libPods-JAVBus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4355E13C10486BC7E5DF018B /* libPods-JAVBus.a */; };
+		2D49EC3025D39C0700B2A7E6 /* BaseItemListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D49EC2F25D39C0700B2A7E6 /* BaseItemListController.m */; };
 		9A4B0DA3D54BB094B29C64D5 /* libPods-JAVBusUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8115FEBAB3603AB5CB74D91E /* libPods-JAVBusUITests.a */; };
 		AFBB54BCC9FC8A3F8371087C /* libPods-JAVBusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B086890A2D06BA45EF4AAC7C /* libPods-JAVBusTests.a */; };
 		EC0BC44321C2394900A6E50E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC44221C2394900A6E50E /* AppDelegate.m */; };
@@ -125,6 +126,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D49EC2E25D39C0700B2A7E6 /* BaseItemListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseItemListController.h; sourceTree = "<group>"; };
+		2D49EC2F25D39C0700B2A7E6 /* BaseItemListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseItemListController.m; sourceTree = "<group>"; };
 		40ED61FAFF4ADBE0F300A854 /* Pods-JAVBusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JAVBusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JAVBusTests/Pods-JAVBusTests.release.xcconfig"; sourceTree = "<group>"; };
 		4355E13C10486BC7E5DF018B /* libPods-JAVBus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JAVBus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C70DFAD6B40A9D114CB27E7 /* Pods-JAVBusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JAVBusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JAVBusUITests/Pods-JAVBusUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -650,6 +653,8 @@
 				ECF9456F21D4B7CB0043E898 /* UnCensoredCategoryController.m */,
 				ECF9457521D4C0DD0043E898 /* CategoryItemListController.h */,
 				ECF9457621D4C0DD0043E898 /* CategoryItemListController.m */,
+				2D49EC2E25D39C0700B2A7E6 /* BaseItemListController.h */,
+				2D49EC2F25D39C0700B2A7E6 /* BaseItemListController.m */,
 				ECF9457821D4CB630043E898 /* MovieDetailController.h */,
 				ECF9457921D4CB630043E898 /* MovieDetailController.m */,
 				EC5F0593241D26D00055B6B5 /* MagneticItemCell.h */,
@@ -917,6 +922,7 @@
 				EC0BC45121C2394B00A6E50E /* main.m in Sources */,
 				EC9ABE1621CE935E00C4E90F /* GlobalTool.m in Sources */,
 				ECF9458421D5ECA10043E898 /* LinkButton.m in Sources */,
+				2D49EC3025D39C0700B2A7E6 /* BaseItemListController.m in Sources */,
 				EC0BC44321C2394900A6E50E /* AppDelegate.m in Sources */,
 				EC0BC49F21C25B5000A6E50E /* UIView+AddFunc.m in Sources */,
 				ECD99AED21C7E0880043DB0C /* LJJWaterFlowLayout.m in Sources */,

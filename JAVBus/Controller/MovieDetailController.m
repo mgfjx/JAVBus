@@ -16,6 +16,7 @@
 #import "RecommendCell.h"
 #import <IDMPhotoBrowser/IDMPhotoBrowser.h>
 #import "CategoryItemListController.h"
+#import "BaseItemListController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <AVKit/AVKit.h>
@@ -465,6 +466,13 @@
         CategoryItemListController *vc = [CategoryItemListController new];
         vc.model = itemModel;
         vc.showSortBar = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if (model.type == LinkTypeSeries) {
+        BaseItemListController *vc = [BaseItemListController new];
+        vc.model = model;
+        vc.showSortBar = NO;
         [self.navigationController pushViewController:vc animated:YES];
     }
     
