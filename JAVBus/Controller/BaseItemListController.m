@@ -29,14 +29,14 @@
 
 - (void)createBarbutton {
     
-//    BOOL isExsit = [DBMANAGER isMovieExsit:self.model];
+    BOOL isExsit = [DBMANAGER isTagLinkExsit:self.model];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(0, 0, 30, 30);
     [button addTarget:self action:@selector(collectionSeries:) forControlEvents:UIControlEventTouchUpInside];
     [button setImage:[UIImage imageNamed:@"collection_unselected"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"collection_selected"] forState:UIControlStateSelected];
-//    button.selected = isExsit;
+    button.selected = isExsit;
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = item;
@@ -71,6 +71,11 @@
 }
 
 - (void)collectionSeries:(UIButton *)sender {
+    if (sender.selected) {
+        [DBMANAGER deleteTagLink:self.model];
+    }else{
+        [DBMANAGER insertTagLink:self.model];
+    }
     sender.selected = !sender.selected;
 }
 

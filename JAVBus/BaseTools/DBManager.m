@@ -85,6 +85,15 @@ static DBManager *singleton ;
         }
     }
     
+    //系列、分类、导演、发行商等
+    {
+        NSString *sql = @"create table if not exists TagLinkTable ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'title' TEXT, 'link' TEXT,'type' INTEGER)";
+        BOOL result = [db executeUpdate:sql];
+        if (result) {
+            NSLog(@"create table success");
+        }
+    }
+    
     {
         NSString *sql = @"create table if not exists MovieCachedTable ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'title' TEXT, 'link' TEXT,'imgUrl' TEXT,'number' TEXT,'dateString' TEXT)";
         BOOL result = [db executeUpdate:sql];
@@ -553,6 +562,38 @@ static DBManager *singleton ;
     NSString *sql = @"delete from MovieCachedTable";
     BOOL result = [self baseUpdateSql:sql];
     return result;
+}
+
+
+/// 插入系列、分类、导演、发行商等
+- (BOOL)insertTagLink:(TitleLinkModel *)model {
+    NSString *sql = [NSString stringWithFormat:@"insert into 'TagLinkTable'(title,link,type) values('%@','%@','%ld')", model.title, model.link, (long)model.type];
+    BOOL result = [self baseUpdateSql:sql];
+    return result;
+}
+
+/// 删除系列、分类、导演、发行商等
+- (BOOL)deleteTagLink:(TitleLinkModel *)model {
+    BOOL isExsit = [self isTagLinkExsit:model];
+    if (!isExsit) {
+        return YES;
+    }
+    NSString *sql = [NSString stringWithFormat:@"delete from TagLinkTable where link='%@'", model.link];
+    BOOL result = [self baseUpdateSql:sql];
+    return result;
+}
+
+/// 判断taplink是否存在
+- (BOOL)isTagLinkExsit:(TitleLinkModel *)model {
+    NSString *sql = [NSString stringWithFormat:@"select COUNT(*) from TagLinkTable where link='%@'", model.link];
+    [self.db open];
+    FMResultSet *result = [self.db executeQuery:sql];
+    int count = 0;
+    while ([result next]) {
+        count = [result intForColumnIndex:0];
+    }
+    [self.db close];
+    return count > 0;
 }
 
 @end

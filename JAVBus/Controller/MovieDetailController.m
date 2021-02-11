@@ -459,17 +459,17 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     
-    if (model.type == LinkTypeCategory || model.type == LinkTypeNormal) {
-        CategoryItemModel *itemModel = [CategoryItemModel new];
-        itemModel.title = model.title;
-        itemModel.link = model.link;
-        CategoryItemListController *vc = [CategoryItemListController new];
-        vc.model = itemModel;
-        vc.showSortBar = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+//    if (model.type == LinkTypeCategory || model.type == LinkTypeNormal) {
+//        CategoryItemModel *itemModel = [CategoryItemModel new];
+//        itemModel.title = model.title;
+//        itemModel.link = model.link;
+//        CategoryItemListController *vc = [CategoryItemListController new];
+//        vc.model = itemModel;
+//        vc.showSortBar = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
     
-    if (model.type == LinkTypeSeries) {
+    if (model.type == LinkTypeSeries || model.type == LinkTypeCategory || model.type == LinkTypeNormal) {
         BaseItemListController *vc = [BaseItemListController new];
         vc.model = model;
         vc.showSortBar = NO;
