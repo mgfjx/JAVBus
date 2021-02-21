@@ -1,22 +1,23 @@
 //
-//  MovieCategoryController.m
+//  TagLinkListController.m
 //  JAVBus
 //
-//  Created by mgfjx on 2018/12/27.
-//  Copyright © 2018 mgfjx. All rights reserved.
+//  Created by mgfjx on 2021/2/11.
+//  Copyright © 2021 mgfjx. All rights reserved.
 //
 
-#import "MovieCategoryController.h"
+#import "TagLinkListController.h"
+#import "TitleLinkModel.h"
 #import "CategoryModel.h"
 #import "MovieMainController.h"
 #import "BaseItemListController.h"
 #import "LinkButton.h"
 
-@interface MovieCategoryController ()
+@interface TagLinkListController ()
 
 @end
 
-@implementation MovieCategoryController
+@implementation TagLinkListController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,8 +32,55 @@
 }
 
 - (void)requestData {
-    NSString *logo = [NSString stringWithFormat:@"子类必须为实现%@方法", NSStringFromSelector(_cmd)];
-    NSAssert(0, logo);
+    
+    [self.scrollView stopHeaderRefreshing];
+    
+    NSMutableArray *arr = [NSMutableArray array];
+    
+    {
+        CategoryModel *model = [CategoryModel new] ;
+        NSArray *array = [DBMANAGER queryTagLinkList:LinkTypeSeries];
+        model.items = array;
+        model.title = @"系列";
+        [arr addObject:model];
+    }
+    
+    {
+        CategoryModel *model = [CategoryModel new] ;
+        NSArray *array = [DBMANAGER queryTagLinkList:LinkTypeCategory];
+        model.items = array;
+        model.title = @"分类";
+        [arr addObject:model];
+    }
+    
+    {
+        CategoryModel *model = [CategoryModel new] ;
+        NSArray *array = [DBMANAGER queryTagLinkList:LinkTypeDirector];
+        model.items = array;
+        model.title = @"導演";
+        [arr addObject:model];
+    }
+    
+    {
+        CategoryModel *model = [CategoryModel new] ;
+        NSArray *array = [DBMANAGER queryTagLinkList:LinkTypeProducer];
+        model.items = array;
+        model.title = @"製作商";
+        [arr addObject:model];
+    }
+    
+    {
+        CategoryModel *model = [CategoryModel new] ;
+        NSArray *array = [DBMANAGER queryTagLinkList:LinkTypePublisher];
+        model.items = array;
+        model.title = @"發行商";
+        [arr addObject:model];
+    }
+    
+    self.dataArray = [arr copy];
+    
+    [self createViews];
+    
 }
 
 - (void)createScrollView {
@@ -87,10 +135,7 @@
         maxHeight = CGRectGetMaxY(label.frame) + offset;
         
         CGFloat xPosition = offset;
-        for (CategoryItemModel *cateItem in items) {
-            TitleLinkModel *item = [TitleLinkModel new];
-            item.title = cateItem.title;
-            item.link = cateItem.link;
+        for (TitleLinkModel *item in items) {
             LinkButton *button = [LinkButton buttonWithType:UIButtonTypeCustom];
             [button addTarget:self action:@selector(linkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
             [button setTitle:item.title forState:UIControlStateNormal];
@@ -115,7 +160,7 @@
             button.y = maxHeight;
             
             xPosition = CGRectGetMaxX(button.frame);
-            if (cateItem == items.lastObject) {
+            if (item == items.lastObject) {
                 maxHeight = CGRectGetMaxY(button.frame);
             }
         }
@@ -131,14 +176,9 @@
 
 - (void)linkBtnClicked:(LinkButton *)sender {
     TitleLinkModel *model = sender.model;
-    model.type = LinkTypeCategory;
-//    CategoryItemModel *itemModel = [CategoryItemModel new];
-//    itemModel.title = model.title;
-//    itemModel.link = model.link;
     BaseItemListController *vc = [BaseItemListController new];
     vc.model = model;
     vc.showSortBar = NO;
-//    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

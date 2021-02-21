@@ -469,7 +469,11 @@
 //        [self.navigationController pushViewController:vc animated:YES];
 //    }
     
-    if (model.type == LinkTypeSeries || model.type == LinkTypeCategory || model.type == LinkTypeNormal) {
+    if (model.type == LinkTypeSeries ||
+        model.type == LinkTypeCategory ||
+        model.type == LinkTypeProducer ||
+        model.type == LinkTypePublisher ||
+        model.type == LinkTypeDirector) {
         BaseItemListController *vc = [BaseItemListController new];
         vc.model = model;
         vc.showSortBar = NO;

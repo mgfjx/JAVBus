@@ -396,19 +396,19 @@ static HtmlToJsonManager *instance ;
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;
                 link = [e objectForKey:@"href"];
-                type = LinkTypeNormal;
+                type = LinkTypeProducer;
             }else if ([title isEqualToString:@"發行商:"]) {
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;
                 link = [e objectForKey:@"href"];
-                type = LinkTypeNormal;
+                type = LinkTypePublisher;
             }else if ([title isEqualToString:@"演員:"]) {
                 
             }else if ([title isEqualToString:@"導演:"]) {
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;
                 link = [e objectForKey:@"href"];
-                type = LinkTypeNormal;
+                type = LinkTypeDirector;
             }else if ([title isEqualToString:@"系列:"]) {
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;

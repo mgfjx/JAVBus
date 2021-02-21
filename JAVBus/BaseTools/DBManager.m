@@ -596,4 +596,25 @@ static DBManager *singleton ;
     return count > 0;
 }
 
+/// 查询taglink数据
+- (NSArray <TitleLinkModel *> *)queryTagLinkList:(LinkType)type {
+    NSString *order = @"";
+    if ([GlobalTool shareInstance].descOrder) {
+        order = @"ORDER BY ID DESC";
+    }
+    NSString *sql = [NSString stringWithFormat:@"select * from TagLinkTable where type = %ld", type];
+    [self.db open];
+    FMResultSet *result = [self.db executeQuery:sql];
+    NSMutableArray *arr = [NSMutableArray array];
+    while ([result next]) {
+        TitleLinkModel *model = [TitleLinkModel new];
+        model.title = [result stringForColumn:@"title"];
+        model.link = [result stringForColumn:@"link"];
+        model.type = [result intForColumn:@"type"];
+        [arr addObject:model];
+    }
+    [self.db close];
+    return [arr copy];
+}
+
 @end

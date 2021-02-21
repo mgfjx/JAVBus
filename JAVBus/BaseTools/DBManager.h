@@ -135,4 +135,7 @@
 /// 判断taplink是否存在
 - (BOOL)isTagLinkExsit:(TitleLinkModel *)model ;
 
+/// 查询taglink数据
+- (NSArray <TitleLinkModel *> *)queryTagLinkList:(LinkType)type ;
+
 @end
