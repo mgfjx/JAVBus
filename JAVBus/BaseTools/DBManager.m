@@ -168,6 +168,18 @@ static DBManager *singleton ;
 }
 
 /**
+ 更新女优数据
+ */
+- (BOOL)updateActress:(ActressModel *)model {
+    if (![self isActressExsit:model]) {
+        return [self insertActress:model];
+    }
+    NSString *sql = [NSString stringWithFormat:@"update 'ActressCollectionTable' set name='%@',avatarUrl='%@' where link='%@'", model.name, model.avatarUrl, model.link];
+    BOOL result = [self baseUpdateSql:sql];
+    return result;
+}
+
+/**
  删除所有女优数据
  */
 - (BOOL)deleteAllActress {

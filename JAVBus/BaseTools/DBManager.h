@@ -42,6 +42,11 @@
 - (BOOL)deleteActress:(ActressModel *)model ;
 
 /**
+ 更新女优数据
+ */
+- (BOOL)updateActress:(ActressModel *)model ;
+
+/**
  删除所有女优数据
  */
 - (BOOL)deleteAllActress ;
