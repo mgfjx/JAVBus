@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		20FA9D8906F3E0738C121653 /* libPods-JAVBus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4355E13C10486BC7E5DF018B /* libPods-JAVBus.a */; };
 		2D44C94825D5212D005E7AE3 /* TagLinkListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D44C94725D5212D005E7AE3 /* TagLinkListController.m */; };
+		2D44FC3125E36964001BCC6F /* UIImageView+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D44FC3025E36964001BCC6F /* UIImageView+Runtime.m */; };
 		2D49EC3025D39C0700B2A7E6 /* BaseItemListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D49EC2F25D39C0700B2A7E6 /* BaseItemListController.m */; };
 		9A4B0DA3D54BB094B29C64D5 /* libPods-JAVBusUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8115FEBAB3603AB5CB74D91E /* libPods-JAVBusUITests.a */; };
 		AFBB54BCC9FC8A3F8371087C /* libPods-JAVBusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B086890A2D06BA45EF4AAC7C /* libPods-JAVBusTests.a */; };
@@ -129,6 +130,8 @@
 /* Begin PBXFileReference section */
 		2D44C94625D5212D005E7AE3 /* TagLinkListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagLinkListController.h; sourceTree = "<group>"; };
 		2D44C94725D5212D005E7AE3 /* TagLinkListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagLinkListController.m; sourceTree = "<group>"; };
+		2D44FC2F25E36964001BCC6F /* UIImageView+Runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Runtime.h"; sourceTree = "<group>"; };
+		2D44FC3025E36964001BCC6F /* UIImageView+Runtime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Runtime.m"; sourceTree = "<group>"; };
 		2D49EC2E25D39C0700B2A7E6 /* BaseItemListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseItemListController.h; sourceTree = "<group>"; };
 		2D49EC2F25D39C0700B2A7E6 /* BaseItemListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseItemListController.m; sourceTree = "<group>"; };
 		40ED61FAFF4ADBE0F300A854 /* Pods-JAVBusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JAVBusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JAVBusTests/Pods-JAVBusTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -479,6 +482,8 @@
 				EC0BC49521C25B5000A6E50E /* NSString+RegExp.m */,
 				EC5F0590241D16590055B6B5 /* NSString+XLHelper.h */,
 				EC5F0591241D16590055B6B5 /* NSString+XLHelper.m */,
+				2D44FC2F25E36964001BCC6F /* UIImageView+Runtime.h */,
+				2D44FC3025E36964001BCC6F /* UIImageView+Runtime.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -989,6 +994,7 @@
 				ECD99AD621C6891A0043DB0C /* HtmlToJsonManager.m in Sources */,
 				EC0BC49721C25B5000A6E50E /* NSString+XExtend.m in Sources */,
 				EC0BC4A821C25DAB00A6E50E /* ActressCodeController.m in Sources */,
+				2D44FC3125E36964001BCC6F /* UIImageView+Runtime.m in Sources */,
 				ECF79B3321DDE2F7008C097D /* MovieCollectionController.m in Sources */,
 				ECD4F4FB241795AA0076269B /* GoogleSignInManager.m in Sources */,
 				ECA791692416141300EDFF51 /* VideoPlayerManager.m in Sources */,
