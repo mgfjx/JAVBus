@@ -77,6 +77,10 @@
         [DBMANAGER insertTagLink:self.model];
     }
     sender.selected = !sender.selected;
+    
+    if (self.collectionChanged) {
+        self.collectionChanged(sender.selected);
+    }
 }
 
 @end

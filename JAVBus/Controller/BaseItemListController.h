@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) TitleLinkModel *model ;
 
+@property (nonatomic, copy) void (^collectionChanged)(BOOL isCollected) ;
+
 @end
 
 NS_ASSUME_NONNULL_END

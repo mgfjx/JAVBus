@@ -180,6 +180,11 @@
     vc.model = model;
     vc.showSortBar = NO;
     [self.navigationController pushViewController:vc animated:YES];
+    
+    WeakSelf(weakSelf);
+    vc.collectionChanged = ^(BOOL isCollected) {
+        [weakSelf requestData];
+    };
 }
 
 @end
