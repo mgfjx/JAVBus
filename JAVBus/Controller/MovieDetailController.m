@@ -16,6 +16,7 @@
 #import "RecommendCell.h"
 #import <IDMPhotoBrowser/IDMPhotoBrowser.h>
 #import "CategoryItemListController.h"
+#import "BaseItemListController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <AVKit/AVKit.h>
@@ -458,13 +459,24 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     
-    if (model.type == LinkTypeCategory || model.type == LinkTypeNormal) {
-        CategoryItemModel *itemModel = [CategoryItemModel new];
-        itemModel.title = model.title;
-        itemModel.link = model.link;
-        CategoryItemListController *vc = [CategoryItemListController new];
-        vc.model = itemModel;
-        vc.showSortBar = YES;
+//    if (model.type == LinkTypeCategory || model.type == LinkTypeNormal) {
+//        CategoryItemModel *itemModel = [CategoryItemModel new];
+//        itemModel.title = model.title;
+//        itemModel.link = model.link;
+//        CategoryItemListController *vc = [CategoryItemListController new];
+//        vc.model = itemModel;
+//        vc.showSortBar = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+    
+    if (model.type == LinkTypeSeries ||
+        model.type == LinkTypeCategory ||
+        model.type == LinkTypeProducer ||
+        model.type == LinkTypePublisher ||
+        model.type == LinkTypeDirector) {
+        BaseItemListController *vc = [BaseItemListController new];
+        vc.model = model;
+        vc.showSortBar = NO;
         [self.navigationController pushViewController:vc animated:YES];
     }
     
@@ -498,6 +510,7 @@
                             });
                         } completion:^(NSURL * _Nullable filePath, NSError * _Nullable error) {
                             if (error) {
+                                [PublicDialogManager hideWaittingInView:self.view];
                                 [PublicDialogManager showText:@"获取预览失败, 请检查VPN, 稍后重试" inView:self.view duration:2.0];
                                 return ;
                             }

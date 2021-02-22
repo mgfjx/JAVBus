@@ -12,6 +12,10 @@ typedef NS_ENUM(NSInteger, LinkType) {
     LinkTypeNone = 0,
     LinkTypeNormal,
     LinkTypeNumber,
+    LinkTypeDirector,
+    LinkTypeProducer,
+    LinkTypePublisher,
+    LinkTypeSeries,
     LinkTypeActor,
     LinkTypeCategory,
 };
@@ -19,7 +23,6 @@ typedef NS_ENUM(NSInteger, LinkType) {
 @interface TitleLinkModel : BaseModel
 
 @property (nonatomic, strong) NSString *title ;
-@property (nonatomic, strong) NSString *link ;
 @property (nonatomic, assign) LinkType type ;
 
 @end

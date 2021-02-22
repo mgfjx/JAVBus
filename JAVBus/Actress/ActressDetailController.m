@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIView *detailView ;
 @property (nonatomic, strong) ActressModel *detailModel ;
+@property (nonatomic, strong) UIButton *refreshCollectionBtn;
 
 @end
 
@@ -83,6 +84,7 @@
         [DBMANAGER insertActress:self.detailModel];
     }
     sender.selected = !sender.selected;
+    self.refreshCollectionBtn.hidden = !sender.selected;
 }
 
 - (void)createActorView {
@@ -138,6 +140,23 @@
     }
     
     {
+        BOOL isExsit = [DBMANAGER isActressExsit:self.model];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button addTarget:self action:@selector(refreshCollection) forControlEvents:UIControlEventTouchUpInside];
+        [button setImage:[UIImage imageNamed:@"movie_refresh"] forState:UIControlStateNormal];
+        [containerView addSubview:button];
+        button.hidden = !isExsit;
+        self.refreshCollectionBtn = button;
+        
+        [button mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(offset);
+            make.right.mas_equalTo(-offset);
+            make.height.width.mas_equalTo(30);
+        }];
+    }
+    
+    {
         CGFloat labelHeight = (containerView.height - CGRectGetMaxY(avatarImgView.frame))/self.detailModel.infoArray.count;
         for (int i = 0; i < self.detailModel.infoArray.count; i++) {
             NSString *text = self.detailModel.infoArray[i];
@@ -181,6 +200,15 @@
     animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
     [sender.layer addAnimation:animation forKey:nil];
+}
+
+- (void)refreshCollection {
+    
+    [DBMANAGER updateActress:self.detailModel];
+    
+    NSString *string = [NSString stringWithFormat:@"%@数据更新成功!", self.detailModel.name];
+    [PublicDialogManager showText:string inView:self.view duration:1.0];
+    
 }
 
 #pragma mark - UIScrollViewDelegate

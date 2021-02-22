@@ -13,7 +13,7 @@ target 'JAVBus' do
   pod 'SDWebImage', '~> 4.0.0'
   pod 'MJRefresh', '~> 3.1.12'
   pod 'AFNetworking', '~> 3.2.1'
-  pod 'CYLTabBarController', '~> 1.28.5'
+  pod 'CYLTabBarController', '~> 1.29.0'
   pod 'JXCategoryView','~>1.0.3'
   pod 'Masonry', '~> 1.1.0'
   pod 'IDMPhotoBrowser', '~> 1.11.3'

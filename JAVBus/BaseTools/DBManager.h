@@ -13,6 +13,7 @@
 #import "ScreenShotModel.h"
 #import "RecommendModel.h"
 #import "MagneticModel.h"
+#import "TitleLinkModel.h"
 
 @interface DBManager : NSObject
 
@@ -39,6 +40,11 @@
  删除女优数据
  */
 - (BOOL)deleteActress:(ActressModel *)model ;
+
+/**
+ 更新女优数据
+ */
+- (BOOL)updateActress:(ActressModel *)model ;
 
 /**
  删除所有女优数据
@@ -124,5 +130,17 @@
  删除所有电影缓存数据
  */
 - (BOOL)deleteAllCacheMovie ;
+
+/// 插入系列、分类、导演、发行商等
+- (BOOL)insertTagLink:(TitleLinkModel *)model ;
+
+/// 删除系列、分类、导演、发行商等
+- (BOOL)deleteTagLink:(TitleLinkModel *)model ;
+
+/// 判断taplink是否存在
+- (BOOL)isTagLinkExsit:(TitleLinkModel *)model ;
+
+/// 查询taglink数据
+- (NSArray <TitleLinkModel *> *)queryTagLinkList:(LinkType)type ;
 
 @end

@@ -28,13 +28,14 @@
             @{@"title":@"DropBox备份与恢复", @"imgName": @"dropbox"},
         ],
         @[
+            @{@"title":@"选择域名", @"imgName": @"tabbar_setting_unselected"},
+            @{@"title":@"显示磁链影片", @"imgName": @"tabbar_setting_unselected"},
+        ],
+        @[
             @{@"title":@"清除缓存图片", @"imgName": @"clear_icon"},
             @{@"title":@"删除女优收藏", @"imgName": @"clear_icon"},
             @{@"title":@"删除影片收藏", @"imgName": @"clear_icon"},
             @{@"title":@"删除影片缓存", @"imgName": @"clear_icon"},
-        ],
-        @[
-            @{@"title":@"选择域名", @"imgName": @"tabbar_setting_unselected"}
         ],
     ];
     self.dataArray = dataArray;
@@ -100,6 +101,21 @@
     cell.textLabel.text = title;
     cell.imageView.image = [UIImage imageNamed:imgName];
     
+    if (indexPath.section == 1 && indexPath.row == 1) {
+        UISwitch *sw = [[UISwitch alloc] init];
+        [sw addTarget:self action:@selector(showHasMagLink:) forControlEvents:UIControlEventValueChanged];
+        sw.x = MainWidth - sw.width - 10;
+        sw.centerY = 50/2.0;
+        sw.tag = 110;
+        sw.on = [GlobalTool shareInstance].showHasMag;
+        [cell.contentView addSubview:sw];
+    }else {
+        UIView *sw = [cell.contentView viewWithTag:110];
+        if (sw) {
+            [sw removeFromSuperview];
+        }
+    }
+    
     return cell;
 }
 
@@ -120,15 +136,17 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1) {
         
-        AddressSettingController * vc = [AddressSettingController new];
-        //        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+        if (indexPath.row == 0) {
+            AddressSettingController * vc = [AddressSettingController new];
+            //        vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
         
     }
     
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         
         NSString *text = @"";
         if (indexPath.row == 0) {
@@ -202,6 +220,10 @@
         [PublicDialogManager showText:@"删除成功" inView:self.view duration:1.0];
     }
     
+}
+
+- (void)showHasMagLink:(UISwitch *)sw {
+    [GlobalTool shareInstance].showHasMag = sw.on;
 }
 
 @end

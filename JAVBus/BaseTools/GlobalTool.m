@@ -14,6 +14,7 @@
 @synthesize baseUrl = _baseUrl;
 @synthesize ips = _ips;
 @synthesize descOrder = _descOrder;
+@synthesize showHasMag = _showHasMag;
 
 SingletonImplement(Instance)
 
@@ -81,6 +82,15 @@ SingletonImplement(Instance)
 
 - (void)setDescOrder:(BOOL)descOrder {
     [[NSUserDefaults standardUserDefaults] setBool:descOrder forKey:@"kCollectionDescending"];
+}
+
+- (void)setShowHasMag:(BOOL)showHasMag {
+    [[NSUserDefaults standardUserDefaults] setBool:showHasMag forKey:@"kShowHasMagKey"];
+}
+
+- (BOOL)showHasMag {
+    _showHasMag = [[NSUserDefaults standardUserDefaults] boolForKey:@"kShowHasMagKey"];
+    return _showHasMag;
 }
 
 @end

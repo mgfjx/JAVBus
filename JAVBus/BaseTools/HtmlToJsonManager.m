@@ -396,24 +396,24 @@ static HtmlToJsonManager *instance ;
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;
                 link = [e objectForKey:@"href"];
-                type = LinkTypeNormal;
+                type = LinkTypeProducer;
             }else if ([title isEqualToString:@"發行商:"]) {
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;
                 link = [e objectForKey:@"href"];
-                type = LinkTypeNormal;
+                type = LinkTypePublisher;
             }else if ([title isEqualToString:@"演員:"]) {
                 
             }else if ([title isEqualToString:@"導演:"]) {
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;
                 link = [e objectForKey:@"href"];
-                type = LinkTypeNormal;
+                type = LinkTypeDirector;
             }else if ([title isEqualToString:@"系列:"]) {
                 TFHppleElement *e = [ele searchWithXPathQuery:@"//a"].firstObject;
                 content = e.text;
                 link = [e objectForKey:@"href"];
-                type = LinkTypeNormal;
+                type = LinkTypeSeries;
             }else if ([title isEqualToString:@"識別碼:"]) {
                 
             }
@@ -439,7 +439,11 @@ static HtmlToJsonManager *instance ;
         NSArray *categorys = [ce searchWithXPathQuery:@"//span[@class='genre']"];
         NSMutableArray *arr1 = [NSMutableArray array];
         for (TFHppleElement *ele in categorys) {
-            TFHppleElement *e = [ele childrenWithTagName:@"a"].firstObject;
+            TFHppleElement *e1 = [ele childrenWithTagName:@"label"].firstObject;
+            if (!e1) {
+                continue;
+            }
+            TFHppleElement *e = [e1 childrenWithTagName:@"a"].firstObject;
             TitleLinkModel *model = [TitleLinkModel new];
             model.title = e.text;
             model.link = [e objectForKey:@"href"];

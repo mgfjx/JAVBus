@@ -34,4 +34,7 @@ SingletonDeclare(Instance)
  */
 @property (nonatomic, assign) BOOL descOrder ;
 
+/// 是否显示含有磁力链接的影片，否为显示全部影片
+@property (nonatomic, assign) BOOL showHasMag ;
+
 @end

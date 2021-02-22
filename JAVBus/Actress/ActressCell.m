@@ -21,6 +21,17 @@
     
     self.titleLabel.backgroundColor = [UIColor colorWithHexString:@"#606060"];
     
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+    [self addGestureRecognizer:longPress];
+    
+}
+
+- (void)longPress:(UILongPressGestureRecognizer *)longPress {
+    if (longPress.state == UIGestureRecognizerStateBegan) {
+        if (self.longPressCallback) {
+            self.longPressCallback();
+        }
+    }
 }
 
 @end
