@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#f2f2f7"];
+    self.view.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#000000" lightStr:@"#f2f2f7"];
     
     if (self.folderPath.length == 0) {
         self.title = @"/";
@@ -70,7 +70,7 @@
     
     [table mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.top.mas_offset(kNavigationBarHeight);
+        make.top.mas_offset(0);
         make.bottom.mas_equalTo(iPhoneX?-20:0);
     }];
     

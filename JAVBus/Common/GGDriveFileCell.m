@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *recoverBtn;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 
 @end
 
@@ -43,6 +44,16 @@
         self.recoverCallback(self.file);
     }
     
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.contentView.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#111111" lightStr:@"#fffff"];
+    self.lineView.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#333333" lightStr:@"#ececec"];
+    
+    self.titleLabel.textColor = [UIColor dynamicProviderWithDarkStr:@"#ffffff" lightStr:@"#000000"];
+
 }
 
 @end

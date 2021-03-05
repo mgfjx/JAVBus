@@ -94,8 +94,8 @@
             LinkButton *button = [LinkButton buttonWithType:UIButtonTypeCustom];
             [button addTarget:self action:@selector(linkBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
             [button setTitle:item.title forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor colorWithHexString:@"#666666"] forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor colorWithHexString:@"#aaaaaa"] forState:UIControlStateHighlighted];
+            [button setTitleColor:[UIColor dynamicProviderWithDarkStr:@"#ffffff" lightStr:@"#666666"] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor dynamicProviderWithDarkStr:@"#bbbbbb" lightStr:@"#aaaaaa"] forState:UIControlStateHighlighted];
             button.model = item;
             button.backgroundColor = [UIColor colorWithHexString:@"#1d65ee"];
             button.backgroundColor = [UIColor randomColorWithAlpha:0.3];
@@ -104,7 +104,7 @@
             [button sizeToFit];
             button.layer.cornerRadius = button.height*0.382;
             button.layer.masksToBounds = YES;
-            button.layer.borderColor = [UIColor colorWithHexString:@"#eeeeee"].CGColor;
+            button.layer.borderColor = [UIColor dynamicProviderWithDarkStr:@"#333333" lightStr:@"#eeeeee"].CGColor;
             button.layer.borderWidth = 0.5;
             button.width = button.width + 2*offset;
             if (xPosition + offset + button.width > bgView.width - offset) {

@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIView *indicatorView;
 @property (weak, nonatomic) IBOutlet UIImageView *selectImageView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingView;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 
 @end
 
@@ -21,6 +22,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    self.contentView.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#111111" lightStr:@"#fffff"];
+    self.lineView.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#222222" lightStr:@"#aaaaaa"];
     
     self.indicatorView.layer.borderColor = [UIColor colorWithHexString:@"#555555"].CGColor;
     self.indicatorView.layer.borderWidth = 0.5;

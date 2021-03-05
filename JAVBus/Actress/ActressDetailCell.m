@@ -26,12 +26,12 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    self.layer.borderColor = [UIColor colorWithHexString:@"#f1f2f3"].CGColor;
+    self.layer.borderColor = [UIColor dynamicProviderWithDarkStr:@"#333333" lightStr:@"#f1f2f3"].CGColor;
     self.layer.borderWidth = 0.5;
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
     
-    self.backgroundColor = [UIColor colorWithHexString:@"#f0f0f0"];
+    self.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#222222" lightStr:@"#f0f0f0"];
     
     self.numberLabel.layer.cornerRadius = self.numberLabel.height/8;
     self.numberLabel.layer.masksToBounds = YES;

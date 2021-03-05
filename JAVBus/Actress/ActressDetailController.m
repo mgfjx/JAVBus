@@ -93,7 +93,7 @@
     
     CGFloat height = 400;
     CGFloat offset = MainWidth*0.05;
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, kNavigationBarHeight - height + 30, MainWidth, height)];
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, - height + 30, MainWidth, height)];
     bgView.backgroundColor = [UIColor colorWithHexString:@"#000000" alpha:0.0];
     bgView.centerX = MainWidth/2;
     [self.view addSubview:bgView];
@@ -115,9 +115,9 @@
     
     UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, offset, bgView.width - 2*offset, controlBtn.y - 2*offset)];
     containerView.centerX = bgView.width/2;
-    containerView.backgroundColor = [UIColor whiteColor];
+    containerView.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#333333" lightStr:@"#ffffff"];
     containerView.layer.cornerRadius = containerView.height/8.0;
-    containerView.layer.borderColor = [UIColor colorWithHexString:@"#eeeeee"].CGColor;
+    containerView.layer.borderColor = [UIColor dynamicProviderWithDarkStr:@"#333333" lightStr:@"#eeeeee"].CGColor;
     containerView.layer.borderWidth = 0.5;
     [bgView addSubview:containerView];
     containerView.layer.shadowOpacity = 1.0;
@@ -175,10 +175,10 @@
     sender.selected = !sender.selected;
     
     CGFloat yOffset = 0;
-    if (self.detailView.y < kNavigationBarHeight) {
-        yOffset = kNavigationBarHeight;
+    if (self.detailView.y < 0) {
+        yOffset = 0;
     }else{
-        yOffset = - (self.detailView.height - 30 ) + kNavigationBarHeight;
+        yOffset = - (self.detailView.height - 30 );
     }
     
     [UIView animateWithDuration:0.25 delay:0. usingSpringWithDamping:0.4 initialSpringVelocity:0. options:UIViewAnimationOptionCurveLinear animations:^{
