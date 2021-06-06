@@ -202,9 +202,9 @@
     
     MovieDetailModel *model = self.detailModel;
     
-    UIImageView *imgView;
+    NetImageView *imgView;
     {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, scrollView.width, scrollView.width*0.6)];
+        NetImageView *imageView = [[NetImageView alloc] initWithFrame:CGRectMake(0, 0, scrollView.width, scrollView.width*0.6)];
         [imageView sd_setImageWithURL:[NSURL URLWithString:model.coverImgUrl] placeholderImage:MovieListPlaceHolder];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.backgroundColor = [UIColor colorWithHexString:@"#333333"];

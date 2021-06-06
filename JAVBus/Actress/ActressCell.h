@@ -10,9 +10,9 @@
 
 @interface ActressCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet NetImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property (nonatomic, copy) void (^longPressCallback)() ;
+@property (nonatomic, copy) void (^longPressCallback)(void) ;
 
 @end

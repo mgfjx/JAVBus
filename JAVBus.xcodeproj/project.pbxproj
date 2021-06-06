@@ -13,6 +13,7 @@
 		2D49EC3025D39C0700B2A7E6 /* BaseItemListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D49EC2F25D39C0700B2A7E6 /* BaseItemListController.m */; };
 		2DC277C625F1809100D03413 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC277C525F1809100D03413 /* test.swift */; };
 		2DC277C825F1810800D03413 /* UIColor+Dark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC277C725F1810800D03413 /* UIColor+Dark.swift */; };
+		2DDD83DD266D1D2300A04D66 /* NetImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD83DC266D1D2300A04D66 /* NetImageView.m */; };
 		9A4B0DA3D54BB094B29C64D5 /* libPods-JAVBusUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8115FEBAB3603AB5CB74D91E /* libPods-JAVBusUITests.a */; };
 		AFBB54BCC9FC8A3F8371087C /* libPods-JAVBusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B086890A2D06BA45EF4AAC7C /* libPods-JAVBusTests.a */; };
 		EC0BC44321C2394900A6E50E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC44221C2394900A6E50E /* AppDelegate.m */; };
@@ -139,6 +140,8 @@
 		2DC277C425F1809000D03413 /* JAVBus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JAVBus-Bridging-Header.h"; sourceTree = "<group>"; };
 		2DC277C525F1809100D03413 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		2DC277C725F1810800D03413 /* UIColor+Dark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Dark.swift"; sourceTree = "<group>"; };
+		2DDD83DB266D1D2300A04D66 /* NetImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetImageView.h; sourceTree = "<group>"; };
+		2DDD83DC266D1D2300A04D66 /* NetImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetImageView.m; sourceTree = "<group>"; };
 		40ED61FAFF4ADBE0F300A854 /* Pods-JAVBusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JAVBusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JAVBusTests/Pods-JAVBusTests.release.xcconfig"; sourceTree = "<group>"; };
 		4355E13C10486BC7E5DF018B /* libPods-JAVBus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JAVBus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C70DFAD6B40A9D114CB27E7 /* Pods-JAVBusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JAVBusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JAVBusUITests/Pods-JAVBusUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -614,6 +617,8 @@
 				ECAE241B241A1B8A0050FA8A /* GGDriveFileCell.xib */,
 				ECAE241E241A77A20050FA8A /* DropBoxManager.h */,
 				ECAE241F241A77A20050FA8A /* DropBoxManager.m */,
+				2DDD83DB266D1D2300A04D66 /* NetImageView.h */,
+				2DDD83DC266D1D2300A04D66 /* NetImageView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -977,6 +982,7 @@
 				EC0BC4BE21C2653500A6E50E /* NJKWebViewProgressView.m in Sources */,
 				2DC277C625F1809100D03413 /* test.swift in Sources */,
 				EC0BC49D21C25B5000A6E50E /* UIAlertView+ActionBlock.m in Sources */,
+				2DDD83DD266D1D2300A04D66 /* NetImageView.m in Sources */,
 				ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */,
 				ECD99AF021C7EDB90043DB0C /* MovieListModel.m in Sources */,
 				EC73609721DA5C280031DFE0 /* ActressSearchCell.m in Sources */,
