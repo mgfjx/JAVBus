@@ -45,20 +45,20 @@
     self.iconView = imageView;
     
     UILabel *titleLabel = [UILabel new];
-    titleLabel.textColor = [UIColor colorWithHexString:@"#333333"];
+    titleLabel.textColor = [UIColor dynamicProviderWithDarkStr:@"#ffffff" lightStr:@"#333333"];
     titleLabel.font = [UIFont systemFontOfSize:14];
     titleLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
     [self addSubview:titleLabel];
     self.titleLabel = titleLabel;
     
     UILabel *dateLabel = [UILabel new];
-    dateLabel.textColor = [UIColor colorWithHexString:@"#0179ff"];
+    dateLabel.textColor = [UIColor dynamicProviderWithDarkStr:@"#76b7ff" lightStr:@"#0179ff"];
     dateLabel.font = [UIFont systemFontOfSize:8];
     [self addSubview:dateLabel];
     self.dateLabel = dateLabel;
     
     UILabel *sizeLabel = [UILabel new];
-    sizeLabel.textColor = [UIColor colorWithHexString:@"#0179ff"];
+    sizeLabel.textColor = [UIColor dynamicProviderWithDarkStr:@"#76b7ff" lightStr:@"#0179ff"];;
     sizeLabel.font = [UIFont systemFontOfSize:8];
     [self addSubview:sizeLabel];
     self.sizeLabel = sizeLabel;

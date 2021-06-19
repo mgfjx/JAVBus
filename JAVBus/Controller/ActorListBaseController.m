@@ -49,7 +49,7 @@
     UICollectionView *collection = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
     collection.delegate = self;
     collection.dataSource = self;
-    collection.backgroundColor = [UIColor whiteColor];
+    collection.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#000000" lightStr:@"#ffffff"];
     //    [collection registerClass:[ActressCell class] forCellWithReuseIdentifier:NSStringFromClass([ActressCell class])];
     [collection registerNib:[UINib nibWithNibName:NSStringFromClass([ActressCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([ActressCell class])];
     

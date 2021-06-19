@@ -24,7 +24,7 @@
 #import "MagneticListView.h"
 #import <SafariServices/SafariServices.h>
 
-#define kMainTextColor @"#333333"
+#define kMainTextColor [UIColor dynamicProviderWithDarkStr:@"ffffff" lightStr:@"#333333"]
 
 @interface MovieDetailController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -170,7 +170,7 @@
     self.scrollView = scrollView;
     
     [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(kNavigationBarHeight);
+        make.top.mas_equalTo(0);
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(-kTabBarHeight);
     }];
@@ -202,9 +202,9 @@
     
     MovieDetailModel *model = self.detailModel;
     
-    UIImageView *imgView;
+    NetImageView *imgView;
     {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, scrollView.width, scrollView.width*0.6)];
+        NetImageView *imageView = [[NetImageView alloc] initWithFrame:CGRectMake(0, 0, scrollView.width, scrollView.width*0.6)];
         [imageView sd_setImageWithURL:[NSURL URLWithString:model.coverImgUrl] placeholderImage:MovieListPlaceHolder];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.backgroundColor = [UIColor colorWithHexString:@"#333333"];
@@ -226,7 +226,7 @@
         UILabel *label = [[UILabel alloc] init];
         label.font = font;
         label.text = content;
-        label.textColor = [UIColor colorWithHexString:kMainTextColor];
+        label.textColor = kMainTextColor;
         label.numberOfLines = 0;
         [bgView addSubview:label];
         [label sizeToFit];
@@ -253,7 +253,7 @@
             
             UILabel *label = [[UILabel alloc] init];
             label.text = title;
-            label.textColor = [UIColor colorWithHexString:kMainTextColor];
+            label.textColor = kMainTextColor;
             label.font = MHMediumFont(14);
             [container addSubview:label];
             [label sizeToFit];
@@ -270,7 +270,7 @@
                 button.text = item.title;
                 button.textColor = [UIColor whiteColor];
                 button.textAlignment = NSTextAlignmentCenter;
-                button.backgroundColor = [UIColor colorWithHexString:@"#febe00"];
+                button.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#333333" lightStr:@"#febe00"];
                 button.font = [UIFont systemFontOfSize:12];
                 [container addSubview:button];
                 [button sizeToFit];
@@ -328,7 +328,7 @@
             UILabel *label = [[UILabel alloc] init];
             label.text = @"樣品圖像";
             label.font = MHMediumFont(14);
-            label.textColor = [UIColor colorWithHexString:kMainTextColor];
+            label.textColor = kMainTextColor;
             [container addSubview:label];
             [label sizeToFit];
             label.x = offset;
@@ -372,7 +372,7 @@
         MagneticListView *container = [[MagneticListView alloc] initWithFrame:CGRectMake(20, maxHeight+10, bgView.width - 2*20, itemHeight)];
         container.clipsToBounds = YES;
         container.layer.cornerRadius = 8;
-        container.layer.borderColor = [UIColor colorWithHexString:@"#f2f2f7"].CGColor;
+        container.layer.borderColor = [UIColor dynamicProviderWithDarkStr:@"#333333" lightStr:@"#f2f2f7"].CGColor;
         container.layer.borderWidth = 1.0f;
         [bgView addSubview:container];
         self.magneticView = container;
@@ -405,7 +405,7 @@
             
             UILabel *label = [[UILabel alloc] init];
             label.text = @"同類影片";
-            label.textColor = [UIColor colorWithHexString:kMainTextColor];
+            label.textColor = kMainTextColor;
             label.font = MHMediumFont(14);
             [container addSubview:label];
             [label sizeToFit];
@@ -591,7 +591,7 @@
         RecommendModel *model = self.detailModel.recommends[indexPath.item];
         [cell.imgView sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:MovieListPlaceHolder];
         cell.titleLabel.text = model.title;
-        cell.titleLabel.textColor = [UIColor colorWithHexString:kMainTextColor];
+        cell.titleLabel.textColor = kMainTextColor;
         return cell;
     }
 }

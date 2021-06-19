@@ -27,5 +27,8 @@
 #import "Encrypt.h"
 #import "DropBoxManager.h"
 #import "NSString+XLHelper.h"
+#import "UIImageView+Runtime.h"
+#import "JAVBus-Swift.h"
+#import "NetImageView.h"
 
 #endif /* PrefixHeader_pch */

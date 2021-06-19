@@ -113,7 +113,7 @@
     table.tableFooterView = [UIView new];
     
     [table mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(kNavigationBarHeight);
+        make.top.mas_equalTo(0);
         make.left.bottom.right.mas_equalTo(0);
     }];
     

@@ -34,4 +34,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 
 #define MovieListPlaceHolder [UIImage imageNamed:@"movie_placeholder"]
 
+#define kCloseImage NO // 关闭图片显示
+
 #endif /* PublicDefines_h */

@@ -72,24 +72,23 @@
     
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    UICollectionView *collection = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+    UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     collection.delegate = self;
     collection.dataSource = self;
-    collection.backgroundColor = [UIColor whiteColor];
+    collection.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#000000" lightStr:@"#ffffff"];
     [collection registerNib:[UINib nibWithNibName:NSStringFromClass([ActressDetailCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([ActressDetailCell class])];
     
     [self.view addSubview:collection];
     self.collectionView = collection;
     
-    CGFloat topOffset = self.shouldNotOffset ? 0 : kNavigationBarHeight;
+    CGFloat topOffset = self.shouldNotOffset ? 0 : 0;
     
     [collection mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(topOffset);
-        make.left.bottom.right.mas_equalTo(0);
+        make.left.top.right.mas_equalTo(0);
         make.bottom.mas_equalTo(-kTabBarHeight);
     }];
     
-    layout.headerReferenceSize = CGSizeMake(MainWidth, 30);
+//    layout.headerReferenceSize = CGSizeMake(MainWidth, 30);
     
     collection.canPullUp = YES;
     WeakSelf(weakSelf)

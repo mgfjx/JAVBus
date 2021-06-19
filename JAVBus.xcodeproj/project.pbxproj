@@ -9,7 +9,11 @@
 /* Begin PBXBuildFile section */
 		20FA9D8906F3E0738C121653 /* libPods-JAVBus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4355E13C10486BC7E5DF018B /* libPods-JAVBus.a */; };
 		2D44C94825D5212D005E7AE3 /* TagLinkListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D44C94725D5212D005E7AE3 /* TagLinkListController.m */; };
+		2D44FC3125E36964001BCC6F /* UIImageView+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D44FC3025E36964001BCC6F /* UIImageView+Runtime.m */; };
 		2D49EC3025D39C0700B2A7E6 /* BaseItemListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D49EC2F25D39C0700B2A7E6 /* BaseItemListController.m */; };
+		2DC277C625F1809100D03413 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC277C525F1809100D03413 /* test.swift */; };
+		2DC277C825F1810800D03413 /* UIColor+Dark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC277C725F1810800D03413 /* UIColor+Dark.swift */; };
+		2DDD83DD266D1D2300A04D66 /* NetImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD83DC266D1D2300A04D66 /* NetImageView.m */; };
 		9A4B0DA3D54BB094B29C64D5 /* libPods-JAVBusUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8115FEBAB3603AB5CB74D91E /* libPods-JAVBusUITests.a */; };
 		AFBB54BCC9FC8A3F8371087C /* libPods-JAVBusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B086890A2D06BA45EF4AAC7C /* libPods-JAVBusTests.a */; };
 		EC0BC44321C2394900A6E50E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BC44221C2394900A6E50E /* AppDelegate.m */; };
@@ -129,8 +133,15 @@
 /* Begin PBXFileReference section */
 		2D44C94625D5212D005E7AE3 /* TagLinkListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagLinkListController.h; sourceTree = "<group>"; };
 		2D44C94725D5212D005E7AE3 /* TagLinkListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagLinkListController.m; sourceTree = "<group>"; };
+		2D44FC2F25E36964001BCC6F /* UIImageView+Runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Runtime.h"; sourceTree = "<group>"; };
+		2D44FC3025E36964001BCC6F /* UIImageView+Runtime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Runtime.m"; sourceTree = "<group>"; };
 		2D49EC2E25D39C0700B2A7E6 /* BaseItemListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseItemListController.h; sourceTree = "<group>"; };
 		2D49EC2F25D39C0700B2A7E6 /* BaseItemListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseItemListController.m; sourceTree = "<group>"; };
+		2DC277C425F1809000D03413 /* JAVBus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JAVBus-Bridging-Header.h"; sourceTree = "<group>"; };
+		2DC277C525F1809100D03413 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		2DC277C725F1810800D03413 /* UIColor+Dark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Dark.swift"; sourceTree = "<group>"; };
+		2DDD83DB266D1D2300A04D66 /* NetImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetImageView.h; sourceTree = "<group>"; };
+		2DDD83DC266D1D2300A04D66 /* NetImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetImageView.m; sourceTree = "<group>"; };
 		40ED61FAFF4ADBE0F300A854 /* Pods-JAVBusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JAVBusTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JAVBusTests/Pods-JAVBusTests.release.xcconfig"; sourceTree = "<group>"; };
 		4355E13C10486BC7E5DF018B /* libPods-JAVBus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JAVBus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C70DFAD6B40A9D114CB27E7 /* Pods-JAVBusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JAVBusUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JAVBusUITests/Pods-JAVBusUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -401,6 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				EC0BC47B21C2587900A6E50E /* PrefixHeader.pch */,
+				2DC277C525F1809100D03413 /* test.swift */,
 				EC0BC47C21C259E200A6E50E /* Defines */,
 				EC0BC47F21C25B5000A6E50E /* Category */,
 				ECA79166241613E600EDFF51 /* Common */,
@@ -420,6 +432,7 @@
 				EC0BC44C21C2394B00A6E50E /* LaunchScreen.storyboard */,
 				EC0BC44F21C2394B00A6E50E /* Info.plist */,
 				EC0BC45021C2394B00A6E50E /* main.m */,
+				2DC277C425F1809000D03413 /* JAVBus-Bridging-Header.h */,
 			);
 			path = JAVBus;
 			sourceTree = "<group>";
@@ -459,6 +472,7 @@
 				EC0BC48221C25B5000A6E50E /* NSString+XExtend.m */,
 				EC0BC48C21C25B5000A6E50E /* UIColor+Hex.h */,
 				EC0BC48321C25B5000A6E50E /* UIColor+Hex.m */,
+				2DC277C725F1810800D03413 /* UIColor+Dark.swift */,
 				EC0BC48621C25B5000A6E50E /* SQPrintJsonLog.h */,
 				EC0BC48F21C25B5000A6E50E /* SQPrintJsonLog.m */,
 				EC0BC49421C25B5000A6E50E /* NSObject+runtimeCopy.h */,
@@ -479,6 +493,8 @@
 				EC0BC49521C25B5000A6E50E /* NSString+RegExp.m */,
 				EC5F0590241D16590055B6B5 /* NSString+XLHelper.h */,
 				EC5F0591241D16590055B6B5 /* NSString+XLHelper.m */,
+				2D44FC2F25E36964001BCC6F /* UIImageView+Runtime.h */,
+				2D44FC3025E36964001BCC6F /* UIImageView+Runtime.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -601,6 +617,8 @@
 				ECAE241B241A1B8A0050FA8A /* GGDriveFileCell.xib */,
 				ECAE241E241A77A20050FA8A /* DropBoxManager.h */,
 				ECAE241F241A77A20050FA8A /* DropBoxManager.m */,
+				2DDD83DB266D1D2300A04D66 /* NetImageView.h */,
+				2DDD83DC266D1D2300A04D66 /* NetImageView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -768,6 +786,7 @@
 				TargetAttributes = {
 					EC0BC43D21C2394900A6E50E = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1240;
 					};
 					EC0BC45521C2394B00A6E50E = {
 						CreatedOnToolsVersion = 9.3;
@@ -940,6 +959,7 @@
 				ECCCE41C21E42F48006833FE /* MovieCachedController.m in Sources */,
 				EC5F058F241D14C40055B6B5 /* MagneticModel.m in Sources */,
 				EC0BC4BD21C2653500A6E50E /* NJKWebViewProgress.m in Sources */,
+				2DC277C825F1810800D03413 /* UIColor+Dark.swift in Sources */,
 				EC94A1FE21DCA1BA00C1BBCD /* ZHChineseConvert.m in Sources */,
 				ECAE241C241A1B8A0050FA8A /* GGDriveFileCell.m in Sources */,
 				EC94A1FB21DC52F000C1BBCD /* PublicDialogManager.m in Sources */,
@@ -960,7 +980,9 @@
 				EC0BC49E21C25B5000A6E50E /* SQPrintJsonLog.m in Sources */,
 				ECF9458F21D60AE00043E898 /* RecommendModel.m in Sources */,
 				EC0BC4BE21C2653500A6E50E /* NJKWebViewProgressView.m in Sources */,
+				2DC277C625F1809100D03413 /* test.swift in Sources */,
 				EC0BC49D21C25B5000A6E50E /* UIAlertView+ActionBlock.m in Sources */,
+				2DDD83DD266D1D2300A04D66 /* NetImageView.m in Sources */,
 				ECD99AD921C697540043DB0C /* ActressDetailController.m in Sources */,
 				ECD99AF021C7EDB90043DB0C /* MovieListModel.m in Sources */,
 				EC73609721DA5C280031DFE0 /* ActressSearchCell.m in Sources */,
@@ -989,6 +1011,7 @@
 				ECD99AD621C6891A0043DB0C /* HtmlToJsonManager.m in Sources */,
 				EC0BC49721C25B5000A6E50E /* NSString+XExtend.m in Sources */,
 				EC0BC4A821C25DAB00A6E50E /* ActressCodeController.m in Sources */,
+				2D44FC3125E36964001BCC6F /* UIImageView+Runtime.m in Sources */,
 				ECF79B3321DDE2F7008C097D /* MovieCollectionController.m in Sources */,
 				ECD4F4FB241795AA0076269B /* GoogleSignInManager.m in Sources */,
 				ECA791692416141300EDFF51 /* VideoPlayerManager.m in Sources */,
@@ -1167,6 +1190,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CFSS55J6SN;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1177,9 +1201,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "JAVBus/JAVBus-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1190,6 +1217,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CFSS55J6SN;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1200,9 +1228,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiexiaolong.JAVBus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "JAVBus/JAVBus-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1211,6 +1241,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9174191B1E5409EE51BCC81 /* Pods-JAVBusTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JAVBusTests/Info.plist;
@@ -1230,6 +1261,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40ED61FAFF4ADBE0F300A854 /* Pods-JAVBusTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JAVBusTests/Info.plist;
@@ -1249,6 +1281,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C21BD270C8EDE3D7C2D4F1CD /* Pods-JAVBusUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JAVBusUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1267,6 +1300,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5C70DFAD6B40A9D114CB27E7 /* Pods-JAVBusUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = JAVBusUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

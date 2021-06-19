@@ -45,7 +45,7 @@
 
 - (void)createScrollView {
     CGRect frame = self.view.bounds ;
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:frame];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - kNavigationBarHeight - kTabBarHeight)];
     scrollView.pagingEnabled = YES;
     scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:scrollView];
@@ -54,16 +54,17 @@
 
 - (void)createCategoryView {
     
-    JXCategoryTitleView *titleCategoryView = [[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, kNavigationBarHeight, MainWidth, CategoryHeight)];
-    titleCategoryView.backgroundColor = [UIColor whiteColor];
-    titleCategoryView.titleSelectedColor = [UIColor colorWithHexString:@"#0b7be1"];;
+    JXCategoryTitleView *titleCategoryView = [[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, 0, MainWidth, CategoryHeight)];
+    titleCategoryView.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#171717" lightStr:@"#ffffff"];
+    titleCategoryView.titleSelectedColor = [UIColor dynamicProviderWithDarkStr:@"#ffffff" lightStr:@"#0b7be1"];
+    titleCategoryView.titleColor = [UIColor dynamicProviderWithDarkStr:@"#b8b8b8" lightStr:@"#0b7be1"];
     titleCategoryView.titleFont = [UIFont systemFontOfSize:16];
     titleCategoryView.delegate = self;
     
     //    self.categoryView = titleCategoryView;
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, titleCategoryView.height - 1, titleCategoryView.width, 1)];
-    line.backgroundColor = [UIColor colorWithHexString:@"#e8e8e8"];
+    line.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#000000" lightStr:@"#e8e8e8"];
     [titleCategoryView addSubview:line];
     
     NSArray *titles = @[@"女優", @"影片", @"系列分类", @"缓存影片"];
@@ -73,7 +74,7 @@
     titleCategoryView.titleColorGradientEnabled = YES;
     JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
     //    lineView.indicatorLineWidth = MainWidth/titles.count;
-    lineView.indicatorLineViewColor = [UIColor colorWithHexString:@"#0b7be1"];
+    lineView.indicatorLineViewColor = [UIColor dynamicProviderWithDarkStr:@"#ffffff" lightStr:@"#0b7be1"];
     titleCategoryView.indicators = @[lineView];
     
     titleCategoryView.titles = titles;
@@ -98,10 +99,10 @@
             baseVC.shouldNotOffset = YES;
         }
         [self addChildViewController:vc];
-        if (i == 0) {
-            vc.view.frame = CGRectMake(self.scrollView.width*i, CGRectGetMaxY(self.categoryView.frame), self.scrollView.width, self.scrollView.height - kTabBarHeight - CGRectGetMaxY(self.categoryView.frame));
+//        if (i == 0) {
+            vc.view.frame = CGRectMake(self.scrollView.width*i, CGRectGetMaxY(self.categoryView.frame), self.scrollView.width, self.scrollView.height - CGRectGetMaxY(self.categoryView.frame));
             [self.scrollView addSubview:vc.view];
-        }
+//        }
     }
     
 }
@@ -110,7 +111,7 @@
     NSArray *controllers = self.childViewControllers;
     if (self.childViewControllers.count >= index + 1) {
         UIViewController *vc = controllers[index];
-        vc.view.frame = CGRectMake(self.scrollView.width*index, CGRectGetMaxY(self.categoryView.frame), self.scrollView.width, self.scrollView.height - kTabBarHeight - CGRectGetMaxY(self.categoryView.frame));
+        vc.view.frame = CGRectMake(self.scrollView.width*index, CGRectGetMaxY(self.categoryView.frame), self.scrollView.width, self.scrollView.height -  CGRectGetMaxY(self.categoryView.frame));
         [self.scrollView addSubview:vc.view];
     }
 }

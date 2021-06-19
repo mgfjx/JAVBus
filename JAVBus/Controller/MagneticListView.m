@@ -34,7 +34,7 @@
     label.text = @"磁力鏈接";
     label.textAlignment = NSTextAlignmentCenter;
     label.font = MHMediumFont(14);
-    label.textColor = [UIColor colorWithHexString:@"#333333"];
+    label.textColor = [UIColor dynamicProviderWithDarkStr:@"#ffffff" lightStr:@"#333333"];
     [self addSubview:label];
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] init];
@@ -102,7 +102,7 @@
     MagneticModel *model = self.magneticArray[indexPath.row];
     cell.model = model;
     
-    cell.backgroundColor = indexPath.row%2==0 ? [UIColor colorWithHexString:@"#f2f2f7"]:[UIColor whiteColor];
+    cell.backgroundColor = indexPath.row%2==0 ? [UIColor dynamicProviderWithDarkStr:@"#333333" lightStr:@"#f2f2f7"]:[UIColor dynamicProviderWithDarkStr:@"#555555" lightStr:@"#ffffff"];
     
     return cell;
 }

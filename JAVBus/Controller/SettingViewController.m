@@ -53,18 +53,12 @@
     UITableView *table = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     table.delegate = self;
     table.dataSource = self;
-    if (@available(iOS 13.0, *)) {
-        table.backgroundColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-            return traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark ? [UIColor blackColor]:[UIColor colorWithHexString:@"#f2f2f7"];
-        }];
-    } else {
-        table.backgroundColor = [UIColor colorWithHexString:@"#f2f2f7"];
-    }
-    
+    table.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#000000" lightStr:@"#f2f2f7"];
     [self.view addSubview:table];
+    table.separatorColor = [UIColor dynamicProviderWithDarkStr:@"#222222" lightStr:@"#aaaaaa"];
     
     [table mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(kNavigationBarHeight);
+        make.top.mas_equalTo(0);
         make.left.bottom.right.mas_equalTo(0);
     }];
     
@@ -88,7 +82,7 @@
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellReuse];
-        cell.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#111111" lightStr:@"#ffffff"];
     }
     
     NSArray *dataArray = self.dataArray[indexPath.section];
