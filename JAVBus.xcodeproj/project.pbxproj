@@ -11,6 +11,7 @@
 		2D44C94825D5212D005E7AE3 /* TagLinkListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D44C94725D5212D005E7AE3 /* TagLinkListController.m */; };
 		2D44FC3125E36964001BCC6F /* UIImageView+Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D44FC3025E36964001BCC6F /* UIImageView+Runtime.m */; };
 		2D49EC3025D39C0700B2A7E6 /* BaseItemListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D49EC2F25D39C0700B2A7E6 /* BaseItemListController.m */; };
+		2D8C4B7926A5D8E7005D7B70 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C4B7826A5D8E7005D7B70 /* ThemeManager.m */; };
 		2DC277C625F1809100D03413 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC277C525F1809100D03413 /* test.swift */; };
 		2DC277C825F1810800D03413 /* UIColor+Dark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC277C725F1810800D03413 /* UIColor+Dark.swift */; };
 		2DDD83DD266D1D2300A04D66 /* NetImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD83DC266D1D2300A04D66 /* NetImageView.m */; };
@@ -137,6 +138,8 @@
 		2D44FC3025E36964001BCC6F /* UIImageView+Runtime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Runtime.m"; sourceTree = "<group>"; };
 		2D49EC2E25D39C0700B2A7E6 /* BaseItemListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseItemListController.h; sourceTree = "<group>"; };
 		2D49EC2F25D39C0700B2A7E6 /* BaseItemListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseItemListController.m; sourceTree = "<group>"; };
+		2D8C4B7726A5D8E7005D7B70 /* ThemeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
+		2D8C4B7826A5D8E7005D7B70 /* ThemeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
 		2DC277C425F1809000D03413 /* JAVBus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JAVBus-Bridging-Header.h"; sourceTree = "<group>"; };
 		2DC277C525F1809100D03413 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		2DC277C725F1810800D03413 /* UIColor+Dark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Dark.swift"; sourceTree = "<group>"; };
@@ -619,6 +622,8 @@
 				ECAE241F241A77A20050FA8A /* DropBoxManager.m */,
 				2DDD83DB266D1D2300A04D66 /* NetImageView.h */,
 				2DDD83DC266D1D2300A04D66 /* NetImageView.m */,
+				2D8C4B7726A5D8E7005D7B70 /* ThemeManager.h */,
+				2D8C4B7826A5D8E7005D7B70 /* ThemeManager.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -998,6 +1003,7 @@
 				ECF9457421D4B86C0043E898 /* CategoryModel.m in Sources */,
 				ECF9457A21D4CB630043E898 /* MovieDetailController.m in Sources */,
 				ECF9457D21D51AB20043E898 /* TitleLinkModel.m in Sources */,
+				2D8C4B7926A5D8E7005D7B70 /* ThemeManager.m in Sources */,
 				EC0BC49821C25B5000A6E50E /* UIColor+Hex.m in Sources */,
 				ECF9456A21D4B5B60043E898 /* MovieCategoryController.m in Sources */,
 				ECF9457021D4B7CB0043E898 /* UnCensoredCategoryController.m in Sources */,

@@ -20,11 +20,12 @@
     }else{
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    self.view.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#000000" lightStr:@"#ffffff"];
+    self.view.backgroundColor = [ThemeManager manager].pageBgColor;
     // 自动滚动调整，默认为YES
    self.automaticallyAdjustsScrollViewInsets = YES;
     // Bar的模糊效果，默认为YES
     self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.barTintColor = [ThemeManager manager].navColor;
     
 //    self.view.height = self.view.height - kTabBarHeight;
     
