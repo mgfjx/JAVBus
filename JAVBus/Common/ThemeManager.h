@@ -21,6 +21,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// tabbar颜色
 @property (nonatomic, strong, readonly) UIColor *tabBarBgColor ;
 
+
+///女优cell，影片cell
+///背景
+@property (nonatomic, strong, readonly) UIColor *cellBgColor ;
+///图片背景
+@property (nonatomic, strong, readonly) UIColor *cellImageBgColor ;
+///边框
+@property (nonatomic, strong, readonly) UIColor *cellBorderColor ;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -14,12 +14,14 @@
     [super awakeFromNib];
     // Initialization code
     
-    self.layer.borderColor = [UIColor dynamicProviderWithDarkStr:@"#333333" lightStr:@"#eeeeee"].CGColor;
-    self.layer.borderWidth = 0.5;
-    self.layer.cornerRadius = 5;
-    self.layer.masksToBounds = YES;
+//    self.layer.borderColor = [ThemeManager manager].cellBorderColor.CGColor;
+//    self.layer.borderWidth = 0.5;
+//    self.layer.cornerRadius = 5;
+//    self.layer.masksToBounds = YES;
     
-    self.titleLabel.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#222222" lightStr:@"#606060"];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.imageView.backgroundColor = [ThemeManager manager].cellImageBgColor;
+    self.backgroundColor = [ThemeManager manager].cellBgColor;
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
     [self addGestureRecognizer:longPress];

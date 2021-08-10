@@ -54,4 +54,16 @@ static id singleton = nil;
     return [UIColor dynamicProviderWithDarkStr:@"#151515" lightStr:@"#ffffff"];
 }
 
+- (UIColor *)cellBgColor {
+    return [UIColor dynamicProviderWithDarkStr:@"#222222" lightStr:@"#606060"];
+}
+
+- (UIColor *)cellImageBgColor {
+    return [UIColor dynamicProviderWithDarkStr:@"#151515" lightStr:@"#ffffff"];
+}
+
+- (UIColor *)cellBorderColor {
+    return [UIColor dynamicProviderWithDarkStr:@"#333333" lightStr:@"#eeeeee"];
+}
+
 @end

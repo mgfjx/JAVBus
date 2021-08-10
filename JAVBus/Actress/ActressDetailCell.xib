@@ -91,7 +91,7 @@
                 <outlet property="timeLabel" destination="3gh-GJ-txc" id="sOj-7h-0GL"/>
                 <outlet property="titleLabel" destination="vzF-5w-N6Q" id="8bd-RT-68c"/>
             </connections>
-            <point key="canvasLocation" x="-1169" y="-744"/>
+            <point key="canvasLocation" x="-1445" y="-843"/>
         </collectionViewCell>
     </objects>
     <resources>

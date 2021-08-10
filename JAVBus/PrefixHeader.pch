@@ -30,5 +30,6 @@
 #import "UIImageView+Runtime.h"
 #import "JAVBus-Swift.h"
 #import "NetImageView.h"
+#import "ThemeManager.h"
 
 #endif /* PrefixHeader_pch */
