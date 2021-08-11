@@ -1,0 +1,25 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "打測試包並上傳到蒲公英"
+  	lane :beta do
+  		build_app(export_method: "development")
+  		# gym(scheme: "JenkinsDemo", configuration: "Debug", export_method: "development")
+  		pgyer(api_key: "700ffc367a1d86863d40370c3e95da66", user_key: "3834f11d73cd7d0e419734b68a539bf2")
+	end
+end
