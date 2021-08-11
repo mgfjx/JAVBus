@@ -75,6 +75,10 @@
     tabBarController.selectedIndex = 2;
     [tabBarController setTintColor:[UIColor colorWithHexString:@"#0099de"]];
     
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainWidth, kTabBarHeight)];
+    bgView.backgroundColor = [ThemeManager manager].tabBarBgColor;
+    [self.tabBar insertSubview:bgView atIndex:0];
+    
 }
 
 - (void)createBarButton {

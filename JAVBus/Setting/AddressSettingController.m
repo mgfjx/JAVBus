@@ -24,6 +24,14 @@
     self.title = @"地址设置";
     
     [self initViews];
+    [self loadDataArray];
+    [self testIp];
+    [self createBarButton];
+    
+}
+
+- (void)loadDataArray {
+    
     NSArray *ips = [GlobalTool shareInstance].ips ;
     
     NSMutableArray *array = [NSMutableArray array];
@@ -37,8 +45,6 @@
     }
     
     self.dataArray = [array copy];
-    [self testIp];
-    [self createBarButton];
     
 }
 
@@ -67,10 +73,10 @@
         
         UITextField *tf = alertController.textFields.firstObject;
         NSString *ip = tf.text;
-        NSMutableArray *array = [NSMutableArray arrayWithArray:self.dataArray];
+        NSMutableArray *array = [NSMutableArray arrayWithArray:[GlobalTool shareInstance].ips];
         [array addObject:ip];
         [GlobalTool shareInstance].ips = [array copy];
-        self.dataArray = [GlobalTool shareInstance].ips;
+        [self loadDataArray];
         [self.tableView reloadData];
         
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
@@ -167,6 +173,29 @@
     currentModel.selected = YES;
     [GlobalTool shareInstance].baseUrl = currentModel.ipAddress;
     [tableView reloadData];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return true;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        AddressModel *model = self.dataArray[indexPath.row];
+        NSMutableArray *array = [NSMutableArray array];
+        for (NSString *address in [GlobalTool shareInstance].ips) {
+            if (![address isEqualToString:model.ipAddress]) {
+                [array addObject:address];
+            }
+        }
+        [GlobalTool shareInstance].ips = [array copy];
+        [self loadDataArray];
+        [tableView reloadData];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

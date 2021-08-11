@@ -75,7 +75,7 @@
     UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     collection.delegate = self;
     collection.dataSource = self;
-    collection.backgroundColor = [UIColor dynamicProviderWithDarkStr:@"#000000" lightStr:@"#ffffff"];
+    collection.backgroundColor = self.view.backgroundColor;
     [collection registerNib:[UINib nibWithNibName:NSStringFromClass([ActressDetailCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([ActressDetailCell class])];
     
     [self.view addSubview:collection];
