@@ -25,7 +25,18 @@
    self.automaticallyAdjustsScrollViewInsets = YES;
     // Bar的模糊效果，默认为YES
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.barTintColor = [ThemeManager manager].navColor;
+    
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appperance = [[UINavigationBarAppearance alloc]init];
+        //添加背景色
+        appperance.backgroundColor = [ThemeManager manager].navColor;
+        appperance.shadowImage = [[UIImage alloc]init];
+        appperance.shadowColor = nil;
+        self.navigationController.navigationBar.standardAppearance = appperance;
+        self.navigationController.navigationBar.scrollEdgeAppearance = appperance;
+    } else {
+        self.navigationController.navigationBar.barTintColor = [ThemeManager manager].navColor;
+    }
     
 //    self.view.height = self.view.height - kTabBarHeight;
     
