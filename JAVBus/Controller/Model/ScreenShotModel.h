@@ -13,5 +13,6 @@
 @property (nonatomic, strong) NSString *title ;
 @property (nonatomic, strong) NSString *smallPicUrl ;
 @property (nonatomic, strong) NSString *bigPicUrl ;
+@property (nonatomic, strong, readonly) NSString *bigFullPicUrl ;
 
 @end

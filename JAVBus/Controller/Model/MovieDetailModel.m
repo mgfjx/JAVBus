@@ -10,4 +10,13 @@
 
 @implementation MovieDetailModel
 
+- (NSString *)coverFullImgUrl {
+    //处理url
+    NSString *shortUrl = self.coverImgUrl;
+    if (shortUrl.length > 0 && ![shortUrl hasPrefix:@"http"]) {
+        shortUrl = [NSString stringWithFormat:@"%@%@", [GlobalTool shareInstance].baseUrl, shortUrl];
+    }
+    return shortUrl;
+}
+
 @end

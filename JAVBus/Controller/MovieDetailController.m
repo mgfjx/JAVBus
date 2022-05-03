@@ -562,7 +562,7 @@
 }
 
 - (void)tapCorver {
-    NSArray *photos = [IDMPhoto photosWithURLs:@[[NSURL URLWithString:self.detailModel.coverImgUrl]]];
+    NSArray *photos = [IDMPhoto photosWithURLs:@[[NSURL URLWithString:self.detailModel.coverFullImgUrl]]];
     IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotos:photos];
     [self presentViewController:browser animated:YES completion:nil];
 }
@@ -602,7 +602,7 @@
         NSMutableArray *photos = [NSMutableArray new];
         
         for (ScreenShotModel *item in self.detailModel.screenshots) {
-            IDMPhoto *photo = [IDMPhoto photoWithURL:[NSURL URLWithString:item.bigPicUrl]];
+            IDMPhoto *photo = [IDMPhoto photoWithURL:[NSURL URLWithString:item.bigFullPicUrl]];
             [photos addObject:photo];
         }
         

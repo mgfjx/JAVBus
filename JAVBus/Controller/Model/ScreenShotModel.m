@@ -10,4 +10,12 @@
 
 @implementation ScreenShotModel
 
+- (NSString *)bigFullPicUrl {
+    NSString *shortUrl = self.bigPicUrl;
+    if (shortUrl.length > 0 && ![shortUrl hasPrefix:@"http"]) {
+        shortUrl = [NSString stringWithFormat:@"%@%@", [GlobalTool shareInstance].baseUrl, shortUrl];
+    }
+    return shortUrl;
+}
+
 @end
